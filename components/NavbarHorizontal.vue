@@ -3,17 +3,17 @@
     <NuxtLink to="/" class="logo-link">
       <img
         alt="Home page"
-        src="/eriks-travels/eriks-travels-white-2line-temp.png"
-        width="250"
+        src="/header/eriks-travels-logo_menu.png"
+        height="120"
     /></NuxtLink>
 
     <div class="nav-items">
       <template v-for="menuItem in navMenuItems" :key="menuItem.text">
-        <NuxtLink :to="menuItem.to" class="nav_item">
+        <NuxtLink :to="menuItem.to">
           <img
             :alt="menuItem.altText"
-            :src="`/eriks-travels/${menuItem.img}`"
-            width="200"
+            :src="`/header/white_${menuItem.img}`"
+            height="80"
           />
         </NuxtLink>
       </template>
@@ -22,11 +22,11 @@
   <!-- Hack to always have main content start below the nav bar -->
   <nav class="nav-container hidden">
     <template v-for="menuItem in navMenuItems" :key="menuItem.text">
-      <NuxtLink :to="menuItem.to" class="nav_item">
+      <NuxtLink :to="menuItem.to">
         <img
           :alt="menuItem.altText"
-          :src="`eriks-travels/${menuItem.img}`"
-          width="200"
+          :src="`/header/white_${menuItem.img}`"
+          height="80"
         />
       </NuxtLink>
     </template>
@@ -41,27 +41,27 @@ export default {
     return {
       navMenuItems: [
         {
-          img: 'film-portfolio.png',
-          altText: 'Film Portfolio',
-          to: '/film-portfolio',
-        },
-        {
-          img: 'showreel.png',
+          img: 'show-reel_menu.png',
           altText: 'Showreel',
           to: '/showreel',
         },
         {
-          img: 'producer.png',
+          img: 'film-portfolio_menu.png',
+          altText: 'Film Portfolio',
+          to: '/film-portfolio',
+        },
+        {
+          img: 'the-producer_menu.png',
           altText: 'The Producer',
           to: '/producer',
         },
         {
-          img: 'film-festivals.png',
+          img: 'film-festivals_menu.png',
           altText: 'Film Festivals',
           to: '/film-festivals',
         },
         {
-          img: 'contact.png',
+          img: 'contact-credits_menu.png',
           altText: 'Contact and Credits',
           to: '/contact',
         },
@@ -88,8 +88,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Lato:100,400&display=swap');
-
 .nav-container {
   display: flex;
   position: fixed;
@@ -125,17 +123,6 @@ export default {
     // https://stackoverflow.com/questions/46083220/how-to-vuejs-router-link-active-style
     color: #e30829;
   }
-
-  .nav_item {
-    color: white;
-    display: block;
-    font-family: 'Lato', sans-serif;
-    font-feature-settings: 'liga';
-    // font-size: 14px;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 3px;
-  }
 }
 
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
@@ -145,10 +132,6 @@ export default {
   .nav-container {
     width: 50% !important;
     padding: 15px 14px !important;
-
-    .nav_item {
-      font-size: 12px;
-    }
   }
 }
 
