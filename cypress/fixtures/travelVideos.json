@@ -1,0 +1,339 @@
+{
+  "travelVideos": [
+    {
+      "title": "Abu Dhabi",
+      "imgSrc": "abu-dhabi.jpg",
+      "duration": "4:17 min"
+    },
+    {
+      "title": "Angkor Wat",
+      "imgSrc": "angkor.jpg",
+      "duration": "3:40 min"
+    },
+    {
+      "title": "Bali",
+      "imgSrc": "bali_si2btf.jpg",
+      "duration": "15:43 min"
+    },
+    {
+      "title": "Bangkok",
+      "imgSrc": "bangkok.jpg",
+      "duration": "10:06 min"
+    },
+    {
+      "title": "Barcelona",
+      "imgSrc": "barcelona.jpg",
+      "duration": "15:55 min"
+    },
+    {
+      "title": "Belize",
+      "imgSrc": "belize.jpg",
+      "duration": "4:18 min"
+    },
+    {
+      "title": "Bhutan",
+      "imgSrc": "bhutan_wzklvo.jpg",
+      "duration": "14:56 min"
+    },
+    {
+      "title": "Black Gold - United Arab Emirates & Oman",
+      "imgSrc": "uae_pdtrdu.jpg",
+      "duration": "25:25 min"
+    },
+    {
+      "title": "Burma",
+      "imgSrc": "burma.jpg",
+      "duration": "6:25 min"
+    },
+    {
+      "title": "Cabo",
+      "imgSrc": "Cabo.jpg",
+      "duration": "26:29 min"
+    },
+    {
+      "title": "Capetown",
+      "imgSrc": "capetown_njc5zv.jpg",
+      "duration": "6:43 min"
+    },
+    {
+      "title": "Capri & The Famous Blue Grotto",
+      "imgSrc": "Capri_q1eqyf.jpg",
+      "duration": "5:31 min"
+    },
+    {
+      "title": "Carnival in Brazil",
+      "imgSrc": "samba_mofqhz.jpg",
+      "duration": "26:22 min"
+    },
+    {
+      "title": "China",
+      "imgSrc": "china.jpg",
+      "duration": "23:36 min"
+    },
+    {
+      "title": "Crazy Little Japanese Monkey",
+      "imgSrc": "crazy-little-japanese-monkey.jpg",
+      "duration": "1:20 min"
+    },
+    {
+      "title": "Cuba",
+      "imgSrc": "cuba_fgmvfk.jpg",
+      "duration": "18:08 min"
+    },
+    {
+      "title": "Dining with Chunky",
+      "imgSrc": "diningwithchunky_pvl2mo.jpg",
+      "duration": "18:45 min"
+    },
+    {
+      "title": "Dubai",
+      "imgSrc": "burj_kalifa_wbcmha.jpg",
+      "duration": "12:51 min"
+    },
+    {
+      "title": "Durban",
+      "imgSrc": "durban.jpg",
+      "duration": "3:18 min"
+    },
+    {
+      "title": "Egypt",
+      "imgSrc": "egypt.jpg",
+      "duration": "9:56 min"
+    },
+    {
+      "title": "Fiji",
+      "imgSrc": "fiji_x2e1ro.jpg",
+      "duration": "17:58 min"
+    },
+    {
+      "title": "Florence",
+      "imgSrc": "florence.jpg",
+      "duration": "4:53 min"
+    },
+    {
+      "title": "Fujairah",
+      "imgSrc": "fujairah.jpg",
+      "duration": "3:49 min"
+    },
+    {
+      "title": "Goa",
+      "imgSrc": "goa.jpg",
+      "duration": "3:56 min"
+    },
+    {
+      "title": "Gothic Cathedrals",
+      "imgSrc": "gothic-france-2.jpg",
+      "duration": "10:43 min"
+    },
+    {
+      "title": "Holland - Amsterdam",
+      "imgSrc": "holland_woygop.jpg",
+      "duration": "4:30 min"
+    },
+    {
+      "title": "Hong Kong",
+      "imgSrc": "hong-kong.jpg",
+      "duration": "12:30 min"
+    },
+    {
+      "title": "India - Kochi",
+      "imgSrc": "mumbai_malabar_gwxbtk.jpg",
+      "duration": "8:05 min"
+    },
+    {
+      "title": "India - Mangalore",
+      "imgSrc": "mangalore_oxmfsl.jpg",
+      "duration": "8:01 min"
+    },
+    {
+      "title": "India - Mumbai",
+      "imgSrc": "mumbai_kmen3j.jpg",
+      "duration": "9:48 min"
+    },
+    {
+      "title": "India - Mumbai to the Malibar Coast",
+      "imgSrc": "mumbai_malabar-2.jpg",
+      "duration": "29:25 min"
+    },
+    {
+      "title": "Jagalchi Fish Market - Busan, South Korea",
+      "imgSrc": "jagalchi-fish-market-south-korea_vhkmuw.jpg",
+      "duration": "5:47 min"
+    },
+    {
+      "title": "Japan",
+      "imgSrc": "japan_hno20g.jpg",
+      "duration": "32:35 min"
+    },
+    {
+      "title": "Jogjakarta, Java",
+      "imgSrc": "java.jpg",
+      "duration": "12:31 min"
+    },
+    {
+      "title": "Long Ago and Far Away",
+      "imgSrc": "long-ago-and-far-away.jpg",
+      "duration": "15:55 min"
+    },
+    {
+      "title": "Madagascar",
+      "imgSrc": "madagascar.jpg",
+      "duration": "7:53 min"
+    },
+    {
+      "title": "Malaysian Borneo",
+      "imgSrc": "malaysian-borneo_gmgghz.jpg",
+      "duration": "21:05 min"
+    },
+    {
+      "title": "Mont Saint Michel",
+      "imgSrc": "normandy-mont-saint-michele.jpg",
+      "duration": "7:08 min"
+    },
+    {
+      "title": "Mombasa",
+      "imgSrc": "mombasa.jpg",
+      "duration": "5:58 min"
+    },
+    {
+      "title": "Mozambique Maputo",
+      "imgSrc": "mozambique-maputo.jpg",
+      "duration": "5:34 min"
+    },
+    {
+      "title": "Muscat",
+      "imgSrc": "muscat.jpg",
+      "duration": "5:13 min"
+    },
+    {
+      "title": "Northern Spain",
+      "imgSrc": "northern-spain.jpg",
+      "duration": "11:22 min"
+    },
+    {
+      "title": "Norway - Hurtigruten Cruise",
+      "imgSrc": "norway_wtnfj7.jpg",
+      "duration": "22:45 min"
+    },
+    {
+      "title": "Papua New Guinea",
+      "imgSrc": "papua_viclph.jpg",
+      "duration": "19:26 min"
+    },
+    {
+      "title": "Paris",
+      "imgSrc": "paris.jpg",
+      "duration": "14:08 min"
+    },
+    {
+      "title": "Pelourinho Carnival",
+      "imgSrc": "pelourinho.jpg",
+      "duration": "7:27 min"
+    },
+    {
+      "title": "Peninsular Malaysia",
+      "imgSrc": "malaysia_zcxazn.jpg",
+      "duration": "12:44 min"
+    },
+    {
+      "title": "Petra, the Lost City",
+      "imgSrc": "petra.jpg",
+      "duration": "3:39 min"
+    },
+    {
+      "title": "Puglia",
+      "imgSrc": "puligia.jpg",
+      "duration": "21:30 min"
+    },
+    {
+      "title": "Pukhet & The Andaman Islands",
+      "imgSrc": "pukhet-2.jpg",
+      "duration": "8:19 min"
+    },
+    {
+      "title": "Raja Ampat",
+      "imgSrc": "rajaampat_vbaqi6.jpg",
+      "duration": "9:40 min"
+    },
+    {
+      "title": "Rio Carnival",
+      "imgSrc": "rio.jpg",
+      "duration": "8:24 min"
+    },
+    {
+      "title": "Rome",
+      "imgSrc": "rome-2.jpg",
+      "duration": "14:48 min"
+    },
+    {
+      "title": "Singapore",
+      "imgSrc": "singapore_vrzl3t.jpg",
+      "duration": "12:12 min"
+    },
+    {
+      "title": "Spice, Slaves, and Ivory. The Swahili Coast.",
+      "imgSrc": "swahili-coast.jpg",
+      "duration": "27:57 min"
+    },
+    {
+      "title": "Sulawesi Road Trip",
+      "imgSrc": "sulawesi_ddeel8.jpg",
+      "duration": "15:03 min"
+    },
+    {
+      "title": "Tahiti",
+      "imgSrc": "Tahiti_c0p1re.jpg",
+      "duration": "8:00 min"
+    },
+    {
+      "title": "Taipei",
+      "imgSrc": "taipei_bz5taf.jpg",
+      "duration": "7:42 min"
+    },
+    {
+      "title": "Tana Toraja",
+      "imgSrc": "tanatoraja_z0jqx4.jpg",
+      "duration": "14:11 min"
+    },
+    {
+      "title": "The Baltic Cruise",
+      "imgSrc": "baltic_mvyknf.jpg",
+      "duration": "10:53 min"
+    },
+    {
+      "title": "The Rivieras",
+      "imgSrc": "the-rivieras.jpg",
+      "duration": "19:12 min"
+    },
+    {
+      "title": "The Seychelles",
+      "imgSrc": "seychelles_xa3hds.jpg",
+      "duration": "7:45 min"
+    },
+    {
+      "title": "Tsukiji Fish Market - Seafood Lovers Paradise",
+      "imgSrc": "tsukijistill_ygyyv8.jpg",
+      "duration": "8:07 min"
+    },
+    {
+      "title": "Turkey",
+      "imgSrc": "turkey.jpg",
+      "duration": "17:31 min"
+    },
+    {
+      "title": "Venice",
+      "imgSrc": "venice_cemorb.jpg",
+      "duration": "11:14 min"
+    },
+    {
+      "title": "Vietnam",
+      "imgSrc": "vietnam_ywkufd.jpg",
+      "duration": "7:46 min"
+    },
+    {
+      "title": "Zanzibar",
+      "imgSrc": "zanzibar.jpg",
+      "duration": "7:21 min"
+    }
+  ]
+}

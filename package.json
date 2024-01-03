@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxt prepare",
+    "cypress": "cypress open"
+  },
+  "devDependencies": {
+    "@nuxt/content": "^2.5.2",
+    "cypress": "^13.2.0",
+    "cypress-plugin-snapshots": "^1.4.4",
+    "cypress-real-events": "^1.10.3",
+    "nuxt": "^3.6.5",
+    "sass": "^1.62.0"
+  },
+  "dependencies": {
+    "@sindresorhus/slugify": "^2.2.0",
+    "@vimeo/player": "^2.18.0",
+    "mitt": "^3.0.0",
+    "nuxt-lazy-load": "^3.0.4",
+    "radix-vue": "^0.1.32",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vue-scrollto": "^2.20.0",
+    "vuetify": "^3.3.17"
+  }
+}

@@ -1,0 +1,21 @@
+html {
+  /* this is the root font-size which all rem units will be based on */
+  font-size: 16px;
+  overflow-y: auto !important;
+}
+
+a, a:hover {
+  text-decoration: none !important;
+}
+
+body {
+  background-color: black !important;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+img, svg {
+  vertical-align: middle;
+}
