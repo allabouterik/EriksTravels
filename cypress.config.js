@@ -1,5 +1,4 @@
 const { defineConfig } = require('cypress');
-const { initPlugin } = require('cypress-plugin-snapshots/plugin');
 
 module.exports = defineConfig({
   projectId: '9c6bem',
@@ -10,7 +9,6 @@ module.exports = defineConfig({
     // baseUrl: 'https://all-about-erik-nuxt3.netlify.app/',
     setupNodeEvents(on, config) {
       // implement node event listeners here
-      initPlugin(on, config);
     },
     pageLoadTimeout: 90000,
     // To fix isseu with blank page loading
