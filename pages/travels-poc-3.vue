@@ -13,7 +13,7 @@
           :class="{ scroll: scrollContainer }"
         >
           <!-- VIDEOS -->
-          <v-row no-gutters justify="center" id="videos">
+          <v-row justify="center" id="videos">
             <v-col
               cols="12"
               sm="6"
@@ -21,14 +21,14 @@
               lg="4"
               v-for="(video, index) in travelVideos"
               :key="video.title"
-              class="mb-2 mb-sm-2 px-2 px-sm-1"
+              class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
               @click="
                 scrollContainer = false;
                 videoIndex = index;
               "
               data-testid="video-container"
             >
-              <VideoThumbnailTravels :video="video" :poc="true" />
+              <VideoThumbnailTravels :video="video" />
             </v-col>
           </v-row>
         </v-container>
@@ -120,7 +120,6 @@ useHead({
 
 .mainContainer {
   width: 100%;
-  max-width: 2178px;
   padding: 0;
   text-align: center;
 }

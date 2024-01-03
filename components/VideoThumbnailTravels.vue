@@ -1,5 +1,5 @@
 <template>
-  <div class="videoThumbnailContainer" :class="{ poc: poc }">
+  <div class="videoThumbnailContainer">
     <div>
       <img
         v-if="video.thumbnailImg != null"
@@ -40,10 +40,6 @@ export default {
       type: Object,
     },
     preload: {
-      type: Boolean,
-      default: false,
-    },
-    poc: {
       type: Boolean,
       default: false,
     },
@@ -95,14 +91,10 @@ export default {
   color: #ffffff;
   position: absolute;
   text-align: center;
-  top: 36%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 85%;
-}
-
-.poc .thumbnailImgTextOverlay {
-  top: 40%;
 }
 
 .playVideoText {
@@ -130,15 +122,12 @@ export default {
   color: #d6d6d6;
   background-color: black;
   width: 100%;
-  height: 115px;
+  height: 40px;
   bottom: 0;
   font-size: 14px;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in 0s;
-}
-.poc .captionBanner {
-  height: 75px;
 }
 
 .videoTitle {
