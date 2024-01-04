@@ -5,6 +5,7 @@
       'pa-0': applyZeroLayoutPadding,
     }"
   >
+    <Navbar />
     <NavbarHorizontal />
     <main>
       <NuxtPage />
@@ -13,65 +14,63 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from "vue";
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | All About Erik` : 'All About Erik';
+    return titleChunk ? `${titleChunk} | All About Erik` : "All About Erik";
   },
   link: [
     {
-      rel: 'preconnect',
-      href: 'https://res.cloudinary.com/',
+      rel: "preconnect",
+      href: "https://res.cloudinary.com/",
     },
     {
-      rel: 'dns-prefetch',
-      href: 'https://res.cloudinary.com/',
+      rel: "dns-prefetch",
+      href: "https://res.cloudinary.com/",
     },
     {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com',
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
     },
     {
-      rel: 'dns-prefetch',
-      href: 'https://fonts.googleapis.com',
+      rel: "dns-prefetch",
+      href: "https://fonts.googleapis.com",
     },
     {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
     },
     {
-      rel: 'dns-prefetch',
-      href: 'https://fonts.gstatic.com',
+      rel: "dns-prefetch",
+      href: "https://fonts.gstatic.com",
     },
     {
-      rel: 'preconnect',
-      href: 'https://cdn.jsdelivr.net',
+      rel: "preconnect",
+      href: "https://cdn.jsdelivr.net",
     },
     {
-      rel: 'dns-prefetch',
-      href: 'https://cdn.jsdelivr.net',
+      rel: "dns-prefetch",
+      href: "https://cdn.jsdelivr.net",
     },
   ],
   htmlAttrs: {
-    lang: 'en',
+    lang: "en",
   },
   meta: [
     {
-      name: 'description',
+      name: "description",
       content:
-        'A site all about the life and career of Erik Jacobsen, an American record producer, song publisher and artist manager. ' +
+        "A site all about the life and career of Erik Jacobsen, an American record producer, song publisher and artist manager. " +
         "He is best known for his work in the 1960s with Tim Hardin, the Lovin' Spoonful, the Charlatans, and Sopwith Camel, " +
-        'and later with Norman Greenbaum, Tazmanian Devils and Chris Isaak.',
+        "and later with Norman Greenbaum, Tazmanian Devils and Chris Isaak.",
     },
   ],
 });
 
 const applyZeroLayoutPadding = ref(false);
 
-const urlsForZeroPadding = [
-  '/travels',
-];
+const urlsForZeroPadding = ["/travels"];
 
 const path = computed(() => {
   const route = useRoute();
@@ -81,13 +80,11 @@ const path = computed(() => {
 const applyPageLayoutStyling = (currentPath) => {
   applyZeroLayoutPadding.value = false;
   urlsForZeroPadding.forEach((url) => {
-    if (
-      currentPath.includes(url)
-    ) {
+    if (currentPath.includes(url)) {
       applyZeroLayoutPadding.value = true;
     }
   });
-  if (currentPath === '/') {
+  if (currentPath === "/") {
     // for homepage
     applyZeroLayoutPadding.value = true;
   }
@@ -102,16 +99,14 @@ watch(path, (newPath) => {
 });
 </script>
 
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript"></script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Lato:100,400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:100,400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap");
 
 body {
-  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }

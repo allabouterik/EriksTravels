@@ -1,6 +1,9 @@
 <template>
-  <nav class="nav-container">
-    <NuxtLink to="/" class="logo-link">
+  <nav class="nav-container d-none d-lg-flex">
+    <NuxtLink
+      to="/"
+      class="logo-link"
+    >
       <img
         alt="Home page"
         src="/header/eriks-travels-logo_menu.png"
@@ -8,7 +11,10 @@
     /></NuxtLink>
 
     <div class="nav-items">
-      <template v-for="menuItem in navMenuItems" :key="menuItem.text">
+      <template
+        v-for="menuItem in navMenuItems"
+        :key="menuItem.text"
+      >
         <NuxtLink :to="menuItem.to">
           <img
             :alt="menuItem.altText"
@@ -20,8 +26,11 @@
     </div>
   </nav>
   <!-- Hack to always have main content start below the nav bar -->
-  <nav class="nav-container hidden">
-    <template v-for="menuItem in navMenuItems" :key="menuItem.text">
+  <nav class="nav-container hidden d-none d-md-block">
+    <template
+      v-for="menuItem in navMenuItems"
+      :key="menuItem.text"
+    >
       <NuxtLink :to="menuItem.to">
         <img
           :alt="menuItem.altText"
@@ -41,29 +50,29 @@ export default {
     return {
       navMenuItems: [
         {
-          img: 'show-reel_menu.png',
-          altText: 'Showreel',
-          to: '/showreel',
+          img: "show-reel_menu.png",
+          altText: "Showreel",
+          to: "/showreel",
         },
         {
-          img: 'film-portfolio_menu.png',
-          altText: 'Film Portfolio',
-          to: '/film-portfolio',
+          img: "film-portfolio_menu.png",
+          altText: "Film Portfolio",
+          to: "/film-portfolio",
         },
         {
-          img: 'the-producer_menu.png',
-          altText: 'The Producer',
-          to: '/producer',
+          img: "the-producer_menu.png",
+          altText: "The Producer",
+          to: "/producer",
         },
         {
-          img: 'film-festivals_menu.png',
-          altText: 'Film Festivals',
-          to: '/film-festivals',
+          img: "film-festivals_menu.png",
+          altText: "Film Festivals",
+          to: "/film-festivals",
         },
         {
-          img: 'contact-credits_menu.png',
-          altText: 'Contact and Credits',
-          to: '/contact',
+          img: "contact-credits_menu.png",
+          altText: "Contact and Credits",
+          to: "/contact",
         },
       ],
     };
