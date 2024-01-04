@@ -18,7 +18,7 @@ import { computed, onMounted, ref } from "vue";
 
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | All About Erik` : "All About Erik";
+    return titleChunk ? `${titleChunk} | Erik's Travels` : "Erik's Travels";
   },
   link: [
     {
