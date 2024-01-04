@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: 'VideoThumbnailTravels',
+  name: "VideoThumbnailTravels",
 
   props: {
     video: {
@@ -51,13 +51,13 @@ export default {
       if (mins >= 60) {
         let hrs = Math.floor(mins / 60);
         mins = mins - hrs * 60;
-        if (mins < 10) mins = '0' + mins;
-        if (hrs == 1) return '1 hr ' + mins + ' min';
-        else return hrs + ' hrs ' + mins + ' min';
+        if (mins < 10) mins = "0" + mins;
+        if (hrs == 1) return "1 hr " + mins + " min";
+        else return hrs + " hrs " + mins + " min";
       } else {
         secs = secs - mins * 60;
-        if (secs < 10) secs = '0' + secs;
-        return mins + ':' + secs + ' min';
+        if (secs < 10) secs = "0" + secs;
+        return mins + ":" + secs + " min";
       }
     },
   },
@@ -65,12 +65,12 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
 @font-face {
-    font-family: Avenir Medium;
-    src: url('/assets/fonts/avenir-medium.ttf');
+  font-family: Avenir Medium;
+  src: url("/assets/fonts/avenir-medium.ttf");
 }
 
 .videoThumbnailContainer {
@@ -98,8 +98,8 @@ export default {
 }
 
 .playVideoText {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-feature-settings: 'liga';
+  font-family: "Open Sans Condensed", sans-serif;
+  font-feature-settings: "liga";
   font-weight: 300;
   font-size: 2.3125rem;
   line-height: 2.3125rem;
@@ -109,8 +109,8 @@ export default {
 
 .videoDurationText {
   display: inline;
-  font-family: 'Lora', serif;
-  font-feature-settings: 'liga';
+  font-family: "Lora", serif;
+  font-feature-settings: "liga";
   font-weight: 700;
   font-size: 1.375rem;
   line-height: 2.125rem;
@@ -131,8 +131,8 @@ export default {
 }
 
 .videoTitle {
-  font-family: 'Avenir Medium';
-  font-feature-settings: 'liga';
+  font-family: "Avenir Medium";
+  font-feature-settings: "liga";
   font-kerning: normal;
   font-weight: unset;
   font-size: 1.0625rem;
@@ -187,7 +187,7 @@ export default {
     letter-spacing: calc(0.3125rem + 1 * (100vw - 375px) / (576 - 375));
   }
   .captionBanner {
-    height: calc(90px + 25 * (100vw - 375px) / (576 - 375));
+    /* height: calc(90px + 25 * (100vw - 375px) / (576 - 375)); */
     /* color: black; 
     background-color: white; */
   }
@@ -218,7 +218,7 @@ export default {
     letter-spacing: calc(0.375rem + 1 * (100vw - 576px) / (768 - 576));
   }
   .captionBanner {
-    height: calc(100px + 15 * (100vw - 576px) / (768 - 576));
+    /* height: calc(100px + 15 * (100vw - 576px) / (768 - 576)); */
     /* color: black; 
     background-color: white; */
   }
@@ -257,8 +257,8 @@ export default {
     line-height: calc(1.3125rem + 1 * (100vw - 992px) / (1200 - 992));
     letter-spacing: calc(0.375rem + 1 * (100vw - 992px) / (1200 - 992));
   }
-  .captionBanner {
+  /* .captionBanner {
     height: calc(100px + 15 * (100vw - 992px) / (1200 - 992));
-  }
+  } */
 }
 </style>
