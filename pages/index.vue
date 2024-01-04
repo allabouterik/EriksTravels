@@ -5,253 +5,154 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <BackgroundMusic
-        :audioFile="audioFile"
-        :audioDuration="audioDuration"
-        :audioFadeInDuration="audioFadeInDuration"
-        :audioFadeOutDuration="audioFadeOutDuration"
-      />
-
-      <v-container
-        fluid
-        class="pa-0"
-      >
-        <div class="contentContainer">
-          <div class="content">
-            <div class="mainContent">
-              <img
-                alt="All About Erik logo"
-                v-if="titleImg != null"
-                :src="titleImg"
-                class="titleImg"
-                data-testid="title-img"
-                fetchpriority="high"
-                data-not-lazy
-              />
-              <div>
-                <ContentRenderer :value="homePgContent">
-                  <ContentRendererMarkdown
-                    :value="homePgContent"
-                    tag="span"
-                    class="homePgMainText"
-                  />
-                  <template #empty>
-                    <p>No content found.</p>
-                  </template>
-                </ContentRenderer>
-              </div>
-            </div>
-
-            <div class="secondaryContent">
-              <span
-                v-html="creditText"
-                class="homePgCreditText"
-              />
-            </div>
-          </div>
-        </div>
-      </v-container>
-
-      <div
-        v-show="slides"
-        class="slideshow"
-      >
-        <SlideshowKenBurns :slides="slides" />
+      <div class="outerContainer">
+        <v-container
+          v-for="i in 2"
+          fluid
+          class="mainContainer px-1"
+          :class="{ scroll: scrollContainer }"
+        >
+          <!-- VIDEOS -->
+          <v-row justify="center" id="videos">
+            <v-col
+              cols="12"
+              sm="6"
+              md="6"
+              lg="4"
+              v-for="(video, index) in travelVideos"
+              :key="video.title"
+              class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
+              @click="
+                scrollContainer = false;
+                videoIndex = index;
+              "
+              data-testid="video-container"
+            >
+              <VideoThumbnailTravels :video="video" />
+            </v-col>
+          </v-row>
+        </v-container>
       </div>
+
+      <VideoLightBox
+        :videos="travelVideos"
+        :index="videoIndex"
+        :disable-scroll="true"
+        @close="
+          videoIndex = null;
+          scrollContainer = true;
+        "
+      />
     </div>
   </router-view>
 </template>
-
-<script setup>
-useHead({
-  link: [
-    {
-      rel: 'preload',
-      as: 'image',
-      crossorigin: true,
-      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/allabouterikwhite4-11-18_kwflva.png',
-      fetchpriority: 'high',
-    },
-    {
-      rel: 'preload',
-      as: 'image',
-      crossorigin: true,
-      href: 'https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1580951957/Home%20Page/slide-1-erik-studio.jpg',
-      fetchpriority: 'high',
-    },
-  ],
-});
-</script>
 
 <script>
 export default {
   data() {
     return {
-      homePgContent: {},
+      travelsPgContent: {},
+      videoIndex: null,
+      scrollContainer: true,
     };
   },
 
   computed: {
     pageTitle() {
-      return this.homePgContent.pageTitle;
+      return this.travelsPgContent.pageTitle;
     },
-    titleImg() {
-      return this.homePgContent.headingImg;
-    },
-    slides() {
-      return this.homePgContent.slides;
-    },
-    images() {
-      return this.slides.map((a) => a.img);
-    },
-    creditText() {
-      return this.homePgContent.creditText;
-    },
-    audioFile() {
-      return this.homePgContent.bgAudio;
-    },
-    audioDuration() {
-      return this.homePgContent.bgAudioDuration;
-    },
-    audioFadeInDuration() {
-      return this.homePgContent.bgAudioFadeInDuration;
-    },
-    audioFadeOutDuration() {
-      return this.homePgContent.bgAudioFadeOutDuration;
+    travelVideos() {
+      return this.travelsPgContent.videos;
     },
   },
 
   async mounted() {
-    const homePgContent = await queryContent('home').findOne();
-    this.homePgContent = homePgContent;
+    const travelsPgContent = await queryContent('travels').findOne();
+    this.travelsPgContent = travelsPgContent;
   },
 };
 </script>
 
-<style lang="scss">
-body {
-  overflow: hidden;
-}
-</style>
+<script setup>
+useHead({
+  link: [
+    {
+      rel: 'preconnect',
+      href: 'https://player.vimeo.com/',
+    },
+    {
+      rel: 'dns-prefetch',
+      href: 'https://player.vimeo.com/',
+    },
+  ],
+});
+</script>
 
-<style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
-
-.slideshow {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.contentContainer {
-  /* Absolute Centering in CSS: https://codepen.io/shshaw/full/gEiDt */
-  position: absolute;
-  width: 80%;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 14%;
-  z-index: 100;
-  height: 86%;
-}
-
-.content {
-  position: relative;
-  height: 100%;
+<style scoped>
+@font-face {
+  font-family: NeueHaasGroteskText Pro65;
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-65md.woff')
+      format('woff'),
+    /* Pretty Modern Browsers */
+      url('../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
+      format('svg'); /* Legacy iOS */
+  font-weight: normal;
 }
 
-.mainContent {
-  position: relative;
+#header {
+  background-image: var(--headerBgImg);
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.32);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding-top: 12.5px;
+  padding-bottom: 12.5px;
 }
 
-.titleImg {
-  display: block;
+.outerContainer {
+  /* max-height: 100vh; */
+  /* overflow-y: hidden; */
+}
+
+.mainContainer {
   width: 100%;
-  max-width: 1492px;
-  height: auto;
-  position: relative;
-  margin: auto;
-}
-
-.homePgMainText {
-  color: white;
-  font-family: 'Libre Baskerville', serif;
-  font-size: calc(1em + 0.5vw);
+  padding: 0;
   text-align: center;
-  width: 80%;
-  line-height: 135%;
-  z-index: 100;
-  position: relative;
 }
 
-.secondaryContent {
-  position: absolute;
-  bottom: 50px;
-  text-align: center;
-  right: -6.5%;
+.scroll {
+  animation: scrollAnimation infinite linear;
+  animation-duration: 480s;
 }
 
-.homePgCreditText {
-  color: white;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px;
-  bottom: 0;
-}
-
-/* Centre credit text when aspect ratio <= 1.0 */
-@media only screen and (max-aspect-ratio: 1/1) {
-  .secondaryContent {
-    position: absolute;
-    bottom: 50px;
-    right: 0;
-    width: 100%;
-    text-align: center;
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .scroll {
+    animation-duration: 240s;
   }
 }
 
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .openbtn {
-    top: 25px;
-    left: 25px;
-  }
-
-  .homePgMainText {
-    font-size: calc(0.75em + 0.75vw);
+@media screen and (min-width: 960px) and (max-width: 1280px) {
+  .scroll {
+    animation-duration: 160s;
   }
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .openbtn {
-    top: 35px;
-    left: 35px;
-  }
-
-  .homePgMainText {
-    font-size: calc(0.65em + 0.65vw);
+@media screen and (min-width: 1280px) {
+  .scroll {
+    animation-duration: 120s;
   }
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .openbtn {
-    top: 46px;
-    left: 46px;
+@keyframes scrollAnimation {
+  from {
+    transform: translateY(-100%);
   }
-
-  .homePgMainText {
-    font-size: calc(0.875em + 0.625vw);
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .homePgMainText {
-    font-size: calc(0.875em + 0.625vw);
+  to {
+    transform: translateY(0%);
   }
 }
 </style>
