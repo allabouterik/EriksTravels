@@ -5,8 +5,8 @@
       'pa-0': applyZeroLayoutPadding,
     }"
   >
-    <Navbar />
-    <NavbarHorizontal />
+    <NavbarMobile />
+    <NavbarDesktop />
     <main>
       <NuxtPage />
     </main>
