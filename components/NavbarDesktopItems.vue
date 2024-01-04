@@ -26,8 +26,6 @@
 </template>
 
 <script type="text/javascript">
-// import snarkdown from 'snarkdown';
-
 export default {
   data() {
     return {

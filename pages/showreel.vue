@@ -37,8 +37,13 @@ useHead({
 
 <style lang="scss" scoped>
 .videoContainer {
-  max-height: calc(100vh - 168px);
+  position: relative;
+  height: 100vh;
   overflow-y: hidden;
+
+  @media screen and (min-width: 992px) {
+    height: calc(100vh - 168px); // to account for the navbar on desktop
+  }
 }
 
 .videoIframe {
