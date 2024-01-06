@@ -6,7 +6,7 @@
     <img
       alt="Home page"
       src="/header/eriks-travels-logo_menu.png"
-      height="120"
+      height="100"
   /></NuxtLink>
 
   <div class="nav-items">
@@ -21,7 +21,7 @@
         <img
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
-          height="80"
+          height="60"
         />
       </NuxtLink>
       <button
@@ -35,7 +35,7 @@
         <img
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
-          height="80"
+          height="60"
         />
       </button>
     </template>
