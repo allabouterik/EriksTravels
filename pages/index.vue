@@ -18,9 +18,9 @@
           class="playImgContainer"
           @click="videoIndex = 0"
         >
-          <h2 class="title">
+          <!-- <h2 class="title">
             Watch a snippet of the sights and sounds from Erik's Travels
-          </h2>
+          </h2> -->
           <img
             src="~/assets/images/playarrowcircle-black.png"
             class="playImg"
