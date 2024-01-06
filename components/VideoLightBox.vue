@@ -173,6 +173,10 @@ export default {
       type: String,
       default: "left",
     },
+    windowPercentage: {
+      type: Number,
+      default: 0.8,
+    },
   },
 
   data() {
@@ -200,15 +204,15 @@ export default {
     },
     videoContainerCss() {
       let css = {};
-      css.width = 0.8 * this.windowWidth + "px";
-      css.height = 0.8 * this.windowHeight + "px";
+      css.width = this.windowPercentage * this.windowWidth + "px";
+      css.height = this.windowPercentage * this.windowHeight + "px";
       return css;
     },
     containerWidth() {
-      return 0.8 * this.windowWidth;
+      return this.windowPercentage * this.windowWidth;
     },
     containerHeight() {
-      return 0.8 * this.windowHeight;
+      return this.windowPercentage * this.windowHeight;
     },
     containerAspectRatio() {
       return this.containerWidth / this.containerHeight;

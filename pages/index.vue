@@ -49,6 +49,7 @@
         :index="videoIndex"
         :autoplay="true"
         :disable-scroll="true"
+        :windowPercentage="1"
         @close="onVideoClose"
       />
     </div>
