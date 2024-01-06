@@ -73,7 +73,7 @@ useHead({
 
 const videos = reactive([
   {
-    title: "Show Reel",
+    // title: "Show Reel"˚,
     url: "https://player.vimeo.com/video/877457983",
   },
 ]);
@@ -93,6 +93,13 @@ const onVideoClose = () => {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
+  img {
+    max-height: 120px;
+
+    @media screen and (min-width: 768px) {
+      max-height: 150px;
+    }
+  }
 }
 
 .showreel {
@@ -107,6 +114,7 @@ const onVideoClose = () => {
     top: 50%;
     left: 50%;
     width: 500px;
+    max-width: 90%;
     height: 300px;
     color: black;
     text-align: center;
@@ -114,8 +122,12 @@ const onVideoClose = () => {
     cursor: pointer;
 
     .title {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 600;
+
+      @media screen and (min-width: 768px) {
+          font-size: 2rem;
+      }
     }
 
     .playImg {
