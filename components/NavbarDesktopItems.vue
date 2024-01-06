@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    to="/"
+    to="/home"
     class="logo-link"
   >
     <img
@@ -14,14 +14,42 @@
       v-for="menuItem in navMenuItems"
       :key="menuItem.text"
     >
-      <NuxtLink :to="menuItem.to">
+      <NuxtLink
+        v-if="menuItem.to"
+        :to="menuItem.to"
+      >
         <img
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
           height="80"
         />
       </NuxtLink>
+      <button
+        v-else-if="menuItem.video"
+        @click="
+          // scrollContainer = false;
+          videos = [menuItem.video];
+          videoIndex = 0;
+        "
+      >
+        <img
+          :alt="menuItem.altText"
+          :src="`/header/white_${menuItem.img}`"
+          height="80"
+        />
+      </button>
     </template>
+
+    <VideoLightBox
+      :videos="videos"
+      :index="videoIndex"
+      :disable-scroll="true"
+      @close="
+        videos = null;
+        videoIndex = null;
+        // scrollContainer = true;
+      "
+    />
   </div>
 </template>
 
@@ -30,10 +58,18 @@ export default {
   data() {
     return {
       navMenuItems: [
+        // {
+        //   img: "show-reel_menu.png",
+        //   altText: "Show Reel",
+        //   to: "/showreel",
+        // },
         {
           img: "show-reel_menu.png",
-          altText: "Showreel",
-          to: "/showreel",
+          altText: "Show Reel",
+          video: {
+            title: "Show Reel",
+            url: "https://player.vimeo.com/video/877457983",
+          },
         },
         {
           img: "film-portfolio_menu.png",
@@ -56,6 +92,8 @@ export default {
           to: "/contact",
         },
       ],
+      videos: null,
+      videoIndex: null,
     };
   },
 };

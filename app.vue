@@ -1,12 +1,8 @@
 <template>
-  <div
-    :class="{
-      layout: true,
-      'pa-0': applyZeroLayoutPadding,
-    }"
-  >
-    <NavbarMobile />
-    <NavbarDesktop />
+  <div class="layout pa-0">
+    <NavbarMobile v-if="showNavBars" />
+    <!-- <NavbarDesktop v-if="showNavBars" /> -->
+    <NavbarDesktop :showNavBar="showNavBars" />
     <main>
       <NuxtPage />
     </main>
@@ -14,7 +10,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed } from "vue";
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -68,38 +64,11 @@ useHead({
   ],
 });
 
-const applyZeroLayoutPadding = ref(false);
-
-const urlsForZeroPadding = ["/travels"];
-
-const path = computed(() => {
+const showNavBars = computed(() => {
   const route = useRoute();
-  return route.path;
-});
-
-const applyPageLayoutStyling = (currentPath) => {
-  applyZeroLayoutPadding.value = false;
-  urlsForZeroPadding.forEach((url) => {
-    if (currentPath.includes(url)) {
-      applyZeroLayoutPadding.value = true;
-    }
-  });
-  if (currentPath === "/") {
-    // for homepage
-    applyZeroLayoutPadding.value = true;
-  }
-};
-
-onMounted(() => {
-  applyPageLayoutStyling(path.value);
-});
-
-watch(path, (newPath) => {
-  applyPageLayoutStyling(newPath);
+  return route.path !== "/";
 });
 </script>
-
-<script type="text/javascript"></script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato:100,400&display=swap");

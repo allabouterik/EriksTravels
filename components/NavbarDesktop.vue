@@ -1,13 +1,28 @@
 <template>
-  <nav class="nav-container d-none d-lg-flex">
+  <nav
+    class="nav-container d-none d-lg-flex"
+    :class="{ show: showNavBar }"
+  >
     <NavbarDesktopItems />
   </nav>
 
   <!-- Hack to always have main content start below the nav bar -->
-  <nav class="nav-container hidden d-none d-lg-flex">
+  <nav
+    class="nav-container hidden d-none d-lg-flex"
+    :class="{ show: showNavBar }"
+  >
     <NavbarDesktopItems />
   </nav>
 </template>
+
+<script setup>
+const props = defineProps({
+  showNavBar: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .nav-container {
@@ -16,11 +31,21 @@
   width: 100%;
   top: 0;
   left: 0;
-  padding: 16px;
+  // padding: 16px;
+  padding: 0;
   background-color: #222222;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 2000;
+  opacity: 0;
+  height: 0;
+  transition: all 2s;
+
+  &.show {
+    opacity: 1;
+    height: auto;
+    padding: 16px;
+  }
 
   &.hidden {
     position: unset;

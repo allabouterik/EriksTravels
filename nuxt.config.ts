@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify from 'vite-plugin-vuetify';
+import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   ssr: true,
@@ -11,23 +11,20 @@ export default defineNuxtConfig({
   // },
   app: {
     head: {
-      script: [{ src: 'https://cdn.jsdelivr.net/npm/vue-scrollto' }],
+      script: [{ src: "https://cdn.jsdelivr.net/npm/vue-scrollto" }],
     },
-    pageTransition: { name: 'page', mode: 'default' },
+    pageTransition: { name: "page", mode: "default" },
   },
-  css: [
-    '@/assets/styles.css',
-    '@/assets/custom.scss',
-  ],
+  css: ["@/assets/styles.css", "@/assets/custom.scss"],
   modules: [
-    '@nuxt/content',
+    "@nuxt/content",
     // this adds the vuetify vite plugin
     async (options, nuxt) => {
-      nuxt.hooks.hook('vite:extendConfig', (config) =>
+      nuxt.hooks.hook("vite:extendConfig", (config) =>
         config.plugins.push(vuetify())
       );
     },
-    'nuxt-lazy-load',
+    "nuxt-lazy-load",
   ],
   // devtools: {
   //   // Enable devtools (default: true)
@@ -37,11 +34,11 @@ export default defineNuxtConfig({
   //   // ...other options
   // },
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
   vite: {
     define: {
-      'process.env.DEBUG': false,
+      "process.env.DEBUG": false,
     },
     build: {
       sourcemap: true,

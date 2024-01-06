@@ -2,79 +2,62 @@
   <router-view v-slot="{ route }">
     <div :key="route.fullPath">
       <Head>
-        <Title>{{ pageTitle }}</Title>
+        <Title>Show Reel</Title>
       </Head>
 
-      <div class="outerContainer">
-        <v-container
-          v-for="i in 2"
-          fluid
-          class="mainContainer px-1"
-          :class="{ scroll: scrollContainer }"
+      <div class="showreel">
+        <div class="siteLogo">
+          <img
+            alt="Site logo"
+            src="/header/eriks-travels-logo_menu.png"
+            height="150"
+          />
+        </div>
+
+        <div
+          class="playImgContainer"
+          @click="videoIndex = 0"
         >
-          <!-- VIDEOS -->
-          <v-row
-            justify="center"
-            id="videos"
-          >
-            <v-col
-              cols="12"
-              sm="6"
-              md="6"
-              lg="4"
-              v-for="(video, index) in travelVideos"
-              :key="video.title"
-              class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
-              @click="
-                scrollContainer = false;
-                videoIndex = index;
-              "
-              data-testid="video-container"
-            >
-              <VideoThumbnailTravels :video="video" />
-            </v-col>
-          </v-row>
-        </v-container>
+          <h2 class="title">
+            Watch a snippet of the sights and sounds from Erik's Travels
+          </h2>
+          <img
+            src="~/assets/images/playarrowcircle-black.png"
+            class="playImg"
+          />
+          <img
+            src="~/assets/images/playarrowcircle-hover.png"
+            class="playImg hover"
+          />
+        </div>
       </div>
 
+      <!-- <div class="videoContainer">
+        <iframe
+          src="https://player.vimeo.com/video/877457983?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&muted=0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          frameborder="0"
+          title="Show Reel"
+          id="mainVideo"
+          class="videoIframe"
+          data-not-lazy
+        />
+      </div> -->
+
       <VideoLightBox
-        :videos="travelVideos"
+        :videos="videos"
         :index="videoIndex"
+        :autoplay="true"
         :disable-scroll="true"
-        @close="
-          videoIndex = null;
-          scrollContainer = true;
-        "
+        @close="onVideoClose"
       />
     </div>
   </router-view>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      pageTitle: "",
-      travelsPgContent: {},
-      videoIndex: null,
-      scrollContainer: true,
-    };
-  },
-
-  computed: {
-    travelVideos() {
-      return this.travelsPgContent.videos;
-    },
-  },
-
-  async mounted() {
-    const travelsPgContent = await queryContent("travels").findOne();
-    this.travelsPgContent = travelsPgContent;
-  },
-};
-</script>
-
 <script setup>
+import { reactive, ref } from "vue";
+
 useHead({
   link: [
     {
@@ -87,73 +70,95 @@ useHead({
     },
   ],
 });
+
+const videos = reactive([
+  {
+    title: "Show Reel",
+    url: "https://player.vimeo.com/video/877457983",
+  },
+]);
+
+const videoIndex = ref(null);
+
+const onVideoClose = () => {
+  videoIndex.value = null;
+  setTimeout(async () => {
+    await navigateTo("/home");
+  }, 1000);
+};
 </script>
 
-<style scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro65;
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
+<style lang="scss" scoped>
+.siteLogo {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
-#header {
-  background-image: var(--headerBgImg);
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.32);
-  background-repeat: no-repeat;
+.showreel {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/showreel.jpg");
   background-size: cover;
-  text-align: center;
-  padding-top: 12.5px;
-  padding-bottom: 12.5px;
+
+  .playImgContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 300px;
+    color: black;
+    text-align: center;
+    transform: translate3d(-50%, -50%, 0);
+    cursor: pointer;
+
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .playImg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      transform: translate3d(-50%, -50%, 0);
+
+      &.hover {
+        visibility: hidden;
+      }
+    }
+
+    &:hover {
+      color: #bbd72d;
+
+      .playImg {
+        visibility: hidden;
+
+        &.hover {
+          visibility: visible;
+        }
+      }
+    }
+  }
 }
 
-.outerContainer {
-  /* max-height: 100vh; */
-  /* overflow-y: hidden; */
+.videoContainer {
+  position: relative;
+  height: 100vh;
+  overflow-y: hidden;
+
+  @media screen and (min-width: 992px) {
+    height: calc(100vh - 168px); // to account for the navbar on desktop
+  }
 }
 
-.mainContainer {
+.videoIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 0;
-  text-align: center;
-}
-
-.scroll {
-  animation: scrollAnimation infinite linear;
-  animation-duration: 480s;
-}
-
-@media screen and (min-width: 600px) and (max-width: 960px) {
-  .scroll {
-    animation-duration: 240s;
-  }
-}
-
-@media screen and (min-width: 960px) and (max-width: 1280px) {
-  .scroll {
-    animation-duration: 160s;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .scroll {
-    animation-duration: 120s;
-  }
-}
-
-@keyframes scrollAnimation {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0%);
-  }
+  height: 100%;
 }
 </style>

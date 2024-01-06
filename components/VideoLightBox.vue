@@ -44,16 +44,17 @@
                     :src="
                       videos[videoIndex].url +
                       (isVimeoUrl(videos[videoIndex].url)
-                        ? '?autoplay=0&color=505050&title=0&byline=0&portrait=0'
+                        ? `?autoplay=${autoplay}&color=505050&title=0&byline=0&portrait=0`
                         : '')
                     "
-                    style="width: 100%; height: 100%"
+                    allow="autoplay; fullscreen; picture-in-picture"
                     frameborder="0"
                     webkitallowfullscreen
                     mozallowfullscreen
                     allowfullscreen
                     :ref="`lg-vid-${videoIndex}`"
                     @load="videoLoaded($event, videoIndex)"
+                    style="width: 100%; height: 100%"
                     class="videoFrame"
                     :id="'video_' + videoIndex"
                   >
@@ -133,8 +134,8 @@
 </template>
 
 <script>
-import Player from '@vimeo/player';
-import { EventBus } from '../composables/event-bus';
+import Player from "@vimeo/player";
+import { EventBus } from "../composables/event-bus";
 
 const keyMap = {
   LEFT: 37,
@@ -152,21 +153,25 @@ export default {
       type: Number,
       default: 1,
     },
+    autoplay: {
+      type: Boolean,
+      default: false,
+    },
     disableScroll: {
       type: Boolean,
       default: false,
     },
     background: {
       type: String,
-      default: 'rgba(0, 0, 0, 0.9)',
+      default: "rgba(0, 0, 0, 0.9)",
     },
     interfaceColor: {
       type: String,
-      default: 'rgba(255, 255, 255, 0.8)',
+      default: "rgba(255, 255, 255, 0.8)",
     },
     titlePosition: {
       type: String,
-      default: 'left',
+      default: "left",
     },
   },
 
@@ -174,7 +179,7 @@ export default {
     return {
       currentIndex: this.index,
       isVideoLoaded: false,
-      bodyOverflowStyle: '',
+      bodyOverflowStyle: "",
       touch: {
         count: 0,
         x: 0,
@@ -190,13 +195,13 @@ export default {
   computed: {
     formattedVideos() {
       return this.videos.map((video) =>
-        typeof video === 'string' ? { url: video } : video
+        typeof video === "string" ? { url: video } : video
       );
     },
     videoContainerCss() {
       let css = {};
-      css.width = 0.8 * this.windowWidth + 'px';
-      css.height = 0.8 * this.windowHeight + 'px';
+      css.width = 0.8 * this.windowWidth + "px";
+      css.height = 0.8 * this.windowHeight + "px";
       return css;
     },
     containerWidth() {
@@ -210,9 +215,9 @@ export default {
     },
     videoAspectRatio() {
       if (
-        this.formattedVideos[this.currentIndex].hasOwnProperty('width') &&
+        this.formattedVideos[this.currentIndex].hasOwnProperty("width") &&
         this.formattedVideos[this.currentIndex].width > 0 &&
-        this.formattedVideos[this.currentIndex].hasOwnProperty('height') &&
+        this.formattedVideos[this.currentIndex].hasOwnProperty("height") &&
         this.formattedVideos[this.currentIndex].height > 0
       ) {
         return (
@@ -240,8 +245,8 @@ export default {
       let css = {};
       css.padding = 0;
       css.bottom =
-        (this.containerHeight - this.actualVidHeight) / 2 - 40 + 'px';
-      css.width = '100%';
+        (this.containerHeight - this.actualVidHeight) / 2 - 40 + "px";
+      css.width = "100%";
       css.textAlign = this.titlePosition;
       return css;
     },
@@ -251,8 +256,8 @@ export default {
     index(val) {
       if (!document) return;
       this.currentIndex = val;
-      if (this.disableScroll && typeof val === 'number') {
-        document.body.style.overflow = 'hidden';
+      if (this.disableScroll && typeof val === "number") {
+        document.body.style.overflow = "hidden";
       } else if (this.disableScroll && !val) {
         document.body.style.overflow = this.bodyOverflowStyle;
       }
@@ -267,7 +272,7 @@ export default {
     this.windowHeight = window.innerHeight;
 
     this.$nextTick(() => {
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         this.windowWidth = window.innerWidth;
         this.windowHeight = window.innerHeight;
       });
@@ -288,44 +293,44 @@ export default {
 
   methods: {
     close() {
-      this.$emit('close');
+      this.$emit("close");
     },
     prev() {
       if (this.currentIndex === 0) return;
       this.pauseVideo(this.currentIndex);
       this.currentIndex -= 1;
-      this.$emit('slide', { index: this.currentIndex });
+      this.$emit("slide", { index: this.currentIndex });
     },
     next() {
       if (this.currentIndex === this.videos.length - 1) return;
       this.pauseVideo(this.currentIndex);
       this.currentIndex += 1;
-      this.$emit('slide', { index: this.currentIndex });
+      this.$emit("slide", { index: this.currentIndex });
     },
     pauseVideo(index) {
       const iframe = document.querySelector(`iframe#video_${index}`);
       if (iframe == null) {
-        console.error('Cannot pause video as video iframe not found');
+        console.error("Cannot pause video as video iframe not found");
         return;
       }
-      if (iframe.src.includes('vimeo')) {
+      if (iframe.src.includes("vimeo")) {
         const player = new Player(iframe);
         player.pause();
       } else {
-        console.error('Cannot pause video as src is not from vimeo');
+        console.error("Cannot pause video as src is not from vimeo");
       }
     },
     stopVideo(index) {
-      var iframe = document.getElementById('video_' + index);
+      var iframe = document.getElementById("video_" + index);
       if (iframe) {
         var iframeSrc = iframe.src;
         iframe.src = iframeSrc;
       }
     },
     videoLoaded($event, videoIndex) {
-      EventBus.$emit('lightboxMediaLoaded'); // used to mute page background music
+      EventBus.$emit("lightboxMediaLoaded"); // used to mute page background music
       const { target } = $event;
-      target.classList.add('loaded');
+      target.classList.add("loaded");
       if (videoIndex === this.currentIndex) {
         this.setVideoLoaded(videoIndex);
       }
@@ -336,7 +341,7 @@ export default {
     },
     setVideoLoaded(index) {
       const el = this.getVideoElByIndex(index);
-      this.isVideoLoaded = !el ? false : el.classList.contains('loaded');
+      this.isVideoLoaded = !el ? false : el.classList.contains("loaded");
     },
     shouldPreload(index) {
       const el = this.getVideoElByIndex(index) || {};
@@ -349,13 +354,13 @@ export default {
       );
     },
     isVimeoUrl(url) {
-      return url.includes('player.vimeo.com');
+      return url.includes("player.vimeo.com");
     },
     bindEvents() {
-      document.addEventListener('keydown', this.keyDownHandler, false);
+      document.addEventListener("keydown", this.keyDownHandler, false);
     },
     unbindEvents() {
-      document.removeEventListener('keydown', this.keyDownHandler, false);
+      document.removeEventListener("keydown", this.keyDownHandler, false);
     },
     touchstartHandler(event) {
       this.touch.count += 1;
@@ -405,14 +410,14 @@ export default {
 <style lang="scss" scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro55;
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 
@@ -481,8 +486,8 @@ export default {
     box-sizing: border-box;
 
     color: #ffffff;
-    font-family: 'NeueHaasGroteskText Pro55', sans-serif;
-    font-feature-settings: 'liga';
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
     font-size: 1.3125rem; /* 21px with 16px default size */
     font-weight: 400;
     letter-spacing: 5px;
