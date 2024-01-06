@@ -9,7 +9,7 @@
         <div class="siteLogo">
           <img
             alt="Site logo"
-            src="/header/eriks-travels-logo_menu.png"
+            src="/header/eriks-travels-logo-white.png"
             height="150"
           />
         </div>
@@ -126,7 +126,7 @@ const onVideoClose = () => {
       font-weight: 600;
 
       @media screen and (min-width: 768px) {
-          font-size: 2rem;
+        font-size: 2rem;
       }
     }
 

@@ -5,8 +5,14 @@
   >
     <img
       alt="Home page"
-      src="/header/eriks-travels-logo_menu.png"
+      src="/header/eriks-travels-logo-white.png"
       height="100"
+      class="menuImg" />
+    <img
+      alt="Home page"
+      src="/header/eriks-travels-logo-yellow.png"
+      height="100"
+      class="menuImg hover"
   /></NuxtLink>
 
   <div class="nav-items">
@@ -17,15 +23,24 @@
       <NuxtLink
         v-if="menuItem.to"
         :to="menuItem.to"
+        class="menuLink"
       >
         <img
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
           height="60"
+          class="menuImg"
+        />
+        <img
+          :alt="menuItem.altText"
+          :src="`/header/yellow_${menuItem.img}`"
+          height="60"
+          class="menuImg hover"
         />
       </NuxtLink>
       <button
         v-else-if="menuItem.video"
+        class="menuLink"
         @click="
           // scrollContainer = false;
           videos = [menuItem.video];
@@ -36,6 +51,13 @@
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
           height="60"
+          class="menuImg"
+        />
+        <img
+          :alt="menuItem.altText"
+          :src="`/header/yellow_${menuItem.img}`"
+          height="60"
+          class="menuImg hover"
         />
       </button>
     </template>
@@ -101,7 +123,30 @@ export default {
 
 <style lang="scss" scoped>
 .logo-link {
+  position: relative;
   padding: 8px 16px 8px 0;
+
+  .menuImg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0%, -50%, 0);
+
+    &.hover {
+      position: relative;
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    .menuImg {
+      visibility: hidden;
+
+      &.hover {
+        visibility: visible;
+      }
+    }
+  }
 }
 
 .nav-items {
@@ -109,5 +154,31 @@ export default {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+}
+
+.menuLink {
+  position: relative;
+  height: 100%;
+
+  .menuImg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(-50%, -50%, 0);
+
+    &.hover {
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    .menuImg {
+      visibility: hidden;
+
+      &.hover {
+        visibility: visible;
+      }
+    }
+  }
 }
 </style>

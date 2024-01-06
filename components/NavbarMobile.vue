@@ -65,7 +65,7 @@
         >
           <img
             alt="Home page"
-            src="/header/eriks-travels-logo_menu.png"
+            src="/header/eriks-travels-logo-white.png"
             height="60"
         /></NuxtLink>
 
