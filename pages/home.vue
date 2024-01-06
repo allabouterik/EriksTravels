@@ -89,7 +89,7 @@ useHead({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
   src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
@@ -127,33 +127,36 @@ useHead({
 
 .scroll {
   animation: scrollAnimation infinite linear;
-  animation-duration: 480s;
+  animation-duration: 540s;
 }
 
-@media screen and (min-width: 600px) and (max-width: 960px) {
+@media screen and (min-width: 600px) and (max-width: 1280px) {
   .scroll {
-    animation-duration: 240s;
-  }
-}
-
-@media screen and (min-width: 960px) and (max-width: 1280px) {
-  .scroll {
-    animation-duration: 160s;
+    animation-duration: 360s;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .scroll {
-    animation-duration: 120s;
+    animation-duration: 180s;
   }
 }
 
 @keyframes scrollAnimation {
   from {
-    transform: translateY(-100%);
-  }
-  to {
     transform: translateY(0%);
   }
+  to {
+    transform: translateY(-100%);
+  }
 }
+// Reverse Scroll:
+// @keyframes scrollAnimation {
+//   from {
+//     transform: translateY(-100%);
+//   }
+//   to {
+//     transform: translateY(0%);
+//   }
+// }
 </style>
