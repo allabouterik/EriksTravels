@@ -107,7 +107,7 @@ const onVideoClose = () => {
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-image: url("/showreel.jpg");
+  background-image: url("/showreel2.jpg");
   background-size: cover;
 
   .playImgContainer {
