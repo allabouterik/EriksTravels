@@ -14,6 +14,7 @@
           <v-row
             justify="center"
             id="videos"
+            class="mt-0"
           >
             <v-col
               cols="12"

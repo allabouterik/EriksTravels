@@ -3,7 +3,7 @@
     <NavbarMobile v-if="showNavBars" />
     <!-- <NavbarDesktop v-if="showNavBars" /> -->
     <NavbarDesktop :showNavBar="showNavBars" />
-    <main class="mt-4">
+    <main>
       <NuxtPage />
     </main>
   </div>

@@ -13,7 +13,12 @@
           :class="{ scroll: scrollContainer }"
         >
           <!-- VIDEOS -->
-          <v-row no-gutters justify="center" id="videos">
+          <v-row
+            no-gutters
+            justify="center"
+            id="videos"
+            class="mt-0"
+          >
             <v-col
               cols="12"
               sm="6"
@@ -68,7 +73,7 @@ export default {
   },
 
   async mounted() {
-    const travelsPgContent = await queryContent('travels').findOne();
+    const travelsPgContent = await queryContent("travels").findOne();
     this.travelsPgContent = travelsPgContent;
   },
 };
@@ -78,12 +83,12 @@ export default {
 useHead({
   link: [
     {
-      rel: 'preconnect',
-      href: 'https://player.vimeo.com/',
+      rel: "preconnect",
+      href: "https://player.vimeo.com/",
     },
     {
-      rel: 'dns-prefetch',
-      href: 'https://player.vimeo.com/',
+      rel: "dns-prefetch",
+      href: "https://player.vimeo.com/",
     },
   ],
 });
@@ -92,14 +97,14 @@ useHead({
 <style scoped>
 @font-face {
   font-family: NeueHaasGroteskText Pro65;
-  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-65md.woff')
-      format('woff'),
+  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
+  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-65md.woff")
+      format("woff"),
     /* Pretty Modern Browsers */
-      url('../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
+      url("../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
   font-weight: normal;
 }
 
