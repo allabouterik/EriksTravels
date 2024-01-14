@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     to="/home"
-    class="logo-link"
+    class="logoLink"
   >
     <img
       alt="Home page"
@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-link {
+.logoLink {
   position: relative;
   padding: 8px 16px 8px 0;
 
