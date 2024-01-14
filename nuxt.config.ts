@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   css: ["@/assets/styles.css", "@/assets/custom.scss"],
   modules: [
     "@nuxt/content",
+    "@nuxtjs/seo",
     // this adds the vuetify vite plugin
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
@@ -57,5 +58,30 @@ export default defineNuxtConfig({
     iframes: true,
     native: false,
     directiveOnly: false,
+  },
+  site: {
+    // Nuxt SEO site config (https://nuxtseo.com/nuxt-seo/guides/configuring-modules)
+    url: "https://erikstravels.com",
+    name: "Erik's Travels",
+    description:
+      "A site about the many travels and adventures of Erik Jacobsen, an American record producer, song publisher and artist manager.",
+    defaultLocale: "en", // not needed if you have @nuxtjs/i18n installed
+    trailingSlash: false,
+  },
+  ogImage: {
+    // https://nuxtseo.com/nuxt-seo/guides/using-the-modules#disabling-modules
+    enabled: false,
+  },
+  schemaOrg: {
+    // https://nuxtseo.com/schema-org/guides/quick-setup
+    identity: {
+      type: "Person",
+      name: "Erik Jacobsen",
+      url: "https://erikstravels.com",
+      // logo: 'https://example.com/logo.png'
+    },
+  },
+  seo: {
+    redirectToCanonicalSiteUrl: true,
   },
 });

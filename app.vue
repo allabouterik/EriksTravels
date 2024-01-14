@@ -57,9 +57,7 @@ useHead({
     {
       name: "description",
       content:
-        "A site all about the life and career of Erik Jacobsen, an American record producer, song publisher and artist manager. " +
-        "He is best known for his work in the 1960s with Tim Hardin, the Lovin' Spoonful, the Charlatans, and Sopwith Camel, " +
-        "and later with Norman Greenbaum, Tazmanian Devils and Chris Isaak.",
+        "A site about the many travels and adventures of Erik Jacobsen, an American record producer, song publisher and artist manager.",
     },
   ],
 });
