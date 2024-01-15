@@ -176,7 +176,7 @@ const onVideoClose = () => {
   display: block;
   color: white;
   font-family: "NeueHaasGroteskText Pro55", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.8px;
   text-align: center;
@@ -187,6 +187,10 @@ const onVideoClose = () => {
 
   &:hover {
     color: #bbd72d;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 2rem;
   }
 }
 </style>
