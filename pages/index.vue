@@ -30,19 +30,15 @@
             class="playImg hover"
           />
         </div>
-      </div>
 
-      <!-- <div class="videoContainer">
-        <iframe
-          src="https://player.vimeo.com/video/877457983?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&muted=0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          frameborder="0"
-          title="Show Reel"
-          id="mainVideo"
-          class="videoIframe"
-          data-not-lazy
-        />
-      </div> -->
+        <div class="skipTextContainer">
+          <a
+            href="/home"
+            class="skipText"
+            >Skip to Menu</a
+          >
+        </div>
+      </div>
 
       <VideoLightBox
         :videos="videos"
@@ -90,6 +86,18 @@ const onVideoClose = () => {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+  font-family: NeueHaasGroteskText Pro55;
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */
+      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
+}
+
 .siteLogo {
   display: flex;
   justify-content: center;
@@ -157,21 +165,28 @@ const onVideoClose = () => {
   }
 }
 
-.videoContainer {
-  position: relative;
-  height: 100vh;
-  overflow-y: hidden;
-
-  @media screen and (min-width: 992px) {
-    height: calc(100vh - 148px); // to account for the navbar on desktop
-  }
+.skipTextContainer {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate3d(-50%, 100%, 0);
 }
 
-.videoIframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.skipText {
+  display: block;
+  color: white;
+  font-family: "NeueHaasGroteskText Pro55", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    color: #bbd72d;
+  }
 }
 </style>
