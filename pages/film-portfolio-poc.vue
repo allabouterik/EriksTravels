@@ -11,14 +11,28 @@
           class="mainContainer px-1"
         >
           <!-- VIDEOS -->
-          <div class="videosContainer">
-            <div
+          <v-row
+            justify="center"
+            id="videos"
+            class="mt-0"
+          >
+            <v-col
+              cols="12"
+              sm="12"
+              md="6"
+              lg="6"
               v-for="(video, index) in travelVideos"
-              @click="videoIndex = index"
+              :key="video.title"
+              class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
+              @click="
+                scrollContainer = false;
+                videoIndex = index;
+              "
+              data-testid="video-container"
             >
-              <VideoThumbnailFilmPortfolio :video="video" />
-            </div>
-          </div>
+              <VideoThumbnailFilmPortfolioPOC :video="video" />
+            </v-col>
+          </v-row>
         </v-container>
       </div>
 
@@ -26,7 +40,10 @@
         :videos="travelVideos"
         :index="videoIndex"
         :disable-scroll="true"
-        @close="videoIndex = null"
+        @close="
+          videoIndex = null;
+          scrollContainer = true;
+        "
       />
     </div>
   </router-view>
@@ -96,22 +113,13 @@ useHead({
 }
 
 .outerContainer {
-  // max-height: 100vh;
-  // overflow-y: hidden;
+  /* max-height: 100vh; */
+  /* overflow-y: hidden; */
 }
 
 .mainContainer {
   width: 100%;
   padding: 0;
   text-align: center;
-}
-
-.videosContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  gap: 1rem;
 }
 </style>

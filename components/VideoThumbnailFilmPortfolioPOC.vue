@@ -6,8 +6,8 @@
           v-if="video.thumbnailImg != null"
           :alt="video.title"
           :src="video.thumbnailImg"
-          width="113.2"
-          height="72.4"
+          width="566"
+          height="362"
           class="thumbnailImg"
           :fetchpriority="preload ? 'high' : 'auto'"
           :data-not-lazy="preload"
@@ -16,10 +16,13 @@
 
       <div class="thumbnailImgTextOverlay">
         <div class="showOnHover">
-          <img
-            src="~/assets/images/playarrowcircle.png"
-            class="playImg"
-          />
+          <h4 class="playVideoText mb-1 mb-sm-2 mb-lg-6">PLAY VIDEO</h4>
+          <span
+            v-if="video.duration != null"
+            class="videoDurationText"
+          >
+            {{ durationInMinsText(video.duration) }}
+          </span>
         </div>
       </div>
     </div>
@@ -43,10 +46,27 @@ export default {
       default: false,
     },
   },
+
+  methods: {
+    durationInMinsText(secs) {
+      let mins = Math.floor(secs / 60);
+      if (mins >= 60) {
+        let hrs = Math.floor(mins / 60);
+        mins = mins - hrs * 60;
+        if (mins < 10) mins = "0" + mins;
+        if (hrs == 1) return "1 hr " + mins + " min";
+        else return hrs + " hrs " + mins + " min";
+      } else {
+        secs = secs - mins * 60;
+        if (secs < 10) secs = "0" + secs;
+        return mins + ":" + secs + " min";
+      }
+    },
+  },
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
@@ -66,6 +86,8 @@ export default {
 }
 
 .thumbnailImg {
+  width: 100%;
+  max-width: 100%;
   height: auto;
   position: relative;
   opacity: 1;
@@ -82,26 +104,14 @@ export default {
   width: 85%;
 }
 
-// .playVideoText {
-//   font-family: "Open Sans Condensed", sans-serif;
-//   font-feature-settings: "liga";
-//   font-weight: 300;
-//   font-size: 2.3125rem;
-//   line-height: 2.3125rem;
-//   letter-spacing: 9px;
-//   text-transform: uppercase;
-// }
-
-.playImg {
-  // width: 100%;
-  // max-width: 100%;
-  // height: 100%;
-  height: 50px;
-  // max-height: 100%;
-  // height: auto;
-  // position: relative;
-  // opacity: 1;
-  // transition: opacity 0.5s ease;
+.playVideoText {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-feature-settings: "liga";
+  font-weight: 300;
+  font-size: 2.3125rem;
+  line-height: 2.3125rem;
+  letter-spacing: 9px;
+  text-transform: uppercase;
 }
 
 .videoDurationText {
@@ -118,11 +128,11 @@ export default {
   display: flex;
   color: #d6d6d6;
   background-color: black;
-  // width: 100%;
-  // height: 40px;
+  width: 100%;
+  /* height: 40px; */
   bottom: 0;
   font-size: 14px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   transition: all 0.3s ease-in 0s;
 }
@@ -170,11 +180,11 @@ export default {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
-  // .playVideoText {
-  //   font-size: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-  //   line-height: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-  //   letter-spacing: 9px;
-  // }
+  .playVideoText {
+    font-size: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
+    line-height: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
+    letter-spacing: 9px;
+  }
   .videoDurationText {
     font-size: calc(1.125rem + 6 * (100vw - 375px) / (576 - 375));
   }
@@ -201,11 +211,11 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  // .playVideoText {
-  //   font-size: 4.8vw;
-  //   line-height: 4.8vw;
-  //   letter-spacing: 8px;
-  // }
+  .playVideoText {
+    font-size: 4.8vw;
+    line-height: 4.8vw;
+    letter-spacing: 8px;
+  }
   .videoDurationText {
     font-size: 2.86vw;
   }
