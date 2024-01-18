@@ -1,7 +1,6 @@
 <template>
   <div class="layout pa-0">
     <NavbarMobile v-if="showNavBars" />
-    <!-- <NavbarDesktop v-if="showNavBars" /> -->
     <NavbarDesktop :showNavBar="showNavBars" />
     <main>
       <NuxtPage />
@@ -11,6 +10,7 @@
 
 <script setup>
 import { computed } from "vue";
+import { useMainStore } from "./stores/mainStore";
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -62,9 +62,12 @@ useHead({
   ],
 });
 
+const store = useMainStore();
+const route = useRoute();
+
 const showNavBars = computed(() => {
-  const route = useRoute();
-  return route.path !== "/";
+  const showNavBar = route.path !== "/" && !store.videoLightBoxOpen;
+  return showNavBar;
 });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      v-if="typeof index === 'number'"
+      v-if="showVideoLightBox"
       class="video-lightbox"
       @touchstart.passive="touchstartHandler"
       @touchmove.passive="touchmoveHandler"
@@ -136,6 +136,8 @@
 <script>
 import Player from "@vimeo/player";
 import { EventBus } from "../composables/event-bus";
+import { mapActions, mapWritableState } from "pinia";
+import { useMainStore } from "../stores/mainStore";
 
 const keyMap = {
   LEFT: 37,
@@ -197,6 +199,10 @@ export default {
   },
 
   computed: {
+    ...mapWritableState(useMainStore, ["videoLightBoxOpen"]),
+    showVideoLightBox() {
+      return typeof this.index === "number";
+    },
     formattedVideos() {
       return this.videos.map((video) =>
         typeof video === "string" ? { url: video } : video
@@ -266,6 +272,11 @@ export default {
         document.body.style.overflow = this.bodyOverflowStyle;
       }
     },
+    showVideoLightBox(show) {
+      if (show) {
+        this.videoLightBoxOpen = true;
+      }
+    },
     currentIndex(val) {
       this.setVideoLoaded(val);
     },
@@ -298,6 +309,7 @@ export default {
   methods: {
     close() {
       this.$emit("close");
+      this.videoLightBoxOpen = false;
     },
     prev() {
       if (this.currentIndex === 0) return;
