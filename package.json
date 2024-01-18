@@ -17,13 +17,18 @@
     "sass": "^1.62.0"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "@sindresorhus/slugify": "^2.2.0",
     "@vimeo/player": "^2.21.0",
     "mitt": "^3.0.0",
     "nuxt-lazy-load": "^3.0.4",
+    "pinia": "^2.1.7",
     "radix-vue": "^0.1.32",
     "vite-plugin-vuetify": "^1.0.2",
     "vue-scrollto": "^2.20.0",
     "vuetify": "^3.3.17"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
