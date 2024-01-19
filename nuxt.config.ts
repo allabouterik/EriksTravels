@@ -45,6 +45,13 @@ export default defineNuxtConfig({
     build: {
       sourcemap: true,
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/_breakpoints.scss" as *;',
+        },
+      },
+    },
   },
   content: {
     markdown: {
