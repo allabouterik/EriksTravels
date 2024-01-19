@@ -114,7 +114,7 @@ export default {
   bottom: 0;
   font-size: 14px;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   transition: all 0.3s ease-in 0s;
 }
 
