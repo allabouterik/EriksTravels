@@ -1,18 +1,16 @@
 <template>
   <div class="videoThumbnailContainer">
     <div class="videoThumbnailImgContainer">
-      <div>
-        <img
-          v-if="video.thumbnailImg != null"
-          :alt="video.title"
-          :src="video.thumbnailImg"
-          width="113.2"
-          height="72.4"
-          class="thumbnailImg"
-          :fetchpriority="preload ? 'high' : 'auto'"
-          :data-not-lazy="preload"
-        />
-      </div>
+      <img
+        v-if="video.thumbnailImg != null"
+        :alt="video.title"
+        :src="video.thumbnailImg"
+        width="113.2"
+        height="72.4"
+        class="thumbnailImg"
+        :fetchpriority="preload ? 'high' : 'auto'"
+        :data-not-lazy="preload"
+      />
 
       <div class="thumbnailImgTextOverlay">
         <div class="showOnHover">
@@ -62,14 +60,21 @@ export default {
 }
 
 .videoThumbnailImgContainer {
+  display: flex;
   position: relative;
 }
 
 .thumbnailImg {
-  height: auto;
   position: relative;
   opacity: 1;
   transition: opacity 0.5s ease;
+  align-self: center;
+  width: auto;
+  height: 54.3px;
+
+  @include media-breakpoint-up(md) {
+    height: 72.4px;
+  }
 }
 
 .thumbnailImgTextOverlay {
@@ -82,26 +87,12 @@ export default {
   width: 85%;
 }
 
-// .playVideoText {
-//   font-family: "Open Sans Condensed", sans-serif;
-//   font-feature-settings: "liga";
-//   font-weight: 300;
-//   font-size: 2.3125rem;
-//   line-height: 2.3125rem;
-//   letter-spacing: 9px;
-//   text-transform: uppercase;
-// }
-
 .playImg {
-  // width: 100%;
-  // max-width: 100%;
-  // height: 100%;
-  height: 50px;
-  // max-height: 100%;
-  // height: auto;
-  // position: relative;
-  // opacity: 1;
-  // transition: opacity 0.5s ease;
+  height: 37.5px;
+
+  @include media-breakpoint-up(md) {
+    height: 50px;
+  }
 }
 
 .videoDurationText {
@@ -123,7 +114,7 @@ export default {
   bottom: 0;
   font-size: 14px;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   transition: all 0.3s ease-in 0s;
 }
 
@@ -135,7 +126,7 @@ export default {
   font-size: 1.0625rem;
   line-height: 1.375rem;
   letter-spacing: 7px;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
 }
 
@@ -170,11 +161,6 @@ export default {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media only screen and (max-width: 575.98px) {
-  // .playVideoText {
-  //   font-size: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-  //   line-height: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-  //   letter-spacing: 9px;
-  // }
   .videoDurationText {
     font-size: calc(1.125rem + 6 * (100vw - 375px) / (576 - 375));
   }
@@ -201,11 +187,6 @@ export default {
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  // .playVideoText {
-  //   font-size: 4.8vw;
-  //   line-height: 4.8vw;
-  //   letter-spacing: 8px;
-  // }
   .videoDurationText {
     font-size: 2.86vw;
   }
