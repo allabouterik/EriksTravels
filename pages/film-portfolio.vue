@@ -109,7 +109,7 @@ useHead({
 .videosContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin-top: 1rem;
   gap: 1rem;
