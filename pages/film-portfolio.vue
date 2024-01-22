@@ -15,6 +15,7 @@
             <div
               v-for="(video, index) in travelVideos"
               @click="videoIndex = index"
+              class="videosContainerItem"
             >
               <VideoThumbnailFilmPortfolio :video="video" />
             </div>
@@ -109,9 +110,21 @@ useHead({
 .videosContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   margin-top: 1rem;
   gap: 1rem;
+
+  @include media-breakpoint-up(sm) {
+    justify-content: center;
+  }
+}
+
+.videosContainerItem {
+  width: 100%;
+
+  @include media-breakpoint-up(sm) {
+    width: unset;
+  }
 }
 </style>
