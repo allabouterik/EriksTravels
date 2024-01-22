@@ -1,10 +1,6 @@
 <template>
   <router-view v-slot="{ route }">
     <div :key="route.fullPath">
-      <Head>
-        <Title>Show Reel</Title>
-      </Head>
-
       <div class="showreel">
         <div class="siteLogo">
           <img
