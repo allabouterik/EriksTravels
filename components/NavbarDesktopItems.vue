@@ -5,7 +5,9 @@
   >
     <img
       alt="Home page"
-      src="/header/eriks-travels-logo-white.png"
+      :src="`/header/eriks-travels-logo-${
+        $route.path === '/home' ? 'yellow' : 'white'
+      }.png`"
       height="100"
       class="menuImg" />
     <img
@@ -27,7 +29,9 @@
       >
         <img
           :alt="menuItem.altText"
-          :src="`/header/white_${menuItem.img}`"
+          :src="`/header/${$route.path === menuItem.to ? 'yellow' : 'white'}_${
+            menuItem.img
+          }`"
           height="60"
           class="menuImg"
         />
