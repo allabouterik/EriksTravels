@@ -95,9 +95,6 @@ watch([videos, videoIndex], ([newVideos, newVideoIndex]) => {
 const disableScroll = computed(() => {
   return store.videoLightBoxProps.disableScroll;
 });
-const scrollContainerHome = computed(() => {
-  return store.scrollContainerHome;
-});
 </script>
 
 <style lang="scss">
