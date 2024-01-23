@@ -136,7 +136,7 @@
 <script>
 import Player from "@vimeo/player";
 import { EventBus } from "../composables/event-bus";
-import { mapActions, mapWritableState } from "pinia";
+import { mapWritableState } from "pinia";
 import { useMainStore } from "../stores/mainStore";
 
 const keyMap = {

@@ -45,11 +45,7 @@
       <button
         v-else-if="menuItem.video"
         class="menuLink"
-        @click="
-          // scrollContainer = false;
-          videos = [menuItem.video];
-          videoIndex = 0;
-        "
+        @click="openVideoLightBox([menuItem.video], 0)"
       >
         <img
           :alt="menuItem.altText"
@@ -65,30 +61,17 @@
         />
       </button>
     </template>
-
-    <VideoLightBox
-      :videos="videos"
-      :index="videoIndex"
-      :disable-scroll="true"
-      @close="
-        videos = null;
-        videoIndex = null;
-        // scrollContainer = true;
-      "
-    />
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
+import { mapWritableState } from "pinia";
+import { useMainStore } from "../stores/mainStore";
+
 export default {
   data() {
     return {
       navMenuItems: [
-        // {
-        //   img: "show-reel_menu.png",
-        //   altText: "Show Reel",
-        //   to: "/showreel",
-        // },
         {
           img: "show-reel_menu.png",
           altText: "Show Reel",
@@ -118,9 +101,19 @@ export default {
           to: "/contact",
         },
       ],
-      videos: null,
-      videoIndex: null,
     };
+  },
+  computed: {
+    ...mapWritableState(useMainStore, ["videoLightBoxProps"]),
+  },
+  methods: {
+    openVideoLightBox(videos, videoIndex) {
+      this.videoLightBoxProps = {
+        videos,
+        videoIndex,
+        disableScroll: true,
+      };
+    },
   },
 };
 </script>

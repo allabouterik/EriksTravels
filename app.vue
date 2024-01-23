@@ -4,6 +4,17 @@
     <NavbarDesktop :showNavBar="showNavBars" />
     <main>
       <NuxtPage />
+
+      <VideoLightBox
+        :videos="videos"
+        :index="videoIndex"
+        :disable-scroll="disableScroll"
+        @close="
+          store.videoLightBoxProps.videos = null;
+          store.videoLightBoxProps.videoIndex = null;
+          store.scrollContainerHome = true;
+        "
+      />
     </main>
   </div>
 </template>
@@ -68,6 +79,24 @@ const route = useRoute();
 const showNavBars = computed(() => {
   const showNavBar = route.path !== "/" && !store.videoLightBoxOpen;
   return showNavBar;
+});
+
+const videos = computed(() => {
+  return store.videoLightBoxProps.videos;
+});
+const videoIndex = computed(() => {
+  return store.videoLightBoxProps.videoIndex;
+});
+watch([videos, videoIndex], ([newVideos, newVideoIndex]) => {
+  if (newVideos && newVideoIndex !== null) {
+    store.scrollContainerHome = false;
+  }
+});
+const disableScroll = computed(() => {
+  return store.videoLightBoxProps.disableScroll;
+});
+const scrollContainerHome = computed(() => {
+  return store.scrollContainerHome;
 });
 </script>
 

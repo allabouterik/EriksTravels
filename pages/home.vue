@@ -10,7 +10,7 @@
           v-for="i in 2"
           fluid
           class="mainContainer px-1"
-          :class="{ scroll: scrollContainer }"
+          :class="{ scroll: scrollContainerHome }"
         >
           <!-- VIDEOS -->
           <v-row
@@ -27,7 +27,7 @@
               :key="video.title"
               class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
               @click="
-                scrollContainer = false;
+                store.scrollContainerHome = false;
                 videoIndex = index;
               "
               data-testid="video-container"
@@ -44,7 +44,7 @@
         :disable-scroll="true"
         @close="
           videoIndex = null;
-          scrollContainer = true;
+          store.scrollContainerHome = true;
         "
       />
     </div>
@@ -58,7 +58,6 @@ export default {
       pageTitle: "",
       travelsPgContent: {},
       videoIndex: null,
-      scrollContainer: true,
     };
   },
 
@@ -76,6 +75,8 @@ export default {
 </script>
 
 <script setup>
+import { useMainStore } from "../stores/mainStore";
+
 useHead({
   link: [
     {
@@ -87,6 +88,11 @@ useHead({
       href: "https://player.vimeo.com/",
     },
   ],
+});
+
+const store = useMainStore();
+const scrollContainerHome = computed(() => {
+  return store.scrollContainerHome;
 });
 </script>
 
