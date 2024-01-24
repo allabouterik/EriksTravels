@@ -23,7 +23,7 @@
         </v-container>
       </div>
 
-      <VideoLightBox
+      <VideoLightBoxFilmPortfolio
         :videos="travelVideos"
         :index="videoIndex"
         :disable-scroll="true"
@@ -110,7 +110,7 @@ useHead({
 .videosContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 1rem;
   gap: 1rem;
