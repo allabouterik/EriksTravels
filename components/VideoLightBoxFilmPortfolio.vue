@@ -62,11 +62,27 @@
                 </div>
 
                 <div
-                  v-show="(video.caption || video.title) && isVideoLoaded"
-                  class="video-lightbox__text"
-                  :style="videoTitleCss"
+                  v-show="isVideoLoaded"
+                  class="video-lightbox__text-container"
+                  :style="videoTextContainerCss"
                 >
-                  {{ video.caption || video.title }}
+                  <div
+                    v-show="video.caption || video.title"
+                    class="video-lightbox__text"
+                  >
+                    {{ video.caption || video.title }}
+                  </div>
+
+                  <div
+                    v-show="video.description"
+                    class="video-lightbox__description"
+                  >
+                    <span>{{ video.description }}</span>
+                  </div>
+                  <div
+                    v-show="video.description"
+                    class="video-lightbox__description-mask"
+                  ></div>
                 </div>
               </div>
             </li>
@@ -238,6 +254,12 @@ export default {
         return 1502.22 / 845.0;
       }
     },
+    videoHasDescription() {
+      return (
+        this.formattedVideos[this.currentIndex].hasOwnProperty("description") &&
+        this.formattedVideos[this.currentIndex].description.length > 0
+      );
+    },
     heightGoverns() {
       return this.containerAspectRatio >= this.videoAspectRatio;
     },
@@ -251,11 +273,19 @@ export default {
         ? this.containerHeight * this.videoAspectRatio
         : this.containerWidth;
     },
-    videoTitleCss() {
+    videoTextContainerCss() {
       let css = {};
       css.padding = 0;
+      const titleHeight = 40;
+      const descriptionHeight = 80;
+      const padding = 8;
+      const containerHeight = this.videoHasDescription
+        ? titleHeight + descriptionHeight + padding
+        : titleHeight;
       css.bottom =
-        (this.containerHeight - this.actualVidHeight) / 2 - 40 + "px";
+        (this.containerHeight - this.actualVidHeight) / 2 -
+        containerHeight +
+        "px";
       css.width = "100%";
       css.textAlign = this.titlePosition;
       return css;
@@ -494,13 +524,14 @@ export default {
       }
     }
   }
-  &__text {
+  &__text-container {
     position: absolute;
     z-index: 1000;
     display: block;
     margin: 0 auto;
     box-sizing: border-box;
-
+  }
+  &__text {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
@@ -514,6 +545,33 @@ export default {
     white-space: normal;
     // see videoTitleCss() in computed for further properties
   }
+  &__description {
+    height: 80px;
+    overflow: hidden;
+    color: #ffffff;
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
+    font-size: 1rem; /* 16px with 16px default size */
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 5px;
+    text-transform: none;
+    text-rendering: auto;
+    // transition: all  .5s ease .0s;
+    line-height: 1.25rem; /* 20px with 16px default size */
+    white-space: normal;
+    padding-top: 1rem;
+  }
+  &__description-mask {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    // background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  }
+
   &__next,
   &__prev,
   &__close {
