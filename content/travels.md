@@ -19,18 +19,21 @@ videos:
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/abu-dhabi.jpg
     title: Abu Dhabi
     url: "https://player.vimeo.com/video/810489559"
+    description: Abu Dhabi city, capital of the United Arab Emirates. The tower gardens skyline in the metropolitan area. Traditional fishing boats in the harbor, the city's beautiful date and fish markets. The Emirates Palace Hotel with its golden interior, and the spectacular grand mosque.
 
   - duration: 705
     thumbnailImg: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/amalfi-coast.jpg
     title: Amalfi Coast
     url: "https://player.vimeo.com/video/872590107"
+    description: The fantastic Amalfi coast. Beautiful Positano, and the Buca di Bacco Hotel. The number one guide and driver Poppi. Sorrento and Naples, with the pizza parlor featured in the movie “Eat Pray Love”. The archaeological museum. Explore the ruins of Pompeii and Herculaneum. The Amalfi coast highway. Beaches, coves, and the amazing miniature roadside model towns. The cities of Amalfi and Ravello. Pasteum, with its wonderful Greek temples, and archaeological museum. Buffalo mozzarella. Sunset dinner in Nocelli, high above Positano.
 
   - duration: 270
     thumbnailImg: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/holland_woygop.jpg
     title: Amsterdam
     url: "https://player.vimeo.com/video/171630592"
+    description: The wild annual king’s day celebration. Tour of the canals on the Pulitzer Hotel, beautiful old wooden boat. Houses, bridges, and houseboats. Picturesque Volendam. Raw herring, cheese, and portrait shots of us in old Dutch clothing. The beautiful village of Horn. Amsterdam’s red light District. The famous Keukenhof tulip Garden, world’s largest. The old windmill there.
 
   - duration: 220
     thumbnailImg: >-
