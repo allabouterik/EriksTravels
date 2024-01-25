@@ -9,7 +9,7 @@
         <v-container
           v-for="i in 2"
           fluid
-          class="mainContainer px-1"
+          class="mainContainer mb-2 px-1"
           :class="{ scroll: scrollContainerHome }"
         >
           <!-- VIDEOS -->
@@ -25,7 +25,7 @@
               lg="4"
               v-for="(video, index) in travelVideos"
               :key="video.title"
-              class="mb-2 mb-sm-2 px-2 px-sm-1 py-0"
+              class="mb-2 px-2 px-sm-1 py-0"
               @click="
                 store.scrollContainerHome = false;
                 videoIndex = index;
