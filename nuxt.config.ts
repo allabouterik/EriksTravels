@@ -15,7 +15,11 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: "page", mode: "default" },
   },
-  css: ["@/assets/styles.css", "@/assets/custom.scss"],
+  css: [
+    "@/assets/styles.css",
+    "@/assets/custom.scss",
+    "simplebar-vue/dist/simplebar.min.css",
+  ],
   modules: [
     "@nuxt/content",
     "@nuxtjs/seo",

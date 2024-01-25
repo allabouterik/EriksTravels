@@ -73,16 +73,35 @@
                     {{ video.caption || video.title }}
                   </div>
 
-                  <div
-                    v-show="video.description"
-                    class="video-lightbox__description"
+                  <Simplebar
+                    class="simple-scrollbar"
+                    data-simplebar-auto-hide="false"
                   >
-                    <span>{{ video.description }}</span>
-                  </div>
+                    <div
+                      v-show="video.description"
+                      :class="`video-lightbox__description ${
+                        showingMore
+                          ? 'video-lightbox__description--expanded'
+                          : ''
+                      }`"
+                    >
+                      <span>{{ video.description }}</span>
+                    </div>
+                  </Simplebar>
                   <div
                     v-show="video.description"
-                    class="video-lightbox__description-mask"
+                    :class="`${
+                      showingMore ? '' : 'video-lightbox__description-mask'
+                    }`"
                   ></div>
+
+                  <button
+                    v-show="video.description"
+                    class="video-lightbox__show-more"
+                    @click="showingMore = !showingMore"
+                  >
+                    {{ showingMore ? "Show Less" : "Show More" }}
+                  </button>
                 </div>
               </div>
             </li>
@@ -151,6 +170,7 @@
 
 <script>
 import Player from "@vimeo/player";
+import Simplebar from "simplebar-vue";
 import { EventBus } from "../composables/event-bus";
 import { mapWritableState } from "pinia";
 import { useMainStore } from "../stores/mainStore";
@@ -162,6 +182,10 @@ const keyMap = {
 };
 
 export default {
+  components: {
+    Simplebar,
+  },
+
   props: {
     videos: {
       type: Array,
@@ -211,6 +235,7 @@ export default {
       },
       windowWidth: 0,
       windowHeight: 0,
+      showingMore: false,
     };
   },
 
@@ -467,6 +492,10 @@ export default {
   font-weight: normal;
 }
 
+.simple-scrollbar {
+  height: 100%;
+}
+
 .video-lightbox {
   &__modal {
     position: fixed;
@@ -545,31 +574,52 @@ export default {
     white-space: normal;
     // see videoTitleCss() in computed for further properties
   }
+  --descriptionHeight: 60px;
   &__description {
-    height: 80px;
+    height: var(--descriptionHeight);
     overflow: hidden;
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 1rem; /* 16px with 16px default size */
+    font-size: 1rem;
     font-style: italic;
     font-weight: 400;
     letter-spacing: 5px;
     text-transform: none;
     text-rendering: auto;
     // transition: all  .5s ease .0s;
-    line-height: 1.25rem; /* 20px with 16px default size */
+    line-height: 1.25rem;
     white-space: normal;
-    padding-top: 1rem;
+    margin-top: 1rem;
+
+    &--expanded {
+      // height: auto;
+      overflow-y: scroll;
+      margin-bottom: 0.5rem;
+    }
   }
   &__description-mask {
     display: block;
     position: absolute;
     bottom: 0;
-    height: 80px;
+    height: var(--descriptionHeight);
     width: 100%;
     // background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
     background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  }
+  &__show-more {
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    color: #bbd72d;
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 5px;
+    cursor: pointer;
   }
 
   &__next,
