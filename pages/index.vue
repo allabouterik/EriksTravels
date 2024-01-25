@@ -18,7 +18,7 @@
             Watch a snippet of the sights and sounds from Erik's Travels
           </h2> -->
           <img
-            src="~/assets/images/playarrowcircle-black.png"
+            src="~/assets/images/playarrowcircle.png"
             class="playImg"
           />
           <img
@@ -111,7 +111,7 @@ const onVideoClose = () => {
   position: relative;
   height: 100vh;
   width: 100vw;
-  background-image: url("/showreel.jpg");
+  background-image: url("/showreel-fireplace-wall.jpg");
   background-size: cover;
 
   .playImgContainer {
