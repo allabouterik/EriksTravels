@@ -55,7 +55,7 @@
 export default {
   data() {
     return {
-      pageTitle: "",
+      pageTitle: "Home",
       travelsPgContent: {},
       videoIndex: null,
     };
