@@ -6,6 +6,7 @@
       @touchstart.passive="touchstartHandler"
       @touchmove.passive="touchmoveHandler"
       @touchend.passive="touchendHandler"
+      :style="videoLightboxCss"
     >
       <div
         class="video-lightbox__modal"
@@ -75,6 +76,7 @@
 
                   <Simplebar
                     class="simple-scrollbar"
+                    :style="simpleBarCss"
                     data-simplebar-auto-hide="false"
                   >
                     <div
@@ -298,18 +300,42 @@ export default {
         ? this.containerHeight * this.videoAspectRatio
         : this.containerWidth;
     },
+    descriptionMaxExpandedHeight() {
+      const titleTopPadding = 8;
+      const titleSize = 21;
+      const descriptionTopMargin = 16;
+      const descriptionBottomMargin = 8;
+      const showMoreBtnSize = 32;
+      return Math.round(
+        (this.containerHeight - this.actualVidHeight) / 2 -
+          titleTopPadding -
+          titleSize -
+          descriptionTopMargin -
+          descriptionBottomMargin -
+          showMoreBtnSize,
+        0
+      );
+    },
+    simpleBarCss() {
+      let css = {};
+      css["--descriptionHeight"] = this.showingMore ? "auto" : "80px";
+
+      return css;
+    },
+    videoLightboxCss() {
+      let css = {};
+      css["--descriptionHeight"] = this.showingMore
+        ? `${this.descriptionMaxExpandedHeight}px`
+        : "80px";
+      return css;
+    },
     videoTextContainerCss() {
       let css = {};
       css.padding = 0;
-      const titleHeight = 40;
-      const descriptionHeight = 80;
-      const padding = 8;
-      const containerHeight = this.videoHasDescription
-        ? titleHeight + descriptionHeight + padding
-        : titleHeight;
-      css.bottom =
-        (this.containerHeight - this.actualVidHeight) / 2 -
-        containerHeight +
+      const titleTopPadding = 8;
+      css.top =
+        (this.containerHeight + this.actualVidHeight) / 2 +
+        titleTopPadding +
         "px";
       css.width = "100%";
       css.textAlign = this.titlePosition;
@@ -493,7 +519,7 @@ export default {
 }
 
 .simple-scrollbar {
-  height: 100%;
+  height: var(--descriptionHeight);
 }
 
 .video-lightbox {
@@ -523,6 +549,11 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+
+    @include media-breakpoint-up(md) {
+      top: 20px;
+      transform: translate(-50%, 0);
+    }
   }
   &__video-container {
     display: inline-table;
@@ -574,10 +605,7 @@ export default {
     white-space: normal;
     // see videoTitleCss() in computed for further properties
   }
-  --descriptionHeight: 60px;
   &__description {
-    height: var(--descriptionHeight);
-    overflow: hidden;
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
@@ -591,10 +619,9 @@ export default {
     line-height: 1.25rem;
     white-space: normal;
     margin-top: 1rem;
+    overflow: hidden;
 
     &--expanded {
-      // height: auto;
-      overflow-y: scroll;
       margin-bottom: 0.5rem;
     }
   }
@@ -610,7 +637,6 @@ export default {
   &__show-more {
     display: block;
     position: absolute;
-    bottom: -20px;
     left: 0;
     color: #bbd72d;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
@@ -619,6 +645,7 @@ export default {
     font-style: italic;
     font-weight: 400;
     letter-spacing: 5px;
+    margin-top: 0.5rem;
     cursor: pointer;
   }
 
