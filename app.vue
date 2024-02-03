@@ -1,5 +1,8 @@
 <template>
-  <div class="layout pa-0">
+  <div
+    class="layout pa-0"
+    :class="{ 'non-scrollable': !layoutScrollable }"
+  >
     <NavbarMobile v-if="showNavBars" />
     <NavbarDesktop :showNavBar="showNavBars" />
     <main>
@@ -8,11 +11,11 @@
       <VideoLightBox
         :videos="videos"
         :index="videoIndex"
-        :disable-scroll="disableScroll"
+        :disable-scroll="disableVideoLightBoxScroll"
         @close="
           store.videoLightBoxProps.videos = null;
           store.videoLightBoxProps.videoIndex = null;
-          store.scrollContainerHome = true;
+          store.layoutScrollable = true;
         "
       />
     </main>
@@ -21,7 +24,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { useMainStore } from "./stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -89,11 +92,15 @@ const videoIndex = computed(() => {
 });
 watch([videos, videoIndex], ([newVideos, newVideoIndex]) => {
   if (newVideos && newVideoIndex !== null) {
-    store.scrollContainerHome = false;
+    store.layoutScrollable = false;
   }
 });
-const disableScroll = computed(() => {
+const disableVideoLightBoxScroll = computed(() => {
   return store.videoLightBoxProps.disableScroll;
+});
+
+const layoutScrollable = computed(() => {
+  return store.layoutScrollable;
 });
 </script>
 
@@ -112,6 +119,11 @@ body {
   margin: 0 auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.non-scrollable {
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Transition styles on router-view for fading the page */

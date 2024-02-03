@@ -14,7 +14,10 @@
           <div class="videosContainer">
             <div
               v-for="(video, index) in travelVideos"
-              @click="videoIndex = index"
+              @click="
+                videoIndex = index;
+                store.layoutScrollable = false;
+              "
               class="videosContainerItem"
             >
               <VideoThumbnailFilmPortfolio :video="video" />
@@ -27,7 +30,10 @@
         :videos="travelVideos"
         :index="videoIndex"
         :disable-scroll="true"
-        @close="videoIndex = null"
+        @close="
+          videoIndex = null;
+          store.layoutScrollable = true;
+        "
       />
     </div>
   </router-view>
@@ -57,6 +63,8 @@ export default {
 </script>
 
 <script setup>
+import { useMainStore } from "@/stores/mainStore";
+
 useHead({
   link: [
     {
@@ -69,6 +77,8 @@ useHead({
     },
   ],
 });
+
+const store = useMainStore();
 </script>
 
 <style scoped lang="scss">
