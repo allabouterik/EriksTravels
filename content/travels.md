@@ -185,8 +185,6 @@ videos:
     title: Dining with Chunky
     url: "https://player.vimeo.com/video/111801736"
     description: My nickname for myself is chunky biscuit. I love food. My motto,” let’s eat again real soon”! This video features stuff I I ate when I was traveling. Fish! The dazzling display at Rinaldi’s seafood restaurant in Rome. Alici, Pulpo and Buffalo mozzarella. Plenty of sushi! Offal, padang style in Java. Fried giant wasp larva in Myanmar, filled with sweet green juice. Pistachio soufflé in Paris. Pig ears in Spain. Palestinian Mezza. Whale in Tokyo. Snake in Hanoi. Snails, crabs, frogs, lobster, shrimp, clams, and mussels, turtles, bamboo rats, dog, and horsemeat tartare, crickets and live scorpions. We have lots of delicious stuff here, and chunky loved every bite!
-    width: 1321.33
-    height: 990.992
 
   - duration: 771
     thumbnailImg: >-
