@@ -530,10 +530,11 @@ export default {
       this.showingMore = !this.showingMore;
 
       this.$nextTick(() => {
-        if (!this.showingMore)
-          this.$refs[
-            `descriptionSimplebar-${this.currentIndex}`
-          ][0].SimpleBar.getScrollElement().scrollTop = 0;
+        const descriptionSimplebarArr =
+          this.$refs[`descriptionSimplebar-${this.currentIndex}`];
+        if (descriptionSimplebarArr && !this.showingMore) {
+          descriptionSimplebarArr[0].SimpleBar.getScrollElement().scrollTop = 0;
+        }
       });
     },
   },
