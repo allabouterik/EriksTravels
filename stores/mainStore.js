@@ -9,7 +9,11 @@ export const useMainStore = defineStore("main", () => {
     disableScroll: false,
   });
 
-  const scrollContainerHome = ref(true);
+  const layoutScrollable = ref(true);
 
-  return { videoLightBoxOpen, videoLightBoxProps, scrollContainerHome };
+  return {
+    videoLightBoxOpen,
+    videoLightBoxProps,
+    layoutScrollable,
+  };
 });

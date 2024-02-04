@@ -6,6 +6,7 @@
       @touchstart.passive="touchstartHandler"
       @touchmove.passive="touchmoveHandler"
       @touchend.passive="touchendHandler"
+      :style="descriptionHeightCss"
     >
       <div
         class="video-lightbox__modal"
@@ -62,11 +63,53 @@
                 </div>
 
                 <div
-                  v-show="(video.caption || video.title) && isVideoLoaded"
-                  class="video-lightbox__text"
-                  :style="videoTitleCss"
+                  v-show="isVideoLoaded"
+                  class="video-lightbox__text-container"
+                  :style="videoTextContainerCss"
                 >
-                  {{ video.caption || video.title }}
+                  <div
+                    v-show="video.caption || video.title"
+                    class="video-lightbox__text"
+                  >
+                    {{ video.caption || video.title }}
+                  </div>
+
+                  <Simplebar
+                    class="simple-scrollbar"
+                    data-simplebar-auto-hide="false"
+                    :ref="`descriptionSimplebar-${videoIndex}`"
+                    :style="descriptionHeightCss"
+                  >
+                    <div
+                      v-show="video.description"
+                      :class="`video-lightbox__description ${
+                        showingMore
+                          ? 'video-lightbox__description--expanded'
+                          : ''
+                      }`"
+                    >
+                      <span>{{ video.description }}</span>
+                    </div>
+                  </Simplebar>
+                  <div
+                    v-show="
+                      video.description &&
+                      descriptionActualHeight > descriptionMaxExpandedHeight &&
+                      !showingMore
+                    "
+                    class="video-lightbox__description-mask"
+                  ></div>
+
+                  <button
+                    v-show="
+                      video.description &&
+                      descriptionActualHeight > descriptionMaxExpandedHeight
+                    "
+                    class="video-lightbox__show-more"
+                    @click="onShowMoreBtnClick"
+                  >
+                    {{ showingMore ? "Show Less" : "Show More" }}
+                  </button>
                 </div>
               </div>
             </li>
@@ -135,9 +178,11 @@
 
 <script>
 import Player from "@vimeo/player";
+import Simplebar from "simplebar-vue";
 import { EventBus } from "../composables/event-bus";
 import { mapWritableState } from "pinia";
-import { useMainStore } from "../stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
+import "simplebar-vue/dist/simplebar.min.css";
 
 const keyMap = {
   LEFT: 37,
@@ -146,6 +191,10 @@ const keyMap = {
 };
 
 export default {
+  components: {
+    Simplebar,
+  },
+
   props: {
     videos: {
       type: Array,
@@ -195,6 +244,7 @@ export default {
       },
       windowWidth: 0,
       windowHeight: 0,
+      showingMore: false,
     };
   },
 
@@ -238,6 +288,9 @@ export default {
         return 1502.22 / 845.0;
       }
     },
+    videoHasDescription() {
+      return this.formattedVideos[this.currentIndex].description?.length > 0;
+    },
     heightGoverns() {
       return this.containerAspectRatio >= this.videoAspectRatio;
     },
@@ -251,11 +304,65 @@ export default {
         ? this.containerHeight * this.videoAspectRatio
         : this.containerWidth;
     },
-    videoTitleCss() {
+    descriptionMaxExpandedHeight() {
+      const lightboxContainerTopPos = 20;
+      const titleTopPadding = 8;
+      const titleSize = 21;
+      const descriptionTopMargin = 16;
+      const descriptionBottomMargin = 8;
+      const showMoreBtnSize = 32;
+
+      if (!this.videoHasDescription) return 0;
+
+      if (this.windowWidth < 768) {
+        return Math.round(
+          (this.windowHeight - this.actualVidHeight) / 2 -
+            titleTopPadding -
+            titleSize -
+            descriptionTopMargin -
+            descriptionBottomMargin -
+            showMoreBtnSize,
+          0
+        );
+      }
+
+      return Math.round(
+        this.windowHeight -
+          this.actualVidHeight -
+          (this.containerHeight - this.actualVidHeight) / 2 -
+          lightboxContainerTopPos -
+          titleTopPadding -
+          titleSize -
+          descriptionTopMargin -
+          descriptionBottomMargin -
+          showMoreBtnSize,
+        0
+      );
+    },
+    descriptionHeightCss() {
+      return {
+        "--descriptionHeight":
+          this.showingMore ||
+          this.descriptionActualHeight < this.descriptionMaxExpandedHeight
+            ? `${this.descriptionMaxExpandedHeight}px`
+            : "80px",
+      };
+    },
+    descriptionActualHeight() {
+      const descriptionSimplebarArr =
+        this.$refs[`descriptionSimplebar-${this.currentIndex}`];
+      if (!descriptionSimplebarArr) return 0;
+      return descriptionSimplebarArr[0].SimpleBar.getScrollElement()
+        .scrollHeight;
+    },
+    videoTextContainerCss() {
       let css = {};
       css.padding = 0;
-      css.bottom =
-        (this.containerHeight - this.actualVidHeight) / 2 - 40 + "px";
+      const titleTopPadding = 8;
+      css.top =
+        (this.containerHeight + this.actualVidHeight) / 2 +
+        titleTopPadding +
+        "px";
       css.width = "100%";
       css.textAlign = this.titlePosition;
       return css;
@@ -419,6 +526,16 @@ export default {
           break;
       }
     },
+    onShowMoreBtnClick() {
+      this.showingMore = !this.showingMore;
+
+      this.$nextTick(() => {
+        if (!this.showingMore)
+          this.$refs[
+            `descriptionSimplebar-${this.currentIndex}`
+          ][0].SimpleBar.getScrollElement().scrollTop = 0;
+      });
+    },
   },
 };
 </script>
@@ -464,6 +581,11 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+
+    @include media-breakpoint-up(md) {
+      top: 20px;
+      transform: translate(-50%, 0);
+    }
   }
   &__video-container {
     display: inline-table;
@@ -494,26 +616,105 @@ export default {
       }
     }
   }
-  &__text {
+  &__text-container {
     position: absolute;
     z-index: 1000;
     display: block;
     margin: 0 auto;
     box-sizing: border-box;
 
+    .simple-scrollbar {
+      min-height: 80px;
+      max-height: var(--descriptionHeight);
+    }
+
+    &::v-deep .simplebar-scrollbar::before {
+      background-color: #ddd;
+    }
+  }
+  &__text {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 1.3125rem; /* 21px with 16px default size */
+    font-size: 0.8125rem; /* 13px */
     font-weight: 400;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     text-rendering: auto;
     // transition: all  .5s ease .0s;
-    line-height: 1.3125rem; /* 21px with 16px default size */
+    line-height: 1.3125rem; /* 21px */
+    margin-bottom: 1rem;
     white-space: normal;
     // see videoTitleCss() in computed for further properties
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.9375rem; /* 15px */
+      letter-spacing: 4px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1.0625rem; /* 17px */
+      letter-spacing: 5px;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 1.1875rem; /* 19px */
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 1.3125rem; /* 21px */
+    }
   }
+  &__description {
+    color: #ffffff;
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
+    font-size: 0.8125rem; /* 13px */
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: none;
+    text-rendering: auto;
+    // transition: all  .5s ease .0s;
+    line-height: 1.25rem;
+    white-space: normal;
+    padding-right: 1rem;
+    overflow: hidden;
+
+    &--expanded {
+      margin-bottom: 0.5rem;
+    }
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.875rem; /* 14px */
+      letter-spacing: 4px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1rem;
+      letter-spacing: 5px;
+    }
+  }
+  &__description-mask {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: var(--descriptionHeight);
+    width: 100%;
+    // background: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  }
+  &__show-more {
+    display: block;
+    position: absolute;
+    left: 0;
+    color: #bbd72d;
+    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-feature-settings: "liga";
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 5px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
   &__next,
   &__prev,
   &__close {
@@ -529,17 +730,60 @@ export default {
   &__next {
     top: 50%;
     transform: translate(0, -50%);
-    right: 8.5%;
+    right: 1.5%;
     vertical-align: middle;
+
+    @include media-breakpoint-up(sm) {
+      right: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      right: 4.5%;
+    }
+    @include media-breakpoint-up(lg) {
+      right: 6.5%;
+    }
+    @include media-breakpoint-up(xl) {
+      right: 8.5%;
+    }
   }
   &__prev {
     top: 50%;
     transform: translate(0, -50%);
-    left: 8.5%;
+    left: 1.5%;
+
+    @include media-breakpoint-up(sm) {
+      left: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      left: 4.5%;
+    }
+    @include media-breakpoint-up(lg) {
+      left: 6.5%;
+    }
+    @include media-breakpoint-up(xl) {
+      left: 8.5%;
+    }
   }
   &__close {
-    top: 40px;
-    right: 60px;
+    top: 10px;
+    right: 20px;
+
+    @include media-breakpoint-up(sm) {
+      top: 20px;
+      right: 30px;
+    }
+    @include media-breakpoint-up(md) {
+      top: 30px;
+      right: 40px;
+    }
+    @include media-breakpoint-up(lg) {
+      top: 40px;
+      right: 50px;
+    }
+    @include media-breakpoint-up(xl) {
+      top: 40px;
+      right: 60px;
+    }
   }
   &__spinner {
     & {
@@ -642,83 +886,5 @@ export default {
 }
 #closeImgContainer:hover #closeImg {
   display: none;
-}
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.8125rem; /* 13px with 16px default size */
-    }
-    &__next {
-      right: 1.5%;
-    }
-    &__prev {
-      left: 1.5%;
-    }
-    &__close {
-      top: 10px;
-      right: 20px;
-    }
-  }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.9375rem; /* 15px with 16px default size */
-    }
-    &__next {
-      right: 3%;
-    }
-    &__prev {
-      left: 3%;
-    }
-    &__close {
-      top: 20px;
-      right: 30px;
-    }
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.0625rem; /* 17px with 16px default size */
-    }
-    &__next {
-      right: 4.5%;
-    }
-    &__prev {
-      left: 4.5%;
-    }
-    &__close {
-      top: 30px;
-      right: 40px;
-    }
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.1875rem; /* 19px with 16px default size */
-    }
-    &__next {
-      right: 6.5%;
-    }
-    &__prev {
-      left: 6.5%;
-    }
-    &__close {
-      top: 40px;
-      right: 50px;
-    }
-  }
 }
 </style>

@@ -137,7 +137,7 @@
 import Player from "@vimeo/player";
 import { EventBus } from "../composables/event-bus";
 import { mapWritableState } from "pinia";
-import { useMainStore } from "../stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
 
 const keyMap = {
   LEFT: 37,

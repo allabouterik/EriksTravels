@@ -24,6 +24,7 @@
     "nuxt-lazy-load": "^3.0.4",
     "pinia": "^2.1.7",
     "radix-vue": "^0.1.32",
+    "simplebar-vue": "^2.3.3",
     "vite-plugin-vuetify": "^1.0.2",
     "vue-scrollto": "^2.20.0",
     "vuetify": "^3.3.17"

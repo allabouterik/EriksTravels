@@ -66,7 +66,7 @@
 
 <script>
 import { mapWritableState } from "pinia";
-import { useMainStore } from "../stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
 
 export default {
   data() {

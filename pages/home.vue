@@ -10,7 +10,7 @@
           v-for="i in 2"
           fluid
           class="mainContainer mb-2 px-1"
-          :class="{ scroll: scrollContainerHome }"
+          :class="{ scroll: layoutScrollable }"
         >
           <!-- VIDEOS -->
           <v-row
@@ -27,8 +27,8 @@
               :key="video.title"
               class="mb-2 px-2 px-sm-1 py-0"
               @click="
-                store.scrollContainerHome = false;
                 videoIndex = index;
+                store.layoutScrollable = false;
               "
               data-testid="video-container"
             >
@@ -44,7 +44,7 @@
         :disable-scroll="true"
         @close="
           videoIndex = null;
-          store.scrollContainerHome = true;
+          store.layoutScrollable = true;
         "
       />
     </div>
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <script setup>
-import { useMainStore } from "../stores/mainStore";
+import { useMainStore } from "@/stores/mainStore";
 
 useHead({
   link: [
@@ -91,8 +91,8 @@ useHead({
 });
 
 const store = useMainStore();
-const scrollContainerHome = computed(() => {
-  return store.scrollContainerHome;
+const layoutScrollable = computed(() => {
+  return store.layoutScrollable;
 });
 </script>
 
