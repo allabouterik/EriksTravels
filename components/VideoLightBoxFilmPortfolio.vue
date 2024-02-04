@@ -6,7 +6,7 @@
       @touchstart.passive="touchstartHandler"
       @touchmove.passive="touchmoveHandler"
       @touchend.passive="touchendHandler"
-      :style="videoLightboxCss"
+      :style="descriptionHeightCss"
     >
       <div
         class="video-lightbox__modal"
@@ -76,7 +76,7 @@
 
                   <Simplebar
                     class="simple-scrollbar"
-                    :style="simpleBarCss"
+                    :style="descriptionHeightCss"
                     data-simplebar-auto-hide="false"
                   >
                     <div
@@ -176,6 +176,7 @@ import Simplebar from "simplebar-vue";
 import { EventBus } from "../composables/event-bus";
 import { mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
+import "simplebar-vue/dist/simplebar.min.css";
 
 const keyMap = {
   LEFT: 37,
@@ -282,10 +283,7 @@ export default {
       }
     },
     videoHasDescription() {
-      return (
-        this.formattedVideos[this.currentIndex].hasOwnProperty("description") &&
-        this.formattedVideos[this.currentIndex].description.length > 0
-      );
+      return this.formattedVideos[this.currentIndex].description?.length > 0;
     },
     heightGoverns() {
       return this.containerAspectRatio >= this.videoAspectRatio;
@@ -301,13 +299,32 @@ export default {
         : this.containerWidth;
     },
     descriptionMaxExpandedHeight() {
+      const lightboxContainerTopPos = 20;
       const titleTopPadding = 8;
       const titleSize = 21;
       const descriptionTopMargin = 16;
       const descriptionBottomMargin = 8;
       const showMoreBtnSize = 32;
+
+      if (!this.videoHasDescription) return 0;
+
+      if (this.windowWidth < 768) {
+        return Math.round(
+          (this.windowHeight - this.actualVidHeight) / 2 -
+            titleTopPadding -
+            titleSize -
+            descriptionTopMargin -
+            descriptionBottomMargin -
+            showMoreBtnSize,
+          0
+        );
+      }
+
       return Math.round(
-        (this.containerHeight - this.actualVidHeight) / 2 -
+        this.windowHeight -
+          this.actualVidHeight -
+          (this.containerHeight - this.actualVidHeight) / 2 -
+          lightboxContainerTopPos -
           titleTopPadding -
           titleSize -
           descriptionTopMargin -
@@ -316,18 +333,12 @@ export default {
         0
       );
     },
-    simpleBarCss() {
-      let css = {};
-      css["--descriptionHeight"] = this.showingMore ? "auto" : "80px";
-
-      return css;
-    },
-    videoLightboxCss() {
-      let css = {};
-      css["--descriptionHeight"] = this.showingMore
-        ? `${this.descriptionMaxExpandedHeight}px`
-        : "80px";
-      return css;
+    descriptionHeightCss() {
+      return {
+        "--descriptionHeight": this.showingMore
+          ? `${this.descriptionMaxExpandedHeight}px`
+          : "80px",
+      };
     },
     videoTextContainerCss() {
       let css = {};
@@ -518,10 +529,6 @@ export default {
   font-weight: normal;
 }
 
-.simple-scrollbar {
-  height: var(--descriptionHeight);
-}
-
 .video-lightbox {
   &__modal {
     position: fixed;
@@ -590,39 +597,73 @@ export default {
     display: block;
     margin: 0 auto;
     box-sizing: border-box;
+
+    .simple-scrollbar {
+      min-height: 80px;
+      max-height: var(--descriptionHeight);
+    }
+
+    &::v-deep .simplebar-scrollbar::before {
+      background-color: #ddd;
+    }
   }
   &__text {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 1.3125rem; /* 21px with 16px default size */
+    font-size: 0.8125rem; /* 13px */
     font-weight: 400;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     text-rendering: auto;
     // transition: all  .5s ease .0s;
-    line-height: 1.3125rem; /* 21px with 16px default size */
+    line-height: 1.3125rem; /* 21px */
     white-space: normal;
     // see videoTitleCss() in computed for further properties
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.9375rem; /* 15px */
+      letter-spacing: 4px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1.0625rem; /* 17px */
+      letter-spacing: 5px;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 1.1875rem; /* 19px */
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 1.3125rem; /* 21px */
+    }
   }
   &__description {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 1rem;
+    font-size: 0.8125rem; /* 13px */
     font-style: italic;
     font-weight: 400;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     text-transform: none;
     text-rendering: auto;
     // transition: all  .5s ease .0s;
     line-height: 1.25rem;
     white-space: normal;
     margin-top: 1rem;
+    padding-right: 1rem;
     overflow: hidden;
 
     &--expanded {
       margin-bottom: 0.5rem;
+    }
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.875rem; /* 14px */
+      letter-spacing: 4px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1rem;
+      letter-spacing: 5px;
     }
   }
   &__description-mask {
@@ -664,17 +705,60 @@ export default {
   &__next {
     top: 50%;
     transform: translate(0, -50%);
-    right: 8.5%;
+    right: 1.5%;
     vertical-align: middle;
+
+    @include media-breakpoint-up(sm) {
+      right: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      right: 4.5%;
+    }
+    @include media-breakpoint-up(lg) {
+      right: 6.5%;
+    }
+    @include media-breakpoint-up(xl) {
+      right: 8.5%;
+    }
   }
   &__prev {
     top: 50%;
     transform: translate(0, -50%);
-    left: 8.5%;
+    left: 1.5%;
+
+    @include media-breakpoint-up(sm) {
+      left: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      left: 4.5%;
+    }
+    @include media-breakpoint-up(lg) {
+      left: 6.5%;
+    }
+    @include media-breakpoint-up(xl) {
+      left: 8.5%;
+    }
   }
   &__close {
-    top: 40px;
-    right: 60px;
+    top: 10px;
+    right: 20px;
+
+    @include media-breakpoint-up(sm) {
+      top: 20px;
+      right: 30px;
+    }
+    @include media-breakpoint-up(md) {
+      top: 30px;
+      right: 40px;
+    }
+    @include media-breakpoint-up(lg) {
+      top: 40px;
+      right: 50px;
+    }
+    @include media-breakpoint-up(xl) {
+      top: 40px;
+      right: 60px;
+    }
   }
   &__spinner {
     & {
@@ -777,83 +861,5 @@ export default {
 }
 #closeImgContainer:hover #closeImg {
   display: none;
-}
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.8125rem; /* 13px with 16px default size */
-    }
-    &__next {
-      right: 1.5%;
-    }
-    &__prev {
-      left: 1.5%;
-    }
-    &__close {
-      top: 10px;
-      right: 20px;
-    }
-  }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.9375rem; /* 15px with 16px default size */
-    }
-    &__next {
-      right: 3%;
-    }
-    &__prev {
-      left: 3%;
-    }
-    &__close {
-      top: 20px;
-      right: 30px;
-    }
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.0625rem; /* 17px with 16px default size */
-    }
-    &__next {
-      right: 4.5%;
-    }
-    &__prev {
-      left: 4.5%;
-    }
-    &__close {
-      top: 30px;
-      right: 40px;
-    }
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.1875rem; /* 19px with 16px default size */
-    }
-    &__next {
-      right: 6.5%;
-    }
-    &__prev {
-      left: 6.5%;
-    }
-    &__close {
-      top: 40px;
-      right: 50px;
-    }
-  }
 }
 </style>
