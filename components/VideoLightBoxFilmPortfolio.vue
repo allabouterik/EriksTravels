@@ -76,8 +76,9 @@
 
                   <Simplebar
                     class="simple-scrollbar"
-                    :style="descriptionHeightCss"
                     data-simplebar-auto-hide="false"
+                    :ref="`descriptionSimplebar-${videoIndex}`"
+                    :style="descriptionHeightCss"
                   >
                     <div
                       v-show="video.description"
@@ -91,16 +92,21 @@
                     </div>
                   </Simplebar>
                   <div
-                    v-show="video.description"
-                    :class="`${
-                      showingMore ? '' : 'video-lightbox__description-mask'
-                    }`"
+                    v-show="
+                      video.description &&
+                      descriptionActualHeight > descriptionMaxExpandedHeight &&
+                      !showingMore
+                    "
+                    class="video-lightbox__description-mask"
                   ></div>
 
                   <button
-                    v-show="video.description"
+                    v-show="
+                      video.description &&
+                      descriptionActualHeight > descriptionMaxExpandedHeight
+                    "
                     class="video-lightbox__show-more"
-                    @click="showingMore = !showingMore"
+                    @click="onShowMoreBtnClick"
                   >
                     {{ showingMore ? "Show Less" : "Show More" }}
                   </button>
@@ -335,10 +341,19 @@ export default {
     },
     descriptionHeightCss() {
       return {
-        "--descriptionHeight": this.showingMore
-          ? `${this.descriptionMaxExpandedHeight}px`
-          : "80px",
+        "--descriptionHeight":
+          this.showingMore ||
+          this.descriptionActualHeight < this.descriptionMaxExpandedHeight
+            ? `${this.descriptionMaxExpandedHeight}px`
+            : "80px",
       };
+    },
+    descriptionActualHeight() {
+      const descriptionSimplebarArr =
+        this.$refs[`descriptionSimplebar-${this.currentIndex}`];
+      if (!descriptionSimplebarArr) return 0;
+      return descriptionSimplebarArr[0].SimpleBar.getScrollElement()
+        .scrollHeight;
     },
     videoTextContainerCss() {
       let css = {};
@@ -511,6 +526,16 @@ export default {
           break;
       }
     },
+    onShowMoreBtnClick() {
+      this.showingMore = !this.showingMore;
+
+      this.$nextTick(() => {
+        if (!this.showingMore)
+          this.$refs[
+            `descriptionSimplebar-${this.currentIndex}`
+          ][0].SimpleBar.getScrollElement().scrollTop = 0;
+      });
+    },
   },
 };
 </script>
@@ -618,6 +643,7 @@ export default {
     text-rendering: auto;
     // transition: all  .5s ease .0s;
     line-height: 1.3125rem; /* 21px */
+    margin-bottom: 1rem;
     white-space: normal;
     // see videoTitleCss() in computed for further properties
 
@@ -649,7 +675,6 @@ export default {
     // transition: all  .5s ease .0s;
     line-height: 1.25rem;
     white-space: normal;
-    margin-top: 1rem;
     padding-right: 1rem;
     overflow: hidden;
 
