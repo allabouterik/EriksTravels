@@ -94,7 +94,9 @@
                   <div
                     v-show="
                       video.description &&
-                      descriptionActualHeight > descriptionMaxExpandedHeight &&
+                      descriptionActualHeights[currentIndex] &&
+                      descriptionActualHeights[currentIndex] >
+                        descriptionMaxExpandedHeight &&
                       !showingMore
                     "
                     class="video-lightbox__description-mask"
@@ -103,7 +105,9 @@
                   <button
                     v-show="
                       video.description &&
-                      descriptionActualHeight > descriptionMaxExpandedHeight
+                      descriptionActualHeights[currentIndex] &&
+                      descriptionActualHeights[currentIndex] >
+                        descriptionMaxExpandedHeight
                     "
                     class="video-lightbox__show-more"
                     @click="onShowMoreBtnClick"
@@ -244,6 +248,7 @@ export default {
       windowWidth: 0,
       windowHeight: 0,
       showingMore: false,
+      descriptionActualHeights: {},
     };
   },
 
@@ -342,17 +347,12 @@ export default {
       return {
         "--descriptionHeight":
           this.showingMore ||
-          this.descriptionActualHeight < this.descriptionMaxExpandedHeight
+          (this.descriptionActualHeights[this.currentIndex] &&
+            this.descriptionActualHeights[this.currentIndex] <
+              this.descriptionMaxExpandedHeight)
             ? `${this.descriptionMaxExpandedHeight}px`
             : "80px",
       };
-    },
-    descriptionActualHeight() {
-      const descriptionSimplebarArr =
-        this.$refs[`descriptionSimplebar-${this.currentIndex}`];
-      if (!descriptionSimplebarArr) return 0;
-      return descriptionSimplebarArr[0].SimpleBar.getScrollElement()
-        .scrollHeight;
     },
     videoTextContainerCss() {
       let css = {};
@@ -386,6 +386,13 @@ export default {
     currentIndex(val) {
       this.setVideoLoaded(val);
     },
+    isVideoLoaded(val) {
+      if (val) {
+        this.$nextTick(() => {
+          this.updateDescriptionActualHeights();
+        });
+      }
+    },
   },
 
   mounted() {
@@ -396,6 +403,10 @@ export default {
       window.addEventListener("resize", () => {
         this.windowWidth = window.innerWidth;
         this.windowHeight = window.innerHeight;
+
+        this.$nextTick(() => {
+          this.updateDescriptionActualHeights();
+        });
       });
     });
 
@@ -534,6 +545,19 @@ export default {
           descriptionSimplebarArr[0].SimpleBar.getScrollElement().scrollTop = 0;
         }
       });
+    },
+    updateDescriptionActualHeights() {
+      for (let videoIndex = 0; videoIndex < this.videos.length; videoIndex++) {
+        const descriptionSimplebarArr =
+          this.$refs[`descriptionSimplebar-${videoIndex}`];
+
+        let height = 0;
+        if (!descriptionSimplebarArr) height = -1;
+        height =
+          descriptionSimplebarArr[0].SimpleBar.getScrollElement().scrollHeight;
+
+        this.descriptionActualHeights[videoIndex] = height;
+      }
     },
   },
 };
