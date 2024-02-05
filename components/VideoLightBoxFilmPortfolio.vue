@@ -179,7 +179,6 @@
 <script>
 import Player from "@vimeo/player";
 import Simplebar from "simplebar-vue";
-import { EventBus } from "../composables/event-bus";
 import { mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 import "simplebar-vue/dist/simplebar.min.css";
@@ -451,7 +450,6 @@ export default {
       }
     },
     videoLoaded($event, videoIndex) {
-      EventBus.$emit("lightboxMediaLoaded"); // used to mute page background music
       const { target } = $event;
       target.classList.add("loaded");
       if (videoIndex === this.currentIndex) {
