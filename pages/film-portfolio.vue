@@ -26,7 +26,7 @@
         </v-container>
       </div>
 
-      <VideoLightBoxFilmPortfolio
+      <VideoLightBox
         :videos="travelVideos"
         :index="videoIndex"
         :disable-scroll="true"
@@ -106,10 +106,10 @@ const store = useMainStore();
   padding-bottom: 12.5px;
 }
 
-.outerContainer {
-  // max-height: 100vh;
-  // overflow-y: hidden;
-}
+// .outerContainer {
+//   max-height: 100vh;
+//   overflow-y: hidden;
+// }
 
 .mainContainer {
   width: 100%;
