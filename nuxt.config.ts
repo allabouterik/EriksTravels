@@ -80,6 +80,9 @@ export default defineNuxtConfig({
     defaultLocale: "en", // not needed if you have @nuxtjs/i18n installed
     trailingSlash: false,
   },
+  sitemap: {
+    include: ["/"],
+  },
   ogImage: {
     // https://nuxtseo.com/nuxt-seo/guides/using-the-modules#disabling-modules
     enabled: false,
