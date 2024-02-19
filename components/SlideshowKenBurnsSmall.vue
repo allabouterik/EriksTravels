@@ -61,6 +61,10 @@ export default {
       default: "black",
       type: String,
     },
+    imageObjectFit: {
+      default: "",
+      type: String,
+    },
   },
 
   data() {
@@ -122,6 +126,9 @@ export default {
       if (this.scaleImgToContainer) {
         css.minWidth = "100%";
         css.minHeight = "100%";
+      }
+      if (this.imageObjectFit) {
+        css.objectFit = this.imageObjectFit;
       }
       return css;
     },

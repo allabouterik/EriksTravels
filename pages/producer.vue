@@ -19,6 +19,7 @@
               height="calc(100vh - 148px)"
               maxImgHeight="calc(100vh - 148px)"
               :scaleImgToContainer="true"
+              imageObjectFit="cover"
             />
 
             <!-- SLIDESHOW OVERLAY -->
