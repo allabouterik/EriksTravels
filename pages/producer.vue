@@ -16,14 +16,16 @@
           <v-col class="slideshowCol">
             <SlideshowKenBurnsSmall
               :slides="slides"
-              height="calc(100vh - 148px)"
-              maxImgHeight="calc(100vh - 148px)"
+              :height="windowWidth < 992 ? '100vh' : 'calc(100vh - 148px)'"
+              :maxImgHeight="
+                windowWidth < 992 ? '100vh' : 'calc(100vh - 148px)'
+              "
               :scaleImgToContainer="true"
               imageObjectFit="cover"
             />
 
             <!-- SLIDESHOW OVERLAY -->
-            <div class="slideshowOverlay mb-4">
+            <div class="slideshowOverlay">
               <div class="mainContent mx-auto py-0">
                 <img
                   alt="Erik Jacobsen title image"
@@ -90,11 +92,19 @@ export default {
   data() {
     return {
       producerPgContent: {},
+      windowWidth: 0,
     };
   },
 
   async mounted() {
     this.producerPgContent = await queryContent("producer").findOne();
+
+    onResize();
+    window.addEventListener("resize", onResize);
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", onResize);
   },
 
   computed: {
@@ -106,6 +116,12 @@ export default {
     },
     slides() {
       return this.producerPgContent.slides;
+    },
+  },
+
+  methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth;
     },
   },
 };
@@ -146,6 +162,10 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+
+  @include media-breakpoint-up(lg) {
+    top: calc(50% - (0.5 * 148px));
+  }
 }
 
 .mainContent {
@@ -166,13 +186,28 @@ export default {
 
 .slideshowText {
   color: #ffffff;
-  font-family: "NeueHaasGroteskText Pro55";
-  font-feature-settings: "liga";
-  font-size: 1.375rem;
+  font-family: "Libre Baskerville", serif;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 2.0625rem;
+  line-height: 1.25;
   letter-spacing: 2px;
   text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 1.25rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.5rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 1.75rem;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 1.875rem;
+  }
 }
 
 .linksContainer {
@@ -213,50 +248,6 @@ export default {
         visibility: visible;
       }
     }
-  }
-}
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-@media only screen and (max-width: 1199.98px) {
-  .slideshowText {
-    font-size: calc(
-      1rem + 6 * (100vw - 300px) / (1200 - 300)
-    ); /* varies between 16px (1rem) at 300px vw and 22px (1.375rem) at 1200px vw */
-    line-height: calc(
-      1.0625rem + 16 * (100vw - 300px) / (1200 - 300)
-    ); /* varies between 17px (1.0625rem) at 300px vw and 33px (2.0625rem) at 1200px vw */
-  }
-}
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) and (orientation: landscape) {
-  .slideshowText {
-    font-size: 14.5px;
-  }
-  .slideshowOverlay {
-    padding-bottom: 0px;
-    margin-bottom: 8px !important;
-  }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) and (orientation: landscape) {
-  .slideshowText {
-    font-size: 16px;
-  }
-  .slideshowOverlay {
-    padding-bottom: 4px;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) and (orientation: landscape) {
-  .slideshowText {
-    font-size: 18px;
-  }
-  .slideshowOverlay {
-    padding-bottom: 4px;
   }
 }
 </style>
