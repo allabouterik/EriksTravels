@@ -5,7 +5,7 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <div class="outerContainer">
+      <div>
         <v-container
           fluid
           class="mainContainer px-1"
@@ -82,19 +82,6 @@ const store = useMainStore();
 </script>
 
 <style scoped lang="scss">
-@font-face {
-  font-family: NeueHaasGroteskText Pro65;
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-65md.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-65md.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-65md.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
-}
-
 #header {
   background-image: var(--headerBgImg);
   background-position: center;
@@ -105,11 +92,6 @@ const store = useMainStore();
   padding-top: 12.5px;
   padding-bottom: 12.5px;
 }
-
-// .outerContainer {
-//   max-height: 100vh;
-//   overflow-y: hidden;
-// }
 
 .mainContainer {
   width: 100%;
