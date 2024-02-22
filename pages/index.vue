@@ -112,7 +112,7 @@ const onVideoClose = () => {
   height: 100vh;
   width: 100vw;
   background-image: url("/showreel-fireplace-wall.jpg");
-  background-size: cover;
+  background-size: contain;
 
   .playImgContainer {
     position: absolute;
