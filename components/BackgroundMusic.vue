@@ -66,11 +66,16 @@ const playAndFadeAudio = () => {
   console.log("playAndFadeAudio");
   console.log("audioEl.value", audioEl.value);
   if (!audioEl.value) return;
+
   audioEl.value.volume = 1;
   audioEl.value.play();
   audioPlaying.value = true;
+  store.bgMusicAudioPlaying = true;
+
   audioEl.value.muted = false;
   audioMuted.value = false;
+  store.bgMusicAudioMuted = false;
+
   audioEl.value.animate([{ volume: 0 }, { volume: 1 }], {
     duration: 1000,
     easing: "ease-in",

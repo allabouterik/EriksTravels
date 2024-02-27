@@ -22,6 +22,7 @@
     </main>
 
     <BackgroundMusic
+      v-if="showNavBars"
       audioFile="https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/eriks-travels-music.mp3"
       :audioDuration="600"
       :audioFadeInDuration="3.5"
@@ -87,10 +88,9 @@ useHead({
 const store = useMainStore();
 const route = useRoute();
 
-const showNavBars = computed(() => {
-  const showNavBar = route.path !== "/" && !store.videoLightBoxOpen;
-  return showNavBar;
-});
+const showNavBars = computed(
+  () => route.path !== "/" && !store.videoLightBoxOpen
+);
 
 const videos = computed(() => {
   return store.videoLightBoxProps.videos;
