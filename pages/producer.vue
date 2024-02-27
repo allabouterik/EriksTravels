@@ -99,12 +99,12 @@ export default {
   async mounted() {
     this.producerPgContent = await queryContent("producer").findOne();
 
-    onResize();
-    window.addEventListener("resize", onResize);
+    this.onResize();
+    window.addEventListener("resize", this.onResize);
   },
 
   beforeDestroy() {
-    window.removeEventListener("resize", onResize);
+    window.removeEventListener("resize", this.onResize);
   },
 
   computed: {
