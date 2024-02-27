@@ -23,8 +23,6 @@
 
     <BackgroundMusic
       v-if="showNavBars"
-      audioFile="https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/eriks-travels-music.mp3"
-      :audioDuration="600"
       :audioFadeInDuration="3.5"
       :audioFadeOutDuration="3.5"
       :maxVolume="0.65"
@@ -32,8 +30,8 @@
   </div>
 </template>
 
-<script setup>
-import { computed } from "vue";
+<script setup lang="ts">
+import { computed, onBeforeMount, watch } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 
 useHead({
@@ -91,6 +89,25 @@ const route = useRoute();
 
 const showNavBars = computed(
   () => route.path !== "/" && !store.videoLightBoxOpen
+);
+
+const updateBgMusicAudioFile = (newPath: string) => {
+  const file =
+    newPath === "/producer"
+      ? "the-lovin-spoonful-daydream-karaoke-version.mp3"
+      : "eriks-travels-music.mp3";
+  store.bgMusicAudioFile = `https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/${file}`;
+};
+
+onBeforeMount(() => {
+  updateBgMusicAudioFile(route.path);
+});
+
+watch(
+  () => route.path,
+  (newVal) => {
+    updateBgMusicAudioFile(newVal);
+  }
 );
 
 const videos = computed(() => {

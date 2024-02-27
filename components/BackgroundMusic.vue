@@ -1,12 +1,12 @@
 <template>
   <audio
-    v-if="props.audioFile !== ''"
+    v-if="store.bgMusicAudioFile !== ''"
     controls
     ref="audioEl"
     style="display: none"
   >
     <source
-      :src="props.audioFile"
+      :src="store.bgMusicAudioFile"
       type="audio/mpeg"
     />
     Your browser does not support the audio element.
@@ -19,20 +19,7 @@ import { useMainStore } from "@/stores/mainStore";
 
 const store = useMainStore();
 
-// export type BackgroundMusicProps = {
-//   audioFile: string;
-//   audioDuration: number;
-//   audioFadeInDuration: number;
-//   audioFadeOutDuration: number;
-//   maxVolume: number;
-//   playMusic: boolean;
-// };
-
 const props = defineProps({
-  audioFile: {
-    type: String,
-    required: true,
-  },
   audioDuration: Number,
   audioFadeInDuration: {
     type: Number,
@@ -52,7 +39,17 @@ const props = defineProps({
   },
 });
 
-store.bgMusicAudioFile = props.audioFile;
+watch(
+  () => store.bgMusicAudioFile,
+  (newVal) => {
+    if (newVal !== "") {
+      audioEl.value!.src = newVal;
+      if (store.bgMusicAudioPlaying) {
+        playAndFadeAudio();
+      }
+    }
+  }
+);
 
 const audioEl = ref<HTMLAudioElement | null>(null);
 const audioPlaying = ref(false);
@@ -96,7 +93,7 @@ const playAndFadeAudio = () => {
 };
 
 onMounted(() => {
-  if (props.audioFile !== "" && props.playMusic) {
+  if (store.bgMusicAudioFile !== "" && props.playMusic) {
     playAndFadeAudio();
   }
 });
