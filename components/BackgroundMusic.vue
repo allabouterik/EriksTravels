@@ -69,8 +69,8 @@ const playAndFadeAudio = () => {
 
   audioEl.value.volume = 1;
   audioEl.value.play();
-  audioPlaying.value = true;
-  store.bgMusicAudioPlaying = true;
+  audioPlaying.value = !audioEl.value.paused;
+  store.bgMusicAudioPlaying = !audioEl.value.paused;
 
   audioEl.value.muted = false;
   audioMuted.value = false;

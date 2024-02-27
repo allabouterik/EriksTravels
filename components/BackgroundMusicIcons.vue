@@ -10,7 +10,7 @@
       class="audioIconTooltip"
     >
       <img
-        v-if="store.bgMusicAudioPlaying && !store.bgMusicAudioMuted"
+        v-if="soundPlaying"
         :alt="store.bgMusicTooltipText"
         src="../assets/images/sound-playing.png"
         class="audioIcon"
@@ -28,10 +28,14 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 
 const store = useMainStore();
 
+const soundPlaying = computed(
+  () => store.bgMusicAudioPlaying && !store.bgMusicAudioMuted
+);
 const onAudioIconClick = () => {
   console.log("onAudioIconClick");
   store.toggleBgMusic();
