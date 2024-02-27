@@ -61,6 +61,8 @@
         />
       </button>
     </template>
+
+    <BackgroundMusicIcons />
   </div>
 </template>
 
@@ -156,11 +158,13 @@ export default {
 .menuLink {
   position: relative;
   height: 100%;
+  width: inherit;
 
   .menuImg {
     position: absolute;
     top: 50%;
     left: 0;
+    left: 50%;
     transform: translate3d(-50%, -50%, 0);
 
     &.hover {

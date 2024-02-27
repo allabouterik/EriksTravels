@@ -5,6 +5,7 @@
   >
     <NavbarMobile v-if="showNavBars" />
     <NavbarDesktop :showNavBar="showNavBars" />
+
     <main>
       <NuxtPage />
 
@@ -19,6 +20,13 @@
         "
       />
     </main>
+
+    <BackgroundMusic
+      audioFile="https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/eriks-travels-music.mp3"
+      :audioDuration="600"
+      :audioFadeInDuration="3.5"
+      :audioFadeOutDuration="3.5"
+    />
   </div>
 </template>
 

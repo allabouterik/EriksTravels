@@ -73,6 +73,10 @@
               />
             </NuxtLink>
           </template>
+
+          <div class="py-10">
+            <BackgroundMusicIcons />
+          </div>
         </div>
       </nav>
     </div>
@@ -112,12 +116,17 @@ export default {
           to: "/contact",
         },
       ],
+      windowWidth: 0,
     };
   },
 
   mounted() {
-    console.log("navbarMobile mounted");
-    console.log("this.$route.path: ", this.$route.path);
+    this.onResize();
+    window.addEventListener("resize", () => this.onResize());
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", () => this.onResize());
   },
 
   watch: {
@@ -138,6 +147,9 @@ export default {
     },
     onNavLinkHover(nav) {
       this.activeNav = this.mainNavIsOpen ? Object.assign({}, nav) : {};
+    },
+    onResize() {
+      this.windowWidth = window.innerWidth;
     },
   },
 };
