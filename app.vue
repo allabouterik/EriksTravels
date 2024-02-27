@@ -27,6 +27,7 @@
       :audioDuration="600"
       :audioFadeInDuration="3.5"
       :audioFadeOutDuration="3.5"
+      :maxVolume="0.65"
     />
   </div>
 </template>

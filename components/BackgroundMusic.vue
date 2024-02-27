@@ -67,7 +67,7 @@ const playAndFadeAudio = () => {
   console.log("audioEl.value", audioEl.value);
   if (!audioEl.value) return;
 
-  audioEl.value.volume = 1;
+  audioEl.value.volume = props.maxVolume;
   audioEl.value.play();
   audioPlaying.value = !audioEl.value.paused;
   store.bgMusicAudioPlaying = !audioEl.value.paused;
@@ -76,10 +76,10 @@ const playAndFadeAudio = () => {
   audioMuted.value = false;
   store.bgMusicAudioMuted = false;
 
-  audioEl.value.animate([{ volume: 0 }, { volume: 1 }], {
-    duration: 1000,
-    easing: "ease-in",
-  });
+  // audioEl.value.animate([{ volume: 0 }, { volume: 1 }], {
+  //   duration: 1000,
+  //   easing: "ease-in",
+  // });
 
   function intervalCallback() {
     if (audioEl.value) {
