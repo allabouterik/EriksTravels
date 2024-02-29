@@ -15,6 +15,7 @@ export const useMainStore = defineStore("main", () => {
   const bgMusicAudioFile = ref("");
   const bgMusicAudioPlaying = ref(false);
   const bgMusicAudioMuted = ref(true);
+  const bgMusicAudioMaxVolume = ref(1);
   const bgMusicTooltipText = computed(() => {
     if (bgMusicAudioPlaying.value && !bgMusicAudioMuted.value) {
       return "Mute background music";
@@ -45,6 +46,7 @@ export const useMainStore = defineStore("main", () => {
     bgMusicAudioFile,
     bgMusicAudioPlaying,
     bgMusicAudioMuted,
+    bgMusicAudioMaxVolume,
     bgMusicTooltipText,
     playBgMusic,
     muteBgMusic,

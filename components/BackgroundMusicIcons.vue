@@ -1,30 +1,31 @@
 <template>
-  <div
-    v-if="store.bgMusicAudioFile !== ''"
-    class="soundIconContainer"
-  >
-    <Tooltip
-      :text="store.bgMusicTooltipText"
-      location="bottom"
-      theme="dark"
-      class="audioIconTooltip"
+  <ClientOnly>
+    <div
+      v-if="store.bgMusicAudioFile !== ''"
+      class="soundIconContainer"
     >
-      <img
-        v-if="soundPlaying"
-        :alt="store.bgMusicTooltipText"
-        src="../assets/images/sound-playing.png"
-        class="audioIcon"
-        @click="onAudioIconClick()"
-      />
-      <img
-        v-else
-        :alt="store.bgMusicTooltipText"
-        src="../assets/images/sound-muted.png"
-        class="audioIcon"
-        @click="onAudioIconClick()"
-      />
-    </Tooltip>
-  </div>
+      <Tooltip
+        :text="store.bgMusicTooltipText"
+        location="bottom"
+        theme="dark"
+      >
+        <img
+          v-if="soundPlaying"
+          :alt="store.bgMusicTooltipText"
+          src="../assets/images/sound-playing.png"
+          class="audioIcon"
+          @click="onAudioIconClick()"
+        />
+        <img
+          v-else
+          :alt="store.bgMusicTooltipText"
+          src="../assets/images/sound-muted.png"
+          class="audioIcon"
+          @click="onAudioIconClick()"
+        />
+      </Tooltip>
+    </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +37,7 @@ const store = useMainStore();
 const soundPlaying = computed(
   () => store.bgMusicAudioPlaying && !store.bgMusicAudioMuted
 );
+
 const onAudioIconClick = () => {
   console.log("onAudioIconClick");
   store.toggleBgMusic();
@@ -57,13 +59,6 @@ const onAudioIconClick = () => {
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
-}
-
-.audioIconTooltip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
 }
 
 .audioIcon {

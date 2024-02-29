@@ -1,12 +1,11 @@
 <template>
   <audio
-    v-if="store.bgMusicAudioFile !== ''"
     controls
     ref="audioEl"
     style="display: none"
   >
     <source
-      :src="store.bgMusicAudioFile"
+      :src="props.audioFile"
       type="audio/mpeg"
     />
     Your browser does not support the audio element.
@@ -14,13 +13,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 
 const store = useMainStore();
 
 const props = defineProps({
   audioDuration: Number,
+  audioFile: {
+    type: String,
+    required: true,
+  },
   audioFadeInDuration: {
     type: Number,
     default: 5,
@@ -39,18 +42,6 @@ const props = defineProps({
   },
 });
 
-watch(
-  () => store.bgMusicAudioFile,
-  (newVal) => {
-    if (newVal !== "") {
-      audioEl.value!.src = newVal;
-      if (store.bgMusicAudioPlaying) {
-        playAndFadeAudio();
-      }
-    }
-  }
-);
-
 const audioEl = ref<HTMLAudioElement | null>(null);
 const audioPlaying = ref(false);
 const audioMuted = ref(true);
@@ -64,8 +55,12 @@ const playAndFadeAudio = () => {
   console.log("audioEl.value", audioEl.value);
   if (!audioEl.value) return;
 
-  audioEl.value.volume = props.maxVolume;
+  audioEl.value.volume = 0;
+
+  audioEl.value.src = props.audioFile;
+
   audioEl.value.play();
+
   audioPlaying.value = !audioEl.value.paused;
   store.bgMusicAudioPlaying = !audioEl.value.paused;
 
@@ -73,27 +68,36 @@ const playAndFadeAudio = () => {
   audioMuted.value = false;
   store.bgMusicAudioMuted = false;
 
-  // audioEl.value.animate([{ volume: 0 }, { volume: 1 }], {
-  //   duration: 1000,
-  //   easing: "ease-in",
-  // });
-
+  const intervalTime = 100; // 100ms
+  const intervalSteps = (props.audioFadeInDuration * 1000) / intervalTime;
   function intervalCallback() {
     if (audioEl.value) {
-      // console log the current volume
+      audioEl.value.volume = Math.min(
+        props.maxVolume,
+        audioEl.value.volume + props.maxVolume / intervalSteps
+      );
       console.log("audioEl.value.volume", audioEl.value.volume);
     }
   }
-  const interval = setInterval(intervalCallback, 100);
+  const interval = setInterval(intervalCallback, intervalTime);
 
-  // clear interval after 2 seconds
+  // clear interval after fade in duration
   setTimeout(() => {
     clearInterval(interval);
-  }, 2000);
+    if (audioEl.value) {
+      audioEl.value.volume = props.maxVolume;
+    }
+  }, props.audioFadeInDuration * 1000);
 };
 
 onMounted(() => {
-  if (store.bgMusicAudioFile !== "" && props.playMusic) {
+  if (props.audioFile !== "" && props.playMusic) {
+    playAndFadeAudio();
+  }
+});
+
+onUpdated(() => {
+  if (props.audioFile !== "" && props.playMusic) {
     playAndFadeAudio();
   }
 });

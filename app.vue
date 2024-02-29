@@ -23,9 +23,10 @@
 
     <BackgroundMusic
       v-if="showNavBars"
+      :audioFile="store.bgMusicAudioFile"
       :audioFadeInDuration="3.5"
       :audioFadeOutDuration="3.5"
-      :maxVolume="0.65"
+      :maxVolume="store.bgMusicAudioMaxVolume"
     />
   </div>
 </template>
@@ -91,22 +92,30 @@ const showNavBars = computed(
   () => route.path !== "/" && !store.videoLightBoxOpen
 );
 
-const updateBgMusicAudioFile = (newPath: string) => {
-  const file =
-    newPath === "/producer"
-      ? "the-lovin-spoonful-daydream-karaoke-version.mp3"
-      : "eriks-travels-music.mp3";
-  store.bgMusicAudioFile = `https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/${file}`;
+const updateBgMusic = (route: string) => {
+  const directory =
+    "https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/";
+  let audioFile = "";
+  let maxVolume = 1;
+  if (route === "/home" || route === "/film-portfolio") {
+    audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
+    maxVolume = 1;
+  } else if (route === "/producer") {
+    audioFile = `${directory}the-lovin-spoonful-daydream-karaoke-version.mp3`;
+    maxVolume = 0.25;
+  }
+  store.bgMusicAudioFile = audioFile;
+  store.bgMusicAudioMaxVolume = maxVolume;
 };
 
 onBeforeMount(() => {
-  updateBgMusicAudioFile(route.path);
+  updateBgMusic(route.path);
 });
 
 watch(
   () => route.path,
   (newVal) => {
-    updateBgMusicAudioFile(newVal);
+    updateBgMusic(newVal);
   }
 );
 
