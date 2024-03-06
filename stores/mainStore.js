@@ -1,8 +1,23 @@
 import { defineStore } from "pinia";
 
 export const useMainStore = defineStore("main", () => {
-  const videoLightBoxOpen = ref(false);
+  const pageLightBoxProps = ref({
+    componentName: "",
+    disableScroll: false,
+  });
+  function openPageLightBox(componentName, disableScroll) {
+    pageLightBoxProps.value.componentName = componentName;
+    pageLightBoxProps.value.disableScroll = disableScroll;
+  }
+  function closePageLightBox() {
+    pageLightBoxProps.value.componentName = "";
+    pageLightBoxProps.value.disableScroll = false;
+  }
+  const pageLightBoxOpen = computed(() => {
+    return pageLightBoxProps.value.componentName !== "";
+  });
 
+  const videoLightBoxOpen = ref(false);
   const videoLightBoxProps = ref({
     videos: null,
     videoIndex: null,
@@ -40,6 +55,10 @@ export const useMainStore = defineStore("main", () => {
   }
 
   return {
+    pageLightBoxProps,
+    pageLightBoxOpen,
+    openPageLightBox,
+    closePageLightBox,
     videoLightBoxOpen,
     videoLightBoxProps,
     layoutScrollable,

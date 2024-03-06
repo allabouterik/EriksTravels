@@ -19,6 +19,12 @@
           store.layoutScrollable = true;
         "
       />
+
+      <PageLightBox
+        :componentName="store.pageLightBoxProps.componentName"
+        :disableScroll="store.pageLightBoxProps.disableScroll"
+        @close="store.layoutScrollable = true"
+      />
     </main>
 
     <BackgroundMusic

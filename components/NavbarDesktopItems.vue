@@ -60,6 +60,24 @@
           class="menuImg hover"
         />
       </button>
+      <button
+        v-else-if="menuItem.componentName"
+        class="menuLink"
+        @click="openPageLightBox(menuItem.componentName, true)"
+      >
+        <img
+          :alt="menuItem.altText"
+          :src="`/header/white_${menuItem.img}`"
+          height="60"
+          class="menuImg"
+        />
+        <img
+          :alt="menuItem.altText"
+          :src="`/header/yellow_${menuItem.img}`"
+          height="60"
+          class="menuImg hover"
+        />
+      </button>
     </template>
 
     <BackgroundMusicIcons />
@@ -67,7 +85,7 @@
 </template>
 
 <script>
-import { mapWritableState } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 
 export default {
@@ -90,7 +108,7 @@ export default {
         {
           img: "the-producer_menu.png",
           altText: "The Producer",
-          to: "/producer",
+          componentName: "ProducerContent",
         },
         {
           img: "film-festivals_menu.png",
@@ -109,6 +127,8 @@ export default {
     ...mapWritableState(useMainStore, ["videoLightBoxProps"]),
   },
   methods: {
+    ...mapActions(useMainStore, ["openPageLightBox"]),
+
     openVideoLightBox(videos, videoIndex) {
       this.videoLightBoxProps = {
         videos,
