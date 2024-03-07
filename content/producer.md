@@ -4,128 +4,123 @@ titleImg: >-
   https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1590443172/Archives/archives_resized.png
 slides:
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-01.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_01.jpg
     panStart: left
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-02.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_02.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-03.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_03.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-04.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_04.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-05.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_05.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-06.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_06.jpg
     panStart: top-right
     scaleTo: 1.06
     scaleFrom: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-07.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_07.jpg
     panStart: right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-08.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_08.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-09.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_09.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-10.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_10.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-11.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_11.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-12.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_12.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-13.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_13.jpg
     panStart: left
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-14.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_14.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-15.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_15.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-16.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_16.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-17.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_17.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-18.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_18.jpg
     panStart: top-right
     scaleTo: 1.06
     scaleFrom: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-19.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_19.jpg
     panStart: right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-20.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_20.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-21.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_21.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-22.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_22.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-23.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_23.jpg
     panStart: centre
     scaleFrom: 1.06
     scaleTo: 1
   - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-24.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_24.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
-  - img: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide-25.jpg
-    panStart: left
-    scaleFrom: 1
-    scaleTo: 1.06
 ---

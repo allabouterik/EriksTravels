@@ -52,7 +52,6 @@ const audioMuted = ref(true);
 
 const playAndFadeAudio = () => {
   console.log("playAndFadeAudio");
-  console.log("audioEl.value", audioEl.value);
   if (!audioEl.value) return;
 
   audioEl.value.volume = 0;
@@ -76,7 +75,6 @@ const playAndFadeAudio = () => {
         props.maxVolume,
         audioEl.value.volume + props.maxVolume / intervalSteps
       );
-      console.log("audioEl.value.volume", audioEl.value.volume);
     }
   }
   const interval = setInterval(intervalCallback, intervalTime);

@@ -10,8 +10,8 @@
       <v-col class="slideshowCol">
         <SlideshowKenBurnsSmall
           :slides="slides"
-          :height="windowWidth < 992 ? '100vh' : 'calc(100vh - 148px)'"
-          :maxImgHeight="windowWidth < 992 ? '100vh' : 'calc(100vh - 148px)'"
+          height="100vh"
+          maxImgHeight="100vh"
           :scaleImgToContainer="true"
           imageObjectFit="cover"
         />
@@ -29,11 +29,6 @@
               <p class="slideshowText">
                 Award-winning record producer, music publisher, videographer,
                 writer, narrator.
-              </p>
-              <p class="slideshowText">
-                As a boy growing up in Chicago, I dreamed of someday travelling
-                to exotic faraway lands.
-                <br />Luckily I got the chance.
               </p>
             </div>
             <div class="linksContainer">
@@ -138,13 +133,9 @@ export default {
 .slideshowOverlay {
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 75%;
   transform: translateY(-50%);
   z-index: 10;
-
-  @include media-breakpoint-up(lg) {
-    top: calc(50% - (0.5 * 148px));
-  }
 }
 
 .mainContent {
@@ -171,6 +162,7 @@ export default {
   line-height: 1.25;
   letter-spacing: 2px;
   text-align: center;
+  text-wrap: wrap;
 
   @include media-breakpoint-up(sm) {
     font-size: 1.25rem;

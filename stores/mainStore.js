@@ -1,6 +1,40 @@
 import { defineStore } from "pinia";
 
 export const useMainStore = defineStore("main", () => {
+  const navMenuItems = ref([
+    {
+      img: "show-reel_menu.png",
+      altText: "Show Reel",
+      video: {
+        title: "Show Reel",
+        url: "https://player.vimeo.com/video/877457983",
+      },
+    },
+    {
+      img: "film-portfolio_menu.png",
+      altText: "Film Portfolio",
+      to: "/film-portfolio",
+    },
+    {
+      img: "the-producer_menu.png",
+      altText: "The Producer",
+      componentName: "ProducerContent",
+    },
+    {
+      img: "film-festivals_menu.png",
+      altText: "Film Festivals",
+      to: "/film-festivals",
+    },
+    {
+      img: "contact-credits_menu.png",
+      altText: "Contact and Credits",
+      to: "/contact",
+    },
+  ]);
+
+  const layoutScrollable = ref(true);
+
+  // Page Lightbox
   const pageLightBoxProps = ref({
     componentName: "",
     disableScroll: false,
@@ -13,18 +47,17 @@ export const useMainStore = defineStore("main", () => {
     pageLightBoxProps.value.componentName = "";
     pageLightBoxProps.value.disableScroll = false;
   }
-  const pageLightBoxOpen = computed(() => {
-    return pageLightBoxProps.value.componentName !== "";
-  });
+  const pageLightBoxOpen = computed(
+    () => pageLightBoxProps.value.componentName !== ""
+  );
 
+  // Video Lightbox
   const videoLightBoxOpen = ref(false);
   const videoLightBoxProps = ref({
     videos: null,
     videoIndex: null,
     disableScroll: false,
   });
-
-  const layoutScrollable = ref(true);
 
   // Background Music
   const bgMusicAudioFile = ref("");
@@ -39,13 +72,16 @@ export const useMainStore = defineStore("main", () => {
     }
     return "Play background music";
   });
+
   function playBgMusic() {
     bgMusicAudioPlaying.value = true;
     bgMusicAudioMuted.value = false;
   }
+
   function muteBgMusic() {
     bgMusicAudioMuted.value = true;
   }
+
   function toggleBgMusic() {
     if (bgMusicAudioPlaying.value) {
       bgMusicAudioMuted.value = !bgMusicAudioMuted.value;
@@ -55,13 +91,14 @@ export const useMainStore = defineStore("main", () => {
   }
 
   return {
+    navMenuItems,
+    layoutScrollable,
     pageLightBoxProps,
     pageLightBoxOpen,
     openPageLightBox,
     closePageLightBox,
     videoLightBoxOpen,
     videoLightBoxProps,
-    layoutScrollable,
     bgMusicAudioFile,
     bgMusicAudioPlaying,
     bgMusicAudioMuted,

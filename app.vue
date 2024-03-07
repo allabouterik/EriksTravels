@@ -28,7 +28,7 @@
     </main>
 
     <BackgroundMusic
-      v-if="showNavBars"
+      v-if="store.bgMusicAudioFile !== ''"
       :audioFile="store.bgMusicAudioFile"
       :audioFadeInDuration="3.5"
       :audioFadeOutDuration="3.5"
@@ -95,21 +95,32 @@ const store = useMainStore();
 const route = useRoute();
 
 const showNavBars = computed(
-  () => route.path !== "/" && !store.videoLightBoxOpen
+  () =>
+    route.path !== "/" && !(store.videoLightBoxOpen || store.pageLightBoxOpen)
 );
 
+// Background music
 const updateBgMusic = (route: string) => {
   const directory =
     "https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/";
   let audioFile = "";
   let maxVolume = 1;
-  if (route === "/home" || route === "/film-portfolio") {
-    audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
-    maxVolume = 1;
-  } else if (route === "/producer") {
+
+  if (
+    store.pageLightBoxOpen &&
+    store.pageLightBoxProps.componentName === "ProducerContent"
+  ) {
     audioFile = `${directory}the-lovin-spoonful-daydream-karaoke-version.mp3`;
     maxVolume = 0.25;
+  } else if (
+    !store.videoLightBoxOpen &&
+    !store.pageLightBoxOpen &&
+    (route === "/home" || route === "/film-portfolio")
+  ) {
+    audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
+    maxVolume = 1;
   }
+
   store.bgMusicAudioFile = audioFile;
   store.bgMusicAudioMaxVolume = maxVolume;
 };
@@ -119,23 +130,28 @@ onBeforeMount(() => {
 });
 
 watch(
-  () => route.path,
-  (newVal) => {
-    updateBgMusic(newVal);
-  }
+  [
+    () => route.path,
+    () => store.pageLightBoxOpen,
+    () => store.videoLightBoxOpen,
+  ],
+  () => updateBgMusic(route.path)
 );
 
 const videos = computed(() => {
   return store.videoLightBoxProps.videos;
 });
+
 const videoIndex = computed(() => {
   return store.videoLightBoxProps.videoIndex;
 });
+
 watch([videos, videoIndex], ([newVideos, newVideoIndex]) => {
   if (newVideos && newVideoIndex !== null) {
     store.layoutScrollable = false;
   }
 });
+
 const disableVideoLightBoxScroll = computed(() => {
   return store.videoLightBoxProps.disableScroll;
 });

@@ -19,6 +19,24 @@
             </div>
           </v-col>
         </v-row>
+
+        <!-- BACKGROUND VIDEO -->
+        <video
+          v-if="bgVideo"
+          autoplay
+          loop
+          muted
+          id="contactBgVideo"
+        >
+          <source
+            :src="bgVideo.videoSrcWebm"
+            type="video/webm"
+          />
+          <source
+            :src="bgVideo.videoSrcMP4"
+            type="video/mp4"
+          />
+        </video>
       </v-container>
     </div>
   </router-view>

@@ -8,31 +8,33 @@
         class="page-lightbox__modal"
         :style="`background: ${background}`"
       >
-        <div class="page-lightbox__container">
-          <div class="page-lightbox__content">
-            <component
-              v-if="componentName !== ''"
-              :is="componentName"
+        <component
+          v-if="componentName !== ''"
+          :is="componentName"
+        />
+
+        <div class="page-lightbox__iconsContainer">
+          <div class="page-lightbox__musicIcons">
+            <BackgroundMusicIcons />
+          </div>
+
+          <div
+            id="closeImgContainer"
+            @click="close()"
+          >
+            <img
+              alt="Close icon, click to close lightbox"
+              src="../assets/images/lightbox-close.png"
+              id="closeImg"
+              class="page-lightbox__close"
+            />
+            <img
+              alt="Close icon, click to close lightbox"
+              src="../assets/images/lightbox-close-hover.png"
+              id="closeImg-hover"
+              class="page-lightbox__close"
             />
           </div>
-        </div>
-
-        <div
-          id="closeImgContainer"
-          @click="close()"
-        >
-          <img
-            alt="Close icon, click to close lightbox"
-            src="../assets/images/lightbox-close.png"
-            id="closeImg"
-            class="page-lightbox__close"
-          />
-          <img
-            alt="Close icon, click to close lightbox"
-            src="../assets/images/lightbox-close-hover.png"
-            id="closeImg-hover"
-            class="page-lightbox__close"
-          />
         </div>
       </div>
     </div>
@@ -120,8 +122,7 @@ export default {
     ...mapActions(useMainStore, ["closePageLightBox"]),
     close() {
       this.$emit("close");
-      // this.pageLightBoxOpen = false;
-      closePageLightBox();
+      this.closePageLightBox();
     },
     bindEvents() {
       document.addEventListener("keydown", this.keyDownHandler, false);
@@ -143,81 +144,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
-}
-
-.page-lightbox {
-  &__modal {
-    position: fixed;
-    display: block;
-    z-index: 1001;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  &__container {
-    position: absolute;
-    z-index: 1002;
-    display: block;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  &__content {
-    height: 100%;
-    width: 100%;
-    white-space: nowrap;
-    padding: 0;
-    margin: 0;
-  }
-  &__close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    display: block;
-    background: transparent;
-    border: 0;
-    line-height: 0;
-    outline: none;
-    z-index: 1002;
-    cursor: pointer;
-
-    @include media-breakpoint-up(sm) {
-      top: 20px;
-      right: 30px;
-    }
-
-    @include media-breakpoint-up(md) {
-      top: 30px;
-      right: 40px;
-    }
-
-    @include media-breakpoint-up(lg) {
-      top: 40px;
-      right: 50px;
-    }
-
-    @include media-breakpoint-up(xl) {
-      top: 40px;
-      right: 60px;
-    }
-  }
-}
-
 // transition fade on opening / closing of lightbox
 .fade-enter-active,
 .fade-leave-active {
@@ -241,20 +167,78 @@ export default {
   }
 }
 
-#closeImg,
-#closeImg-hover {
-  width: 7%;
-  max-width: 38px;
-  min-width: 15px;
-  padding: 0;
-}
-#closeImgContainer #closeImg-hover {
-  display: none;
-}
-#closeImgContainer:hover #closeImg-hover {
-  display: inline;
-}
-#closeImgContainer:hover #closeImg {
-  display: none;
+.page-lightbox {
+  &__modal {
+    position: fixed;
+    display: block;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__iconsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    z-index: 1002;
+    padding: 33px 25px;
+
+    @include media-breakpoint-up(sm) {
+      padding: 39px 35px;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 40px 46px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: 40px 50px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding: 40px 60px;
+    }
+
+    #closeImg,
+    #closeImg-hover {
+      width: 7vw;
+      max-width: 38px;
+      min-width: 25px;
+      padding: 0;
+    }
+    #closeImgContainer #closeImg-hover {
+      display: none;
+    }
+    #closeImgContainer:hover #closeImg-hover {
+      display: inline;
+    }
+    #closeImgContainer:hover #closeImg {
+      display: none;
+    }
+  }
+
+  &__musicIcons {
+    &::v-deep button {
+      position: relative;
+      transform: none;
+      top: auto;
+      left: auto;
+    }
+  }
+
+  &__close {
+    display: block;
+    background: transparent;
+    border: 0;
+    line-height: 0;
+    outline: none;
+    z-index: 1002;
+    cursor: pointer;
+  }
 }
 </style>

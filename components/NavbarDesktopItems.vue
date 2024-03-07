@@ -85,45 +85,12 @@
 </template>
 
 <script>
-import { mapActions, mapWritableState } from "pinia";
+import { mapActions, mapState, mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 
 export default {
-  data() {
-    return {
-      navMenuItems: [
-        {
-          img: "show-reel_menu.png",
-          altText: "Show Reel",
-          video: {
-            title: "Show Reel",
-            url: "https://player.vimeo.com/video/877457983",
-          },
-        },
-        {
-          img: "film-portfolio_menu.png",
-          altText: "Film Portfolio",
-          to: "/film-portfolio",
-        },
-        {
-          img: "the-producer_menu.png",
-          altText: "The Producer",
-          componentName: "ProducerContent",
-        },
-        {
-          img: "film-festivals_menu.png",
-          altText: "Film Festivals",
-          to: "/film-festivals",
-        },
-        {
-          img: "contact-credits_menu.png",
-          altText: "Contact and Credits",
-          to: "/contact",
-        },
-      ],
-    };
-  },
   computed: {
+    ...mapState(useMainStore, ["navMenuItems"]),
     ...mapWritableState(useMainStore, ["videoLightBoxProps"]),
   },
   methods: {

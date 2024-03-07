@@ -51,19 +51,10 @@
             v-for="menuItem in navMenuItems"
             :key="menuItem.text"
           >
-            <!-- <button
-              v-if="menuItem.to == ' '"
-              @mouseover="onNavLinkHover(menuItem)"
-            >
-              {{ menuItem.text.toUpperCase() }}
-            </button>
             <NuxtLink
-              v-else
+              v-if="menuItem.to"
               :to="menuItem.to"
-              @mouseover.native="onNavLinkHover(menuItem)"
-              >{{ menuItem.text.toUpperCase() }}</NuxtLink
-            > -->
-            <NuxtLink :to="menuItem.to">
+            >
               <img
                 :alt="menuItem.altText"
                 :src="`/header/${
@@ -72,6 +63,28 @@
                 height="60"
               />
             </NuxtLink>
+            <button
+              v-else-if="menuItem.video"
+              @click="openVideoLightBox([menuItem.video], 0)"
+            >
+              <img
+                :alt="menuItem.altText"
+                :src="`/header/white_${menuItem.img}`"
+                height="60"
+                class="menuImg"
+              />
+            </button>
+            <button
+              v-else-if="menuItem.componentName"
+              @click="openPageLightBox(menuItem.componentName, true)"
+            >
+              <img
+                :alt="menuItem.altText"
+                :src="`/header/white_${menuItem.img}`"
+                height="60"
+                class="menuImg"
+              />
+            </button>
           </template>
 
           <div class="py-10">
@@ -84,40 +97,21 @@
 </template>
 
 <script type="text/javascript">
+import { mapActions, mapState, mapWritableState } from "pinia";
+import { useMainStore } from "@/stores/mainStore";
+
 export default {
   data() {
     return {
       activeNav: {},
       mainNavIsOpen: false,
-      navMenuItems: [
-        {
-          img: "show-reel_menu.png",
-          altText: "Showreel",
-          to: "/showreel",
-        },
-        {
-          img: "film-portfolio_menu.png",
-          altText: "Film Portfolio",
-          to: "/film-portfolio",
-        },
-        {
-          img: "the-producer_menu.png",
-          altText: "The Producer",
-          to: "/producer",
-        },
-        {
-          img: "film-festivals_menu.png",
-          altText: "Film Festivals",
-          to: "/film-festivals",
-        },
-        {
-          img: "contact-credits_menu.png",
-          altText: "Contact and Credits",
-          to: "/contact",
-        },
-      ],
       windowWidth: 0,
     };
+  },
+
+  computed: {
+    ...mapState(useMainStore, ["navMenuItems"]),
+    ...mapWritableState(useMainStore, ["videoLightBoxProps"]),
   },
 
   mounted() {
@@ -138,6 +132,15 @@ export default {
   },
 
   methods: {
+    ...mapActions(useMainStore, ["openPageLightBox"]),
+
+    openVideoLightBox(videos, videoIndex) {
+      this.videoLightBoxProps = {
+        videos,
+        videoIndex,
+        disableScroll: true,
+      };
+    },
     closeNav() {
       let mainNav = document.getElementById("sideNav-main");
       mainNav.style.transition = "0.5s";
