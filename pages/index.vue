@@ -14,25 +14,30 @@
           class="playImgContainer"
           @click="videoIndex = 0"
         >
-          <!-- <h2 class="title">
-            Watch a snippet of the sights and sounds from Erik's Travels
-          </h2> -->
           <img
-            src="~/assets/images/playarrowcircle.png"
+            src="~/assets/images/playarrowcircle-rough.png"
             class="playImg"
           />
           <img
-            src="~/assets/images/playarrowcircle-hover.png"
+            src="~/assets/images/playarrowcircle-rough_hover.png"
             class="playImg hover"
           />
         </div>
 
-        <div class="skipTextContainer">
+        <div class="skipToMenuContainer">
           <a
             href="/home"
-            class="skipText"
-            >Skip to Menu</a
+            class="skipToMenuLink"
           >
+            <img
+              src="~/assets/images/skip-to-menu.png"
+              class="skipToMenuImg"
+            />
+            <img
+              src="~/assets/images/skip-to-menu_hover.png"
+              class="skipToMenuImg hover"
+            />
+          </a>
         </div>
       </div>
 
@@ -82,26 +87,19 @@ const onVideoClose = () => {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-}
-
 .siteLogo {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
-  img {
-    max-height: 120px;
 
-    @media screen and (min-width: 768px) {
+  img {
+    max-height: 100px;
+
+    @include media-breakpoint-up(sm) {
+      max-height: 120px;
+    }
+
+    @include media-breakpoint-up(md) {
       max-height: 150px;
     }
   }
@@ -119,22 +117,10 @@ const onVideoClose = () => {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 500px;
-    max-width: 90%;
-    height: 300px;
-    color: black;
-    text-align: center;
+    width: 150px;
+    height: 150px;
     transform: translate3d(-50%, -50%, 0);
     cursor: pointer;
-
-    .title {
-      font-size: 1.5rem;
-      font-weight: 600;
-
-      @media screen and (min-width: 768px) {
-        font-size: 2rem;
-      }
-    }
 
     .playImg {
       position: absolute;
@@ -149,8 +135,6 @@ const onVideoClose = () => {
     }
 
     &:hover {
-      color: #bbd72d;
-
       .playImg {
         visibility: hidden;
 
@@ -162,32 +146,46 @@ const onVideoClose = () => {
   }
 }
 
-.skipTextContainer {
+.skipToMenuContainer {
   position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translate3d(-50%, 100%, 0);
 }
 
-.skipText {
+.skipToMenuLink {
   display: block;
-  color: white;
-  font-family: "NeueHaasGroteskText Pro55", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.65);
-  cursor: pointer;
   z-index: 10;
+  cursor: pointer;
 
-  &:hover {
-    color: #bbd72d;
+  .skipToMenuImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    transform: translate3d(-50%, -50%, 0);
+
+    &.hover {
+      visibility: hidden;
+    }
+
+    @include media-breakpoint-up(sm) {
+      width: 240px;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 260px;
+    }
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: 2rem;
+  &:hover {
+    .skipToMenuImg {
+      visibility: hidden;
+
+      &.hover {
+        visibility: visible;
+      }
+    }
   }
 }
 </style>

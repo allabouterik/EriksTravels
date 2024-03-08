@@ -1,7 +1,11 @@
 <template>
   <nav
     class="nav-container d-none d-lg-flex"
-    :class="{ show: showNavBar }"
+    :class="{
+      show: showNavBar,
+      'nav-container--bg-black': $route.path === '/home',
+      'nav-container--bg-grey': $route.path !== '/home',
+    }"
   >
     <NavbarDesktopItems />
   </nav>
@@ -31,15 +35,21 @@ const props = defineProps({
   width: 100%;
   top: 0;
   left: 0;
-  // padding: 16px;
   padding: 0;
-  background-color: #222222;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 2000;
   opacity: 0;
   height: 0;
   transition: all 2s;
+
+  &--bg-black {
+    background-color: #000000;
+  }
+
+  &--bg-grey {
+    background-color: #222222;
+  }
 
   &.show {
     opacity: 1;

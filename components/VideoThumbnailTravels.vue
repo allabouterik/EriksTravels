@@ -64,13 +64,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
 @font-face {
   font-family: Avenir Medium;
   src: url("/assets/fonts/avenir-medium.ttf");
+}
+
+@font-face {
+  font-family: DK Suco De Laranja;
+  src: url("/assets/fonts/dk-suco-de-laranja.otf");
 }
 
 .videoThumbnailContainer {
@@ -98,23 +103,43 @@ export default {
 }
 
 .playVideoText {
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "DK Suco De Laranja", "Open Sans Condensed", sans-serif;
   font-feature-settings: "liga";
-  font-weight: 300;
-  font-size: 2.3125rem;
-  line-height: 2.3125rem;
-  letter-spacing: 9px;
+  font-weight: 600;
   text-transform: uppercase;
+  font-size: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
+  line-height: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
+  letter-spacing: 9px;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 4.8vw;
+    line-height: 4.8vw;
+    letter-spacing: 8px;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 2.3125rem;
+    line-height: 2.3125rem;
+    letter-spacing: 9px;
+  }
 }
 
 .videoDurationText {
   display: inline;
   font-family: "Lora", serif;
   font-feature-settings: "liga";
+  font-size: calc(1.125rem + 6 * (100vw - 375px) / (576 - 375));
   font-weight: 700;
-  font-size: 1.375rem;
   line-height: 2.125rem;
   letter-spacing: 2px;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2.86vw;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.375rem;
+  }
 }
 
 .captionBanner {
@@ -135,11 +160,35 @@ export default {
   font-feature-settings: "liga";
   font-kerning: normal;
   font-weight: unset;
-  font-size: 1.0625rem;
-  line-height: 1.375rem;
-  letter-spacing: 7px;
   text-align: center;
   text-transform: uppercase;
+  font-size: calc(0.9375rem + 1 * (100vw - 375px) / (576 - 375));
+  line-height: calc(1.25rem + 1 * (100vw - 375px) / (576 - 375));
+  letter-spacing: calc(0.3125rem + 1 * (100vw - 375px) / (576 - 375));
+
+  @include media-breakpoint-up(sm) {
+    font-size: calc(1rem + 1 * (100vw - 576px) / (768 - 576));
+    line-height: calc(1.3125rem + 1 * (100vw - 576px) / (768 - 576));
+    letter-spacing: calc(0.375rem + 1 * (100vw - 576px) / (768 - 576));
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 1.0625rem;
+    line-height: 1.375rem;
+    letter-spacing: 7px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: calc(1rem + 1 * (100vw - 992px) / (1200 - 992));
+    line-height: calc(1.3125rem + 1 * (100vw - 992px) / (1200 - 992));
+    letter-spacing: calc(0.375rem + 1 * (100vw - 992px) / (1200 - 992));
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 1.0625rem;
+    line-height: 1.375rem;
+    letter-spacing: 7px;
+  }
 }
 
 .showOnHover {
@@ -158,8 +207,6 @@ export default {
   background-color: white;
 }
 
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
 @media only screen and (max-width: 400px) {
   #titleImg {
     max-width: 60%;
@@ -171,26 +218,7 @@ export default {
   }
 }
 
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .playVideoText {
-    font-size: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-    line-height: calc(1.875rem + 7 * (100vw - 375px) / (576 - 375));
-    letter-spacing: 9px;
-  }
-  .videoDurationText {
-    font-size: calc(1.125rem + 6 * (100vw - 375px) / (576 - 375));
-  }
-  .videoTitle {
-    font-size: calc(0.9375rem + 1 * (100vw - 375px) / (576 - 375));
-    line-height: calc(1.25rem + 1 * (100vw - 375px) / (576 - 375));
-    letter-spacing: calc(0.3125rem + 1 * (100vw - 375px) / (576 - 375));
-  }
-  .captionBanner {
-    /* height: calc(90px + 25 * (100vw - 375px) / (576 - 375)); */
-    /* color: black; 
-    background-color: white; */
-  }
+@include media-breakpoint-down(md) {
   .showOnHover {
     opacity: 1;
   }
@@ -200,65 +228,5 @@ export default {
   .hideText {
     display: none;
   }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .playVideoText {
-    font-size: 4.8vw;
-    line-height: 4.8vw;
-    letter-spacing: 8px;
-  }
-  .videoDurationText {
-    font-size: 2.86vw;
-  }
-  .videoTitle {
-    font-size: calc(1rem + 1 * (100vw - 576px) / (768 - 576));
-    line-height: calc(1.3125rem + 1 * (100vw - 576px) / (768 - 576));
-    letter-spacing: calc(0.375rem + 1 * (100vw - 576px) / (768 - 576));
-  }
-  .captionBanner {
-    /* height: calc(100px + 15 * (100vw - 576px) / (768 - 576)); */
-    /* color: black; 
-    background-color: white; */
-  }
-  .showOnHover {
-    opacity: 1;
-  }
-  .thumbnailImg {
-    opacity: 0.5;
-  }
-  .hideText {
-    display: none;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  /* .captionBanner {
-     color: black; 
-    background-color: white;
-  } */
-  .showOnHover {
-    opacity: 1;
-  }
-  .thumbnailImg {
-    opacity: 0.5;
-  }
-  .hideText {
-    display: none;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .videoTitle {
-    font-size: calc(1rem + 1 * (100vw - 992px) / (1200 - 992));
-    line-height: calc(1.3125rem + 1 * (100vw - 992px) / (1200 - 992));
-    letter-spacing: calc(0.375rem + 1 * (100vw - 992px) / (1200 - 992));
-  }
-  /* .captionBanner {
-    height: calc(100px + 15 * (100vw - 992px) / (1200 - 992));
-  } */
 }
 </style>
