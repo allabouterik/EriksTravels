@@ -65,6 +65,10 @@ export default {
       default: "",
       type: String,
     },
+    defaultImgOpacity: {
+      default: 0.62,
+      type: Number,
+    },
   },
 
   data() {
@@ -117,7 +121,7 @@ export default {
       css.transformOrigin = this.panStart(index);
       css["--imgOpacity"] = this.slides[index].opacity
         ? this.slides[index].opacity / 100
-        : 0.62;
+        : this.defaultImgOpacity;
       css.maxWidth = this.maxImgWidth;
       css.maxHeight = this.maxImgHeight;
       if (this.centerVertically) {
