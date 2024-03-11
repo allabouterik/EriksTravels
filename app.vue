@@ -111,7 +111,7 @@ const updateBgMusic = (route: string) => {
     store.pageLightBoxProps.componentName === "ProducerContent"
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
-    maxVolume = 1;
+    maxVolume = 0.75;
   } else if (
     !store.videoLightBoxOpen &&
     !store.pageLightBoxOpen &&
