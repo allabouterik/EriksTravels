@@ -1,7 +1,7 @@
 ---
 pageTitle: The Producer
 titleImg: >-
-  https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1590443172/Archives/archives_resized.png
+  /the-producer/erik-jacobsen-title.png
 slides:
   - img: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_01.jpg

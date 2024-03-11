@@ -22,7 +22,7 @@
           <div class="mainContent mx-auto py-0">
             <img
               alt="Erik Jacobsen title image"
-              src="/the-producer/erik-jacobsen-title.png"
+              :src="titleImg"
               class="titleImg mb-md-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
