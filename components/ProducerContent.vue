@@ -18,7 +18,10 @@
         />
 
         <!-- SLIDESHOW OVERLAY -->
-        <div class="slideshowOverlay">
+        <div
+          class="slideshowOverlay"
+          :class="{ hide: hideOverlay }"
+        >
           <div class="mainContent mx-auto py-0">
             <img
               alt="Erik Jacobsen title image"
@@ -73,46 +76,49 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  name: "ProducerContent",
+<script setup>
+import { ref, onMounted, onBeforeUnmount, watch } from "vue";
+import SlideshowKenBurnsSmall from "@/components/SlideshowKenBurnsSmall.vue";
 
-  data() {
-    return {
-      producerPgContent: {},
-      windowWidth: 0,
-    };
-  },
+const intervalTimer = ref(null);
+const timer = ref(0);
+const hideOverlay = ref(false);
+const titleImg = ref("");
+const slides = ref([]);
 
-  async mounted() {
-    this.producerPgContent = await queryContent("producer").findOne();
+onMounted(async () => {
+  const producerPgContent = await queryContent("producer").findOne();
+  titleImg.value = producerPgContent.titleImg;
+  slides.value = producerPgContent.slides;
 
-    this.onResize();
-    window.addEventListener("resize", this.onResize);
-  },
+  startTimer();
+  document.addEventListener("mousemove", () => {
+    if (hideOverlay.value) {
+      hideOverlay.value = false;
+      startTimer();
+    } else {
+      timer.value = 0;
+    }
+  });
+});
 
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
-  },
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", onResize);
+});
 
-  computed: {
-    pageTitle() {
-      return this.producerPgContent.pageTitle;
-    },
-    titleImg() {
-      return this.producerPgContent.titleImg;
-    },
-    slides() {
-      return this.producerPgContent.slides;
-    },
-  },
+watch(timer, (val) => {
+  if (val >= 20) {
+    hideOverlay.value = true;
+    clearInterval(intervalTimer.value);
+  }
+});
 
-  methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
-  },
-};
+function startTimer() {
+  timer.value = 0;
+  intervalTimer.value = setInterval(() => {
+    timer.value += 1;
+  }, 1000);
+}
 </script>
 
 <style scoped lang="scss">
@@ -136,7 +142,13 @@ export default {
   width: 100%;
   top: 75%;
   transform: translateY(-50%);
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
   z-index: 10;
+
+  &.hide {
+    opacity: 0;
+  }
 }
 
 .mainContent {
