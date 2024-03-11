@@ -110,8 +110,8 @@ const updateBgMusic = (route: string) => {
     store.pageLightBoxOpen &&
     store.pageLightBoxProps.componentName === "ProducerContent"
   ) {
-    audioFile = `${directory}the-lovin-spoonful-daydream-karaoke-version.mp3`;
-    maxVolume = 0.25;
+    audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
+    maxVolume = 1;
   } else if (
     !store.videoLightBoxOpen &&
     !store.pageLightBoxOpen &&
