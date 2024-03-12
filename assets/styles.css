@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
   /* this is the root font-size which all rem units will be based on */
   font-size: 16px;

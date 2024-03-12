@@ -99,4 +99,10 @@ export default defineNuxtConfig({
   seo: {
     redirectToCanonicalSiteUrl: true,
   },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 });

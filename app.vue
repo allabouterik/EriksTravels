@@ -27,13 +27,34 @@
       />
     </main>
 
-    <BackgroundMusic
+    <!-- <BackgroundMusic
       v-if="store.bgMusicAudioFile !== ''"
       :audioFile="store.bgMusicAudioFile"
       :audioFadeInDuration="3.5"
       :audioFadeOutDuration="3.5"
       :maxVolume="store.bgMusicAudioMaxVolume"
+    /> -->
+    <BackgroundMusic
+      v-if="store.bgMusicAudioFile !== ''"
+      :audioFile="store.bgMusicAudioFile"
+      :audioFadeInDuration="3.5"
+      :audioFadeOutDuration="3.5"
     />
+
+    <div
+      v-if="store.bgMusicAudioFile !== ''"
+      class="bg-slate-300 w-44 p-4 rounded translate-y-24 fixed top-24 right-7 z-[1100]"
+    >
+      <p class="text-black font-bold">Volume: {{ audioVolume }}</p>
+      <Slider
+        :default-value="[100 * store.bgMusicAudioMaxVolume]"
+        :model-value="[audioVolume]"
+        :min="0"
+        :max="100"
+        :step="1"
+        @update:model-value="onVolumeSliderUpdate"
+      />
+    </div>
   </div>
 </template>
 
@@ -159,6 +180,19 @@ const disableVideoLightBoxScroll = computed(() => {
 const layoutScrollable = computed(() => {
   return store.layoutScrollable;
 });
+
+// slider
+const audioVolume = computed({
+  get: () => store.bgMusicAudioMaxVolume * 100,
+  set: (value: number) => {
+    console.log("audioVolume set", value);
+    store.bgMusicAudioMaxVolume = value / 100;
+  },
+});
+const onVolumeSliderUpdate = (value: number) => {
+  console.log("onVolumeSliderUpdate", value);
+  store.bgMusicAudioMaxVolume = value / 100;
+};
 </script>
 
 <style lang="scss">

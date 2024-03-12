@@ -80,6 +80,7 @@
 import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import SlideshowKenBurnsSmall from "@/components/SlideshowKenBurnsSmall.vue";
 
+// const windowWidth = ref(0);
 const intervalTimer = ref(null);
 const timer = ref(0);
 const hideOverlay = ref(false);
@@ -91,6 +92,9 @@ onMounted(async () => {
   titleImg.value = producerPgContent.titleImg;
   slides.value = producerPgContent.slides;
 
+  // onResize();
+  // window.addEventListener("resize", onResize);
+
   startTimer();
   document.addEventListener("mousemove", () => {
     if (hideOverlay.value) {
@@ -101,6 +105,10 @@ onMounted(async () => {
     }
   });
 });
+
+// function onResize() {
+//   windowWidth.value = window.innerWidth;
+// }
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", onResize);

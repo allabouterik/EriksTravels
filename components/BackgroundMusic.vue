@@ -32,15 +32,25 @@ const props = defineProps({
     type: Number,
     default: 5,
   },
-  maxVolume: {
-    type: Number,
-    default: 1.0,
-  },
+  // maxVolume: {
+  //   type: Number,
+  //   default: 1.0,
+  // },
   playMusic: {
     type: Boolean,
     default: true,
   },
 });
+
+const maxVolume = computed(() => store.bgMusicAudioMaxVolume);
+watch(
+  () => maxVolume.value,
+  (newVal) => {
+    if (audioEl.value) {
+      audioEl.value.volume = newVal;
+    }
+  }
+);
 
 const audioEl = ref<HTMLAudioElement | null>(null);
 const audioPlaying = ref(false);
@@ -70,10 +80,16 @@ const playAndFadeAudio = () => {
   const intervalTime = 100; // 100ms
   const intervalSteps = (props.audioFadeInDuration * 1000) / intervalTime;
   function intervalCallback() {
+    // if (audioEl.value) {
+    //   audioEl.value.volume = Math.min(
+    //     props.maxVolume,
+    //     audioEl.value.volume + props.maxVolume / intervalSteps
+    //   );
+    // }
     if (audioEl.value) {
       audioEl.value.volume = Math.min(
-        props.maxVolume,
-        audioEl.value.volume + props.maxVolume / intervalSteps
+        maxVolume.value,
+        audioEl.value.volume + maxVolume.value / intervalSteps
       );
     }
   }
@@ -83,7 +99,8 @@ const playAndFadeAudio = () => {
   setTimeout(() => {
     clearInterval(interval);
     if (audioEl.value) {
-      audioEl.value.volume = props.maxVolume;
+      // audioEl.value.volume = props.maxVolume;
+      audioEl.value.volume = maxVolume.value;
     }
   }, props.audioFadeInDuration * 1000);
 };
