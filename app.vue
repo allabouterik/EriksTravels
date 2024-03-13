@@ -37,8 +37,8 @@
     <BackgroundMusic
       v-if="store.bgMusicAudioFile !== ''"
       :audioFile="store.bgMusicAudioFile"
-      :audioFadeInDuration="3.5"
-      :audioFadeOutDuration="3.5"
+      :audioFadeInDuration="store.bgMusicFadeDuration"
+      :audioFadeOutDuration="store.bgMusicFadeDuration"
     />
 
     <div
@@ -126,6 +126,7 @@ const updateBgMusic = (route: string) => {
     "https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/";
   let audioFile = "";
   let maxVolume = 1;
+  let fadeDuration = 0;
 
   if (
     store.pageLightBoxOpen &&
@@ -133,6 +134,7 @@ const updateBgMusic = (route: string) => {
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
     maxVolume = 0.75;
+    fadeDuration = 3.5;
   } else if (
     !store.videoLightBoxOpen &&
     !store.pageLightBoxOpen &&
@@ -140,10 +142,12 @@ const updateBgMusic = (route: string) => {
   ) {
     audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
     maxVolume = 1;
+    fadeDuration = 0;
   }
 
   store.bgMusicAudioFile = audioFile;
   store.bgMusicAudioMaxVolume = maxVolume;
+  store.bgMusicFadeDuration = fadeDuration;
 };
 
 onBeforeMount(() => {
