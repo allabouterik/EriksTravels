@@ -18,23 +18,22 @@
         />
 
         <!-- SLIDESHOW OVERLAY -->
-        <div
-          class="slideshowOverlay"
-          :class="{ hide: hideOverlay }"
-        >
+        <div class="slideshowOverlay">
           <div class="mainContent mx-auto py-0">
             <img
               alt="Erik Jacobsen title image"
               :src="titleImg"
               class="titleImg mb-md-1 mb-lg-2 mb-xl-4"
+              :class="{ hide: hideOverlay }"
               data-testid="title-img"
             />
-            <div>
-              <p class="slideshowText">
-                Award-winning record producer, music publisher, videographer,
-                writer, narrator.
-              </p>
-            </div>
+            <p
+              class="slideshowText"
+              :class="{ hide: hideOverlay }"
+            >
+              Award-winning record producer, music publisher, videographer,
+              writer, narrator.
+            </p>
             <div class="linksContainer">
               <a
                 href="https://en.wikipedia.org/wiki/Erik_Jacobsen"
@@ -96,30 +95,23 @@ onMounted(async () => {
   // window.addEventListener("resize", onResize);
 
   startTimer();
-  document.addEventListener("mousemove", () => {
-    if (hideOverlay.value) {
-      hideOverlay.value = false;
-      startTimer();
-    } else {
-      timer.value = 0;
-    }
-  });
+  // document.addEventListener("mousemove", () => {
+  //   if (hideOverlay.value) {
+  //     hideOverlay.value = false;
+  //     startTimer();
+  //   } else {
+  //     timer.value = 0;
+  //   }
+  // });
 });
 
 // function onResize() {
 //   windowWidth.value = window.innerWidth;
 // }
 
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", onResize);
-});
-
-watch(timer, (val) => {
-  if (val >= 20) {
-    hideOverlay.value = true;
-    clearInterval(intervalTimer.value);
-  }
-});
+// onBeforeUnmount(() => {
+//   window.removeEventListener("resize", onResize);
+// });
 
 function startTimer() {
   timer.value = 0;
@@ -127,6 +119,14 @@ function startTimer() {
     timer.value += 1;
   }, 1000);
 }
+
+watch(timer, (val) => {
+  if (val >= 10) {
+    hideOverlay.value = true;
+    clearInterval(intervalTimer.value);
+    timer.value = 0;
+  }
+});
 </script>
 
 <style scoped lang="scss">
@@ -150,12 +150,15 @@ function startTimer() {
   width: 100%;
   top: 75%;
   transform: translateY(-50%);
-  opacity: 1;
-  transition: opacity 2s ease-in-out;
   z-index: 10;
 
-  &.hide {
-    opacity: 0;
+  * {
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+
+    &.hide {
+      opacity: 0;
+    }
   }
 }
 
