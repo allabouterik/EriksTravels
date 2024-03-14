@@ -4,13 +4,10 @@
       class="SlideshowKenBurnsSmall"
       :style="{ backgroundColor: this.backgroundColor ?? 'black' }"
     >
-      <!-- https://vuejs.org/v2/guide/transitions.html#List-Transitions -->
-      <transition-group
+      <!-- https://vuejs.org/guide/built-ins/transition-group -->
+      <TransitionGroup
+        name="fade"
         tag="div"
-        enter-active-class="SlideshowKenBurnsSmall__enterActive"
-        enter-class="SlideshowKenBurnsSmall__enter"
-        leave-active-class="SlideshowKenBurnsSmall__leaveActive"
-        leave-to-class="SlideshowKenBurnsSmall__leaveTo"
         class="SlideshowKenBurnsSmall__slides"
         :style="slideshowStyles"
       >
@@ -23,7 +20,7 @@
           :style="imgStyle(index)"
           alt=""
         />
-      </transition-group>
+      </TransitionGroup>
     </div>
   </ClientOnly>
 </template>
@@ -66,7 +63,7 @@ export default {
       type: String,
     },
     defaultImgOpacity: {
-      default: 0.62,
+      default: 1,
       type: Number,
     },
   },
@@ -308,14 +305,15 @@ export default {
     animation-fill-mode: forwards; // The element will retain the style values that is set by the last keyframe
   }
 
-  &__enterActive,
-  &__leaveActive {
-    transition: opacity 3s linear;
-  }
-
-  &__enterFrom,
-  &__leaveTo {
-    opacity: 0;
+  .fade {
+    &-enter-active,
+    &-leave-active {
+      transition: opacity 3s ease;
+    }
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+    }
   }
 }
 </style>

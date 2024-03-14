@@ -14,7 +14,6 @@
           maxImgHeight="100vh"
           :scaleImgToContainer="true"
           imageObjectFit="cover"
-          :defaultImgOpacity="1"
         />
 
         <!-- SLIDESHOW OVERLAY -->
