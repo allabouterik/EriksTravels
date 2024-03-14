@@ -134,15 +134,13 @@ const updateBgMusic = (route: string) => {
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
     maxVolume = 0.75;
-    fadeDuration = 3.5;
   } else if (
     !store.videoLightBoxOpen &&
     !store.pageLightBoxOpen &&
     (route === "/home" || route === "/film-portfolio")
   ) {
     audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
-    maxVolume = 1;
-    fadeDuration = 0;
+    fadeDuration = 3.5;
   }
 
   store.bgMusicAudioFile = audioFile;
