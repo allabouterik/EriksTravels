@@ -3,8 +3,6 @@
     class="nav-container d-none d-lg-flex"
     :class="{
       show: showNavBar,
-      'nav-container--bg-black': $route.path === '/home',
-      'nav-container--bg-grey': $route.path !== '/home',
     }"
   >
     <NavbarDesktopItems />
@@ -38,18 +36,11 @@ const props = defineProps({
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: #000000;
   z-index: 2000;
   opacity: 0;
   height: 0;
   transition: all 2s;
-
-  &--bg-black {
-    background-color: #000000;
-  }
-
-  &--bg-grey {
-    background-color: #222222;
-  }
 
   &.show {
     opacity: 1;
