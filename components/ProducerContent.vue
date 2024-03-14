@@ -121,7 +121,8 @@ function startTimer() {
 }
 
 watch(timer, (val) => {
-  if (val >= 10) {
+  if (val >= 15) {
+    // fade out overlay after 15 seconds
     hideOverlay.value = true;
     clearInterval(intervalTimer.value);
     timer.value = 0;
