@@ -41,7 +41,7 @@
       :audioFadeOutDuration="store.bgMusicFadeDuration"
     />
 
-    <div
+    <!-- <div
       v-if="store.bgMusicAudioFile !== ''"
       class="bg-slate-300 w-44 p-4 rounded translate-y-24 fixed top-24 right-7 z-[1100]"
     >
@@ -54,7 +54,7 @@
         :step="1"
         @update:model-value="onVolumeSliderUpdate"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -191,10 +191,10 @@ const audioVolume = computed({
     store.bgMusicAudioMaxVolume = value / 100;
   },
 });
-const onVolumeSliderUpdate = (value: number) => {
-  console.log("onVolumeSliderUpdate", value);
-  store.bgMusicAudioMaxVolume = value / 100;
-};
+// const onVolumeSliderUpdate = (value: number) => {
+//   console.log("onVolumeSliderUpdate", value);
+//   store.bgMusicAudioMaxVolume = value / 100;
+// };
 </script>
 
 <style lang="scss">
