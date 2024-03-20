@@ -5,9 +5,12 @@
   >
     <v-row
       no-gutters
-      class="mb-1"
+      class="h-screen overflow-y-auto"
     >
-      <v-col class="slideshowCol">
+      <v-col
+        class="slideshowCol"
+        cols="12"
+      >
         <SlideshowKenBurnsSmall
           :slides="slides"
           height="100vh"
@@ -69,6 +72,18 @@
             </div>
           </div>
         </div>
+      </v-col>
+
+      <v-col
+        cols="12"
+        class="h-screen"
+      >
+        <iframe
+          src="https://en.wikipedia.org/wiki/Erik_Jacobsen"
+          frameborder="0"
+          width="100%"
+          class="iframe-wiki mx-auto"
+        ></iframe>
       </v-col>
     </v-row>
   </v-container>
@@ -243,6 +258,77 @@ watch(timer, (val) => {
         visibility: visible;
       }
     }
+  }
+}
+
+.iframe-wiki {
+  height: 6000px;
+  background-color: #ffffff;
+  padding-top: 1rem;
+  border: none;
+
+  // manually adjust height based on content height
+  @include media-breakpoint-up(sm) {
+    height: 5650px;
+  }
+
+  @media screen and (min-width: 600px) {
+    height: 5350px;
+  }
+
+  @media screen and (min-width: 640px) {
+    height: 5050px;
+  }
+
+  @media screen and (min-width: 700px) {
+    height: 4750px;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 4450px;
+  }
+
+  @media screen and (min-width: 820px) {
+    height: 4250px;
+  }
+
+  @media screen and (min-width: 820px) {
+    height: 4050px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 3850px;
+    padding-top: 1.5rem;
+  }
+
+  @media screen and (min-width: 1034px) {
+    // wiki breakpoint
+    height: 4500px;
+  }
+
+  @media screen and (min-width: 1100px) {
+    height: 4250px;
+  }
+
+  @media screen and (min-width: 1150px) {
+    height: 4120px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 4100px;
+  }
+
+  @media screen and (min-width: 1300px) {
+    height: 4000px;
+  }
+
+  @media screen and (min-width: 1350px) {
+    height: 3800px;
+  }
+
+  @media screen and (min-width: 1628px) {
+    background-color: #f8f9fa;
+    padding-top: 3rem;
   }
 }
 </style>
