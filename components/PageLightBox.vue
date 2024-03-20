@@ -5,13 +5,11 @@
       class="page-lightbox"
     >
       <div
+        v-if="componentName !== ''"
         class="page-lightbox__modal"
         :style="`background: ${background}`"
       >
-        <component
-          v-if="componentName !== ''"
-          :is="componentName"
-        />
+        <component :is="componentName" />
 
         <div class="page-lightbox__iconsContainer">
           <div class="page-lightbox__musicIcons">
@@ -45,6 +43,7 @@
 import { mapActions, mapState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 import ProducerContent from "./ProducerContent.vue";
+import FilmFestivalsContent from "./FilmFestivalsContent.vue";
 
 const keyMap = {
   ESC: 27,
@@ -55,6 +54,7 @@ export default {
 
   components: {
     ProducerContent,
+    FilmFestivalsContent,
   },
 
   props: {
