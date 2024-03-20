@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       bodyOverflowStyle: "",
+      bodyHeightStyle: "",
       windowWidth: 0,
       windowHeight: 0,
     };
@@ -88,8 +89,10 @@ export default {
     pageLightBoxOpen(isOpen) {
       if (isOpen && this.disableScroll) {
         document.body.style.overflow = "hidden";
+        document.body.style.height = "100vh";
       } else {
         document.body.style.overflow = this.bodyOverflowStyle;
+        document.body.style.height = this.bodyHeightStyle;
       }
     },
   },
@@ -107,6 +110,7 @@ export default {
 
     if (!document) return;
     this.bodyOverflowStyle = document.body.style.overflow;
+    this.bodyHeightStyle = document.body.style.height;
     this.bindEvents();
   },
 
@@ -114,6 +118,7 @@ export default {
     if (!document) return;
     if (this.disableScroll) {
       document.body.style.overflow = this.bodyOverflowStyle;
+      document.body.style.height = this.bodyHeightStyle;
     }
     this.unbindEvents();
   },
