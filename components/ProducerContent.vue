@@ -323,7 +323,7 @@ watch(timer, (val) => {
   }
 
   @media screen and (min-width: 1350px) {
-    height: 3900px;
+    height: 3800px;
   }
 
   @media screen and (min-width: 1628px) {
