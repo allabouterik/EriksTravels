@@ -36,7 +36,6 @@
             <div class="linksContainer">
               <a
                 href="https://en.wikipedia.org/wiki/Erik_Jacobsen"
-                target="_blank"
                 class="link"
               >
                 <img
@@ -52,7 +51,6 @@
               </a>
               <a
                 href="https://allabouterik.com"
-                target="_blank"
                 class="link"
               >
                 <img
