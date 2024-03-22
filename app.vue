@@ -20,8 +20,10 @@
         "
       />
 
+      <!-- Needs to be v-show instead of v-if to prevent re-rendering of the component
+      and so the watcher in the component can be triggered -->
       <PageLightBox
-        v-if="store.pageLightBoxOpen"
+        v-show="store.pageLightBoxOpen"
         :componentName="store.pageLightBoxProps.componentName"
         :disableScroll="store.pageLightBoxProps.disableScroll"
         @close="store.layoutScrollable = true"

@@ -5,11 +5,14 @@
       class="page-lightbox"
     >
       <div
-        v-if="componentName !== ''"
+        v-if="props.componentName !== ''"
         class="page-lightbox__modal"
-        :style="`background: ${background}`"
+        :style="`background: ${props.background}`"
       >
-        <component :is="componentName" />
+        <ProducerContent v-if="props.componentName === 'ProducerContent'" />
+        <FilmFestivalsContent
+          v-if="props.componentName === 'FilmFestivalsContent'"
+        />
 
         <div class="page-lightbox__iconsContainer">
           <div class="page-lightbox__musicIcons">
@@ -39,8 +42,8 @@
   </transition>
 </template>
 
-<script>
-import { mapActions, mapState } from "pinia";
+<script setup>
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 import ProducerContent from "./ProducerContent.vue";
 import FilmFestivalsContent from "./FilmFestivalsContent.vue";
@@ -49,102 +52,80 @@ const keyMap = {
   ESC: 27,
 };
 
-export default {
-  name: "PageLightBox",
-
-  components: {
-    ProducerContent,
-    FilmFestivalsContent,
+const props = defineProps({
+  componentName: {
+    type: String,
+    required: true,
   },
-
-  props: {
-    componentName: {
-      type: String,
-      required: true,
-    },
-    disableScroll: {
-      type: Boolean,
-      default: false,
-    },
-    background: {
-      type: String,
-      default: "rgba(0, 0, 0, 1)",
-    },
+  disableScroll: {
+    type: Boolean,
+    default: false,
   },
-
-  data() {
-    return {
-      bodyOverflowStyle: "",
-      bodyHeightStyle: "",
-      windowWidth: 0,
-      windowHeight: 0,
-    };
+  background: {
+    type: String,
+    default: "rgba(0, 0, 0, 1)",
   },
+});
 
-  computed: {
-    ...mapState(useMainStore, ["pageLightBoxOpen"]),
-  },
+const emits = defineEmits("close");
 
-  watch: {
-    pageLightBoxOpen(isOpen) {
-      if (isOpen && this.disableScroll) {
-        document.body.style.overflow = "hidden";
-        document.body.style.height = "100vh";
-      } else {
-        document.body.style.overflow = this.bodyOverflowStyle;
-        document.body.style.height = this.bodyHeightStyle;
-      }
-    },
-  },
+const bodyOverflowStyle = ref("");
+const bodyHeightStyle = ref("");
 
-  mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
+onMounted(() => {
+  if (!document) return;
+  bodyOverflowStyle.value = document.body.style.overflow;
+  bodyHeightStyle.value = document.body.style.height;
 
-    this.$nextTick(() => {
-      window.addEventListener("resize", () => {
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
-      });
-    });
+  bindEvents();
+});
 
-    if (!document) return;
-    this.bodyOverflowStyle = document.body.style.overflow;
-    this.bodyHeightStyle = document.body.style.height;
-    this.bindEvents();
-  },
+onUnmounted(() => {
+  if (!document) return;
+  if (props.disableScroll) {
+    document.body.style.overflow = bodyOverflowStyle.value;
+    document.body.style.height = bodyHeightStyle.value;
+  }
+  unbindEvents();
+});
 
-  beforeUnmount() {
-    if (!document) return;
-    if (this.disableScroll) {
-      document.body.style.overflow = this.bodyOverflowStyle;
-      document.body.style.height = this.bodyHeightStyle;
+const store = useMainStore();
+const { pageLightBoxOpen } = storeToRefs(store);
+
+watch(
+  [() => pageLightBoxOpen.value, () => store.pageLightBoxOpen],
+  (isOpen) => {
+    if (isOpen && props.disableScroll) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
+    } else {
+      document.body.style.overflow = bodyOverflowStyle.value;
+      document.body.style.height = bodyHeightStyle.value;
     }
-    this.unbindEvents();
-  },
+  }
+);
 
-  methods: {
-    ...mapActions(useMainStore, ["closePageLightBox"]),
-    close() {
-      this.$emit("close");
-      this.closePageLightBox();
-    },
-    bindEvents() {
-      document.addEventListener("keydown", this.keyDownHandler, false);
-    },
-    unbindEvents() {
-      document.removeEventListener("keydown", this.keyDownHandler, false);
-    },
-    keyDownHandler(event) {
-      switch (event.keyCode) {
-        case keyMap.ESC:
-          this.close();
-          break;
-        default:
-          break;
-      }
-    },
-  },
+const close = () => {
+  emits("close");
+  store.closePageLightBox();
+};
+
+const bindEvents = () => {
+  document.addEventListener("keydown", keyDownHandler, false);
+};
+
+const unbindEvents = () => {
+  document.removeEventListener("keydown", keyDownHandler, false);
+};
+
+const keyDownHandler = (event) => {
+  switch (event.keyCode) {
+    case keyMap.ESC:
+      close();
+      break;
+    default:
+      break;
+  }
 };
 </script>
 
