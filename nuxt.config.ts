@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     },
     "nuxt-lazy-load",
     "@pinia/nuxt",
+    "@vueuse/nuxt",
   ],
   // devtools: {
   //   // Enable devtools (default: true)
