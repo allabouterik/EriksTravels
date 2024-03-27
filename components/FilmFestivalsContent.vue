@@ -11,34 +11,66 @@
         <div style="height: 100vh"></div>
 
         <div class="slideshowOverlay">
-          <div class="mainContent mx-auto py-3">
+          <div class="mainContent mx-auto">
             <img
               alt="Erik Jacobsen title image"
               :src="titleImg"
-              class="titleImg mb-md-1 mb-lg-2 mb-xl-4"
+              class="titleImg mb-1 mb-lg-2 mb-xl-4"
               data-testid="title-img"
             />
             <div>
-              <p class="slideshowText">
+              <p class="slideshowText mb-0">
                 I entered some film festivals, and won awards.
                 <br />Preview the entries below.
               </p>
             </div>
 
-            <div class="postersContainer flex flex-col">
+            <div class="flex flex-col mt-3 mt-sm-4">
               <v-row
-                v-for="(row, rIndex) in 2"
+                v-if="!isSmScreenAndUp"
+                v-for="(_, rIndex) in 3"
                 no-gutters
                 class="d-flex justify-center"
               >
                 <v-col
-                  v-for="(poster, index) in posters.slice(
+                  v-for="poster in posters.slice(
+                    rIndex * 2,
+                    rIndex * 2 + 2 + Math.max(0, rIndex - 1)
+                  )"
+                  cols="4"
+                  sm="3"
+                  md="3"
+                  lg="3"
+                  :key="poster.img"
+                  class="pb-1"
+                >
+                  <router-link
+                    :to="poster.link"
+                    class="posterLink"
+                  >
+                    <img
+                      :src="poster.img"
+                      alt="Film festival poster"
+                      class="posterLinkImg"
+                    />
+                  </router-link>
+                </v-col>
+              </v-row>
+
+              <v-row
+                v-if="isSmScreenAndUp"
+                v-for="(_, rIndex) in 2"
+                no-gutters
+                class="d-flex justify-center"
+              >
+                <v-col
+                  v-for="poster in posters.slice(
                     rIndex * 3,
                     rIndex * 3 + 3 + rIndex
                   )"
-                  cols="12"
-                  sm="6"
-                  md="4"
+                  cols="3"
+                  sm="3"
+                  md="3"
                   lg="3"
                   :key="poster.img"
                   class="pb-1"
@@ -81,77 +113,58 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  name: "FilmFestivalsContent",
+<script setup>
+import { ref } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 
-  data() {
-    return {
-      bgVideo: {
-        videoSrcMP4:
-          "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid.mp4",
-        // videoSrcWebm:
-        //   "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid-webm.webm",
-      },
-      titleImg: "/film-festivals/film-festivals_title.png",
-      posters: [
-        {
-          title: "Boyhood",
-          img: "/film-festivals/festivals-poster-boyhood.jpg",
-          link: "/film-festivals/boyhood",
-        },
-        {
-          title: "Egypt",
-          img: "/film-festivals/festivals-poster-egypt.jpg",
-          link: "/film-festivals/egypt",
-        },
-        {
-          title: "Japan",
-          img: "/film-festivals/festivals-poster-japan.jpg",
-          link: "/film-festivals/japan",
-        },
-        {
-          title: "Long Ago",
-          img: "/film-festivals/festivals-poster-long-ago.jpg",
-          link: "/film-festivals/long-ago",
-        },
-        {
-          title: "Norway",
-          img: "/film-festivals/festivals-poster-norway.jpg",
-          link: "/film-festivals/norway",
-        },
-        {
-          title: "Romania",
-          img: "/film-festivals/festivals-poster-romania.jpg",
-          link: "/film-festivals/romania",
-        },
-        {
-          title: "Seafood",
-          img: "/film-festivals/festivals-poster-seafood.jpg",
-          link: "/film-festivals/seafood",
-        },
-      ],
-      windowWidth: 0,
-    };
+const bgVideo = ref({
+  videoSrcMP4:
+    "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid.mp4",
+  // videoSrcWebm:
+  //   "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid-webm.webm",
+});
+
+const titleImg = ref("/film-festivals/film-festivals_title.png");
+
+const posters = ref([
+  {
+    title: "Seafood",
+    img: "/film-festivals/festivals-poster-seafood.jpg",
+    link: "/film-festivals/seafood",
   },
-
-  async mounted() {
-    // this.filmFestivalsContent = await queryContent("filmFestivals").findOne();
-
-    this.onResize();
-    window.addEventListener("resize", this.onResize);
+  {
+    title: "Egypt",
+    img: "/film-festivals/festivals-poster-egypt.jpg",
+    link: "/film-festivals/egypt",
   },
-
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+  {
+    title: "Romania",
+    img: "/film-festivals/festivals-poster-romania.jpg",
+    link: "/film-festivals/romania",
   },
-
-  methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
+  {
+    title: "Norway",
+    img: "/film-festivals/festivals-poster-norway.jpg",
+    link: "/film-festivals/norway",
   },
-};
+  {
+    title: "Long Ago",
+    img: "/film-festivals/festivals-poster-long-ago.jpg",
+    link: "/film-festivals/long-ago",
+  },
+  {
+    title: "Japan",
+    img: "/film-festivals/festivals-poster-japan.jpg",
+    link: "/film-festivals/japan",
+  },
+  {
+    title: "Boyhood",
+    img: "/film-festivals/festivals-poster-boyhood.jpg",
+    link: "/film-festivals/boyhood",
+  },
+]);
+
+const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 </script>
 
 <style scoped lang="scss">
@@ -173,16 +186,18 @@ export default {
 .slideshowOverlay {
   position: absolute;
   width: 100%;
-  top: 5%;
+  top: 11%;
   z-index: 10;
+
+  @include media-breakpoint-up(lg) {
+    top: 5%;
+  }
 }
 
 .mainContent {
   bottom: 0;
-  // max-width: 900px;
-  max-width: calc((4 * 247px) + (3 * 8px)); // posters are 247px wide
-  // padding-left: 5%;
-  // padding-right: 5%;
+  max-width: fit-content;
+  padding: 0.75rem 0.5rem 0.5rem;
   text-align: center;
   background-color: rgba(#ffffff, 0.85);
   z-index: 20;
@@ -192,8 +207,11 @@ export default {
   width: 100%;
   height: auto;
   margin: auto;
-  // padding-bottom: 15px;
-  max-width: 323px;
+  max-width: 240px;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 323px;
+  }
 }
 
 .slideshowText {
@@ -223,34 +241,27 @@ export default {
   }
 }
 
-.postersContainer {
-  display: flex;
-  margin-top: 2rem;
-}
-
 .posterLink {
   display: flex;
   position: relative;
   justify-content: center;
+  margin: 0 0.25rem;
 
   .posterLinkImg {
-    // position: absolute;
-    // display: block;
-    // width: 80%;
-    // height: 100%;
+    --rows: 3;
+    --cols: 3;
 
-    // @include media-breakpoint-up(sm) {
-    //   width: 70%;
-    // }
+    max-height: calc(
+      (90vh - 0.75rem - 51px - 1rem - 75px - 2rem - 0.75rem) / var(--rows)
+    );
+    max-width: calc(
+      (100vw - 1rem - ((var(--cols) - 1) * 0.5rem)) / var(--cols)
+    );
 
-    // @include media-breakpoint-up(md) {
-    //   width: 65%;
-    // }
-
-    // &.hover {
-    //   position: relative;
-    //   visibility: hidden;
-    // }
+    @include media-breakpoint-up(sm) {
+      --rows: 2;
+      --cols: 4;
+    }
   }
 
   // &:hover {
