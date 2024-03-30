@@ -53,7 +53,7 @@ const onAudioIconClick = () => {
   height: inherit;
   z-index: 1000;
 
-  &::v-deep button {
+  &:deep(button) {
     position: absolute;
     top: 50%;
     left: 50%;

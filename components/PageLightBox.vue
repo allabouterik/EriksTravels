@@ -228,7 +228,7 @@ export default {
   }
 
   &__musicIcons {
-    &::v-deep button {
+    &:deep(button) {
       position: relative;
       transform: none;
       top: auto;

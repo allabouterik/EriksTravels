@@ -651,7 +651,7 @@ export default {
       max-height: var(--descriptionHeight);
     }
 
-    &::v-deep .simplebar-scrollbar::before {
+    &:deep(.simplebar-scrollbar::before) {
       background-color: #ddd;
     }
   }
