@@ -33,7 +33,7 @@
     "typescript": "^5.4.2",
     "vite-plugin-vuetify": "^2.0.3",
     "vue-scrollto": "^2.20.0",
-    "vuetify": "^3.3.17"
+    "vuetify": "^3.5.13"
   },
   "overrides": {
     "vue": "latest"
