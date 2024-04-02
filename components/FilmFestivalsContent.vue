@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="main-col ma-0, pa-0"
+    class="main-col ma-0 pa-0"
   >
     <v-row
       no-gutters
@@ -50,7 +50,7 @@
                   >
                     <img
                       :src="poster.img"
-                      alt="Film festival poster"
+                      :alt="`Film festival poster - ${poster.title}`"
                       class="posterLinkImg"
                     />
                   </router-link>
@@ -114,8 +114,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
+
+const posters = ref([]);
+
+onBeforeMount(async () => {
+  const filmFestivalsContent = await queryContent("film-festivals").findOne();
+  posters.value = filmFestivalsContent.festivals.map((festival) => ({
+    title: festival.title,
+    img: festival.posterImg,
+    link: `/film-festivals/${festival.slug}`,
+  }));
+});
 
 const bgVideo = ref({
   videoSrcMP4:
@@ -125,44 +136,6 @@ const bgVideo = ref({
 });
 
 const titleImg = ref("/film-festivals/film-festivals_title.png");
-
-const posters = ref([
-  {
-    title: "Seafood",
-    img: "/film-festivals/festivals-poster-seafood.jpg",
-    link: "/film-festivals/seafood",
-  },
-  {
-    title: "Egypt",
-    img: "/film-festivals/festivals-poster-egypt.jpg",
-    link: "/film-festivals/egypt",
-  },
-  {
-    title: "Romania",
-    img: "/film-festivals/festivals-poster-romania.jpg",
-    link: "/film-festivals/romania",
-  },
-  {
-    title: "Norway",
-    img: "/film-festivals/festivals-poster-norway.jpg",
-    link: "/film-festivals/norway",
-  },
-  {
-    title: "Long Ago",
-    img: "/film-festivals/festivals-poster-long-ago.jpg",
-    link: "/film-festivals/long-ago",
-  },
-  {
-    title: "Japan",
-    img: "/film-festivals/festivals-poster-japan.jpg",
-    link: "/film-festivals/japan",
-  },
-  {
-    title: "Boyhood",
-    img: "/film-festivals/festivals-poster-boyhood.jpg",
-    link: "/film-festivals/boyhood",
-  },
-]);
 
 const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 </script>
