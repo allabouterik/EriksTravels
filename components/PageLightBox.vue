@@ -10,9 +10,6 @@
         :style="`background: ${props.background}`"
       >
         <ProducerContent v-if="props.componentName === 'ProducerContent'" />
-        <FilmFestivalsContent
-          v-if="props.componentName === 'FilmFestivalsContent'"
-        />
 
         <div class="page-lightbox__iconsContainer">
           <div class="page-lightbox__musicIcons">
@@ -46,7 +43,6 @@
 import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 import ProducerContent from "./ProducerContent.vue";
-import FilmFestivalsContent from "./FilmFestivalsContent.vue";
 
 const keyMap = {
   ESC: 27,
