@@ -27,8 +27,14 @@
       </v-col>
     </v-row> -->
 
-    <v-row class="laurels-container gap-x-20">
-      <v-col class="!p-0">
+    <v-row class="laurels-container">
+      <v-col
+        cols="12"
+        lg="6"
+        xl="5"
+        2xl="4"
+        class="!p-0"
+      >
         <div class="flex">
           <img
             :src="posterImg"
@@ -41,7 +47,13 @@
           </div>
         </div>
       </v-col>
-      <v-col class="!p-0">
+      <v-col
+        cols="12"
+        lg="4"
+        offset-lg="1"
+        offset-xl="2"
+        class="!p-0"
+      >
         <div class="pt-10">
           <h2 class="text uppercase">Info</h2>
           <p class="text">
@@ -70,8 +82,8 @@
 
     <v-row class="info-container gap-x-20">
       <v-col class="!p-0">
-        <h2 class="text uppercase">Festival Awards</h2>
-        <div class="flex flex-wrap gap-y-4">
+        <h2 class="text uppercase mb-2">Festival Awards</h2>
+        <div class="flex flex-wrap gap-y-4 justify-evenly">
           <div
             v-for="index in 42"
             :key="index"
@@ -82,7 +94,7 @@
                 .toString()
                 .padStart(2, '0')}.png`"
               alt="Award"
-              class="max-h-24 lg:max-h-28 px-1"
+              class="max-h-24"
             />
           </div>
         </div>
