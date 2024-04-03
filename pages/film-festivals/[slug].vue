@@ -7,32 +7,28 @@
     fluid
     class="main-col ma-0 pa-0"
   >
-    <!-- <v-row
+    <v-row
       no-gutters
       class="mb-1"
     >
-      <v-col class="slideshowCol">
-        <video
-          v-if="bgVideo"
-          autoplay
-          loop
-          muted
-          class="bgVideo"
-        >
-          <source
-            :src="bgVideo.videoSrcMP4"
-            type="video/mp4"
-          />
-        </video>
+      <v-col>
+        <VideoCarousel
+          :videos="videos"
+          :autoplay="false"
+          :windowPercentage="0.5"
+          :prevLink="prevLink"
+          :nextLink="nextLink"
+          class=""
+        />
       </v-col>
-    </v-row> -->
+    </v-row>
 
     <v-row class="laurels-container">
       <v-col
         cols="12"
         lg="6"
         xl="5"
-        2xl="4"
+        xxl="4"
         class="!p-0"
       >
         <div class="flex">
@@ -104,40 +100,50 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+import { onMounted, ref } from "vue";
 const route = useRoute();
+
+const videos = ref([]);
 
 const title = ref("");
 const description = ref("");
 const info = ref({});
 const posterImg = ref("");
 const videoUrl = ref("");
+const prevLink = ref("");
+const nextLink = ref("");
 
-onBeforeMount(async () => {
-  const filmFestivalsContent = await queryContent("film-festivals").findOne();
-  console.log({ filmFestivalsContent });
-  // const filmFestival = filmFestivalsContent?.filmFestivals?.find(
-  //   (filmFestival) =>
-  //     `/film-festivals/${filmFestival.slug}` === route.params.slug
-  // );
-  const filmFestival = filmFestivalsContent?.festivals?.find(
+onMounted(async () => {
+  const festivalsContent = await queryContent("film-festivals").findOne();
+
+  const currIndex = festivalsContent?.festivals?.findIndex(
     (filmFestival) => filmFestival.slug === route.params.slug
   );
-  console.log({ slug: route.params.slug });
-  console.log({ filmFestival });
-  title.value = filmFestival.title;
-  description.value = filmFestival.description;
-  info.value = filmFestival.info;
-  posterImg.value = filmFestival.posterImg;
-  videoUrl.value = filmFestival.videoUrl;
 
-  console.log({
-    pageTitle: title.value,
-    description: description.value,
-    info: info.value,
-    posterImg: posterImg.value,
-    videoUrl: videoUrl.value,
-  });
+  if (currIndex === -1) {
+    return;
+  }
+
+  const prevIndex = currIndex - 1;
+  prevLink.value =
+    prevIndex >= 0
+      ? `/film-festivals/${festivalsContent.festivals[prevIndex].slug}`
+      : "";
+
+  const nextIndex =
+    currIndex + 1 >= festivalsContent.festivals.length ? -1 : currIndex + 1;
+  nextLink.value =
+    nextIndex >= 0
+      ? `/film-festivals/${festivalsContent.festivals[nextIndex].slug}`
+      : "";
+
+  const festival = festivalsContent.festivals[currIndex];
+  title.value = festival.title;
+  description.value = festival.description;
+  info.value = festival.info;
+  posterImg.value = festival.posterImg;
+  videoUrl.value = festival.videoUrl;
+  videos.value = [{ url: festival.videoUrl }];
 });
 </script>
 
