@@ -41,7 +41,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="laurels-container">
+    <v-row class="info-container">
       <v-col
         cols="12"
         lg="6"
@@ -94,7 +94,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="info-container gap-x-20">
+    <v-row class="laurels-container gap-x-20">
       <v-col class="!p-0">
         <h2 class="text uppercase mb-2">Festival Awards</h2>
         <div class="flex flex-wrap gap-y-4 justify-evenly">
@@ -122,14 +122,13 @@ import { onMounted, ref } from "vue";
 const route = useRoute();
 
 const videos = ref([]);
-
 const title = ref("");
 const description = ref("");
 const info = ref({});
 const posterImg = ref("");
 const videoUrl = ref("");
-const prevLink = ref("");
-const nextLink = ref("");
+const prevLink = ref({});
+const nextLink = ref({});
 
 onMounted(async () => {
   const festivalsContent = await queryContent("film-festivals").findOne();
@@ -145,15 +144,21 @@ onMounted(async () => {
   const prevIndex = currIndex - 1;
   prevLink.value =
     prevIndex >= 0
-      ? `/film-festivals/${festivalsContent.festivals[prevIndex].slug}`
-      : "";
+      ? {
+          url: `/film-festivals/${festivalsContent.festivals[prevIndex].slug}`,
+          title: festivalsContent.festivals[prevIndex].title,
+        }
+      : {};
 
   const nextIndex =
     currIndex + 1 >= festivalsContent.festivals.length ? -1 : currIndex + 1;
   nextLink.value =
     nextIndex >= 0
-      ? `/film-festivals/${festivalsContent.festivals[nextIndex].slug}`
-      : "";
+      ? {
+          url: `/film-festivals/${festivalsContent.festivals[nextIndex].slug}`,
+          title: festivalsContent.festivals[nextIndex].title,
+        }
+      : {};
 
   const festival = festivalsContent.festivals[currIndex];
   title.value = festival.title;

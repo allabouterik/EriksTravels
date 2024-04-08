@@ -90,18 +90,19 @@
         />
       </div>
       <a
-        v-else-if="prevLink !== ''"
+        v-else-if="prevLink.url && prevLink.url !== ''"
         id="leftArrowContainer"
-        :href="prevLink"
+        :href="prevLink.url"
+        :title="prevLink.title"
       >
         <img
-          alt="Left arrow, click for previous video"
+          :alt="`Left arrow, click to go to ${prevLink.title} video`"
           src="../assets/images/arrow-left.png"
           id="prevVideoImg"
           class="video-carousel__prev arrowImg"
         />
         <img
-          alt="Left arrow, click for previous video"
+          :alt="`Left arrow, click to go to ${prevLink.title} video`"
           src="../assets/images/arrow-left-hover.png"
           id="prevVideoImg-hover"
           class="video-carousel__prev arrowImg"
@@ -127,18 +128,19 @@
         />
       </div>
       <a
-        v-else-if="nextLink !== ''"
-        id="rightArrowContainer"
-        :href="nextLink"
+        v-else-if="nextLink.url && nextLink.url !== ''"
+        id="leftArrowContainer"
+        :href="nextLink.url"
+        :title="nextLink.title"
       >
         <img
-          alt="Right arrow, click for next video"
+          :alt="`Right arrow, click to go to ${nextLink.title} video`"
           src="../assets/images/arrow-right.png"
           id="nextVideoImg"
           class="video-carousel__next arrowImg"
         />
         <img
-          alt="Right arrow, click for next video"
+          :alt="`Right arrow, click to go to ${nextLink.title} video`"
           src="../assets/images/arrow-right-hover.png"
           id="nextVideoImg-hover"
           class="video-carousel__next arrowImg"
@@ -192,13 +194,13 @@ export default {
     },
     prevLink: {
       // optional router link to page with previous video
-      type: String,
-      default: "",
+      type: Object,
+      default: { url: "", title: "" },
     },
     nextLink: {
       // optional router link to page with next video
-      type: String,
-      default: "",
+      type: Object,
+      default: { url: "", title: "" },
     },
   },
 
