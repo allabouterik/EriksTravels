@@ -11,6 +11,24 @@
       no-gutters
       class="mb-1"
     >
+      <v-col class="ml-5">
+        <a
+          href="/film-festivals"
+          class="block w-fit"
+        >
+          <img
+            src="/film-festivals/back-to-festivals.png"
+            alt="Back to festivals"
+            class=""
+          />
+        </a>
+      </v-col>
+    </v-row>
+
+    <v-row
+      no-gutters
+      class="mb-1"
+    >
       <v-col>
         <VideoCarousel
           :videos="videos"
