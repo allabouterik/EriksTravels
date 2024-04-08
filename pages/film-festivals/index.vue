@@ -33,64 +33,11 @@
 
                 <div class="flex flex-col mt-3 mt-sm-4">
                   <v-row
-                    v-if="!isSmScreenAndUp"
-                    v-for="(_, rIndex) in 3"
                     no-gutters
                     class="d-flex justify-center"
                   >
-                    <v-col
-                      v-for="poster in posters.slice(
-                        rIndex * 2,
-                        rIndex * 2 + 2 + Math.max(0, rIndex - 1)
-                      )"
-                      cols="4"
-                      sm="3"
-                      md="3"
-                      lg="3"
-                      :key="poster.img"
-                      class="pb-1"
-                    >
-                      <router-link
-                        :to="poster.link"
-                        class="posterLink"
-                      >
-                        <img
-                          :src="poster.img"
-                          :alt="`Film festival poster - ${poster.title}`"
-                          class="posterLinkImg"
-                        />
-                      </router-link>
-                    </v-col>
-                  </v-row>
-
-                  <v-row
-                    v-if="isSmScreenAndUp"
-                    v-for="(_, rIndex) in 2"
-                    no-gutters
-                    class="d-flex justify-center"
-                  >
-                    <v-col
-                      v-for="poster in posters.slice(
-                        rIndex * 3,
-                        rIndex * 3 + 3 + rIndex
-                      )"
-                      cols="3"
-                      sm="3"
-                      md="3"
-                      lg="3"
-                      :key="poster.img"
-                      class="pb-1"
-                    >
-                      <router-link
-                        :to="poster.link"
-                        class="posterLink"
-                      >
-                        <img
-                          :src="poster.img"
-                          alt="Film festival poster"
-                          class="posterLinkImg"
-                        />
-                      </router-link>
+                    <v-col class="">
+                      <PosterLinkCarousel :posterLinks="posters" />
                     </v-col>
                   </v-row>
                 </div>
@@ -177,7 +124,7 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 
 .mainContent {
   bottom: 0;
-  max-width: fit-content;
+  max-width: 50%;
   padding: 0.75rem 0.5rem 0.5rem;
   text-align: center;
   background-color: rgba(#ffffff, 0.85);
