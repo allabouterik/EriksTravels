@@ -36,7 +36,7 @@
                     no-gutters
                     class="d-flex justify-center"
                   >
-                    <v-col class="">
+                    <v-col class="carouselContainer">
                       <PosterLinkCarousel :posterLinks="posters" />
                     </v-col>
                   </v-row>
@@ -123,22 +123,43 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 }
 
 .mainContent {
-  bottom: 0;
-  max-width: 50%;
-  padding: 0.75rem 0.5rem 0.5rem;
+  width: 100%;
   text-align: center;
   background-color: rgba(#ffffff, 0.85);
-  z-index: 20;
+  padding: 0.75rem 0.5rem 0.5rem;
+
+  @include media-breakpoint-up(sm) {
+    width: 510px;
+  }
+
+  @include media-breakpoint-up(md) {
+    width: 590px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 660px;
+  }
 }
 
 .titleImg {
-  width: 100%;
+  width: 240px;
   height: auto;
   margin: auto;
-  max-width: 240px;
 
   @include media-breakpoint-up(sm) {
-    max-width: 323px;
+    width: 260px;
+  }
+
+  @include media-breakpoint-up(md) {
+    width: 280px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 300px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 320px;
   }
 }
 
@@ -161,11 +182,11 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
   }
 
   @include media-breakpoint-up(lg) {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   @include media-breakpoint-up(xl) {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -191,25 +212,25 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
       --cols: 4;
     }
   }
+}
 
-  // &:hover {
-  //   .linkImg {
-  //     visibility: hidden;
-
-  //     &.hover {
-  //       visibility: visible;
-  //     }
-  //   }
-  // }
+.carouselContainer {
+  --posterHeight: 366px;
+  margin-bottom: var(--posterHeight);
 }
 
 .bgVideo {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  // opacity: 0.22;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   z-index: -1;
+
+  @include media-breakpoint-up(lg) {
+    --navbarHeight: 148px;
+    top: var(--navbarHeight);
+    height: calc(100vh - var(--navbarHeight));
+  }
 }
 </style>

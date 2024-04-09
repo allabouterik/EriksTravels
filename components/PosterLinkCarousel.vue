@@ -12,14 +12,11 @@
             v-for="(posterLink, posterLinkIndex) in posterLinks"
             :key="posterLinkIndex"
             :style="`transform: translate3d(${
-              -25 + currentIndex * -100
+              currentIndex * -100
             }%, 0px, 0px);`"
             class="posterLink-carousel__video-container"
           >
-            <div
-              class="posterLink-carousel__video"
-              :style="videoContainerCss"
-            >
+            <div class="posterLink-carousel__video">
               <a
                 :href="posterLink.link"
                 :title="posterLink.title"
@@ -41,13 +38,13 @@
       >
         <img
           alt="Left arrow, click for previous video"
-          src="../assets/images/arrow-left.png"
+          src="../assets/images/arrow-left-hover.png"
           id="prevVideoImg"
           class="posterLink-carousel__prev arrowImg"
         />
         <img
           alt="Left arrow, click for previous video"
-          src="../assets/images/arrow-left-hover.png"
+          src="../assets/images/arrow-left.png"
           id="prevVideoImg-hover"
           class="posterLink-carousel__prev arrowImg"
         />
@@ -60,13 +57,13 @@
       >
         <img
           alt="Right arrow, click for next video"
-          src="../assets/images/arrow-right.png"
+          src="../assets/images/arrow-right-hover.png"
           id="nextVideoImg"
           class="posterLink-carousel__next arrowImg"
         />
         <img
           alt="Right arrow, click for next video"
-          src="../assets/images/arrow-right-hover.png"
+          src="../assets/images/arrow-right.png"
           id="nextVideoImg-hover"
           class="posterLink-carousel__next arrowImg"
         />
@@ -91,16 +88,11 @@ export default {
       type: Number,
       default: 0,
     },
-    disableScroll: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   data() {
     return {
       currentIndex: this.index,
-      bodyOverflowStyle: "",
       touch: {
         count: 0,
         x: 0,
@@ -108,52 +100,20 @@ export default {
         multitouch: false,
         flag: false,
       },
-      windowWidth: 0,
-      windowHeight: 0,
     };
-  },
-
-  computed: {
-    videoContainerCss() {
-      return {
-        width: this.windowWidth + "px",
-      };
-    },
   },
 
   watch: {
     index(val) {
-      if (!document) return;
       this.currentIndex = val;
-      if (this.disableScroll && typeof val === "number") {
-        document.body.style.overflow = "hidden";
-      } else if (this.disableScroll && !val) {
-        document.body.style.overflow = this.bodyOverflowStyle;
-      }
     },
   },
 
   mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
-
-    this.$nextTick(() => {
-      window.addEventListener("resize", () => {
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
-      });
-    });
-
-    if (!document) return;
-    this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
 
   beforeUnmount() {
-    if (!document) return;
-    if (this.disableScroll) {
-      document.body.style.overflow = this.bodyOverflowStyle;
-    }
     this.unbindEvents();
   },
 
@@ -167,9 +127,11 @@ export default {
       this.currentIndex += 1;
     },
     bindEvents() {
+      if (!document) return;
       document.addEventListener("keydown", this.keyDownHandler, false);
     },
     unbindEvents() {
+      if (!document) return;
       document.removeEventListener("keydown", this.keyDownHandler, false);
     },
     touchstartHandler(event) {
@@ -215,21 +177,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
-}
-
 .posterLink-carousel {
+  --posterHeight: 366px;
+
   &__content {
+    position: fixed;
+    left: 0;
     height: 100%;
     width: 100%;
     white-space: nowrap;
@@ -243,75 +196,34 @@ export default {
   }
   &__video-container {
     display: inline-table;
-    vertical-align: middle;
     position: relative;
     width: 100%;
-    text-align: center;
     transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
   &__video {
     display: inline-block;
     position: relative;
-    margin: 0 auto;
-    max-width: 100%;
+    width: 100vw;
     max-height: 100vh;
-  }
-  &__next,
-  &__prev {
-    position: absolute;
-    z-index: 1002;
-    display: block;
-    background: transparent;
-    border: 0;
-    line-height: 0;
-    outline: none;
-    cursor: pointer;
+    margin: 0 auto;
   }
   &__next {
-    top: 50%;
-    transform: translate(0, -50%);
-    right: 1.5%;
-    vertical-align: middle;
-
-    @include media-breakpoint-up(sm) {
-      right: 3%;
-    }
-    @include media-breakpoint-up(md) {
-      right: 4.5%;
-    }
-    @include media-breakpoint-up(lg) {
-      right: 6.5%;
-    }
-    @include media-breakpoint-up(xl) {
-      right: 8.5%;
-    }
+    right: 7.5%;
   }
   &__prev {
-    top: 50%;
-    transform: translate(0, -50%);
-    left: 1.5%;
+    left: 7.5%;
+  }
 
-    @include media-breakpoint-up(sm) {
-      left: 3%;
-    }
-    @include media-breakpoint-up(md) {
-      left: 4.5%;
-    }
-    @include media-breakpoint-up(lg) {
-      left: 6.5%;
-    }
-    @include media-breakpoint-up(xl) {
-      left: 8.5%;
-    }
+  .arrowImg {
+    position: absolute;
+    z-index: 1002;
+    outline: none;
+    transform: translate(0, calc(var(--posterHeight) / 2 - 50%));
+    cursor: pointer;
+    width: 26px;
   }
 }
 
-.arrowImg {
-  width: 7%;
-  max-width: 26px;
-  min-width: 15px;
-  padding: 0;
-}
 #prevVideoImg-hover,
 #leftArrowContainer:hover #prevVideoImg {
   display: none;
