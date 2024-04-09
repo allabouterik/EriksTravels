@@ -190,30 +190,6 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
   }
 }
 
-.posterLink {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  margin: 0 0.25rem;
-
-  .posterLinkImg {
-    --rows: 3;
-    --cols: 3;
-
-    max-height: calc(
-      (90vh - 0.75rem - 51px - 1rem - 75px - 2rem - 0.75rem) / var(--rows)
-    );
-    max-width: calc(
-      (100vw - 1rem - ((var(--cols) - 1) * 0.5rem)) / var(--cols)
-    );
-
-    @include media-breakpoint-up(sm) {
-      --rows: 2;
-      --cols: 4;
-    }
-  }
-}
-
 .carouselContainer {
   --posterHeight: 366px;
   margin-bottom: var(--posterHeight);
