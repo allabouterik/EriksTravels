@@ -78,13 +78,13 @@
       >
         <img
           alt="Left arrow, click for previous video"
-          src="../assets/images/arrow-left.png"
+          src="../assets/images/left-arrow-black.png"
           id="prevVideoImg"
           class="video-carousel__prev arrowImg"
         />
         <img
           alt="Left arrow, click for previous video"
-          src="../assets/images/arrow-left-hover.png"
+          src="../assets/images/left-arrow-yellow.png"
           id="prevVideoImg-hover"
           class="video-carousel__prev arrowImg"
         />
@@ -97,13 +97,13 @@
       >
         <img
           :alt="`Left arrow, click to go to ${prevLink.title} video`"
-          src="../assets/images/arrow-left.png"
+          src="../assets/images/left-arrow-white.png"
           id="prevVideoImg"
           class="video-carousel__prev arrowImg"
         />
         <img
           :alt="`Left arrow, click to go to ${prevLink.title} video`"
-          src="../assets/images/arrow-left-hover.png"
+          src="../assets/images/left-arrow-yellow.png"
           id="prevVideoImg-hover"
           class="video-carousel__prev arrowImg"
         />
@@ -116,13 +116,13 @@
       >
         <img
           alt="Right arrow, click for next video"
-          src="../assets/images/arrow-right.png"
+          src="../assets/images/right-arrow-white.png"
           id="nextVideoImg"
           class="video-carousel__next arrowImg"
         />
         <img
           alt="Right arrow, click for next video"
-          src="../assets/images/arrow-right-hover.png"
+          src="../assets/images/right-arrow-yellow.png"
           id="nextVideoImg-hover"
           class="video-carousel__next arrowImg"
         />
@@ -135,13 +135,13 @@
       >
         <img
           :alt="`Right arrow, click to go to ${nextLink.title} video`"
-          src="../assets/images/arrow-right.png"
+          src="../assets/images/right-arrow-white.png"
           id="nextVideoImg"
           class="video-carousel__next arrowImg"
         />
         <img
           :alt="`Right arrow, click to go to ${nextLink.title} video`"
-          src="../assets/images/arrow-right-hover.png"
+          src="../assets/images/right-arrow-yellow.png"
           id="nextVideoImg-hover"
           class="video-carousel__next arrowImg"
         />
