@@ -618,10 +618,20 @@ export default {
 }
 
 .arrowImg {
-  width: 7%;
-  max-width: 26px;
-  min-width: 15px;
+  height: 30px;
   padding: 0;
+
+  @include media-breakpoint-up(sm) {
+    height: 32px;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 34px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 36px;
+  }
 }
 #prevVideoImg-hover,
 #leftArrowContainer:hover #prevVideoImg {
