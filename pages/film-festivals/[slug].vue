@@ -5,7 +5,7 @@
 
   <v-container
     fluid
-    class="main-col ma-0 pa-0"
+    class="main-col pa-0"
   >
     <v-row
       no-gutters
@@ -19,7 +19,6 @@
           <img
             src="/film-festivals/back-to-festivals.png"
             alt="Back to festivals"
-            class=""
           />
         </a>
       </v-col>
@@ -36,7 +35,6 @@
           :windowPercentage="0.5"
           :prevLink="prevLink"
           :nextLink="nextLink"
-          class=""
         />
       </v-col>
     </v-row>
@@ -178,6 +176,23 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.main-col {
+  margin: 0;
+  margin-top: 33px; // matches the top value of .openbtn in NavbarMobile.vue
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 39px;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 41px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 0;
+  }
+}
+
 .text {
   color: black;
 }
