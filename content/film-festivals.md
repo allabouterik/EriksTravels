@@ -9,13 +9,12 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
-      editors:
-        - Heather Young
+      footage: Erik Jacobsen
+      editor: Olivia Gonzales
+      music:
+        - Erik Jacobsen
         - Olivia Gonzales
-        - Lindsey Brady
-      music: Lindsey Brady
-      releaseDate: 2021
+      releaseDate: 2024
     posterImg: /film-festivals/festivals-poster-seafood.jpg
     videoUrl: https://player.vimeo.com/video/913546991
 
@@ -26,7 +25,7 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
+      footage: Erik Jacobsen
       editors:
         - Heather Young
         - Olivia Gonzales
@@ -43,7 +42,7 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
+      footage: Erik Jacobsen
       editors:
         - Heather Young
         - Olivia Gonzales
@@ -60,13 +59,10 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
-      editors:
-        - Heather Young
-        - Olivia Gonzales
-        - Lindsey Brady
+      footage: Erik Jacobsen
+      editor: Lindsey Brady
       music: Lindsey Brady
-      releaseDate: 2021
+      releaseDate: 2016
     posterImg: /film-festivals/festivals-poster-norway.jpg
     videoUrl: https://player.vimeo.com/video/174731877
 
@@ -77,13 +73,14 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
-      editors:
-        - Heather Young
+      footage:
+        - Erik Jacobsen
+        - Cindy McCain
+      editor: Olivia Gonzales
+      music:
+        - Erik Jacobsen
         - Olivia Gonzales
-        - Lindsey Brady
-      music: Lindsey Brady
-      releaseDate: 2021
+      releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-long-ago.jpg
     videoUrl: https://player.vimeo.com/video/828154238
 
@@ -94,13 +91,15 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
+      footage:
+        - Erik Jacobsen
+        - Lala Coyle Jacobsen
       editors:
         - Heather Young
-        - Olivia Gonzales
         - Lindsey Brady
+        - Olivia Gonzales
       music: Lindsey Brady
-      releaseDate: 2021
+      releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-japan.jpg
     videoUrl: https://player.vimeo.com/video/386613137
 
@@ -111,7 +110,7 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
-      photography: Erik Jacobsen
+      footage: Erik Jacobsen
       editors:
         - Heather Young
         - Olivia Gonzales

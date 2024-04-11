@@ -80,7 +80,8 @@
                 >{{ key.replace(/([A-Z])/g, " $1").trim() }}:
               </span>
               {{
-                key === "editors"
+                Array.isArray(value) &&
+                ["editors", "music", "footage"].includes(key)
                   ? value.reduce(
                       (acc, curr, i) => acc + (i === 0 ? "" : " / ") + curr,
                       ""
