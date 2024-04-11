@@ -125,19 +125,19 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 .mainContent {
   width: 100%;
   text-align: center;
-  background-color: rgba(#ffffff, 0.85);
+  background-color: rgba(#ffffff, 0.95);
   padding: 0.75rem 0.5rem 0.5rem;
 
   @include media-breakpoint-up(sm) {
-    width: 510px;
+    width: 520px;
   }
 
   @include media-breakpoint-up(md) {
-    width: 590px;
+    width: 650px;
   }
 
   @include media-breakpoint-up(xl) {
-    width: 660px;
+    width: 750px;
   }
 }
 
