@@ -94,17 +94,20 @@
       </v-col>
     </v-row>
 
-    <v-row class="laurels-container gap-x-20">
+    <v-row
+      v-if="laurelsLength > 0"
+      class="laurels-container gap-x-20"
+    >
       <v-col class="!p-0">
         <h2 class="text uppercase mb-2">Festival Awards</h2>
         <div class="flex flex-wrap gap-y-4 justify-evenly">
           <div
-            v-for="index in 42"
+            v-for="index in laurelsLength"
             :key="index"
             class="flex justify-center align-middle gap-y-4 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 2xl:w-[11.11%]"
           >
             <img
-              :src="`/film-festivals/laurels/laurel_${index
+              :src="`/film-festivals/laurels/${slug}/laurel_${index
                 .toString()
                 .padStart(2, '0')}.png`"
               alt="Award"
@@ -130,11 +133,14 @@ const videoUrl = ref("");
 const prevLink = ref({});
 const nextLink = ref({});
 
+const slug = route.params.slug;
+const laurelsLength = slug === "egypt" ? 42 : slug === "long-ago" ? 27 : 0;
+
 onMounted(async () => {
   const festivalsContent = await queryContent("film-festivals").findOne();
 
   const currIndex = festivalsContent?.festivals?.findIndex(
-    (filmFestival) => filmFestival.slug === route.params.slug
+    (filmFestival) => filmFestival.slug === slug
   );
 
   if (currIndex === -1) {
