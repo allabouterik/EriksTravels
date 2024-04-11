@@ -14,9 +14,9 @@
             :style="`transform: translate3d(${
               currentIndex * -100
             }%, 0px, 0px);`"
-            class="posterLink-carousel__video-container"
+            class="posterLink-carousel__list-item"
           >
-            <div class="posterLink-carousel__video">
+            <div class="posterLink-carousel__poster-container">
               <a
                 :href="posterLink.link"
                 :title="posterLink.title"
@@ -24,6 +24,7 @@
                 <img
                   :alt="`Click to go to ${posterLink.title}`"
                   :src="posterLink.img"
+                  class="posterLinkImg"
                 />
               </a>
             </div>
@@ -178,7 +179,28 @@ export default {
 
 <style lang="scss" scoped>
 .posterLink-carousel {
-  --posterHeight: 366px;
+  --posterHeight: 340px;
+
+  @include media-breakpoint-up(sm) {
+    --posterHeight: 370px;
+  }
+
+  @include media-breakpoint-up(md) {
+    --posterHeight: 400px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    --posterHeight: 425px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    --posterHeight: 450px;
+  }
+
+  .posterLinkImg {
+    width: auto;
+    height: var(--posterHeight);
+  }
 
   &__content {
     position: fixed;
@@ -194,13 +216,13 @@ export default {
     width: 100%;
     text-align: center;
   }
-  &__video-container {
+  &__list-item {
     display: inline-table;
     position: relative;
     width: 100%;
     transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
-  &__video {
+  &__poster-container {
     display: inline-block;
     position: relative;
     width: 100vw;
@@ -208,10 +230,18 @@ export default {
     margin: 0 auto;
   }
   &__next {
-    right: 7.5%;
+    right: 0.5rem;
+
+    @include media-breakpoint-up(sm) {
+      right: 1rem;
+    }
   }
   &__prev {
-    left: 7.5%;
+    left: 0.5rem;
+
+    @include media-breakpoint-up(sm) {
+      left: 1rem;
+    }
   }
 
   .arrowImg {
@@ -220,7 +250,7 @@ export default {
     outline: none;
     transform: translate(0, calc(var(--posterHeight) / 2 - 50%));
     cursor: pointer;
-    width: 26px;
+    width: 40px;
   }
 }
 

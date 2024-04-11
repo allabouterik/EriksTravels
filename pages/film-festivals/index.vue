@@ -191,7 +191,24 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 }
 
 .carouselContainer {
-  --posterHeight: 366px;
+  --posterHeight: 340px;
+
+  @include media-breakpoint-up(sm) {
+    --posterHeight: 370px;
+  }
+
+  @include media-breakpoint-up(md) {
+    --posterHeight: 400px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    --posterHeight: 425px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    --posterHeight: 450px;
+  }
+
   margin-bottom: var(--posterHeight);
 }
 
