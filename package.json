@@ -11,6 +11,8 @@
   "devDependencies": {
     "@nuxt/content": "^2.5.2",
     "@nuxtjs/seo": "^2.0.0-rc.4",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
     "autoprefixer": "^10.4.18",
     "cypress": "^13.2.0",
     "cypress-real-events": "^1.10.3",

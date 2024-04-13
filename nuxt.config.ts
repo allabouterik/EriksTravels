@@ -26,11 +26,18 @@ export default defineNuxtConfig({
     // this adds the vuetify vite plugin
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) =>
-        config.plugins.push(vuetify())
+        config.plugins.push(
+          vuetify({
+            styles: {
+              configFile: "assets/custom.scss",
+            },
+          })
+        )
       );
     },
     "nuxt-lazy-load",
     "@pinia/nuxt",
+    "@vueuse/nuxt",
   ],
   // devtools: {
   //   // Enable devtools (default: true)

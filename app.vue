@@ -20,20 +20,16 @@
         "
       />
 
+      <!-- Needs to be v-show instead of v-if to prevent re-rendering of the component
+      and so the watcher in the component can be triggered -->
       <PageLightBox
+        v-show="store.pageLightBoxOpen"
         :componentName="store.pageLightBoxProps.componentName"
         :disableScroll="store.pageLightBoxProps.disableScroll"
         @close="store.layoutScrollable = true"
       />
     </main>
 
-    <!-- <BackgroundMusic
-      v-if="store.bgMusicAudioFile !== ''"
-      :audioFile="store.bgMusicAudioFile"
-      :audioFadeInDuration="3.5"
-      :audioFadeOutDuration="3.5"
-      :maxVolume="store.bgMusicAudioMaxVolume"
-    /> -->
     <BackgroundMusic
       v-if="store.bgMusicAudioFile !== ''"
       :audioFile="store.bgMusicAudioFile"
@@ -134,6 +130,12 @@ const updateBgMusic = (route: string) => {
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
     maxVolume = 0.2;
+  } else if (
+    store.pageLightBoxOpen &&
+    store.pageLightBoxProps.componentName === "FilmFestivalsContent"
+  ) {
+    audioFile = "";
+    maxVolume = 0;
   } else if (
     !store.videoLightBoxOpen &&
     !store.pageLightBoxOpen &&
