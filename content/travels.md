@@ -406,7 +406,7 @@ videos:
 
   - duration: 288
     thumbnailImg: >-
-      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/shops-and-markets.jpg
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/v1712011934/Travels/shops-and-markets.jpg
     title: Shops
     url: "https://player.vimeo.com/video/926457316"
 
