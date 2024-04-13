@@ -21,7 +21,7 @@
                 <img
                   alt="Erik Jacobsen title image"
                   :src="titleImg"
-                  class="titleImg mb-1 mb-lg-2 mb-xl-4"
+                  class="titleImg mb-1 mb-lg-2 mb-xl-4 lg:hidden"
                   data-testid="title-img"
                 />
                 <div>
@@ -97,133 +97,171 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 
 <style scoped lang="scss">
 .main-col {
+  --navHeight: 0px;
+
   max-width: 100%;
   min-height: 600px;
   position: fixed;
   z-index: 0;
-}
-
-.slideshowCol {
-  position: relative;
-  width: auto;
-  text-align: center;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-.slideshowOverlay {
-  position: absolute;
-  width: 100%;
-  top: 11%;
-  z-index: 10;
 
   @include media-breakpoint-up(lg) {
-    top: 5%;
-  }
-}
-
-.mainContent {
-  width: 100%;
-  text-align: center;
-  background-color: rgba(#ffffff, 0.95);
-  padding: 0.75rem 0.5rem 0.5rem;
-
-  @include media-breakpoint-up(sm) {
-    width: 520px;
+    --navHeight: 148px;
   }
 
-  @include media-breakpoint-up(md) {
-    width: 650px;
+  .slideshowCol {
+    position: relative;
+    width: auto;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
-  @include media-breakpoint-up(xl) {
-    width: 750px;
-  }
-}
+  .slideshowOverlay {
+    position: absolute;
+    width: 100%;
+    top: 11%;
+    z-index: 10;
 
-.titleImg {
-  width: 240px;
-  height: auto;
-  margin: auto;
-
-  @include media-breakpoint-up(sm) {
-    width: 260px;
+    @include media-breakpoint-up(lg) {
+      top: 3%;
+    }
   }
 
-  @include media-breakpoint-up(md) {
-    width: 280px;
+  .mainContent {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(#ffffff, 0.95);
+    // padding: 0.75rem 0.5rem 0.5rem;
+    padding: 0.75rem;
+
+    @include media-breakpoint-up(sm) {
+      width: 520px;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 650px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      width: 750px;
+    }
   }
 
-  @include media-breakpoint-up(lg) {
-    width: 300px;
+  .titleImg {
+    width: 240px;
+    height: auto;
+    margin: auto;
+
+    @include media-breakpoint-up(sm) {
+      width: 260px;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 280px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 300px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      width: 320px;
+    }
   }
 
-  @include media-breakpoint-up(xl) {
-    width: 320px;
-  }
-}
+  .slideshowText {
+    color: #000000;
+    font-family: "Libre Baskerville", serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 2px;
+    text-align: center;
+    text-wrap: wrap;
 
-.slideshowText {
-  color: #000000;
-  font-family: "Libre Baskerville", serif;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: 2px;
-  text-align: center;
-  text-wrap: wrap;
+    @include media-breakpoint-up(sm) {
+      font-size: 1.25rem;
+    }
 
-  @include media-breakpoint-up(sm) {
-    font-size: 1.25rem;
-  }
+    @include media-breakpoint-up(md) {
+      font-size: 1.5rem;
+    }
 
-  @include media-breakpoint-up(md) {
-    font-size: 1.5rem;
-  }
+    @include media-breakpoint-up(lg) {
+      font-size: 1.5rem;
+    }
 
-  @include media-breakpoint-up(lg) {
-    font-size: 1.5rem;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 1.75rem;
-  }
-}
-
-.carouselContainer {
-  --posterHeight: 340px;
-
-  @include media-breakpoint-up(sm) {
-    --posterHeight: 370px;
+    @include media-breakpoint-up(xl) {
+      font-size: 1.75rem;
+    }
   }
 
-  @include media-breakpoint-up(md) {
-    --posterHeight: 400px;
+  .carouselContainer {
+    --titleHeight: 42px;
+    --textHeight: 40px;
+    --topPosition: 11vh;
+    --imgTopMargin: 1rem;
+    --mainContentWidth: 100vw;
+    --mainContentPadding: 1rem;
+    --mainContentBtmMargin: 1rem;
+    --arrowImgWidth: 30px;
+    --arrowImgPadding: 0.5rem;
+
+    --posterAspectRatio: calc(2 / 3);
+    --posterWidth: calc(100vw - 32px - 80px - 32px);
+    --posterMaxWidth: calc(
+      var(--mainContentWidth) - 2 * var(--arrowImgWidth) - 4 *
+        var(--arrowImgPadding) - 2 * var(--mainContentPadding)
+    );
+    --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
+    --posterHeight: calc(
+      100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
+        var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
+        var(--mainContentBtmMargin)
+    );
+    --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
+    --posterActualHeight: calc(
+      min(var(--posterHeight), var(--posterMaxHeight))
+    );
+
+    @include media-breakpoint-up(sm) {
+      --mainContentWidth: 520px;
+      --textHeight: 50px;
+      --arrowImgWidth: 40px;
+      --arrowImgPadding: 1rem;
+    }
+
+    @include media-breakpoint-up(md) {
+      --mainContentWidth: 650px;
+      --textHeight: 60px;
+      --titleHeight: 48px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      --titleHeight: 0px;
+      --topPosition: 3vh;
+    }
+
+    @include media-breakpoint-up(xl) {
+      --mainContentWidth: 750px;
+      --textHeight: 70px;
+    }
+
+    margin-bottom: var(--posterActualHeight);
   }
 
-  @include media-breakpoint-up(lg) {
-    --posterHeight: 425px;
-  }
+  .bgVideo {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
 
-  @include media-breakpoint-up(xl) {
-    --posterHeight: 450px;
-  }
-
-  margin-bottom: var(--posterHeight);
-}
-
-.bgVideo {
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-
-  @include media-breakpoint-up(lg) {
-    --navbarHeight: 148px;
-    top: var(--navbarHeight);
-    height: calc(100vh - var(--navbarHeight));
+    @include media-breakpoint-up(lg) {
+      top: var(--navHeight);
+      height: calc(100vh - var(--navHeight));
+    }
   }
 }
 </style>

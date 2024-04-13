@@ -179,27 +179,60 @@ export default {
 
 <style lang="scss" scoped>
 .posterLink-carousel {
-  --posterHeight: 340px;
+  --navHeight: 0px;
+  --titleHeight: 42px;
+  --textHeight: 40px;
+  --topPosition: 11vh;
+  --imgTopMargin: 1rem;
+  --mainContentWidth: 100vw;
+  --mainContentPadding: 1rem;
+  --mainContentBtmMargin: 1rem;
+  --arrowImgWidth: 30px;
+  --arrowImgPadding: 0.5rem;
+
+  --posterAspectRatio: calc(2 / 3);
+  --posterWidth: calc(100vw - 32px - 80px - 32px);
+  --posterMaxWidth: calc(
+    var(--mainContentWidth) - 2 * var(--arrowImgWidth) - 4 *
+      var(--arrowImgPadding) - 2 * var(--mainContentPadding)
+  );
+  --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
+  --posterHeight: calc(
+    100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
+      var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
+      var(--mainContentBtmMargin)
+  );
+  --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
+  --posterActualHeight: calc(min(var(--posterHeight), var(--posterMaxHeight)));
 
   @include media-breakpoint-up(sm) {
-    --posterHeight: 370px;
+    --mainContentWidth: 520px;
+    --textHeight: 50px;
+    --arrowImgWidth: 40px;
+    --arrowImgPadding: 1rem;
   }
 
   @include media-breakpoint-up(md) {
-    --posterHeight: 400px;
+    --mainContentWidth: 650px;
+    --textHeight: 60px;
+    --titleHeight: 48px;
   }
 
   @include media-breakpoint-up(lg) {
-    --posterHeight: 425px;
+    --navHeight: 148px;
+    --titleHeight: 0px;
+    --topPosition: 3vh;
   }
 
   @include media-breakpoint-up(xl) {
-    --posterHeight: 450px;
+    --mainContentWidth: 750px;
+    --textHeight: 70px;
   }
 
   .posterLinkImg {
-    width: auto;
-    height: var(--posterHeight);
+    width: var(--posterActualWidth);
+    height: var(--posterActualHeight);
+    object-fit: contain;
   }
 
   &__content {
@@ -230,27 +263,19 @@ export default {
     margin: 0 auto;
   }
   &__next {
-    right: 0.5rem;
-
-    @include media-breakpoint-up(sm) {
-      right: 1rem;
-    }
+    right: var(--arrowImgPadding);
   }
   &__prev {
-    left: 0.5rem;
-
-    @include media-breakpoint-up(sm) {
-      left: 1rem;
-    }
+    left: var(--arrowImgPadding);
   }
 
   .arrowImg {
     position: absolute;
-    z-index: 1002;
+    width: var(--arrowImgWidth);
+    transform: translate(0, calc(var(--posterActualHeight) / 2 - 50%));
     outline: none;
-    transform: translate(0, calc(var(--posterHeight) / 2 - 50%));
+    z-index: 1002;
     cursor: pointer;
-    width: 40px;
   }
 }
 
