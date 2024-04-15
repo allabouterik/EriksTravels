@@ -17,7 +17,10 @@
       class="menuImg hover"
   /></NuxtLink>
 
-  <div class="nav-items">
+  <div
+    class="nav-items"
+    :class="{ navRightMargin: store.bgMusicAudioFile === '' }"
+  >
     <template
       v-for="menuItem in navMenuItems"
       :key="menuItem.text"
@@ -86,8 +89,10 @@
 </template>
 
 <script setup>
+import { useMainStore } from "@/stores/mainStore";
 import { useMediaQuery } from "@vueuse/core";
 
+const store = useMainStore();
 const isXlScreenAndUp = useMediaQuery("(min-width: 1200px)");
 </script>
 
@@ -150,6 +155,11 @@ export default {
 
   @include media-breakpoint-up(xxl) {
     justify-content: center;
+  }
+
+  &.navRightMargin {
+    --logo-width: 217.33px;
+    margin-right: var(--logo-width);
   }
 }
 
