@@ -80,9 +80,16 @@
       </button>
     </template>
 
-    <BackgroundMusicIcons />
+    <BackgroundMusicIcons v-if="!isXlScreenAndUp" />
   </div>
+  <BackgroundMusicIcons v-if="isXlScreenAndUp" />
 </template>
+
+<script setup>
+import { useMediaQuery } from "@vueuse/core";
+
+const isXlScreenAndUp = useMediaQuery("(min-width: 1200px)");
+</script>
 
 <script>
 import { mapActions, mapState, mapWritableState } from "pinia";
@@ -140,6 +147,10 @@ export default {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+
+  @include media-breakpoint-up(xxl) {
+    justify-content: center;
+  }
 }
 
 .menuLink {
@@ -147,10 +158,13 @@ export default {
   height: 100%;
   width: inherit;
 
+  @include media-breakpoint-up(xxl) {
+    max-width: 200px;
+  }
+
   .menuImg {
     position: absolute;
     top: 50%;
-    left: 0;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
 

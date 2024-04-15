@@ -39,7 +39,6 @@ const soundPlaying = computed(
 );
 
 const onAudioIconClick = () => {
-  console.log("onAudioIconClick");
   store.toggleBgMusic();
 };
 </script>
@@ -52,6 +51,12 @@ const onAudioIconClick = () => {
   width: inherit;
   height: inherit;
   z-index: 1000;
+  max-width: 180px;
+
+  @include media-breakpoint-up(xxl) {
+    --logo-width: 217.33px;
+    max-width: var(--logo-width);
+  }
 
   &:deep(button) {
     position: absolute;
