@@ -507,27 +507,27 @@ export default {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 0.8125rem; /* 13px with 16px default size */
+    font-size: 0.8125rem; // 13px
     font-weight: 400;
     letter-spacing: 5px;
     text-transform: uppercase;
     text-rendering: auto;
     // transition: all  .5s ease .0s;
-    line-height: 1.3125rem; /* 21px with 16px default size */
+    line-height: 1.3125rem; // 21px
     white-space: normal;
     // see videoTitleCss() in computed for further properties
 
     @include media-breakpoint-up(sm) {
-      font-size: 0.9375rem; /* 15px with 16px default size */
+      font-size: 0.9375rem; // 15px
     }
     @include media-breakpoint-up(md) {
-      font-size: 1.0625rem; /* 17px with 16px default size */
+      font-size: 1.0625rem; // 17px
     }
     @include media-breakpoint-up(lg) {
-      font-size: 1.1875rem; /* 19px with 16px default size */
+      font-size: 1.1875rem; // 19px
     }
     @include media-breakpoint-up(xl) {
-      font-size: 1.3125rem; /* 21px with 16px default size */
+      font-size: 1.3125rem; // 21px
     }
   }
 
