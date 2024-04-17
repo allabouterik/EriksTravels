@@ -5,14 +5,14 @@
       :slides-per-view="1"
       :space-between="0"
       :centered-slides="true"
-      :loop="false"
+      :loop="true"
       :navigation="{
         prevEl: '.posterLink-carousel__prev',
         nextEl: '.posterLink-carousel__next',
       }"
       :pagination="true"
       :coverflow-effect-rotate="0"
-      :coverflow-effect-stretch="100"
+      :coverflow-effect-stretch="50"
       :coverflow-effect-depth="300"
       :coverflow-effect-modifier="1"
       :coverflow-effect-scale="1"

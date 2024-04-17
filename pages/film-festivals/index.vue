@@ -37,7 +37,10 @@
                     class="d-flex justify-center"
                   >
                     <v-col class="carouselContainer">
-                      <PosterLinkCarouselSwiper :posterLinks="posters" />
+                      <PosterLinkCarouselSwiper
+                        v-if="posters && posters.length > 0"
+                        :posterLinks="posters"
+                      />
                     </v-col>
                   </v-row>
                 </div>
@@ -133,6 +136,7 @@ const titleImg = ref("/film-festivals/film-festivals_title.png");
 
     @include media-breakpoint-up(sm) {
       width: 90vw;
+      max-width: 1660px;
     }
   }
 
