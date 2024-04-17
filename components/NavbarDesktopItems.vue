@@ -6,7 +6,7 @@
     <img
       alt="Home page"
       :src="`/header/eriks-travels-logo-${
-        $route.path === '/home' ? 'yellow' : 'white'
+        removeSlashFromEnd($route.path) === '/home' ? 'yellow' : 'white'
       }.png`"
       height="100"
       class="menuImg" />
@@ -32,9 +32,9 @@
       >
         <img
           :alt="menuItem.altText"
-          :src="`/header/${$route.path === menuItem.to ? 'yellow' : 'white'}_${
-            menuItem.img
-          }`"
+          :src="`/header/${
+            removeSlashFromEnd($route.path) === menuItem.to ? 'yellow' : 'white'
+          }_${menuItem.img}`"
           height="60"
           class="menuImg"
         />
@@ -94,6 +94,9 @@ import { useMediaQuery } from "@vueuse/core";
 
 const store = useMainStore();
 const isXlScreenAndUp = useMediaQuery("(min-width: 1200px)");
+
+const removeSlashFromEnd = (str) =>
+  str.charAt(str.length - 1) === "/" ? str.slice(0, -1) : str;
 </script>
 
 <script>

@@ -41,7 +41,7 @@
           <img
             alt="Home page"
             :src="`/header/eriks-travels-logo-${
-              $route.path === '/home' ? 'yellow' : 'white'
+              removeSlashFromEnd($route.path) === '/home' ? 'yellow' : 'white'
             }.png`"
             height="60"
         /></NuxtLink>
@@ -58,7 +58,9 @@
               <img
                 :alt="menuItem.altText"
                 :src="`/header/${
-                  $route.path === menuItem.to ? 'yellow' : 'white'
+                  removeSlashFromEnd($route.path) === menuItem.to
+                    ? 'yellow'
+                    : 'white'
                 }_${menuItem.img}`"
                 height="60"
               />
@@ -95,6 +97,11 @@
     </div>
   </div>
 </template>
+
+<script setup>
+const removeSlashFromEnd = (str) =>
+  str.charAt(str.length - 1) === "/" ? str.slice(0, -1) : str;
+</script>
 
 <script type="text/javascript">
 import { mapActions, mapState, mapWritableState } from "pinia";
