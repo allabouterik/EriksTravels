@@ -10,6 +10,7 @@
       <NuxtPage />
 
       <VideoLightBox
+        v-show="store.videoLightBoxOpen"
         :videos="videos"
         :index="videoIndex"
         :disable-scroll="disableVideoLightBoxScroll"

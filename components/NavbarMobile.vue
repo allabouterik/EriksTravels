@@ -150,6 +150,7 @@ export default {
     },
     closeNav() {
       let mainNav = document.getElementById("sideNav-main");
+      if (!mainNav) return;
       mainNav.style.transition = "0.5s";
       mainNav.style.transitionDelay = "0s";
       this.activeNav = {};
