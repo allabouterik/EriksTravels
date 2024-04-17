@@ -80,13 +80,13 @@
         >
           <img
             alt="Left arrow, click for previous video"
-            src="../assets/images/arrow-left.png"
+            src="../assets/images/left-arrow-white.png"
             id="prevVideoImg"
             class="video-lightbox__prev arrowImg"
           />
           <img
             alt="Left arrow, click for previous video"
-            src="../assets/images/arrow-left-hover.png"
+            src="../assets/images/left-arrow-yellow.png"
             id="prevVideoImg-hover"
             class="video-lightbox__prev arrowImg"
           />
@@ -99,13 +99,13 @@
         >
           <img
             alt="Right arrow, click for next video"
-            src="../assets/images/arrow-right.png"
+            src="../assets/images/right-arrow-white.png"
             id="nextVideoImg"
             class="video-lightbox__next arrowImg"
           />
           <img
             alt="Right arrow, click for next video"
-            src="../assets/images/arrow-right-hover.png"
+            src="../assets/images/right-arrow-yellow.png"
             id="nextVideoImg-hover"
             class="video-lightbox__next arrowImg"
           />
@@ -446,6 +446,7 @@ export default {
     height: 100%;
     overflow: hidden;
   }
+
   &__content {
     height: 100%;
     width: 100%;
@@ -453,6 +454,7 @@ export default {
     padding: 0;
     margin: 0;
   }
+
   &__container {
     position: absolute;
     z-index: 1002;
@@ -463,6 +465,7 @@ export default {
     transform: translate(-50%, -50%);
     text-align: center;
   }
+
   &__video-container {
     display: inline-table;
     vertical-align: middle;
@@ -472,6 +475,7 @@ export default {
     text-align: center;
     transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
   }
+
   &__video {
     & {
       display: inline-block;
@@ -492,6 +496,7 @@ export default {
       }
     }
   }
+
   &__text {
     position: absolute;
     z-index: 1000;
@@ -502,7 +507,7 @@ export default {
     color: #ffffff;
     font-family: "NeueHaasGroteskText Pro55", sans-serif;
     font-feature-settings: "liga";
-    font-size: 1.3125rem; /* 21px with 16px default size */
+    font-size: 0.8125rem; /* 13px with 16px default size */
     font-weight: 400;
     letter-spacing: 5px;
     text-transform: uppercase;
@@ -511,7 +516,21 @@ export default {
     line-height: 1.3125rem; /* 21px with 16px default size */
     white-space: normal;
     // see videoTitleCss() in computed for further properties
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.9375rem; /* 15px with 16px default size */
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1.0625rem; /* 17px with 16px default size */
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 1.1875rem; /* 19px with 16px default size */
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 1.3125rem; /* 21px with 16px default size */
+    }
   }
+
   &__next,
   &__prev,
   &__close {
@@ -524,21 +543,80 @@ export default {
     outline: none;
     cursor: pointer;
   }
+
   &__next {
     top: 50%;
     transform: translate(0, -50%);
-    right: 8.5%;
-    vertical-align: middle;
+    right: 1.5%;
+
+    @include media-breakpoint-up(sm) {
+      right: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      right: 4%;
+    }
+    @include media-breakpoint-up(lg) {
+      right: 5%;
+    }
+    @include media-breakpoint-up(xl) {
+      right: 6%;
+    }
   }
   &__prev {
     top: 50%;
     transform: translate(0, -50%);
-    left: 8.5%;
+    left: 1.5%;
+
+    @include media-breakpoint-up(sm) {
+      left: 3%;
+    }
+    @include media-breakpoint-up(md) {
+      left: 4%;
+    }
+    @include media-breakpoint-up(lg) {
+      left: 5%;
+    }
+    @include media-breakpoint-up(xl) {
+      left: 6%;
+    }
   }
+
+  .arrowImg {
+    width: 7%;
+    max-width: 28px;
+    min-width: 15px;
+    padding: 0;
+
+    @include media-breakpoint-up(sm) {
+      max-width: 35px;
+    }
+    @include media-breakpoint-up(md) {
+      max-width: 40px;
+    }
+  }
+
   &__close {
-    top: 40px;
-    right: 60px;
+    top: 10px;
+    right: 20px;
+
+    @include media-breakpoint-up(sm) {
+      top: 20px;
+      right: 30px;
+    }
+    @include media-breakpoint-up(md) {
+      top: 30px;
+      right: 40px;
+    }
+    @include media-breakpoint-up(lg) {
+      top: 40px;
+      right: 50px;
+    }
+    @include media-breakpoint-up(xl) {
+      top: 40px;
+      right: 60px;
+    }
   }
+
   &__spinner {
     & {
       position: absolute;
@@ -557,6 +635,7 @@ export default {
       display: none;
     }
   }
+
   &__dot {
     & {
       float: left;
@@ -580,6 +659,7 @@ export default {
     }
   }
 }
+
 // transition fade on opening / closing of lightbox
 .fade-enter-active,
 .fade-leave-active {
@@ -601,13 +681,6 @@ export default {
   100% {
     opacity: 0;
   }
-}
-
-.arrowImg {
-  width: 7%;
-  max-width: 26px;
-  min-width: 15px;
-  padding: 0;
 }
 #prevVideoImg-hover,
 #leftArrowContainer:hover #prevVideoImg {
@@ -640,83 +713,5 @@ export default {
 }
 #closeImgContainer:hover #closeImg {
   display: none;
-}
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.8125rem; /* 13px with 16px default size */
-    }
-    &__next {
-      right: 1.5%;
-    }
-    &__prev {
-      left: 1.5%;
-    }
-    &__close {
-      top: 10px;
-      right: 20px;
-    }
-  }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 0.9375rem; /* 15px with 16px default size */
-    }
-    &__next {
-      right: 3%;
-    }
-    &__prev {
-      left: 3%;
-    }
-    &__close {
-      top: 20px;
-      right: 30px;
-    }
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.0625rem; /* 17px with 16px default size */
-    }
-    &__next {
-      right: 4.5%;
-    }
-    &__prev {
-      left: 4.5%;
-    }
-    &__close {
-      top: 30px;
-      right: 40px;
-    }
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .video-lightbox {
-    &__text {
-      font-size: 1.1875rem; /* 19px with 16px default size */
-    }
-    &__next {
-      right: 6.5%;
-    }
-    &__prev {
-      left: 6.5%;
-    }
-    &__close {
-      top: 40px;
-      right: 50px;
-    }
-  }
 }
 </style>
