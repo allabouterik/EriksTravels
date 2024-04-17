@@ -1,0 +1,223 @@
+<template>
+  <div class="posterLink-carousel">
+    <swiper-container
+      effect="coverflow"
+      :slides-per-view="1"
+      :space-between="0"
+      :centered-slides="true"
+      :loop="false"
+      :navigation="{
+        prevEl: '.posterLink-carousel__prev',
+        nextEl: '.posterLink-carousel__next',
+      }"
+      :pagination="true"
+      :coverflow-effect-rotate="0"
+      :coverflow-effect-stretch="100"
+      :coverflow-effect-depth="300"
+      :coverflow-effect-modifier="1"
+      :coverflow-effect-scale="1"
+      :coverflow-effect-slide-shadows="false"
+      :breakpoints="{
+        768: {
+          slidesPerView: 2,
+        },
+        1400: {
+          slidesPerView: 3,
+        },
+      }"
+      @swiperprogress="onProgress"
+      @swiperslidechange="onSlideChange"
+    >
+      <swiper-slide
+        v-for="(posterLink, posterLinkIndex) in posterLinks"
+        :key="posterLinkIndex"
+      >
+        <a
+          :href="posterLink.link"
+          :title="posterLink.title"
+        >
+          <img
+            :alt="`Click to go to ${posterLink.title}`"
+            :src="posterLink.img"
+            class="posterLinkImg"
+          /> </a
+      ></swiper-slide>
+    </swiper-container>
+
+    <div id="leftArrowContainer">
+      <img
+        alt="Left arrow, click for previous video"
+        src="../assets/images/left-arrow-black.png"
+        id="prevVideoImg"
+        class="posterLink-carousel__prev arrowImg"
+      />
+      <img
+        alt="Left arrow, click for previous video"
+        src="../assets/images/left-arrow-yellow.png"
+        id="prevVideoImg-hover"
+        class="posterLink-carousel__prev arrowImg"
+      />
+    </div>
+
+    <div id="rightArrowContainer">
+      <img
+        alt="Right arrow, click for next video"
+        src="../assets/images/right-arrow-black.png"
+        id="nextVideoImg"
+        class="posterLink-carousel__next arrowImg"
+      />
+      <img
+        alt="Right arrow, click for next video"
+        src="../assets/images/right-arrow-yellow.png"
+        id="nextVideoImg-hover"
+        class="posterLink-carousel__next arrowImg"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { register } from "swiper/element/bundle";
+
+register();
+
+const props = defineProps({
+  posterLinks: {
+    type: Array,
+    default: () => [{ title: "", img: "", link: "" }],
+  },
+});
+
+const onProgress = (e) => {
+  // const [swiper, progress] = e.detail;
+  // console.log({ swiper, progress });
+};
+
+const onSlideChange = (e) => {
+  // console.log("slide changed");
+};
+</script>
+
+<style lang="scss" scoped>
+.posterLink-carousel {
+  --navHeight: 0px;
+  --titleHeight: 42px;
+  --textHeight: 40px;
+  --topPosition: 11vh;
+  --imgTopMargin: 1rem;
+  --mainContentWidth: 100vw;
+  --mainContentPadding: 1rem;
+  --mainContentBtmMargin: 1rem;
+  --arrowImgWidth: 30px;
+  --arrowImgPadding: 0.5rem;
+  --swiperBtmPadding: 3rem;
+
+  --posterAspectRatio: calc(2 / 3);
+  --posterWidth: calc(100vw - 32px - 80px - 32px);
+  --posterMaxWidth: calc(
+    var(--mainContentWidth) - 2 * var(--arrowImgWidth) - 4 *
+      var(--arrowImgPadding) - 2 * var(--mainContentPadding)
+  );
+  --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
+  --posterHeight: calc(
+    100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
+      var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
+      var(--swiperBtmPadding) - var(--mainContentBtmMargin)
+  );
+  --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
+  --posterActualHeight: calc(min(var(--posterHeight), var(--posterMaxHeight)));
+
+  @include media-breakpoint-up(sm) {
+    --mainContentWidth: 520px;
+    --textHeight: 50px;
+    --arrowImgWidth: 40px;
+    --arrowImgPadding: 1rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    --mainContentWidth: 650px;
+    --textHeight: 60px;
+    --titleHeight: 48px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    --navHeight: 148px;
+    --titleHeight: 0px;
+    --topPosition: 3vh;
+  }
+
+  @include media-breakpoint-up(xl) {
+    --mainContentWidth: 750px;
+    --textHeight: 70px;
+  }
+
+  // https://swiperjs.com/element#parts
+  swiper-container::part(container) {
+    padding-bottom: 3rem;
+  }
+
+  .posterLinkImg {
+    width: var(--posterActualWidth);
+    height: var(--posterActualHeight);
+    object-fit: contain;
+  }
+
+  &__content {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+  }
+  &__container {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  &__list-item {
+    display: inline-table;
+    position: relative;
+    width: 100%;
+    transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
+  }
+  &__poster-container {
+    display: inline-block;
+    position: relative;
+    width: 100vw;
+    max-height: 100vh;
+    margin: 0 auto;
+  }
+
+  .arrowImg {
+    position: absolute;
+    width: var(--arrowImgWidth);
+    outline: none;
+    z-index: 1002;
+    cursor: pointer;
+  }
+  &__next {
+    transform: translate(calc(-50% + 100px), -100%);
+  }
+  &__prev {
+    transform: translate(calc(-50% - 100px), -100%);
+  }
+
+  #prevVideoImg-hover,
+  #leftArrowContainer:hover #prevVideoImg {
+    display: none;
+  }
+  #leftArrowContainer:hover #prevVideoImg-hover {
+    display: inline;
+  }
+
+  #nextVideoImg-hover,
+  #rightArrowContainer:hover #nextVideoImg {
+    display: none;
+  }
+  #rightArrowContainer:hover #nextVideoImg-hover {
+    display: inline;
+  }
+}
+</style>

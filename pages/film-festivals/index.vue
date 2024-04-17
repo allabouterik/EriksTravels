@@ -37,7 +37,7 @@
                     class="d-flex justify-center"
                   >
                     <v-col class="carouselContainer">
-                      <PosterLinkCarousel :posterLinks="posters" />
+                      <PosterLinkCarouselSwiper :posterLinks="posters" />
                     </v-col>
                   </v-row>
                 </div>
@@ -91,8 +91,6 @@ const bgVideo = ref({
 });
 
 const titleImg = ref("/film-festivals/film-festivals_title.png");
-
-const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 </script>
 
 <style scoped lang="scss">
@@ -131,19 +129,10 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
     width: 100%;
     text-align: center;
     background-color: rgba(#ffffff, 0.95);
-    // padding: 0.75rem 0.5rem 0.5rem;
     padding: 0.75rem;
 
     @include media-breakpoint-up(sm) {
-      width: 520px;
-    }
-
-    @include media-breakpoint-up(md) {
-      width: 650px;
-    }
-
-    @include media-breakpoint-up(xl) {
-      width: 750px;
+      width: 90vw;
     }
   }
 
@@ -194,60 +183,6 @@ const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
     @include media-breakpoint-up(xl) {
       font-size: 1.75rem;
     }
-  }
-
-  .carouselContainer {
-    --titleHeight: 42px;
-    --textHeight: 40px;
-    --topPosition: 11vh;
-    --imgTopMargin: 1rem;
-    --mainContentWidth: 100vw;
-    --mainContentPadding: 1rem;
-    --mainContentBtmMargin: 1rem;
-    --arrowImgWidth: 30px;
-    --arrowImgPadding: 0.5rem;
-
-    --posterAspectRatio: calc(2 / 3);
-    --posterWidth: calc(100vw - 32px - 80px - 32px);
-    --posterMaxWidth: calc(
-      var(--mainContentWidth) - 2 * var(--arrowImgWidth) - 4 *
-        var(--arrowImgPadding) - 2 * var(--mainContentPadding)
-    );
-    --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
-    --posterHeight: calc(
-      100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
-        var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
-        var(--mainContentBtmMargin)
-    );
-    --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
-    --posterActualHeight: calc(
-      min(var(--posterHeight), var(--posterMaxHeight))
-    );
-
-    @include media-breakpoint-up(sm) {
-      --mainContentWidth: 520px;
-      --textHeight: 50px;
-      --arrowImgWidth: 40px;
-      --arrowImgPadding: 1rem;
-    }
-
-    @include media-breakpoint-up(md) {
-      --mainContentWidth: 650px;
-      --textHeight: 60px;
-      --titleHeight: 48px;
-    }
-
-    @include media-breakpoint-up(lg) {
-      --titleHeight: 0px;
-      --topPosition: 3vh;
-    }
-
-    @include media-breakpoint-up(xl) {
-      --mainContentWidth: 750px;
-      --textHeight: 70px;
-    }
-
-    margin-bottom: var(--posterActualHeight);
   }
 
   .bgVideo {
