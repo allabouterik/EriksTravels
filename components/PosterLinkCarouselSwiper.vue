@@ -25,6 +25,10 @@
           slidesPerView: 3,
         },
       }"
+      :keyboard="{
+        enabled: true,
+        onlyInViewport: true,
+      }"
       @swiperprogress="onProgress"
       @swiperslidechange="onSlideChange"
       @swiperinit="onSwiperInit"
@@ -78,10 +82,8 @@
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount, onMounted } from "vue";
+// import { ref } from "vue";
 import { register } from "swiper/element/bundle";
-
-register();
 
 const props = defineProps({
   posterLinks: {
@@ -90,28 +92,12 @@ const props = defineProps({
   },
 });
 
-const swiper = ref(null);
+register();
 
-onMounted(() => {
-  if (!document) return;
-  document.addEventListener("keydown", onKeyPress, false);
-});
-
-onBeforeUnmount(() => {
-  if (!document) return;
-  document.removeEventListener("keydown", onKeyPress, false);
-});
-
-const onKeyPress = (e) => {
-  if (e.key === "ArrowRight" || e.keyCode === 39) {
-    swiper.value.slideNext();
-  } else if (e.key === "ArrowLeft" || e.keyCode === 37) {
-    swiper.value.slidePrev();
-  }
-};
+// const swiper = ref(null);
 
 const onSwiperInit = (e) => {
-  swiper.value = Array.isArray(e.detail) ? e.detail[0] : e.detail;
+  // swiper.value = Array.isArray(e.detail) ? e.detail[0] : e.detail;
 };
 
 const onProgress = (e) => {
