@@ -24,12 +24,12 @@
                   class="titleImg mb-1 mb-lg-2 mb-xl-4 lg:hidden"
                   data-testid="title-img"
                 />
-                <div>
+                <!-- <div>
                   <p class="slideshowText mb-0">
                     I entered some film festivals, and won awards.
                     <br />Preview the entries below.
                   </p>
-                </div>
+                </div> -->
 
                 <div class="flex flex-col mt-3 mt-sm-4">
                   <v-row

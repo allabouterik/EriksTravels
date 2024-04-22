@@ -114,7 +114,7 @@ const onSlideChange = (e) => {
 .posterLink-carousel {
   --navHeight: 0px;
   --titleHeight: 42px;
-  --textHeight: 40px;
+  // --textHeight: 40px;
   --topPosition: 11vh;
   --imgTopMargin: 1rem;
   --mainContentWidth: 100vw;
@@ -131,24 +131,29 @@ const onSlideChange = (e) => {
       var(--arrowImgPadding) - 2 * var(--mainContentPadding)
   );
   --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
+  // --posterHeight: calc(
+  //   100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
+  //     var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
+  //     var(--swiperBtmPadding) - var(--mainContentBtmMargin)
+  // );
   --posterHeight: calc(
-    100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
-      var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
-      var(--swiperBtmPadding) - var(--mainContentBtmMargin)
+    100vh - var(--navHeight) - var(--titleHeight) - var(--topPosition) - 2 *
+      var(--mainContentPadding) - var(--imgTopMargin) - var(--swiperBtmPadding) -
+      var(--mainContentBtmMargin)
   );
   --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
   --posterActualHeight: calc(min(var(--posterHeight), var(--posterMaxHeight)));
 
   @include media-breakpoint-up(sm) {
     --mainContentWidth: 520px;
-    --textHeight: 50px;
+    // --textHeight: 50px;
     --arrowImgWidth: 40px;
     --arrowImgPadding: 1rem;
   }
 
   @include media-breakpoint-up(md) {
     --mainContentWidth: 650px;
-    --textHeight: 60px;
+    // --textHeight: 60px;
     --titleHeight: 48px;
   }
 
@@ -160,7 +165,7 @@ const onSlideChange = (e) => {
 
   @include media-breakpoint-up(xl) {
     --mainContentWidth: 750px;
-    --textHeight: 70px;
+    // --textHeight: 70px;
   }
 
   // https://swiperjs.com/element#parts
