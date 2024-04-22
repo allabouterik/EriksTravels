@@ -112,6 +112,8 @@ const onSlideChange = (e) => {
 
 <style lang="scss" scoped>
 .posterLink-carousel {
+  --swiper-pagination-color: #e5d052;
+
   --navHeight: 0px;
   --titleHeight: 42px;
   // --textHeight: 40px;
