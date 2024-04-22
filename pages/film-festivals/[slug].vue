@@ -99,7 +99,7 @@
     >
       <v-col class="!p-0">
         <h2 class="text uppercase mb-2">Festival Awards</h2>
-        <div class="flex flex-wrap gap-y-4 justify-evenly">
+        <div class="flex flex-wrap gap-y-4 justify-start">
           <div
             v-for="index in laurelsLength"
             :key="index"
