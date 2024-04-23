@@ -18,12 +18,12 @@
 
             <div class="slideshowOverlay">
               <div class="mainContent mx-auto">
-                <img
+                <!-- <img
                   alt="Erik Jacobsen title image"
                   :src="titleImg"
                   class="titleImg mb-1 mb-lg-2 mb-xl-4 lg:hidden"
                   data-testid="title-img"
-                />
+                /> -->
                 <!-- <div>
                   <p class="slideshowText mb-0">
                     I entered some film festivals, and won awards.
@@ -49,23 +49,17 @@
           </v-col>
         </v-row>
 
-        <!-- BACKGROUND VIDEO -->
-        <video
-          v-if="bgVideo"
-          autoplay
-          loop
-          muted
-          class="bgVideo"
-        >
-          <!-- <source
-        :src="bgVideo.videoSrcWebm"
-        type="video/webm"
-      /> -->
-          <source
-            :src="bgVideo.videoSrcMP4"
-            type="video/mp4"
-          />
-        </video>
+        <!-- BACKGROUND SLIDESHOW -->
+        <SlideshowKenBurns
+          :slides="slideshowImgs"
+          :height="isLgScreenAndUp ? 'calc(100vh - 148px)' : '100vh'"
+          :includeKeyFrames="false"
+          :opacityMax="1"
+          :opacityMin="0.65"
+          :translateFactor="0"
+          :vignette="false"
+          style="transform: translateY(-100vh)"
+        />
       </v-container>
     </div>
   </router-view>
@@ -76,6 +70,7 @@ import { onBeforeMount, ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 
 const posters = ref([]);
+const isLgScreenAndUp = useMediaQuery("(min-width: 992px)");
 
 onBeforeMount(async () => {
   const filmFestivalsContent = await queryContent("film-festivals").findOne();
@@ -86,14 +81,30 @@ onBeforeMount(async () => {
   }));
 });
 
-const bgVideo = ref({
-  videoSrcMP4:
-    "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid.mp4",
-  // videoSrcWebm:
-  //   "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid-webm.webm",
-});
+// const titleImg = ref("/film-festivals/film-festivals_title.png");
 
-const titleImg = ref("/film-festivals/film-festivals_title.png");
+const slideshowImgs = [
+  {
+    img: "/film-festivals/background/festivals_laurels_background_01.jpg",
+    scaleFrom: 1.0,
+    scaleTo: 1.0,
+  },
+  {
+    img: "/film-festivals/background/festivals_laurels_background_02.jpg",
+    scaleFrom: 1.0,
+    scaleTo: 1.0,
+  },
+  {
+    img: "/film-festivals/background/festivals_laurels_background_03.jpg",
+    scaleFrom: 1.0,
+    scaleTo: 1.0,
+  },
+  {
+    img: "/film-festivals/background/festivals_laurels_background_04.jpg",
+    scaleFrom: 1.0,
+    scaleTo: 1.0,
+  },
+];
 </script>
 
 <style scoped lang="scss">
@@ -131,7 +142,6 @@ const titleImg = ref("/film-festivals/film-festivals_title.png");
   .mainContent {
     width: 100%;
     text-align: center;
-    background-color: rgba(#ffffff, 0.95);
     padding: 0.75rem;
 
     @include media-breakpoint-up(sm) {
@@ -186,20 +196,6 @@ const titleImg = ref("/film-festivals/film-festivals_title.png");
 
     @include media-breakpoint-up(xl) {
       font-size: 1.75rem;
-    }
-  }
-
-  .bgVideo {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-
-    @include media-breakpoint-up(lg) {
-      top: var(--navHeight);
-      height: calc(100vh - var(--navHeight));
     }
   }
 }
