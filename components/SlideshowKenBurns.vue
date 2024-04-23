@@ -5,7 +5,7 @@
   >
     <!-- https://vuejs.org/guide/built-ins/transition-group.html -->
     <TransitionGroup
-      name="SlideshowKenBurns"
+      name="fade"
       tag="div"
       class="SlideshowKenBurns__slides"
       :class="{ vignette: vignette }"
@@ -332,11 +332,13 @@ export default {
     animation-fill-mode: forwards; // The element will retain the style values that is set by the last keyframe
     transform-origin: bottom right;
   }
+}
 
+.fade {
   &-enter-active,
   &-leave-active {
     opacity: var(--opacityMax);
-    transition: opacity 3s linear;
+    transition: opacity 3s ease;
   }
   &-enter-from,
   &-leave-to {
