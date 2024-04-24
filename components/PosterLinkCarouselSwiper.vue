@@ -88,7 +88,7 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
+import { computed } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { register } from "swiper/element/bundle";
 
@@ -103,11 +103,9 @@ register();
 
 const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 const isMdScreenAndUp = useMediaQuery("(min-width: 768px)");
-const stretchAmount = isMdScreenAndUp.value
-  ? 50
-  : isSmScreenAndUp.value
-  ? 100
-  : 150;
+const stretchAmount = computed(() =>
+  isMdScreenAndUp.value ? 50 : isSmScreenAndUp.value ? 100 : 150
+);
 
 // const swiper = ref(null);
 
