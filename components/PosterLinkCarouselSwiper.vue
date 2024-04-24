@@ -1,8 +1,9 @@
 <template>
   <div class="posterLink-carousel">
     <swiper-container
+      :key="swiperKey"
       effect="coverflow"
-      :slides-per-view="1"
+      :slides-per-view="1.5"
       :space-between="0"
       :centered-slides="true"
       :loop="true"
@@ -21,8 +22,11 @@
         576: {
           slidesPerView: 2,
         },
-        1400: {
+        768: {
           slidesPerView: 3,
+        },
+        1400: {
+          slidesPerView: 5,
         },
       }"
       :keyboard="{
@@ -36,6 +40,7 @@
       <swiper-slide
         v-for="(posterLink, posterLinkIndex) in posterLinks"
         :key="posterLinkIndex"
+        class="swiper-slide"
       >
         <a
           :href="posterLink.link"
@@ -88,7 +93,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { register } from "swiper/element/bundle";
 
@@ -103,9 +108,17 @@ register();
 
 const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
 const isMdScreenAndUp = useMediaQuery("(min-width: 768px)");
+const is1400ScreenAndUp = useMediaQuery("(min-width: 1400px)");
+
 const stretchAmount = computed(() =>
   isMdScreenAndUp.value ? 50 : isSmScreenAndUp.value ? 100 : 150
 );
+
+const swiperKey = ref(0);
+
+watch([isSmScreenAndUp, isMdScreenAndUp, is1400ScreenAndUp], () => {
+  swiperKey.value += 1; // force swiper to re-render
+});
 
 // const swiper = ref(null);
 
@@ -287,5 +300,15 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
   #rightArrowContainer:hover #nextVideoImg-hover {
     display: inline;
   }
+}
+
+// Not sure why these aren't coming from the swiper styles
+.swiper-slide {
+  visibility: hidden;
+}
+
+.swiper-slide-visible,
+.swiper-slide-fully-visible {
+  visibility: visible;
 }
 </style>

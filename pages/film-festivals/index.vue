@@ -140,13 +140,40 @@ const slideshowImgs = [
   }
 
   .mainContent {
-    width: 100%;
     text-align: center;
-    padding: 0.75rem;
+    padding: 0.75rem 0;
 
-    @include media-breakpoint-up(sm) {
-      width: 90vw;
-      max-width: 1660px;
+    --containerWidth: 100vw;
+    width: var(--containerWidth);
+    transform: translateX(calc(-0.5 * (var(--containerWidth) - 100vw)));
+
+    @include media-breakpoint-up(md) {
+      --carouselSlideOverlap: 50px;
+      --carouselSlidesPerView: 3;
+      --carouselOverlapMultiplier: 2; // based on slides per view
+      --containerWidth: calc(
+        (
+          var(--carouselSlidesPerView) / (1 + 2 * 0.8) *
+            (
+              100vw +
+                (var(--carouselOverlapMultiplier) * var(--carouselSlideOverlap))
+            )
+        )
+      );
+    }
+
+    @media (min-width: 1400px) {
+      --carouselSlidesPerView: 5;
+      --carouselOverlapMultiplier: 6; // based on slides per view
+      --containerWidth: calc(
+        (
+          var(--carouselSlidesPerView) / (1 + 2 * 0.8 + 2 * 0.667) *
+            (
+              100vw +
+                (var(--carouselOverlapMultiplier) * var(--carouselSlideOverlap))
+            )
+        )
+      );
     }
   }
 
