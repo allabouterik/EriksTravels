@@ -12,13 +12,13 @@
       }"
       :pagination="true"
       :coverflow-effect-rotate="0"
-      :coverflow-effect-stretch="50"
+      :coverflow-effect-stretch="stretchAmount"
       :coverflow-effect-depth="300"
       :coverflow-effect-modifier="1"
       :coverflow-effect-scale="1"
       :coverflow-effect-slide-shadows="false"
       :breakpoints="{
-        768: {
+        576: {
           slidesPerView: 2,
         },
         1400: {
@@ -45,6 +45,11 @@
             :alt="`Click to go to ${posterLink.title}`"
             :src="posterLink.img"
             class="posterLinkImg"
+          />
+          <img
+            :alt="`Play icon - click to go to ${posterLink.title}`"
+            src="~/assets/images/playarrowcircle-rough.png"
+            class="playImg"
           /> </a
       ></swiper-slide>
     </swiper-container>
@@ -83,6 +88,7 @@
 
 <script setup>
 // import { ref } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 import { register } from "swiper/element/bundle";
 
 const props = defineProps({
@@ -93,6 +99,14 @@ const props = defineProps({
 });
 
 register();
+
+const isSmScreenAndUp = useMediaQuery("(min-width: 576px)");
+const isMdScreenAndUp = useMediaQuery("(min-width: 768px)");
+const stretchAmount = isMdScreenAndUp.value
+  ? 50
+  : isSmScreenAndUp.value
+  ? 100
+  : 150;
 
 // const swiper = ref(null);
 
@@ -175,10 +189,32 @@ const onSlideChange = (e) => {
     padding-bottom: 3rem;
   }
 
+  .playImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32.8%;
+    transform: translate3d(-50%, -50%, 0);
+    transition: opacity 0.25s ease-in-out;
+    opacity: 0;
+
+    &:hover {
+      opacity: 0.3;
+    }
+  }
+
   .posterLinkImg {
     width: var(--posterActualWidth);
     height: var(--posterActualHeight);
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
+
+    &:hover {
+      + .playImg {
+        opacity: 0.3;
+      }
+    }
   }
 
   &__content {
