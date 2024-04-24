@@ -201,6 +201,10 @@ const onSlideChange = (e) => {
     &:hover {
       opacity: 0.3;
     }
+
+    @media (hover: none) {
+      opacity: 0.3;
+    }
   }
 
   .posterLinkImg {
