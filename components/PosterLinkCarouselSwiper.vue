@@ -40,17 +40,18 @@
         <a
           :href="posterLink.link"
           :title="posterLink.title"
+          class="posterLink-carousel__link"
+          :class="{ active: posterLinkIndex === clickedPosterIndex }"
+          @click="onPosterLinkClick(posterLinkIndex)"
         >
           <img
             :alt="`Click to go to ${posterLink.title}`"
             :src="posterLink.img"
-            class="posterLinkImg"
-          />
+            class="posterLinkImg" />
           <img
             :alt="`Play icon - click to go to ${posterLink.title}`"
             src="~/assets/images/playarrowcircle-rough.png"
-            class="playImg"
-          /> </a
+            class="playImg" /></a
       ></swiper-slide>
     </swiper-container>
 
@@ -122,6 +123,9 @@ const onProgress = (e) => {
 const onSlideChange = (e) => {
   // console.log("slide changed");
 };
+
+const clickedPosterIndex = ref(null);
+const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
 </script>
 
 <style lang="scss" scoped>
@@ -204,6 +208,13 @@ const onSlideChange = (e) => {
 
     @media (hover: none) {
       opacity: 0.3;
+    }
+  }
+
+  &__link:active,
+  &__link.active {
+    .playImg {
+      opacity: 1 !important;
     }
   }
 
