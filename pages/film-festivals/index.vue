@@ -165,13 +165,21 @@ const slideshowImgs = [
     @media (min-width: 1400px) {
       --carouselSlidesPerView: 5;
       --carouselOverlapMultiplier: 6; // based on slides per view
+
+      // TODO: Calculate max width based on image aspect ratio
       --containerWidth: calc(
-        (
-          var(--carouselSlidesPerView) / (1 + 2 * 0.8 + 2 * 0.667) *
-            (
-              100vw +
-                (var(--carouselOverlapMultiplier) * var(--carouselSlideOverlap))
-            )
+        min(
+          120vw,
+          (
+            var(--carouselSlidesPerView) / (1 + 2 * 0.8 + 2 * 0.667) *
+              (
+                100vw +
+                  (
+                    var(--carouselOverlapMultiplier) *
+                      var(--carouselSlideOverlap)
+                  )
+              )
+          )
         )
       );
     }
