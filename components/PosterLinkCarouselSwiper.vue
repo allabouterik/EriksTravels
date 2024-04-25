@@ -7,6 +7,9 @@
       :space-between="0"
       :centered-slides="true"
       :loop="true"
+      :autoplay="{
+        delay: 5000,
+      }"
       :navigation="{
         prevEl: '.posterLink-carousel__prev',
         nextEl: '.posterLink-carousel__next',
