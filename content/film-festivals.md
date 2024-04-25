@@ -17,7 +17,7 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2021
     posterImg: /film-festivals/festivals-poster-egypt.jpg
-    videoUrl: https://player.vimeo.com/video/703897109
+    videoUrl: https://player.vimeo.com/video/939078217
 
   - title: Norway
     slug: norway
@@ -31,7 +31,7 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2016
     posterImg: /film-festivals/festivals-poster-norway.jpg
-    videoUrl: https://player.vimeo.com/video/174731877
+    videoUrl: https://player.vimeo.com/video/939094823
 
   - title: Fresh Seafood
     slug: seafood
@@ -64,7 +64,7 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2021
     posterImg: /film-festivals/festivals-poster-boyhood.jpg
-    videoUrl: https://player.vimeo.com/video/311575188
+    videoUrl: https://player.vimeo.com/video/939087599
 
   - title: Japan
     slug: japan
@@ -83,7 +83,7 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-japan.jpg
-    videoUrl: https://player.vimeo.com/video/386613137
+    videoUrl: https://player.vimeo.com/video/939075313
 
   - title: Long Ago and Far Away
     slug: long-ago
@@ -101,7 +101,7 @@ festivals:
         - Olivia Gonzales
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-long-ago.jpg
-    videoUrl: https://player.vimeo.com/video/828154238
+    videoUrl: https://player.vimeo.com/video/939082166
 
   - title: Romania
     slug: romania
@@ -118,5 +118,5 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2021
     posterImg: /film-festivals/festivals-poster-romania.jpg
-    videoUrl: https://player.vimeo.com/video/870863837
+    videoUrl: https://player.vimeo.com/video/939092030
 ---
