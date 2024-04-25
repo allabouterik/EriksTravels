@@ -30,10 +30,10 @@ const props = defineProps({
 .nav-container {
   display: flex;
   position: fixed;
-  width: 100%;
+  width: 50%;
   top: 0;
   left: 0;
-  padding: 0;
+  padding: 15px 14px;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #000000;
@@ -42,33 +42,25 @@ const props = defineProps({
   height: 0;
   transition: all 2s;
 
+  @include media-breakpoint-up(sm) {
+    width: 202px;
+    padding: 20px 16px;
+  }
+
+  @include media-breakpoint-up(md) {
+    width: 100%;
+    padding: 0;
+  }
+
   &.show {
     opacity: 1;
     height: auto;
-    padding: 16px;
+    padding: 0 1rem;
   }
 
   &.hidden {
     position: unset;
     visibility: hidden;
-  }
-}
-
-/* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media only screen and (max-width: 575.98px) {
-  .nav-container {
-    width: 50% !important;
-    padding: 15px 14px !important;
-  }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media only screen and (min-width: 576px) and (max-width: 767.98px) {
-  .nav-container {
-    width: 202px !important;
-    padding: 20px 16px !important;
   }
 }
 </style>

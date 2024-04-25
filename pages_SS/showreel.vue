@@ -42,7 +42,7 @@ useHead({
   overflow-y: hidden;
 
   @media screen and (min-width: 992px) {
-    height: calc(100vh - 148px); // to account for the navbar on desktop
+    height: calc(100vh - 100px); // to account for the navbar on desktop
   }
 }
 

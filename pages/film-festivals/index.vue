@@ -50,9 +50,10 @@
         </v-row>
 
         <!-- BACKGROUND SLIDESHOW -->
+        <!-- 100px is the navHeight -->
         <SlideshowKenBurns
           :slides="slideshowImgs"
-          :height="isLgScreenAndUp ? 'calc(100vh - 148px)' : '100vh'"
+          :height="isLgScreenAndUp ? 'calc(100vh - 100px)' : '100vh'"
           :includeKeyFrames="false"
           :opacityMax="1"
           :opacityMin="0.65"
@@ -117,7 +118,7 @@ const slideshowImgs = [
   z-index: 0;
 
   @include media-breakpoint-up(lg) {
-    --navHeight: 148px;
+    --navHeight: 100px;
   }
 
   .slideshowCol {

@@ -8,12 +8,12 @@
       :src="`/header/eriks-travels-logo-${
         removeSlashFromEnd($route.path) === '/home' ? 'yellow' : 'white'
       }.png`"
-      height="100"
+      height="80"
       class="menuImg" />
     <img
       alt="Home page"
       src="/header/eriks-travels-logo-yellow.png"
-      height="100"
+      height="80"
       class="menuImg hover"
   /></NuxtLink>
 
@@ -35,13 +35,13 @@
           :src="`/header/${
             removeSlashFromEnd($route.path) === menuItem.to ? 'yellow' : 'white'
           }_${menuItem.img}`"
-          height="60"
+          height="58"
           class="menuImg"
         />
         <img
           :alt="menuItem.altText"
           :src="`/header/yellow_${menuItem.img}`"
-          height="60"
+          height="58"
           class="menuImg hover"
         />
       </NuxtLink>
@@ -125,7 +125,7 @@ export default {
 <style lang="scss" scoped>
 .logoLink {
   position: relative;
-  padding: 8px 16px 8px 0;
+  padding: 10px 16px 10px 0;
 
   .menuImg {
     position: absolute;

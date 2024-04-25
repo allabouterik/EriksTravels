@@ -219,7 +219,7 @@ export default {
   }
 
   @include media-breakpoint-up(lg) {
-    --navHeight: 148px;
+    --navHeight: 100px;
     --titleHeight: 0px;
     --topPosition: 3vh;
   }
