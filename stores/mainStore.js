@@ -26,6 +26,11 @@ export const useMainStore = defineStore("main", () => {
       to: "/film-festivals",
     },
     {
+      img: "shorts_menu.png",
+      altText: "Shorts",
+      to: "/shorts",
+    },
+    {
       img: "contact-credits_menu.png",
       altText: "Contact and Credits",
       to: "/contact",

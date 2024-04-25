@@ -43,7 +43,7 @@
             :src="`/header/eriks-travels-logo-${
               removeSlashFromEnd($route.path) === '/home' ? 'yellow' : 'white'
             }.png`"
-            height="60"
+            height="58"
         /></NuxtLink>
 
         <div class="nav-items d-flex flex-column align-center">
@@ -62,7 +62,7 @@
                     ? 'yellow'
                     : 'white'
                 }_${menuItem.img}`"
-                height="60"
+                :height="menuItem.to === '/shorts' ? 27 : 58"
               />
             </NuxtLink>
             <button
@@ -72,7 +72,7 @@
               <img
                 :alt="menuItem.altText"
                 :src="`/header/white_${menuItem.img}`"
-                height="60"
+                height="58"
                 class="menuImg"
               />
             </button>
@@ -83,7 +83,7 @@
               <img
                 :alt="menuItem.altText"
                 :src="`/header/white_${menuItem.img}`"
-                height="60"
+                height="58"
                 class="menuImg"
               />
             </button>

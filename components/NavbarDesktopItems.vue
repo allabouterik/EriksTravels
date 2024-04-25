@@ -35,13 +35,13 @@
           :src="`/header/${
             removeSlashFromEnd($route.path) === menuItem.to ? 'yellow' : 'white'
           }_${menuItem.img}`"
-          height="58"
+          :height="menuItem.to === '/shorts' ? 27 : 58"
           class="menuImg"
         />
         <img
           :alt="menuItem.altText"
           :src="`/header/yellow_${menuItem.img}`"
-          height="58"
+          :height="menuItem.to === '/shorts' ? 27 : 58"
           class="menuImg hover"
         />
       </NuxtLink>
@@ -53,13 +53,13 @@
         <img
           :alt="menuItem.altText"
           :src="`/header/white_${menuItem.img}`"
-          height="60"
+          height="58"
           class="menuImg"
         />
         <img
           :alt="menuItem.altText"
           :src="`/header/yellow_${menuItem.img}`"
-          height="60"
+          height="58"
           class="menuImg hover"
         />
       </button>
@@ -161,8 +161,10 @@ export default {
   }
 
   &.navRightMargin {
-    --logo-width: 217.33px;
-    margin-right: var(--logo-width);
+    @include media-breakpoint-up(xl) {
+      --logo-width: 177px;
+      margin-right: var(--logo-width);
+    }
   }
 }
 

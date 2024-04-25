@@ -53,8 +53,8 @@ const onAudioIconClick = () => {
   z-index: 1000;
   max-width: 180px;
 
-  @include media-breakpoint-up(xxl) {
-    --logo-width: 217.33px;
+  @include media-breakpoint-up(lg) {
+    --logo-width: 177px;
     max-width: var(--logo-width);
   }
 
