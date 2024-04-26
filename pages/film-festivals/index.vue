@@ -141,12 +141,17 @@ const slideshowImgs = [
   }
 
   .mainContent {
-    text-align: center;
-    padding: 0.75rem 0;
-
     --containerWidth: 100vw;
+    --paddingHeight: 0.75rem;
+    --posterMaxHeight: calc(100vh - var(--navHeight) - 2 * 0.75rem);
+    --posterAspectRatio: calc(800 / 1185);
+
     width: var(--containerWidth);
-    transform: translateX(calc(-0.5 * (var(--containerWidth) - 100vw)));
+    transform: translateX(
+      calc(-0.5 * (max(100vw, var(--containerWidth)) - 100vw))
+    );
+    padding: var(--paddingHeight) 0;
+    text-align: center;
 
     @include media-breakpoint-up(md) {
       --carouselSlideOverlap: 50px;
@@ -166,11 +171,10 @@ const slideshowImgs = [
     @media (min-width: 1400px) {
       --carouselSlidesPerView: 5;
       --carouselOverlapMultiplier: 6; // based on slides per view
-
-      // TODO: Calculate max width based on image aspect ratio
       --containerWidth: calc(
         min(
-          120vw,
+          var(--carouselSlidesPerView) * var(--posterAspectRatio) *
+            var(--posterMaxHeight),
           (
             var(--carouselSlidesPerView) / (1 + 2 * 0.8 + 2 * 0.667) *
               (
