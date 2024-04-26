@@ -98,14 +98,10 @@
   </div>
 </template>
 
-<script setup>
-const removeSlashFromEnd = (str) =>
-  str.charAt(str.length - 1) === "/" ? str.slice(0, -1) : str;
-</script>
-
-<script type="text/javascript">
+<script>
 import { mapActions, mapState, mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
+import { removeSlashFromEnd } from "@/utils/removeSlashFromEnd";
 
 export default {
   data() {

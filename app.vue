@@ -58,6 +58,8 @@
 <script setup lang="ts">
 import { computed, onBeforeMount, watch } from "vue";
 import { useMainStore } from "@/stores/mainStore";
+import { removeSlashFromEnd } from "@/utils/removeSlashFromEnd";
+import { useStorage } from "@vueuse/core";
 
 useHead({
   titleTemplate: (titleChunk) => {
@@ -117,8 +119,10 @@ const showNavBars = computed(
     route.path !== "/" && !(store.videoLightBoxOpen || store.pageLightBoxOpen)
 );
 
+const visitedFilmFestivals = useStorage("visited-festivals", 0);
+
 // Background music
-const updateBgMusic = (route: string) => {
+const updateBgMusic = (routeTrimmed: string) => {
   const directory =
     "https://res.cloudinary.com/all-about-erik/video/upload/Eriks%20Travels/";
   let audioFile = "";
@@ -126,24 +130,23 @@ const updateBgMusic = (route: string) => {
   let fadeDuration = 0;
 
   if (
+    !store.videoLightBoxOpen &&
     store.pageLightBoxOpen &&
     store.pageLightBoxProps.componentName === "ProducerContent"
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
     maxVolume = 0.2;
-  } else if (
-    store.pageLightBoxOpen &&
-    store.pageLightBoxProps.componentName === "FilmFestivalsContent"
-  ) {
-    audioFile = "";
-    maxVolume = 0;
-  } else if (
-    !store.videoLightBoxOpen &&
-    !store.pageLightBoxOpen &&
-    (route === "/home" || route === "/film-portfolio")
-  ) {
-    audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
-    fadeDuration = 3.5;
+  } else if (!store.videoLightBoxOpen && !store.pageLightBoxOpen) {
+    if (routeTrimmed === "/film-festivals") {
+      audioFile =
+        visitedFilmFestivals.value <= 1
+          ? `${directory}Film%20Festivals/festivals-audio-with-intro_louder.mp3`
+          : `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
+      fadeDuration = 0;
+    } else if (routeTrimmed === "/home" || routeTrimmed === "/film-portfolio") {
+      audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
+      fadeDuration = 3.5;
+    }
   }
 
   store.bgMusicAudioFile = audioFile;
@@ -152,7 +155,7 @@ const updateBgMusic = (route: string) => {
 };
 
 onBeforeMount(() => {
-  updateBgMusic(route.path);
+  onRouteChange(route.path);
 });
 
 watch(
@@ -161,8 +164,18 @@ watch(
     () => store.pageLightBoxOpen,
     () => store.videoLightBoxOpen,
   ],
-  () => updateBgMusic(route.path)
+  () => {
+    onRouteChange(route.path);
+  }
 );
+
+const onRouteChange = (routePath: string) => {
+  const routeTrimmed = removeSlashFromEnd(routePath);
+  updateBgMusic(routeTrimmed); // needs to be after we update the visitedFilmFestivals local storage value
+  if (routeTrimmed === "/film-festivals" && visitedFilmFestivals.value < 2) {
+    visitedFilmFestivals.value += 1;
+  }
+};
 
 const videos = computed(() => {
   return store.videoLightBoxProps.videos;
@@ -187,13 +200,10 @@ const layoutScrollable = computed(() => {
 });
 
 // slider
-const audioVolume = computed({
-  get: () => store.bgMusicAudioMaxVolume * 100,
-  set: (value: number) => {
-    console.log("audioVolume set", value);
-    store.bgMusicAudioMaxVolume = value / 100;
-  },
-});
+// const audioVolume = computed({
+//   get: () => store.bgMusicAudioMaxVolume * 100,
+//   set: (value: number) => store.bgMusicAudioMaxVolume = value / 100,
+// });
 // const onVolumeSliderUpdate = (value: number) => {
 //   console.log("onVolumeSliderUpdate", value);
 //   store.bgMusicAudioMaxVolume = value / 100;

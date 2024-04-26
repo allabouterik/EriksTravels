@@ -91,12 +91,10 @@
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
 import { useMediaQuery } from "@vueuse/core";
+import { removeSlashFromEnd } from "@/utils/removeSlashFromEnd";
 
 const store = useMainStore();
 const isXlScreenAndUp = useMediaQuery("(min-width: 1200px)");
-
-const removeSlashFromEnd = (str) =>
-  str.charAt(str.length - 1) === "/" ? str.slice(0, -1) : str;
 </script>
 
 <script>
