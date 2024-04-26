@@ -19,7 +19,7 @@
 
   <div
     class="nav-items"
-    :class="{ navRightMargin: store.bgMusicAudioFile === '' }"
+    :class="{ navRightMargin: bgMusicIconHidden }"
   >
     <template
       v-for="menuItem in navMenuItems"
@@ -89,12 +89,19 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 import { useMediaQuery } from "@vueuse/core";
 import { removeSlashFromEnd } from "@/utils/removeSlashFromEnd";
 
-const store = useMainStore();
 const isXlScreenAndUp = useMediaQuery("(min-width: 1200px)");
+
+const store = useMainStore();
+const bgMusicIconHidden = ref(() => store.bgMusicAudioFile === "");
+
+watch([store], () => {
+  bgMusicIconHidden.value = store.bgMusicAudioFile === "";
+});
 </script>
 
 <script>

@@ -61,7 +61,6 @@ const audioMuted = ref(true);
 // const audioTimeAtStartPageLeave = ref(0); // secs
 
 const playAndFadeAudio = () => {
-  console.log("playAndFadeAudio");
   if (!audioEl.value) return;
 
   audioEl.value.volume = 0;

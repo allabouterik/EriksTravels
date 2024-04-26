@@ -128,8 +128,6 @@ export default {
 
   watch: {
     $route() {
-      console.log("navbarMobile watch $route");
-      console.log("this.$route.path: ", this.$route.path);
       this.closeNav();
     },
   },
