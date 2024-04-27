@@ -36,9 +36,7 @@
         enabled: true,
         onlyInViewport: true,
       }"
-      @swiperprogress="onProgress"
       @swiperslidechange="onSlideChange"
-      @swiperinit="onSwiperInit"
     >
       <swiper-slide
         v-for="(poster, posterIndex) in posterLinks"
@@ -127,7 +125,6 @@ watch([isSmScreenAndUp, isMdScreenAndUp, is1400ScreenAndUp], () => {
   swiperKey.value += 1; // force swiper to re-render
 });
 
-// const swiper = ref(null);
 const realIndex = ref(null);
 const maxIndex = computed(() => props.posterLinks.length - 1);
 
@@ -149,16 +146,8 @@ const isBackSlide = (index) => {
   return index === realIndex.value - 2 || index === realIndex.value + 2;
 };
 
-const onSwiperInit = (e) => {
-  // swiper.value = Array.isArray(e.detail) ? e.detail[0] : e.detail;
-};
-
-const onProgress = (e) => {
-  // const [swiper, progress] = e.detail;
-  // console.log({ swiper, progress });
-};
-
 const onSlideChange = (e) => {
+  const [swiper] = e.detail;
   realIndex.value = swiper.realIndex;
 };
 
@@ -169,62 +158,6 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
 <style lang="scss" scoped>
 .posterLink-carousel {
   --swiper-pagination-color: #e5d052;
-
-  --navHeight: 0px;
-  --titleHeight: 42px;
-  // --textHeight: 40px;
-  --topPosition: 11vh;
-  --imgTopMargin: 1rem;
-  --mainContentWidth: 100vw;
-  --mainContentPadding: 1rem;
-  --mainContentBtmMargin: 1rem;
-  --arrowImgWidth: 30px;
-  --arrowImgPadding: 0.5rem;
-  --swiperBtmPadding: 3rem;
-
-  --posterAspectRatio: calc(2 / 3);
-  --posterWidth: calc(100vw - 32px - 80px - 32px);
-  --posterMaxWidth: calc(
-    var(--mainContentWidth) - 2 * var(--arrowImgWidth) - 4 *
-      var(--arrowImgPadding) - 2 * var(--mainContentPadding)
-  );
-  --posterActualWidth: calc(min(var(--posterWidth), var(--posterMaxWidth)));
-  // --posterHeight: calc(
-  //   100vh - var(--navHeight) - var(--titleHeight) - var(--textHeight) -
-  //     var(--topPosition) - 2 * var(--mainContentPadding) - var(--imgTopMargin) -
-  //     var(--swiperBtmPadding) - var(--mainContentBtmMargin)
-  // );
-  --posterHeight: calc(
-    100vh - var(--navHeight) - var(--titleHeight) - var(--topPosition) - 2 *
-      var(--mainContentPadding) - var(--imgTopMargin) - var(--swiperBtmPadding) -
-      var(--mainContentBtmMargin)
-  );
-  --posterMaxHeight: calc(var(--posterMaxWidth) / var(--posterAspectRatio));
-  --posterActualHeight: calc(min(var(--posterHeight), var(--posterMaxHeight)));
-
-  @include media-breakpoint-up(sm) {
-    --mainContentWidth: 520px;
-    // --textHeight: 50px;
-    --arrowImgWidth: 40px;
-    --arrowImgPadding: 1rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    --mainContentWidth: 650px;
-    // --textHeight: 60px;
-    --titleHeight: 48px;
-  }
-
-  @include media-breakpoint-up(lg) {
-    --navHeight: 100px;
-    --titleHeight: 0px;
-    --topPosition: 3vh;
-  }
-
-  @include media-breakpoint-up(xl) {
-    --mainContentWidth: 750px;
-    // --textHeight: 70px;
-  }
 
   // https://swiperjs.com/element#parts
   swiper-container::part(container) {
@@ -252,12 +185,8 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
   &__link {
     display: block;
     background-color: #000;
-    width: var(--posterActualWidth);
-    height: var(--posterActualHeight);
     width: 100%;
     height: 100%;
-    max-width: 100%;
-    max-height: 100%;
     object-fit: contain;
     z-index: -1;
 
@@ -270,10 +199,8 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
   }
 
   .posterLinkImg {
-    width: var(--posterActualWidth);
-    height: var(--posterActualHeight);
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 
     &:hover {
@@ -321,10 +248,14 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
 
   .arrowImg {
     position: absolute;
-    width: var(--arrowImgWidth);
+    width: 30px;
     outline: none;
     z-index: 1002;
     cursor: pointer;
+
+    @include media-breakpoint-up(sm) {
+      width: 40px;
+    }
   }
   &__next {
     transform: translate(calc(-50% + 100px), -100%);

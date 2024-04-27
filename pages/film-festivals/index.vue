@@ -16,7 +16,7 @@
           <v-col class="slideshowCol">
             <div class="slideshowOverlay">
               <div class="mainContent mx-auto">
-                <div class="flex flex-col mt-3 mt-sm-4">
+                <div class="flex flex-col">
                   <v-row
                     no-gutters
                     class="d-flex justify-center"
@@ -35,7 +35,7 @@
         </v-row>
 
         <!-- BACKGROUND SLIDESHOW -->
-        <!-- 100px is the navHeight, however for some reason there is a 4px gap so only translating up 96px -->
+        <!-- 100px is the navHeight, however for some reason there is a 4px gap that is accounted for in the transform -->
         <SlideshowKenBurns
           :slides="slideshowImgs"
           :height="isLgScreenAndUp ? 'calc(100vh - 100px)' : '100vh'"
@@ -46,8 +46,8 @@
           :vignette="false"
           :style="
             isLgScreenAndUp
-              ? 'transform: translateY(calc(-100vh + 96px))'
-              : 'transform: translateY(-100vh)'
+              ? 'transform: translateY(calc(-100vh + 100px - 4px))'
+              : 'transform: translateY(calc(-100vh - 4px))'
           "
         />
       </v-container>
@@ -127,10 +127,21 @@ const slideshowImgs = [
   }
 
   .mainContent {
-    --containerWidth: 100vw;
-    --paddingHeight: 0.75rem;
-    --posterMaxHeight: calc(100vh - var(--navHeight) - 2 * 0.75rem);
+    --carouselSlidesPerView: 1.5;
+    --paddingHeight: 0rem;
+    --carouselBtmPadding: 3rem;
+    --posterMaxHeight: calc(
+      100vh - var(--navHeight) - 2 * var(--paddingHeight) - 2 *
+        var(--carouselBtmPadding)
+    );
     --posterAspectRatio: calc(800 / 1185);
+    --containerWidth: calc(
+      min(
+        var(--carouselSlidesPerView) * var(--posterAspectRatio) *
+          var(--posterMaxHeight),
+        100vw
+      )
+    );
 
     width: var(--containerWidth);
     transform: translateX(
@@ -139,17 +150,28 @@ const slideshowImgs = [
     padding: var(--paddingHeight) 0;
     text-align: center;
 
+    @include media-breakpoint-up(sm) {
+      --carouselSlidesPerView: 2;
+    }
+
     @include media-breakpoint-up(md) {
       --carouselSlideOverlap: 50px;
       --carouselSlidesPerView: 3;
       --carouselOverlapMultiplier: 2; // based on slides per view
       --containerWidth: calc(
-        (
-          var(--carouselSlidesPerView) / (1 + 2 * 0.8) *
-            (
-              100vw +
-                (var(--carouselOverlapMultiplier) * var(--carouselSlideOverlap))
-            )
+        min(
+          var(--carouselSlidesPerView) * var(--posterAspectRatio) *
+            var(--posterMaxHeight),
+          (
+            var(--carouselSlidesPerView) / (1 + 2 * 0.8) *
+              (
+                100vw +
+                  (
+                    var(--carouselOverlapMultiplier) *
+                      var(--carouselSlideOverlap)
+                  )
+              )
+          )
         )
       );
     }
