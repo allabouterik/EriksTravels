@@ -14,23 +14,8 @@
           class="mb-1"
         >
           <v-col class="slideshowCol">
-            <div style="height: 100vh"></div>
-
             <div class="slideshowOverlay">
               <div class="mainContent mx-auto">
-                <!-- <img
-                  alt="Erik Jacobsen title image"
-                  :src="titleImg"
-                  class="titleImg mb-1 mb-lg-2 mb-xl-4 lg:hidden"
-                  data-testid="title-img"
-                /> -->
-                <!-- <div>
-                  <p class="slideshowText mb-0">
-                    I entered some film festivals, and won awards.
-                    <br />Preview the entries below.
-                  </p>
-                </div> -->
-
                 <div class="flex flex-col mt-3 mt-sm-4">
                   <v-row
                     no-gutters
@@ -59,7 +44,11 @@
           :opacityMin="0.65"
           :translateFactor="0"
           :vignette="false"
-          style="transform: translateY(-100vh)"
+          :style="
+            isLgScreenAndUp
+              ? 'transform: translateY(calc(-100vh + 100px))'
+              : 'transform: translateY(-100vh)'
+          "
         />
       </v-container>
     </div>
@@ -124,19 +113,20 @@ const slideshowImgs = [
   .slideshowCol {
     position: relative;
     width: auto;
+    height: calc(100vh - var(--navHeight));
     text-align: center;
     overflow-x: hidden;
     overflow-y: hidden;
   }
 
   .slideshowOverlay {
-    position: absolute;
+    position: relative;
     width: 100%;
-    top: 11%;
+    height: 100%;
     z-index: 10;
 
     @include media-breakpoint-up(lg) {
-      top: 3%;
+      padding: 1rem;
     }
   }
 
