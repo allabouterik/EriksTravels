@@ -35,7 +35,7 @@
         </v-row>
 
         <!-- BACKGROUND SLIDESHOW -->
-        <!-- 100px is the navHeight -->
+        <!-- 100px is the navHeight, however for some reason there is a 4px gap so only translating up 96px -->
         <SlideshowKenBurns
           :slides="slideshowImgs"
           :height="isLgScreenAndUp ? 'calc(100vh - 100px)' : '100vh'"
@@ -46,7 +46,7 @@
           :vignette="false"
           :style="
             isLgScreenAndUp
-              ? 'transform: translateY(calc(-100vh + 100px))'
+              ? 'transform: translateY(calc(-100vh + 96px))'
               : 'transform: translateY(-100vh)'
           "
         />
@@ -70,8 +70,6 @@ onBeforeMount(async () => {
     link: `/film-festivals/${festival.slug}`,
   }));
 });
-
-// const titleImg = ref("/film-festivals/film-festivals_title.png");
 
 const slideshowImgs = [
   {
@@ -124,10 +122,8 @@ const slideshowImgs = [
     width: 100%;
     height: 100%;
     z-index: 10;
-
-    @include media-breakpoint-up(lg) {
-      padding: 1rem;
-    }
+    display: flex;
+    align-items: center;
   }
 
   .mainContent {
