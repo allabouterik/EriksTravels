@@ -41,23 +41,27 @@
       @swiperinit="onSwiperInit"
     >
       <swiper-slide
-        v-for="(posterLink, posterLinkIndex) in posterLinks"
-        :key="posterLinkIndex"
+        v-for="(poster, posterIndex) in posterLinks"
+        :key="posterIndex"
         class="swiper-slide"
       >
         <a
-          :href="posterLink.link"
-          :title="posterLink.title"
+          :href="poster.link"
+          :title="poster.title"
           class="posterLink-carousel__link"
-          :class="{ active: posterLinkIndex === clickedPosterIndex }"
-          @click="onPosterLinkClick(posterLinkIndex)"
+          :class="{ active: posterIndex === clickedPosterIndex }"
+          @click="onPosterLinkClick(posterIndex)"
         >
           <img
-            :alt="`Click to go to ${posterLink.title}`"
-            :src="posterLink.img"
-            class="posterLinkImg" />
+            :alt="`Click to go to ${poster.title}`"
+            :src="poster.img"
+            class="posterLinkImg"
+            :class="{
+              prevOrNextSlide: isNextOrPrevSlide(posterIndex),
+              backSlide: isBackSlide(posterIndex),
+            }" />
           <img
-            :alt="`Play icon - click to go to ${posterLink.title}`"
+            :alt="`Play icon - click to go to ${poster.title}`"
             src="~/assets/images/playarrowcircle-rough.png"
             class="playImg" /></a
       ></swiper-slide>
@@ -96,7 +100,7 @@
 </template>
 
 <script setup>
-import { computed, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { register } from "swiper/element/bundle";
 
@@ -124,6 +128,26 @@ watch([isSmScreenAndUp, isMdScreenAndUp, is1400ScreenAndUp], () => {
 });
 
 // const swiper = ref(null);
+const realIndex = ref(null);
+const maxIndex = computed(() => props.posterLinks.length - 1);
+
+const isNextOrPrevSlide = (index) => {
+  if (realIndex.value === 0) {
+    return index === maxIndex.value || index === realIndex.value + 1;
+  } else if (realIndex.value === maxIndex.value) {
+    return index === realIndex.value - 1 || index === 0;
+  }
+  return index === realIndex.value - 1 || index === realIndex.value + 1;
+};
+
+const isBackSlide = (index) => {
+  if (realIndex.value === 0) {
+    return index === maxIndex.value - 1 || index === realIndex.value + 2;
+  } else if (realIndex.value === maxIndex.value) {
+    return index === realIndex.value - 2 || index === 1;
+  }
+  return index === realIndex.value - 2 || index === realIndex.value + 2;
+};
 
 const onSwiperInit = (e) => {
   // swiper.value = Array.isArray(e.detail) ? e.detail[0] : e.detail;
@@ -135,7 +159,7 @@ const onProgress = (e) => {
 };
 
 const onSlideChange = (e) => {
-  // console.log("slide changed");
+  realIndex.value = swiper.realIndex;
 };
 
 const clickedPosterIndex = ref(null);
@@ -225,10 +249,23 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
     }
   }
 
-  &__link:active,
-  &__link.active {
-    .playImg {
-      opacity: 1 !important;
+  &__link {
+    display: block;
+    background-color: #000;
+    width: var(--posterActualWidth);
+    height: var(--posterActualHeight);
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    z-index: -1;
+
+    &:active,
+    &.active {
+      .playImg {
+        opacity: 1 !important;
+      }
     }
   }
 
@@ -243,6 +280,14 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
       + .playImg {
         opacity: 0.3;
       }
+    }
+
+    &.prevOrNextSlide {
+      opacity: 0.9;
+    }
+
+    &.backSlide {
+      opacity: 0.8;
     }
   }
 
