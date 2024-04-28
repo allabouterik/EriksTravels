@@ -39,59 +39,65 @@
       </v-col>
     </v-row>
 
-    <v-row class="info-container">
-      <v-col
-        cols="12"
-        lg="6"
-        xl="5"
-        xxl="4"
-        class="!p-0"
-      >
-        <div class="flex">
-          <img
-            :src="posterImg"
-            alt="Film festival poster"
-            class="posterLinkImg max-h-72 mr-5"
-          />
-          <div class="pt-10">
-            <h2 class="text uppercase">{{ title }}</h2>
-            <p class="text">{{ description }}</p>
+    <div class="w-full pt-10 px-16 bg-white">
+      <div class="grid grid-cols-2 gap-x-0 gap-y-5">
+        <div>
+          <div class="flex">
+            <img
+              :src="posterImg"
+              alt="Film festival poster"
+              class="posterLinkImg w-[276px] object-contain self-start mr-12"
+            />
+            <div class="max-w-[570px] pt-10">
+              <h2 class="text-black text-4xl uppercase mb-3">{{ title }}</h2>
+              <p class="text-black text-2xl text-justify">{{ description }}</p>
+            </div>
           </div>
         </div>
-      </v-col>
-      <v-col
-        cols="12"
-        lg="4"
-        offset-lg="1"
-        offset-xl="2"
-        class="!p-0"
-      >
-        <div class="pt-10">
-          <h2 class="text uppercase">Info</h2>
-          <p class="text">
-            <span
-              v-for="(value, key) in info"
-              :key="key"
-            >
-              <br v-if="key === 'releaseDate'" />
-              <span class="capitalize"
-                >{{ key.replace(/([A-Z])/g, " $1").trim() }}:
-              </span>
-              {{
-                Array.isArray(value) &&
-                ["editors", "music", "footage"].includes(key)
-                  ? value.reduce(
-                      (acc, curr, i) => acc + (i === 0 ? "" : " / ") + curr,
-                      ""
-                    )
-                  : value
-              }}
-              <br />
-            </span>
-          </p>
+
+        <div class="row-span-2 col-start-2">
+          <div class="max-w-[570px] pt-10 mx-auto">
+            <h2 class="text-black text-4xl uppercase mb-3">Details</h2>
+            <p class="text-black text-2xl text-justify">{{ details }}</p>
+          </div>
         </div>
-      </v-col>
-    </v-row>
+
+        <div class="row-start-2">
+          <div>
+            <p class="text-black">
+              <span
+                v-for="(value, key) in info"
+                :key="key"
+              >
+                <span class="capitalize"
+                  >{{ key.replace(/([A-Z])/g, " $1").trim() }}:
+                </span>
+                {{
+                  Array.isArray(value) &&
+                  ["editors", "music", "footage"].includes(key)
+                    ? value.reduce(
+                        (acc, curr, i) => acc + (i === 0 ? "" : " / ") + curr,
+                        ""
+                      )
+                    : value
+                }}
+                <br />
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div
+          v-if="reviews && reviews !== ''"
+          class="col-span-full"
+        >
+          <div class="max-w-[1528px]">
+            <h2 class="text-black text-4xl uppercase mb-3">Reviews</h2>
+            <p class="text-black text-2xl text-justify">{{ reviews }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <v-row
       v-if="laurelsLength > 0"
@@ -126,6 +132,8 @@ const route = useRoute();
 const videos = ref([]);
 const title = ref("");
 const description = ref("");
+const details = ref("");
+const reviews = ref("");
 const info = ref({});
 const posterImg = ref("");
 const videoUrl = ref("");
@@ -168,6 +176,8 @@ onMounted(async () => {
   const festival = festivalsContent.festivals[currIndex];
   title.value = festival.title;
   description.value = festival.description;
+  details.value = festival.details;
+  reviews.value = festival.reviews;
   info.value = festival.info;
   posterImg.value = festival.posterImg;
   videoUrl.value = festival.videoUrl;
@@ -193,14 +203,14 @@ onMounted(async () => {
   }
 }
 
-.text {
-  color: black;
-}
+// .text {
+//   color: black;
+// }
 
-.info-container {
-  background-color: white;
-  padding: 2rem;
-}
+// .info-container {
+//   background-color: white;
+//   padding: 2rem;
+// }
 
 .laurels-container {
   background-color: white;
