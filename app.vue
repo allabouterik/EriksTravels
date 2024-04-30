@@ -155,7 +155,7 @@ const updateBgMusic = (routeTrimmed: string) => {
 };
 
 onBeforeMount(() => {
-  onRouteChange(route.path);
+  onViewChange(route.path);
 });
 
 watch(
@@ -165,11 +165,11 @@ watch(
     () => store.videoLightBoxOpen,
   ],
   () => {
-    onRouteChange(route.path);
+    onViewChange(route.path);
   }
 );
 
-const onRouteChange = (routePath: string) => {
+const onViewChange = (routePath: string) => {
   const routeTrimmed = removeSlashFromEnd(routePath);
   updateBgMusic(routeTrimmed); // needs to be after we update the visitedFilmFestivals local storage value
   if (routeTrimmed === "/film-festivals" && visitedFilmFestivals.value < 2) {
