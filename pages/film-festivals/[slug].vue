@@ -203,15 +203,6 @@ onMounted(async () => {
   }
 }
 
-// .text {
-//   color: black;
-// }
-
-// .info-container {
-//   background-color: white;
-//   padding: 2rem;
-// }
-
 .laurels-container {
   background-color: white;
   padding: 2rem;

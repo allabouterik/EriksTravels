@@ -158,6 +158,7 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
 <style lang="scss" scoped>
 .posterLink-carousel {
   --swiper-pagination-color: #e5d052;
+  --playImgOpacity: 0.5;
 
   // https://swiperjs.com/element#parts
   swiper-container::part(container) {
@@ -171,14 +172,15 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
     width: 32.8%;
     transform: translate3d(-50%, -50%, 0);
     transition: opacity 0.25s ease-in-out;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));
     opacity: 0;
 
     &:hover {
-      opacity: 0.3;
+      opacity: var(--playImgOpacity);
     }
 
     @media (hover: none) {
-      opacity: 0.3;
+      opacity: var(--playImgOpacity);
     }
   }
 
@@ -206,7 +208,7 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
 
     &:hover {
       + .playImg {
-        opacity: 0.3;
+        opacity: var(--playImgOpacity);
       }
     }
 
