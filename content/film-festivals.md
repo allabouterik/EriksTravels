@@ -55,7 +55,7 @@ festivals:
         - Olivia Gonzales
       releaseDate: 2024
     posterImg: /film-festivals/festivals-poster-seafood.jpg
-    videoUrl: https://player.vimeo.com/video/913546991
+    videoUrl: https://player.vimeo.com/video/941558521
 
   - title: Erik's Midwestern Boyhood
     slug: boyhood
