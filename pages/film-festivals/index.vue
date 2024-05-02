@@ -34,22 +34,24 @@
           </v-col>
         </v-row>
 
-        <!-- BACKGROUND SLIDESHOW -->
-        <!-- 100px is the navHeight, however for some reason there is a 4px gap that is accounted for in the transform -->
-        <SlideshowKenBurns
-          :slides="slideshowImgs"
-          :height="isLgScreenAndUp ? 'calc(100vh - 100px)' : '100vh'"
-          :includeKeyFrames="false"
-          :opacityMax="1"
-          :opacityMin="0.65"
-          :translateFactor="0"
-          :vignette="false"
-          :style="
-            isLgScreenAndUp
-              ? 'transform: translateY(calc(-100vh + 100px - 4px))'
-              : 'transform: translateY(calc(-100vh - 4px))'
-          "
-        />
+        <!-- BACKGROUND VIDEO -->
+        <video
+          v-if="bgVideo"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="bgVideo"
+        >
+          <source
+            :src="bgVideo.videoSrcMP4"
+            type="video/mp4"
+          />
+          <source
+            :src="bgVideo.videoSrcWebm"
+            type="video/webm"
+          />
+        </video>
       </v-container>
     </div>
   </router-view>
@@ -57,10 +59,8 @@
 
 <script setup>
 import { onBeforeMount, ref } from "vue";
-import { useMediaQuery } from "@vueuse/core";
 
 const posters = ref([]);
-const isLgScreenAndUp = useMediaQuery("(min-width: 992px)");
 
 onBeforeMount(async () => {
   const filmFestivalsContent = await queryContent("film-festivals").findOne();
@@ -71,28 +71,12 @@ onBeforeMount(async () => {
   }));
 });
 
-const slideshowImgs = [
-  {
-    img: "/film-festivals/background/festivals_laurels_background_01.jpg",
-    scaleFrom: 1.0,
-    scaleTo: 1.0,
-  },
-  {
-    img: "/film-festivals/background/festivals_laurels_background_02.jpg",
-    scaleFrom: 1.0,
-    scaleTo: 1.0,
-  },
-  {
-    img: "/film-festivals/background/festivals_laurels_background_03.jpg",
-    scaleFrom: 1.0,
-    scaleTo: 1.0,
-  },
-  {
-    img: "/film-festivals/background/festivals_laurels_background_04.jpg",
-    scaleFrom: 1.0,
-    scaleTo: 1.0,
-  },
-];
+const bgVideo = ref({
+  videoSrcMP4:
+    "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid-revA_compressed.mp4",
+  videoSrcWebm:
+    "https://res.cloudinary.com/all-about-erik/video/upload/ac_none,q_auto:eco/Eriks%20Travels/Film%20Festivals/film-festivals-background-vid-webm-revA_compressed.webm",
+});
 </script>
 
 <style scoped lang="scss">
@@ -102,6 +86,7 @@ const slideshowImgs = [
   max-width: 100%;
   min-height: 600px;
   position: fixed;
+  background-color: #ffffff;
   z-index: 0;
 
   @include media-breakpoint-up(lg) {
@@ -244,6 +229,19 @@ const slideshowImgs = [
 
     @include media-breakpoint-up(xl) {
       font-size: 1.75rem;
+    }
+  }
+
+  .bgVideo {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    @include media-breakpoint-up(lg) {
+      top: var(--navHeight);
+      height: calc(100vh - var(--navHeight));
     }
   }
 }
