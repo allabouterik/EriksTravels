@@ -11,24 +11,24 @@ export const useMainStore = defineStore("main", () => {
       },
     },
     {
-      img: "film-portfolio_menu.png",
-      altText: "Film Portfolio",
-      to: "/film-portfolio",
-    },
-    {
       img: "the-producer_menu.png",
       altText: "The Producer",
       componentName: "ProducerContent",
     },
     {
-      img: "film-festivals_menu.png",
-      altText: "Film Festivals",
-      to: "/film-festivals",
-    },
-    {
       img: "shorts_menu.png",
       altText: "Shorts",
       to: "/shorts",
+    },
+    {
+      img: "film-portfolio_menu.png",
+      altText: "Film Portfolio",
+      to: "/film-portfolio",
+    },
+    {
+      img: "film-festivals_menu.png",
+      altText: "Film Festivals",
+      to: "/film-festivals",
     },
     {
       img: "contact-credits_menu.png",
