@@ -140,7 +140,7 @@ const updateBgMusic = (routeTrimmed: string) => {
     if (routeTrimmed === "/film-festivals") {
       audioFile =
         visitedFilmFestivals.value <= 1
-          ? `${directory}Film%20Festivals/festivals-audio-with-intro_louder.mp3`
+          ? `${directory}Film%20Festivals/festivals-audio-with-intro_may2.mp3`
           : `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
       fadeDuration = 0;
     } else if (routeTrimmed === "/home" || routeTrimmed === "/film-portfolio") {
