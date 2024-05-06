@@ -44,7 +44,7 @@ festivals:
     description: >-
       I've visited fish markets all over the world, and have always looked for the best seafood restaurants everywhere I've gone. Growing up the son of a Norwegian immigrant, maybe my love for fish has a genetic component. But my dad taught me to bait a hook, catch and clean fish, and how to deal with the small bones, so this passion has developed over many years. In this film, I've compiled some high points of my lifelong love affair with fish.
     details: >-
-      A brief history. Buddhism comes to Japan. Nara. The Todai-ji, largest bronze Buddha and wooden building in the world. Kinkaku-ji, the famous golden pavilion. Kyoto Imperial Palace. Nijo Castle, and the Nightingale floor. Old Kyoto. Kimonos. The bullet train. Humeji Castle, called The Great White Egret. Shinto shrines. Sumo at the Tokyo Arena. Kamakura and the famous Daibutsu Buddha. Tsukiji fish market. Sushi, Kobe beef, and Shabu- Shabu. Udon noodle making class. A taste of music and theater shows. Aomori and its’ great illuminated paper floats. Kabukicho nightlife. The Robot Restaurant and its’ wild and crazy show!
+      Great fish markets. Tokyo, Maputo, Singapore, Busan, Gallipoli, Taipei, Zanzibar, Dubai, Hong Kong, Bergen, Cabo San Lucas, Borneo, Mangalore, and Morocco. Great seafood restaurants. Rinaldi's in Rome,Trishna in Mumbai, Portofino in Italy, and Marbella in Spain.
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
