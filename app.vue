@@ -138,10 +138,15 @@ const updateBgMusic = (routeTrimmed: string) => {
     maxVolume = 0.2;
   } else if (!store.videoLightBoxOpen && !store.pageLightBoxOpen) {
     if (routeTrimmed === "/film-festivals") {
+      // film festival index page
       audioFile =
         visitedFilmFestivals.value <= 1
           ? `${directory}Film%20Festivals/festivals-audio-with-intro_may2.mp3`
           : `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
+      fadeDuration = 0;
+    } else if (routeTrimmed.includes("film-festivals")) {
+      // individual film festival pages
+      audioFile = `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
       fadeDuration = 0;
     } else if (routeTrimmed === "/home" || routeTrimmed === "/film-portfolio") {
       audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
@@ -158,12 +163,14 @@ onBeforeMount(() => {
   onViewChange(route.path);
 });
 
+watch([() => store.pageLightBoxOpen, () => store.videoLightBoxOpen], () => {
+  visitedFilmFestivals.value = 0;
+  const routeTrimmed = removeSlashFromEnd(route.path);
+  updateBgMusic(routeTrimmed);
+});
+
 watch(
-  [
-    () => route.path,
-    () => store.pageLightBoxOpen,
-    () => store.videoLightBoxOpen,
-  ],
+  () => route.path,
   () => {
     onViewChange(route.path);
   }
@@ -171,10 +178,12 @@ watch(
 
 const onViewChange = (routePath: string) => {
   const routeTrimmed = removeSlashFromEnd(routePath);
-  updateBgMusic(routeTrimmed); // needs to be after we update the visitedFilmFestivals local storage value
-  if (routeTrimmed === "/film-festivals" && visitedFilmFestivals.value < 2) {
+  if (routeTrimmed.includes("film-festivals")) {
     visitedFilmFestivals.value += 1;
+  } else {
+    visitedFilmFestivals.value = 0;
   }
+  updateBgMusic(routeTrimmed);
 };
 
 const videos = computed(() => {
