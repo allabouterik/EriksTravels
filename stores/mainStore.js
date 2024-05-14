@@ -11,19 +11,14 @@ export const useMainStore = defineStore("main", () => {
       },
     },
     {
-      img: "the-producer_menu.png",
-      altText: "The Producer",
-      componentName: "ProducerContent",
-    },
-    {
-      img: "shorts_menu.png",
-      altText: "Shorts",
-      to: "/shorts",
-    },
-    {
       img: "film-portfolio_menu.png",
       altText: "Film Portfolio",
       to: "/film-portfolio",
+    },
+    {
+      img: "the-producer_menu.png",
+      altText: "The Producer",
+      componentName: "ProducerContent",
     },
     {
       img: "film-festivals_menu.png",
