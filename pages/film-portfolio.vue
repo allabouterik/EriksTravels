@@ -14,10 +14,7 @@
           <div class="videosContainer">
             <div
               v-for="(video, index) in travelVideos"
-              @click="
-                videoIndex = index;
-                store.layoutScrollable = false;
-              "
+              @click="openVideo(index)"
               class="videosContainerItem"
             >
               <VideoThumbnailFilmPortfolio :video="video" />
@@ -25,44 +22,12 @@
           </div>
         </v-container>
       </div>
-
-      <VideoLightBox
-        :videos="travelVideos"
-        :index="videoIndex"
-        :disable-scroll="true"
-        @close="
-          videoIndex = null;
-          store.layoutScrollable = true;
-        "
-      />
     </div>
   </router-view>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      pageTitle: "Film Portfolio",
-      travelsPgContent: {},
-      videoIndex: null,
-    };
-  },
-
-  computed: {
-    travelVideos() {
-      return this.travelsPgContent.videos;
-    },
-  },
-
-  async mounted() {
-    const travelsPgContent = await queryContent("travels").findOne();
-    this.travelsPgContent = travelsPgContent;
-  },
-};
-</script>
-
 <script setup>
+import { onMounted, ref } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 
 useHead({
@@ -79,6 +44,17 @@ useHead({
 });
 
 const store = useMainStore();
+const pageTitle = "Film Portfolio";
+const travelVideos = ref([]);
+
+onMounted(async () => {
+  const travelsPgContent = await queryContent("travels").findOne();
+  travelVideos.value = travelsPgContent.videos;
+});
+
+const openVideo = (videoIndex) => {
+  store.openVideoLightBox(travelVideos.value, videoIndex, true);
+};
 </script>
 
 <style scoped lang="scss">

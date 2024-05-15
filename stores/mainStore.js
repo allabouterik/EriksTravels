@@ -32,8 +32,6 @@ export const useMainStore = defineStore("main", () => {
     },
   ]);
 
-  const layoutScrollable = ref(true);
-
   // Page Lightbox
   const pageLightBoxProps = ref({
     componentName: "",
@@ -52,12 +50,34 @@ export const useMainStore = defineStore("main", () => {
   );
 
   // Video Lightbox
-  const videoLightBoxOpen = ref(false);
   const videoLightBoxProps = ref({
-    videos: null,
-    videoIndex: null,
+    videos: [],
+    videoIndex: -1,
     disableScroll: false,
   });
+  function openVideoLightBox(videos, videoIndex, disableScroll) {
+    videoLightBoxProps.value.videos = videos;
+    videoLightBoxProps.value.videoIndex = videoIndex;
+    videoLightBoxProps.value.disableScroll = disableScroll;
+  }
+  function closeVideoLightBox() {
+    videoLightBoxProps.value.videos = [];
+    videoLightBoxProps.value.videoIndex = -1;
+    videoLightBoxProps.value.disableScroll = false;
+  }
+  const videoLightBoxOpen = computed(
+    () =>
+      videoLightBoxProps.value.videos &&
+      videoLightBoxProps.value.videoIndex >= 0
+  );
+
+  const layoutScrollable = computed(
+    () =>
+      !(
+        (pageLightBoxOpen && pageLightBoxProps.value.disableScroll) ||
+        (videoLightBoxOpen && videoLightBoxProps.value.disableScroll)
+      )
+  );
 
   // Background Music
   const bgMusicAudioFile = ref("");
@@ -94,12 +114,17 @@ export const useMainStore = defineStore("main", () => {
   return {
     navMenuItems,
     layoutScrollable,
+
     pageLightBoxProps,
     pageLightBoxOpen,
     openPageLightBox,
     closePageLightBox,
-    videoLightBoxOpen,
+
     videoLightBoxProps,
+    videoLightBoxOpen,
+    openVideoLightBox,
+    closeVideoLightBox,
+
     bgMusicAudioFile,
     bgMusicAudioPlaying,
     bgMusicAudioMuted,

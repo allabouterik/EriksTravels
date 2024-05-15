@@ -5,7 +5,7 @@
         <Title>{{ pageTitle }}</Title>
       </Head>
 
-      <div class="outerContainer">
+      <div>
         <v-container
           v-for="i in 2"
           fluid
@@ -26,10 +26,7 @@
               v-for="(video, index) in travelVideos"
               :key="video.title"
               class="mb-2 px-2 px-sm-1 py-0"
-              @click="
-                videoIndex = index;
-                store.layoutScrollable = false;
-              "
+              @click="openVideo(index)"
               data-testid="video-container"
             >
               <VideoThumbnailTravels :video="video" />
@@ -37,42 +34,9 @@
           </v-row>
         </v-container>
       </div>
-
-      <VideoLightBox
-        :videos="travelVideos"
-        :index="videoIndex"
-        :disable-scroll="true"
-        @close="
-          videoIndex = null;
-          store.layoutScrollable = true;
-        "
-      />
     </div>
   </router-view>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      pageTitle: "Home",
-      travelsPgContent: {},
-      videoIndex: null,
-    };
-  },
-
-  computed: {
-    travelVideos() {
-      return this.travelsPgContent.videos;
-    },
-  },
-
-  async mounted() {
-    const travelsPgContent = await queryContent("travels").findOne();
-    this.travelsPgContent = travelsPgContent;
-  },
-};
-</script>
 
 <script setup>
 import { useMainStore } from "@/stores/mainStore";
@@ -91,9 +55,19 @@ useHead({
 });
 
 const store = useMainStore();
-const layoutScrollable = computed(() => {
-  return store.layoutScrollable;
+const { layoutScrollable } = storeToRefs(store);
+
+const pageTitle = "Home";
+const travelVideos = ref([]);
+
+onMounted(async () => {
+  const travelsPgContent = await queryContent("travels").findOne();
+  travelVideos.value = travelsPgContent.videos;
 });
+
+const openVideo = (videoIndex) => {
+  store.openVideoLightBox(travelVideos.value, videoIndex, true);
+};
 </script>
 
 <style scoped lang="scss">
@@ -119,11 +93,6 @@ const layoutScrollable = computed(() => {
   text-align: center;
   padding-top: 12.5px;
   padding-bottom: 12.5px;
-}
-
-.outerContainer {
-  /* max-height: 100vh; */
-  /* overflow-y: hidden; */
 }
 
 .mainContainer {

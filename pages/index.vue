@@ -12,7 +12,7 @@
 
         <div
           class="playImgContainer"
-          @click="videoIndex = 0"
+          @click="openVideo"
         >
           <img
             src="~/assets/images/playarrowcircle-rough.png"
@@ -40,21 +40,12 @@
           </a>
         </div>
       </div>
-
-      <VideoLightBox
-        :videos="videos"
-        :index="videoIndex"
-        :autoplay="true"
-        :disable-scroll="true"
-        :windowPercentage="1"
-        @close="onVideoClose"
-      />
     </div>
   </router-view>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { useMainStore } from "@/stores/mainStore";
 
 useHead({
   link: [
@@ -69,20 +60,17 @@ useHead({
   ],
 });
 
-const videos = reactive([
+const videos = [
   {
     // title: "Show Reel"˚,
     url: "https://player.vimeo.com/video/877457983",
   },
-]);
+];
 
-const videoIndex = ref(null);
+const store = useMainStore();
 
-const onVideoClose = () => {
-  videoIndex.value = null;
-  setTimeout(async () => {
-    await navigateTo("/home");
-  }, 1000);
+const openVideo = () => {
+  store.openVideoLightBox(videos, 0, true);
 };
 </script>
 

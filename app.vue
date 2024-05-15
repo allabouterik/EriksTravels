@@ -10,32 +10,26 @@
       <NuxtPage />
 
       <VideoLightBox
-        v-show="store.videoLightBoxOpen"
-        :videos="videos"
-        :index="videoIndex"
-        :disable-scroll="disableVideoLightBoxScroll"
-        @close="
-          store.videoLightBoxProps.videos = null;
-          store.videoLightBoxProps.videoIndex = null;
-          store.layoutScrollable = true;
-        "
+        v-show="videoLightBoxOpen"
+        :videos="videoLightBoxProps.videos"
+        :initialIndex="videoLightBoxProps.videoIndex"
+        @close="onVideoClose"
       />
 
       <!-- Needs to be v-show instead of v-if to prevent re-rendering of the component
       and so the watcher in the component can be triggered -->
       <PageLightBox
-        v-show="store.pageLightBoxOpen"
-        :componentName="store.pageLightBoxProps.componentName"
-        :disableScroll="store.pageLightBoxProps.disableScroll"
-        @close="store.layoutScrollable = true"
+        v-show="pageLightBoxOpen"
+        :componentName="pageLightBoxProps.componentName"
+        :disableScroll="pageLightBoxProps.disableScroll"
       />
     </main>
 
     <BackgroundMusic
-      v-if="store.bgMusicAudioFile !== ''"
-      :audioFile="store.bgMusicAudioFile"
-      :audioFadeInDuration="store.bgMusicFadeDuration"
-      :audioFadeOutDuration="store.bgMusicFadeDuration"
+      v-if="bgMusicAudioFile !== ''"
+      :audioFile="bgMusicAudioFile"
+      :audioFadeInDuration="bgMusicFadeDuration"
+      :audioFadeOutDuration="bgMusicFadeDuration"
     />
 
     <!-- <div
@@ -57,6 +51,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeMount, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 import { removeSlashFromEnd } from "@/utils/removeSlashFromEnd";
 import { useStorage } from "@vueuse/core";
@@ -112,11 +107,22 @@ useHead({
 });
 
 const store = useMainStore();
+const {
+  layoutScrollable,
+  videoLightBoxProps,
+  videoLightBoxOpen,
+  pageLightBoxProps,
+  pageLightBoxOpen,
+  bgMusicAudioFile,
+  bgMusicAudioMaxVolume,
+  bgMusicFadeDuration,
+} = storeToRefs(store);
+
 const route = useRoute();
 
 const showNavBars = computed(
   () =>
-    route.path !== "/" && !(store.videoLightBoxOpen || store.pageLightBoxOpen)
+    route.path !== "/" && !(videoLightBoxOpen.value || pageLightBoxOpen.value)
 );
 
 const visitedFilmFestivals = useStorage("visited-festivals", 0);
@@ -130,13 +136,13 @@ const updateBgMusic = (routeTrimmed: string) => {
   let fadeDuration = 0;
 
   if (
-    !store.videoLightBoxOpen &&
-    store.pageLightBoxOpen &&
-    store.pageLightBoxProps.componentName === "ProducerContent"
+    !videoLightBoxOpen.value &&
+    pageLightBoxOpen.value &&
+    pageLightBoxProps.value.componentName === "ProducerContent"
   ) {
     audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
     maxVolume = 0.2;
-  } else if (!store.videoLightBoxOpen && !store.pageLightBoxOpen) {
+  } else if (!videoLightBoxOpen.value && !pageLightBoxOpen.value) {
     if (routeTrimmed === "/film-festivals") {
       // film festival index page
       audioFile =
@@ -154,16 +160,16 @@ const updateBgMusic = (routeTrimmed: string) => {
     }
   }
 
-  store.bgMusicAudioFile = audioFile;
-  store.bgMusicAudioMaxVolume = maxVolume;
-  store.bgMusicFadeDuration = fadeDuration;
+  bgMusicAudioFile.value = audioFile;
+  bgMusicAudioMaxVolume.value = maxVolume;
+  bgMusicFadeDuration.value = fadeDuration;
 };
 
 onBeforeMount(() => {
   onViewChange(route.path);
 });
 
-watch([() => store.pageLightBoxOpen, () => store.videoLightBoxOpen], () => {
+watch([() => pageLightBoxOpen.value, () => videoLightBoxOpen.value], () => {
   visitedFilmFestivals.value = 0;
   const routeTrimmed = removeSlashFromEnd(route.path);
   updateBgMusic(routeTrimmed);
@@ -186,27 +192,13 @@ const onViewChange = (routePath: string) => {
   updateBgMusic(routeTrimmed);
 };
 
-const videos = computed(() => {
-  return store.videoLightBoxProps.videos;
-});
-
-const videoIndex = computed(() => {
-  return store.videoLightBoxProps.videoIndex;
-});
-
-watch([videos, videoIndex], ([newVideos, newVideoIndex]) => {
-  if (newVideos && newVideoIndex !== null) {
-    store.layoutScrollable = false;
+const onVideoClose = () => {
+  if (route.path === "/") {
+    setTimeout(async () => {
+      await navigateTo("/home");
+    }, 1000);
   }
-});
-
-const disableVideoLightBoxScroll = computed(() => {
-  return store.videoLightBoxProps.disableScroll;
-});
-
-const layoutScrollable = computed(() => {
-  return store.layoutScrollable;
-});
+};
 
 // slider
 // const audioVolume = computed({

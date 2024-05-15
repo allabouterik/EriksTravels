@@ -135,7 +135,6 @@
 
 <script>
 import Player from "@vimeo/player";
-import { mapWritableState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 
 const keyMap = {
@@ -150,15 +149,11 @@ export default {
       type: Array,
       default: () => [],
     },
-    index: {
+    initialIndex: {
       type: Number,
-      default: 0,
+      default: -1,
     },
     autoplay: {
-      type: Boolean,
-      default: false,
-    },
-    disableScroll: {
       type: Boolean,
       default: false,
     },
@@ -182,9 +177,8 @@ export default {
 
   data() {
     return {
-      currentIndex: this.index,
+      currentIndex: this.initialIndex,
       isVideoLoaded: false,
-      bodyOverflowStyle: "",
       touch: {
         count: 0,
         x: 0,
@@ -197,10 +191,14 @@ export default {
     };
   },
 
+  setup() {
+    const store = useMainStore();
+    return { store };
+  },
+
   computed: {
-    ...mapWritableState(useMainStore, ["videoLightBoxOpen"]),
     showVideoLightBox() {
-      return typeof this.index === "number";
+      return this.videos && this.videos.length > 0 && this.currentIndex >= 0;
     },
     formattedVideos() {
       return this.videos.map((video) =>
@@ -224,6 +222,7 @@ export default {
     },
     videoAspectRatio() {
       if (
+        this.currentIndex >= 0 &&
         this.formattedVideos[this.currentIndex].hasOwnProperty("width") &&
         this.formattedVideos[this.currentIndex].width > 0 &&
         this.formattedVideos[this.currentIndex].hasOwnProperty("height") &&
@@ -245,11 +244,11 @@ export default {
         ? this.containerHeight
         : this.containerWidth / this.videoAspectRatio;
     },
-    actualVidWidth() {
-      return this.heightGoverns
-        ? this.containerHeight * this.videoAspectRatio
-        : this.containerWidth;
-    },
+    // actualVidWidth() {
+    //   return this.heightGoverns
+    //     ? this.containerHeight * this.videoAspectRatio
+    //     : this.containerWidth;
+    // },
     videoTitleCss() {
       let css = {};
       css.padding = 0;
@@ -262,22 +261,8 @@ export default {
   },
 
   watch: {
-    index(val) {
-      if (!document) return;
+    initialIndex(val) {
       this.currentIndex = val;
-      if (this.disableScroll && typeof val === "number") {
-        document.body.style.overflow = "hidden";
-      } else if (this.disableScroll && !val) {
-        document.body.style.overflow = this.bodyOverflowStyle;
-      }
-    },
-    showVideoLightBox(show) {
-      if (show) {
-        this.videoLightBoxOpen = true;
-      }
-    },
-    currentIndex(val) {
-      this.setVideoLoaded(val);
     },
   },
 
@@ -293,31 +278,27 @@ export default {
     });
 
     if (!document) return;
-    this.bodyOverflowStyle = document.body.style.overflow;
     this.bindEvents();
   },
 
   beforeUnmount() {
     if (!document) return;
-    if (this.disableScroll) {
-      document.body.style.overflow = this.bodyOverflowStyle;
-    }
     this.unbindEvents();
   },
 
   methods: {
     close() {
       this.$emit("close");
-      this.videoLightBoxOpen = false;
+      this.store.closeVideoLightBox();
     },
     prev() {
-      if (this.currentIndex === 0) return;
+      if (this.currentIndex <= 0) return;
       this.pauseVideo(this.currentIndex);
       this.currentIndex -= 1;
       this.$emit("slide", { index: this.currentIndex });
     },
     next() {
-      if (this.currentIndex === this.videos.length - 1) return;
+      if (this.currentIndex >= this.videos.length - 1) return;
       this.pauseVideo(this.currentIndex);
       this.currentIndex += 1;
       this.$emit("slide", { index: this.currentIndex });

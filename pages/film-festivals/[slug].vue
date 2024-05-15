@@ -39,67 +39,114 @@
       </v-col>
     </v-row>
 
-    <div class="w-full pt-10 px-16 bg-white">
-      <div class="grid grid-cols-2 gap-x-0 gap-y-5">
-        <div>
-          <div class="flex">
-            <img
-              :src="posterImg"
-              alt="Film festival poster"
-              class="posterLinkImg w-[276px] object-contain self-start mr-12"
-            />
-            <div class="max-w-[570px] pt-10">
-              <h2 class="text-black text-4xl uppercase mb-3">{{ title }}</h2>
-              <p class="text-black text-2xl text-justify">{{ description }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row-span-2 col-start-2">
-          <div class="max-w-[570px] pt-10 mx-auto">
-            <h2 class="text-black text-4xl uppercase mb-3">Details</h2>
-            <p class="text-black text-2xl text-justify">{{ details }}</p>
-          </div>
-        </div>
-
-        <div class="row-start-2">
-          <div>
-            <p class="text-black">
-              <span
-                v-for="(value, key) in info"
-                :key="key"
-              >
-                <span class="capitalize"
-                  >{{ key.replace(/([A-Z])/g, " $1").trim() }}:
-                </span>
-                {{
-                  Array.isArray(value) &&
-                  ["editors", "music", "footage"].includes(key)
-                    ? value.reduce(
-                        (acc, curr, i) => acc + (i === 0 ? "" : " / ") + curr,
-                        ""
-                      )
-                    : value
-                }}
-                <br />
-              </span>
-            </p>
-          </div>
-        </div>
-
+    <div class="w-full pt-10 px-4 2xl:px-16 bg-white">
+      <div
+        id="grid-container"
+        class=""
+      >
+        <!-- POSTER -->
         <div
-          v-if="reviews && reviews !== ''"
-          class="col-span-full"
+          id="grid-item-poster"
+          class=""
         >
-          <div class="max-w-[1528px]">
-            <h2 class="text-black text-4xl uppercase mb-3">Reviews</h2>
-            <p class="text-black text-2xl text-justify">{{ reviews }}</p>
+          <img
+            :src="posterImg"
+            alt="Film festival poster"
+            class="posterLinkImg w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start bg-green-400"
+          />
+        </div>
+
+        <!-- TITLE -->
+        <div
+          id="grid-item-title"
+          class="bg-gray-400"
+        >
+          <!-- <h2 class="text-black text-2xl xl:text-4xl uppercase"> -->
+          <h2 class="text-black uppercase">
+            {{ title }}
+          </h2>
+        </div>
+
+        <!-- INFO -->
+        <div
+          id="grid-item-info"
+          class="text-black bg-red-400"
+        >
+          <template
+            v-for="(value, key) in info"
+            :key="key"
+          >
+            <p class="capitalize mb-0">
+              {{ key.replace(/([A-Z])/g, " $1").trim() }}:
+              {{
+                Array.isArray(value) &&
+                ["editors", "music", "footage"].includes(key)
+                  ? value.reduce(
+                      (acc, curr, i) => acc + (i === 0 ? "" : " / ") + curr,
+                      ""
+                    )
+                  : value
+              }}
+            </p>
+          </template>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div
+          id="grid-item-description"
+          class="bg-cyan-400"
+        >
+          <p class="text-black text-justify">{{ description }}</p>
+        </div>
+
+        <!-- DETAILS -->
+        <div
+          id="grid-item-details"
+          class="bg-yellow-400"
+        >
+          <h2 class="text-black uppercase">Details</h2>
+          <p class="text-black text-justify">{{ details }}</p>
+        </div>
+
+        <!-- REVIEWS -->
+        <div
+          v-if="reviews !== ''"
+          id="grid-item-reviews"
+          class="bg-slate-400"
+        >
+          <h2 class="text-black uppercase">Reviews</h2>
+          <p class="text-black text-justify">
+            {{ reviews }}
+          </p>
+        </div>
+      </div>
+
+      <div
+        v-if="laurelsLength > 0"
+        class="laurels-container"
+      >
+        <div class="!p-0">
+          <h2 class="text uppercase mb-2">Festival Awards</h2>
+          <div class="flex flex-wrap gap-y-4 justify-start">
+            <div
+              v-for="index in laurelsLength"
+              :key="index"
+              class="flex justify-center align-middle gap-y-4 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 2xl:w-[11.11%]"
+            >
+              <img
+                :src="`/film-festivals/laurels/${slug}/laurel_${index
+                  .toString()
+                  .padStart(2, '0')}.png`"
+                alt="Award"
+                class="max-h-24"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <v-row
+    <!-- <v-row
       v-if="laurelsLength > 0"
       class="laurels-container gap-x-20"
     >
@@ -121,7 +168,7 @@
           </div>
         </div>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -186,7 +233,23 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+@font-face {
+  font-family: NeueHaasGroteskText Pro55;
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
+  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
+      format("woff"),
+    /* Pretty Modern Browsers */
+      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
+      format("svg"); /* Legacy iOS */
+  font-weight: normal;
+}
+
 .main-col {
+  font-family: "NeueHaasGroteskText Pro55", Arial;
+  font-feature-settings: "liga";
+  font-weight: 400;
   margin: 0;
   margin-top: 33px; // matches the top value of .openbtn in NavbarMobile.vue
 
@@ -205,6 +268,106 @@ onMounted(async () => {
 
 .laurels-container {
   background-color: white;
-  padding: 2rem;
+  // padding: 2rem;
+}
+
+#grid-container {
+  --row-gap: 1.5rem;
+  --column-gap: 0.5rem;
+  --max-width: 678px;
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: min-content 1fr repeat(3, min-content);
+  grid-template-areas:
+    "poster title"
+    "poster info"
+    "description description"
+    "details details"
+    "reviews reviews";
+  gap: var(--row-gap) var(--column-gap);
+  max-width: var(--max-width);
+  margin: 0 auto;
+
+  @include media-breakpoint-up(sm) {
+    --row-gap: 1rem;
+    --column-gap: 1rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: minmax(min-content, 230px) 1fr;
+    // grid-template-rows: repeat(5, min-content);
+    grid-template-rows: repeat(3, min-content) 1fr min-content;
+    grid-template-areas:
+      "poster title"
+      "poster description"
+      "poster details"
+      "info details"
+      "reviews reviews";
+    --max-width: 812px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    --column-gap: 46px;
+    --max-width: 1484px;
+    --img-width: 276px;
+
+    grid-template-columns: min-content 540px 540px;
+    grid-template-rows: repeat(3, min-content) 1fr;
+    grid-template-areas:
+      "poster title details"
+      "poster description details"
+      "poster reviews reviews"
+      "info reviews reviews";
+
+    margin-left: calc(
+      max(
+        0px,
+        (100vw - var(--max-width) - var(--img-width) - var(--column-gap)) / 2
+      )
+    );
+  }
+}
+
+#grid-item-poster {
+  grid-area: poster;
+}
+
+#grid-item-title {
+  grid-area: title;
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.15;
+    font-weight: 400;
+  }
+}
+
+#grid-item-info {
+  grid-area: info;
+  margin-top: calc(-1 * var(--row-gap));
+
+  p {
+    font-size: 0.75rem;
+    line-height: 1.25;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 0;
+  }
+}
+
+#grid-item-description {
+  grid-area: description;
+  margin-top: calc(-1 * var(--row-gap) + 0.5rem);
+}
+
+#grid-item-details {
+  grid-area: details;
+}
+
+#grid-item-reviews {
+  grid-area: reviews;
 }
 </style>
