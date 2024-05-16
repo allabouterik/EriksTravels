@@ -35,11 +35,11 @@
 
 <script>
 export default {
-  name: 'ScrollToTop',
+  name: "ScrollToTop",
 
   props: {
     text: {
-      default: 'SCROLL TO TOP',
+      default: "SCROLL TO TOP",
       type: String,
     },
     includeArrow: {
@@ -63,34 +63,21 @@ export default {
   mounted() {
     const myScrollFunc = function () {
       this.scrollPosY = window.scrollY;
-      let btnElement = document.getElementById('scrollToTopBtn');
+      let btnElement = document.getElementById("scrollToTopBtn");
       if (btnElement !== null) {
         if (this.scrollPosY >= 800) {
-          btnElement.className = 'show';
+          btnElement.className = "show";
         } else {
-          btnElement.className = 'hide';
+          btnElement.className = "hide";
         }
       }
     }.bind(this);
-    window.addEventListener('scroll', myScrollFunc);
+    window.addEventListener("scroll", myScrollFunc);
   },
 };
 </script>
 
 <style scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
-    /* Pretty Modern Browsers */
-      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
-  font-weight: normal;
-}
-
 #scrollToTopContainer {
   position: relative;
   top: 0;
@@ -111,8 +98,10 @@ export default {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 
-  font-family: 'NeueHaasGroteskText Pro55', Arial;
-  font-feature-settings: 'liga';
+  font-family: "NeueHaasGroteskText Pro55", "ui-sans-serif", "system-ui",
+    "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-feature-settings: "liga";
   font-weight: 400;
   font-size: 14px;
   text-align: center;

@@ -69,11 +69,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
 @font-face {
-  font-family: Avenir Medium;
-  src: url("/assets/fonts/avenir-medium.ttf");
-}
-
-@font-face {
   font-family: DK Suco De Laranja;
   src: url("/assets/fonts/dk-suco-de-laranja.otf");
 }
@@ -156,7 +151,8 @@ export default {
 }
 
 .videoTitle {
-  font-family: "Avenir Medium";
+  font-family: "Avenir Medium", "ui-sans-serif", "system-ui", "sans-serif",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-feature-settings: "liga";
   font-kerning: normal;
   font-weight: unset;

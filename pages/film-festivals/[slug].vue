@@ -40,15 +40,9 @@
     </v-row>
 
     <div class="w-full pt-10 px-4 2xl:px-16 bg-white">
-      <div
-        id="grid-container"
-        class=""
-      >
+      <div id="grid-container">
         <!-- POSTER -->
-        <div
-          id="grid-item-poster"
-          class=""
-        >
+        <div id="grid-item-poster">
           <img
             :src="posterImg"
             alt="Film festival poster"
@@ -57,26 +51,23 @@
         </div>
 
         <!-- TITLE -->
-        <div
-          id="grid-item-title"
-          class=""
-        >
-          <!-- <h2 class="text-black text-2xl xl:text-4xl uppercase"> -->
-          <h2 class="text-black uppercase">
-            {{ title }}
-          </h2>
+        <div id="grid-item-title">
+          <h2
+            class="text-et-heading-24 2xl:text-et-heading-42 text-black uppercase whitespace-pre-line"
+            v-html="displayTitle ?? title"
+          ></h2>
         </div>
 
         <!-- INFO -->
         <div
           id="grid-item-info"
-          class="text-black"
+          class="text-black md:pt-1 lg:pt-0"
         >
           <template
             v-for="(value, key) in info"
             :key="key"
           >
-            <p class="capitalize mb-0">
+            <p class="info capitalize mb-0">
               {{ key.replace(/([A-Z])/g, " $1").trim() }}:
               {{
                 Array.isArray(value) &&
@@ -89,33 +80,63 @@
               }}
             </p>
           </template>
+          <button>
+            <p
+              class="text-et-body-18 text-et-yellow font-avenir italic m-0 my-1 md:py-2"
+            >
+              Watch the full film
+            </p>
+          </button>
         </div>
 
         <!-- DESCRIPTION -->
+        <div id="grid-item-description">
+          <p
+            class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
+          >
+            {{ description }}
+          </p>
+        </div>
+
+        <!-- DETAILS HEADING -->
         <div
-          id="grid-item-description"
-          class=""
+          id="grid-item-details-heading"
+          class="hidden 2xl:flex items-end"
         >
-          <p class="text-black text-justify">{{ description }}</p>
+          <h2
+            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+          >
+            Details
+          </h2>
         </div>
 
         <!-- DETAILS -->
-        <div
-          id="grid-item-details"
-          class=""
-        >
-          <h2 class="text-black uppercase">Details</h2>
-          <p class="text-black text-justify">{{ details }}</p>
+        <div id="grid-item-details">
+          <h2
+            class="2xl:hidden text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+          >
+            Details
+          </h2>
+          <p
+            class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
+          >
+            {{ details }}
+          </p>
         </div>
 
         <!-- REVIEWS -->
         <div
           v-if="reviews && reviews !== ''"
           id="grid-item-reviews"
-          class=""
         >
-          <h2 class="text-black uppercase">Reviews</h2>
-          <p class="text-black text-justify">
+          <h2
+            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+          >
+            Reviews
+          </h2>
+          <p
+            class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
+          >
             {{ reviews }}
           </p>
         </div>
@@ -126,7 +147,11 @@
         class="laurels-container"
       >
         <div class="!p-0">
-          <h2 class="text uppercase mb-2">Festival Awards</h2>
+          <h2
+            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase mb-2"
+          >
+            Festival Awards
+          </h2>
           <div class="flex flex-wrap gap-y-4 justify-start">
             <div
               v-for="index in laurelsLength"
@@ -178,6 +203,7 @@ const route = useRoute();
 
 const videos = ref([]);
 const title = ref("");
+const displayTitle = ref("");
 const description = ref("");
 const details = ref("");
 const reviews = ref("");
@@ -222,6 +248,7 @@ onMounted(async () => {
 
   const festival = festivalsContent.festivals[currIndex];
   title.value = festival.title;
+  displayTitle.value = festival.displayTitle;
   description.value = festival.description;
   details.value = festival.details;
   reviews.value = festival.reviews;
@@ -233,21 +260,12 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans&display=swap");
 
 .main-col {
-  font-family: "NeueHaasGroteskText Pro55", Arial;
+  font-family: "NeueHaasGroteskText Pro55", "ui-sans-serif", "system-ui",
+    "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   font-feature-settings: "liga";
   font-weight: 400;
   margin: 0;
@@ -315,10 +333,15 @@ onMounted(async () => {
     grid-template-columns: min-content 540px 540px;
     grid-template-rows: repeat(3, min-content) 1fr;
     grid-template-areas:
-      "poster title details"
+      "poster title details-heading"
       "poster description details"
       "poster reviews reviews"
       "info reviews reviews";
+    // grid-template-areas:
+    //   "poster title details-heading"
+    //   "poster description details"
+    //   "info description details"
+    //   "info reviews reviews";
 
     margin-left: calc(
       max(
@@ -335,22 +358,22 @@ onMounted(async () => {
 
 #grid-item-title {
   grid-area: title;
-
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.15;
-    font-weight: 400;
-  }
 }
 
 #grid-item-info {
   grid-area: info;
   margin-top: calc(-1 * var(--row-gap));
 
-  p {
+  .info {
     font-size: 0.75rem;
     line-height: 1.25;
+    font-family: "Inria Sans", sans-serif;
     font-weight: 400;
+    font-style: normal;
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 1rem;
+    }
   }
 
   @include media-breakpoint-up(lg) {
@@ -363,8 +386,16 @@ onMounted(async () => {
   margin-top: calc(-1 * var(--row-gap) + 0.5rem);
 }
 
+#grid-item-details-heading {
+  grid-area: details-heading;
+}
+
 #grid-item-details {
   grid-area: details;
+
+  @include media-breakpoint-up(xxl) {
+    margin-top: calc(-1 * var(--row-gap) + 0.5rem);
+  }
 }
 
 #grid-item-reviews {

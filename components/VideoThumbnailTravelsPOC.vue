@@ -13,7 +13,10 @@
       />
     </div>
 
-    <div class="thumbnailImgTextOverlay" style="top: 20%;">
+    <div
+      class="thumbnailImgTextOverlay"
+      style="top: 20%"
+    >
       <div class="videoTitleContainer hideOnHover">
         <h4 class="videoTitle">{{ video.title }}</h4>
       </div>
@@ -35,7 +38,7 @@
 
 <script>
 export default {
-  name: 'VideoThumbnailTravelsPOC',
+  name: "VideoThumbnailTravelsPOC",
 
   props: {
     video: {
@@ -53,13 +56,13 @@ export default {
       if (mins >= 60) {
         let hrs = Math.floor(mins / 60);
         mins = mins - hrs * 60;
-        if (mins < 10) mins = '0' + mins;
-        if (hrs == 1) return '1 hr ' + mins + ' min';
-        else return hrs + ' hrs ' + mins + ' min';
+        if (mins < 10) mins = "0" + mins;
+        if (hrs == 1) return "1 hr " + mins + " min";
+        else return hrs + " hrs " + mins + " min";
       } else {
         secs = secs - mins * 60;
-        if (secs < 10) secs = '0' + secs;
-        return mins + ':' + secs + ' min';
+        if (secs < 10) secs = "0" + secs;
+        return mins + ":" + secs + " min";
       }
     },
   },
@@ -67,21 +70,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lora:700i&display=swap');
-
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot'); /* IE9 Compat Modes */
-  src: url('../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix')
-      format('embedded-opentype'),
-    /* IE6-IE8 */ url('../assets/fonts/nhaasgrotesktxpro-55rg.woff')
-      format('woff'),
-    /* Pretty Modern Browsers */
-      url('../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg')
-      format('svg'); /* Legacy iOS */
-  font-weight: normal;
-}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
 .videoThumbnailContainer {
   position: relative;
@@ -108,8 +98,8 @@ export default {
 }
 
 .playVideoText {
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-feature-settings: 'liga';
+  font-family: "Open Sans Condensed", sans-serif;
+  font-feature-settings: "liga";
   font-weight: 300;
   font-size: 2.3125rem;
   line-height: 2.3125rem;
@@ -119,8 +109,8 @@ export default {
 
 .videoDurationText {
   display: inline;
-  font-family: 'Lora', serif;
-  font-feature-settings: 'liga';
+  font-family: "Lora", serif;
+  font-feature-settings: "liga";
   font-weight: 700;
   font-size: 1.375rem;
   line-height: 2.125rem;
@@ -132,15 +122,14 @@ export default {
 } */
 
 .videoTitle {
-  font-family: 'NeueHaasGroteskText Pro55';
-  font-feature-settings: 'liga';
+  font-family: "NeueHaasGroteskText Pro55";
+  font-feature-settings: "liga";
   font-weight: 400;
   font-size: 1.0625rem;
   line-height: 1.375rem;
   letter-spacing: 7px;
   text-transform: uppercase;
 }
-
 
 .showOnHover {
   display: block;
@@ -160,7 +149,6 @@ export default {
 .videoThumbnailContainer:hover .thumbnailImg {
   opacity: 0.5;
 }
-
 
 /* Responsive breakpoints ref: https://getbootstrap.com/docs/4.3/layout/overview/ */
 

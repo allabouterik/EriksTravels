@@ -430,19 +430,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: NeueHaasGroteskText Pro55;
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot"); /* IE9 Compat Modes */
-  src: url("../assets/fonts/nhaasgrotesktxpro-55rg.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("../assets/fonts/nhaasgrotesktxpro-55rg.woff")
-      format("woff"),
-    /* Pretty Modern Browsers */
-      url("../assets/fonts/nhaasgrotesktxpro-55rg.svg#NHaasGroteskTXPro-55Rg")
-      format("svg"); /* Legacy iOS */
-  font-weight: normal;
-}
-
 .video-carousel {
   &__content {
     height: 100%;
@@ -492,7 +479,8 @@ export default {
     box-sizing: border-box;
 
     color: #ffffff;
-    font-family: "NeueHaasGroteskText Pro55", sans-serif;
+    font-family: "NeueHaasGroteskText Pro55", "ui-sans-serif", "system-ui",
+      "sans-serif";
     font-feature-settings: "liga";
     font-size: 0.8125rem; /* 13px with 16px default size */
     font-weight: 400;

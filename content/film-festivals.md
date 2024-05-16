@@ -97,6 +97,7 @@ festivals:
     videoUrl: https://player.vimeo.com/video/939075313
 
   - title: Long Ago and Far Away
+    displayTitle: Long Ago &#10; and Far Away
     slug: long-ago
     description: >-
       The rediscovery of the lone survivors of a lost archive of beautiful old photographs, moved me to begin work on my new film. 1/2 century ago, my girlfriend and I traveled the world together, taking pictures as we went. I haven't seen them in years. Working with the images allowed me to revisit some of the wonderful places we explored together, but also evoked bittersweet memories of the relationship and romance we shared when we were young and in love. I've entitled my new film, long ago and far away.
@@ -107,6 +108,7 @@ festivals:
     info:
       director: Erik Jacobsen
       narrator: Erik Jacobsen
+      photographer: Erik Jacobsen
       footage:
         - Erik Jacobsen
         - Cindy McCain

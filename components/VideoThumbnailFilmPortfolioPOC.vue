@@ -70,11 +70,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lora:700i&display=swap");
 
-@font-face {
-  font-family: Avenir Medium;
-  src: url("/assets/fonts/avenir-medium.ttf");
-}
-
 .videoThumbnailContainer {
   display: flex;
   position: relative;
@@ -138,7 +133,8 @@ export default {
 }
 
 .videoTitle {
-  font-family: "Avenir Medium";
+  font-family: "Avenir Medium", "ui-sans-serif", "system-ui", "sans-serif",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-feature-settings: "liga";
   font-kerning: normal;
   font-weight: unset;
@@ -195,7 +191,7 @@ export default {
   }
   .captionBanner {
     /* height: calc(90px + 25 * (100vw - 375px) / (576 - 375)); */
-    /* color: black; 
+    /* color: black;
     background-color: white; */
   }
   .showOnHover {
@@ -226,7 +222,7 @@ export default {
   }
   .captionBanner {
     /* height: calc(100px + 15 * (100vw - 576px) / (768 - 576)); */
-    /* color: black; 
+    /* color: black;
     background-color: white; */
   }
   .showOnHover {
@@ -243,7 +239,7 @@ export default {
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
   /* .captionBanner {
-     color: black; 
+     color: black;
     background-color: white;
   } */
   .showOnHover {
