@@ -110,7 +110,7 @@
 
         <!-- REVIEWS -->
         <div
-          v-if="reviews !== ''"
+          v-if="reviews && reviews !== ''"
           id="grid-item-reviews"
           class=""
         >
