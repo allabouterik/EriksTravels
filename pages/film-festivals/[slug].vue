@@ -59,7 +59,7 @@
         <!-- TITLE -->
         <div
           id="grid-item-title"
-          class="bg-gray-400"
+          class=""
         >
           <!-- <h2 class="text-black text-2xl xl:text-4xl uppercase"> -->
           <h2 class="text-black uppercase">
@@ -70,7 +70,7 @@
         <!-- INFO -->
         <div
           id="grid-item-info"
-          class="text-black bg-red-400"
+          class="text-black"
         >
           <template
             v-for="(value, key) in info"
@@ -94,7 +94,7 @@
         <!-- DESCRIPTION -->
         <div
           id="grid-item-description"
-          class="bg-cyan-400"
+          class=""
         >
           <p class="text-black text-justify">{{ description }}</p>
         </div>
@@ -102,7 +102,7 @@
         <!-- DETAILS -->
         <div
           id="grid-item-details"
-          class="bg-yellow-400"
+          class=""
         >
           <h2 class="text-black uppercase">Details</h2>
           <p class="text-black text-justify">{{ details }}</p>
@@ -112,7 +112,7 @@
         <div
           v-if="reviews !== ''"
           id="grid-item-reviews"
-          class="bg-slate-400"
+          class=""
         >
           <h2 class="text-black uppercase">Reviews</h2>
           <p class="text-black text-justify">
