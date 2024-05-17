@@ -331,17 +331,12 @@ onMounted(async () => {
     --img-width: 276px;
 
     grid-template-columns: min-content 540px 540px;
-    grid-template-rows: repeat(3, min-content) 1fr;
+    grid-template-rows: repeat(2, min-content) 1fr;
     grid-template-areas:
       "poster title details-heading"
       "poster description details"
-      "poster reviews reviews"
+      "info description details"
       "info reviews reviews";
-    // grid-template-areas:
-    //   "poster title details-heading"
-    //   "poster description details"
-    //   "info description details"
-    //   "info reviews reviews";
 
     margin-left: calc(
       max(
