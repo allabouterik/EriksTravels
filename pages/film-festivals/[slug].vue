@@ -46,7 +46,7 @@
           <img
             :src="posterImg"
             alt="Film festival poster"
-            class="posterLinkImg w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start bg-green-400"
+            class="posterLinkImg w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start"
           />
         </div>
 

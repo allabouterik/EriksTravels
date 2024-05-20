@@ -508,7 +508,7 @@ export default {
   &__next,
   &__prev {
     position: absolute;
-    z-index: 1002;
+    z-index: 1000;
     display: block;
     background: transparent;
     border: 0;
