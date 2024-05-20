@@ -9,9 +9,7 @@ festivals:
     details: >-
       Featuring the pyramids of Giza, Cairo, and the Egyptian museum. A visit to a nightclub on a Nile river boat. Thebes, and the Karnack and Luxor temples. Tombs in the valley of the Kings and Queens. Tutankhamun, Akhenaten, and Ramesses the Great. Cleopatra, the last queen. Her romances and death.
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      hotography: Erik Jacobsen
+      director, narrator, photographer: Erik Jacobsen
       editors:
         - Heather Young
         - Olivia Gonzales
@@ -29,11 +27,8 @@ festivals:
     details: >-
       We take the Hurtigruten cruise up the beautiful western coast of Norway. Ride the Funicular to the top of Mount Floyen for a spectacular view of Bergen. We cruised northward. Visits to the small towns of Alesund and Molde. Northward to Trondheim, where we see the Nidaros Cathedral and Stiftsgarden , one of the largest wooden building in Scandinavia. In Bodo, a visit to Saltstraumen, with one of the world’s fastest tides. We enter the arctic circle with a shipboard ceremony on deck. The spectacular, narrow Trollfjord. The far north fishing port of Honningsvag. Drinks at the ice bar. A Viking dinner at a re-creation of the world’s largest Viking longhouse in Lofoten. Visit to a Sami tent where we meet the couple Innuta and Io. A fantastic voyage.
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      footage:
-        - Erik Jacobsen
-        - Lala Coyle Jacobsen
+      director, narrator, photographer: Erik Jacobsen
+      additional Footage: Lala Coyle-Jacobsen
       editor: Lindsey Brady
       music: Lindsey Brady
       releaseDate: 2016
@@ -48,9 +43,7 @@ festivals:
     details: >-
       Great fish markets. Tokyo, Maputo, Singapore, Busan, Gallipoli, Taipei, Zanzibar, Dubai, Hong Kong, Bergen, Cabo San Lucas, Borneo, Mangalore, and Morocco. Great seafood restaurants. Rinaldi's in Rome,Trishna in Mumbai, Portofino in Italy, and Marbella in Spain.
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      footage: Erik Jacobsen
+      director, narrator, photographer: Erik Jacobsen
       editor: Olivia Gonzales
       music:
         - Erik Jacobsen
@@ -67,9 +60,7 @@ festivals:
     details: >-
       My boyhood in the 50s in Chicago. Playing cowboys and Indians. Roy, Rogers and Dale Evans. Erik’s allergies and braces. An orchid for Eleanor Roosevelt. Phonograph records. Bozo the clown, Yuma Sumac, and the Calypsonian Blind Blake. 50s radio shows. The Shadow Knows, Inner Sanctum, and the low-down blues on WOPA. Movies. Cartoons and Serials. Erik the collector. YMCA camp. Lots of fishing. Scouting. Cub and Boy Scouts. The 1953 national jamboree in Irvine Ranch California. The Eagle Scout!
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      footage: Erik Jacobsen
+      director, narrator, photographer: Erik Jacobsen
       editors:
         - Lindsey Brady
         - Olivia Gonzales
@@ -86,11 +77,8 @@ festivals:
     details: >-
       A brief history. Buddhism comes to Japan. Nara. The Todai-ji, largest bronze Buddha and wooden building in the world. Kinkaku-ji, the famous golden pavilion. Kyoto Imperial Palace. Nijo Castle, and the Nightingale floor. Old Kyoto. Kimonos. The bullet train. Humeji Castle, called The Great White Egret. Shinto shrines. Sumo at the Tokyo Arena. Kamakura and the famous Daibutsu Buddha. Tsukiji fish market. Sushi, Kobe beef, and Shabu- Shabu. Udon noodle making class. A taste of music and theater shows. Aomori and its’ great illuminated paper floats. Kabukicho nightlife. The Robot Restaurant and its’ wild and crazy show!
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      footage:
-        - Erik Jacobsen
-        - Lala Coyle Jacobsen
+      director, narrator, photographer: Erik Jacobsen
+      additional footage: Lala Coyle-Jacobsen
       editors:
         - Heather Young
         - Lindsey Brady
@@ -111,12 +99,8 @@ festivals:
     reviews: >-
       Paris Film Festival Review: Long Ago and Far Away is a 15-minute short documentary by renowned music producer Erik Jacobsen. The title Long Ago and Far Away refers to two things: his relationship with his former girlfriend Cindy McCain during the 70s, and their trips together, all of it explored through photos taken all over the world during their relationship. Jacobsen, who doubles here as a nostalgic and sentimental narrator, elevates McCain’s gorgeous photography with interesting facts and anecdotes to create a sort of slideshow of a past love, lost in the mountains and rivers of the most remote places in the world. Afghanistan, Bolivia, and Jamaica are only a few of the countries shown in this poetic short. The beautiful captures of landscapes, traditions, and cultures, the colorful clothing, the foods, and the villages all contribute to creating a moody, evocative film. The beginning of the film is quite unusual, with the director showing us a glimpse of his personal life before the documentary actually starts. The editing is quite simple, a clean succession of beautiful photos. The music is very well curated, which is exactly what we would have expected from a music connoisseur such as Jacobsen. A soft, gentle, and poetic short documentary that revisits Jacobsen’s life with his former girlfriend Cindy McCain through their trips around the world. [https://parisfilmawards.net/review - 73765c14-9961-42ee-8f8c-f5cee562d1f0](https://parisfilmawards.net/review - 73765c14-9961-42ee-8f8c-f5cee562d1f0)
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      photographer: Erik Jacobsen
-      footage:
-        - Erik Jacobsen
-        - Cindy McCain
+      director, narrator, photographer: Erik Jacobsen
+      additional footage: Cindy McCain
       editor: Olivia Gonzales
       music:
         - Erik Jacobsen
@@ -133,11 +117,8 @@ festivals:
     details: >-
       Bucharest. Churches, monasteries and the palace of Parliament. Headed out to Transylvania. The Palace Castle, Dracula’s Castle, and Sighisoara, a beautiful, fortified medieval town. The Roma people. Romani palaces. The small towns of our Arpasu de Jos and Macedonia. Corbin’s fairytale castle. Timisoara. Cathedral and fair.
     info:
-      director: Erik Jacobsen
-      narrator: Erik Jacobsen
-      footage:
-        - Erik Jacobsen
-        - Lala Coyle Jacobsen
+      director, narrator, photographer: Erik Jacobsen
+      additional footage: Lala Coyle-Jacobsen
       editor: Olivia Gonzales
       music:
         - Erik Jacobsen
