@@ -30,7 +30,7 @@
     >
       <v-col>
         <VideoCarousel
-          :videos="videos"
+          :videos="trailerVideoArr"
           :autoplay="false"
           :windowPercentage="0.5"
           :prevLink="prevLink"
@@ -80,12 +80,11 @@
               }}
             </p>
           </template>
-          <button>
-            <p
-              class="text-et-body-18 text-et-yellow font-avenir italic m-0 my-1 md:py-2"
-            >
-              Watch the full film
-            </p>
+          <button
+            class="text-et-body-18 text-et-yellow font-avenir italic m-0 my-1 md:py-2"
+            @click="openVideo(fullVideoArr, 0)"
+          >
+            Watch the full film
           </button>
         </div>
 
@@ -199,9 +198,10 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
+import { useMainStore } from "@/stores/mainStore";
+
 const route = useRoute();
 
-const videos = ref([]);
 const title = ref("");
 const displayTitle = ref("");
 const description = ref("");
@@ -209,12 +209,15 @@ const details = ref("");
 const reviews = ref("");
 const info = ref({});
 const posterImg = ref("");
-const videoUrl = ref("");
 const prevLink = ref({});
 const nextLink = ref({});
+const trailerVideoArr = ref([]);
+const fullVideoArr = ref([]);
 
 const slug = route.params.slug;
 const laurelsLength = slug === "egypt" ? 42 : slug === "long-ago" ? 27 : 0;
+
+const store = useMainStore();
 
 onMounted(async () => {
   const festivalsContent = await queryContent("film-festivals").findOne();
@@ -254,9 +257,13 @@ onMounted(async () => {
   reviews.value = festival.reviews;
   info.value = festival.info;
   posterImg.value = festival.posterImg;
-  videoUrl.value = festival.videoUrl;
-  videos.value = [{ url: festival.videoUrl }];
+  trailerVideoArr.value = [{ url: festival.trailerVideoUrl }];
+  fullVideoArr.value = [{ url: festival.fullVideoUrl }];
 });
+
+const openVideo = (videoArr, videoIndex) => {
+  store.openVideoLightBox(videoArr, videoIndex, true);
+};
 </script>
 
 <style lang="scss" scoped>
