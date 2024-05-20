@@ -99,20 +99,21 @@
 
         <!-- DETAILS / LOCATIONS HEADING -->
         <div
-          v-if="details !== '' || locations.length > 0"
+          v-if="details !== '' || (locations && locations.length > 0)"
           id="grid-item-details-heading"
           class="hidden 2xl:flex items-end"
         >
           <h2
             class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
           >
-            Details {{ locations.length > 0 ? " / Locations" : "" }}
+            Details
+            {{ locations && locations.length > 0 ? " / Locations" : "" }}
           </h2>
         </div>
 
         <!-- DETAILS / LOCATIONS -->
         <div
-          v-if="details !== '' || locations.length > 0"
+          v-if="details !== '' || (locations && locations.length > 0)"
           id="grid-item-details"
         >
           <h2
@@ -124,9 +125,9 @@
             v-if="details && details !== ''"
             class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
           >
-            details
+            {{ details }}
           </p>
-          <ul v-if="locations.length > 0">
+          <ul v-if="locations && locations.length > 0">
             <li
               v-for="location in locations"
               class="text-et-body-15 2xl:text-et-body-24 text-black list-none"
@@ -244,7 +245,8 @@ onMounted(async () => {
     return;
   }
 
-  const prevIndex = currIndex - 1;
+  const prevIndex =
+    currIndex - 1 < 0 ? festivalsContent.festivals.length - 1 : currIndex - 1;
   prevLink.value =
     prevIndex >= 0
       ? {
@@ -254,7 +256,7 @@ onMounted(async () => {
       : {};
 
   const nextIndex =
-    currIndex + 1 >= festivalsContent.festivals.length ? -1 : currIndex + 1;
+    currIndex + 1 >= festivalsContent.festivals.length ? 0 : currIndex + 1;
   nextLink.value =
     nextIndex >= 0
       ? {
