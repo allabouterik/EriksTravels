@@ -97,30 +97,43 @@
           </p>
         </div>
 
-        <!-- DETAILS HEADING -->
+        <!-- DETAILS / LOCATIONS HEADING -->
         <div
+          v-if="details !== '' || locations.length > 0"
           id="grid-item-details-heading"
           class="hidden 2xl:flex items-end"
         >
           <h2
             class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
           >
-            Details
+            Details {{ locations.length > 0 ? " / Locations" : "" }}
           </h2>
         </div>
 
-        <!-- DETAILS -->
-        <div id="grid-item-details">
+        <!-- DETAILS / LOCATIONS -->
+        <div
+          v-if="details !== '' || locations.length > 0"
+          id="grid-item-details"
+        >
           <h2
             class="2xl:hidden text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
           >
-            Details
+            Details {{ locations ? " / Locations" : "" }}
           </h2>
           <p
+            v-if="details && details !== ''"
             class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
           >
-            {{ details }}
+            details
           </p>
+          <ul v-if="locations.length > 0">
+            <li
+              v-for="location in locations"
+              class="text-et-body-15 2xl:text-et-body-24 text-black list-none"
+            >
+              {{ location }}
+            </li>
+          </ul>
         </div>
 
         <!-- REVIEWS -->
@@ -206,6 +219,7 @@ const title = ref("");
 const displayTitle = ref("");
 const description = ref("");
 const details = ref("");
+const locations = ref([]);
 const reviews = ref("");
 const info = ref({});
 const posterImg = ref("");
@@ -254,6 +268,7 @@ onMounted(async () => {
   displayTitle.value = festival.displayTitle;
   description.value = festival.description;
   details.value = festival.details;
+  locations.value = festival.locations;
   reviews.value = festival.reviews;
   info.value = festival.info;
   posterImg.value = festival.posterImg;

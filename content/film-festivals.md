@@ -146,4 +146,48 @@ festivals:
     posterImg: /film-festivals/festivals-poster-romania.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939092030
     fullVideoUrl: https://player.vimeo.com/video/870863837
+
+  - title: Musical Moments
+    slug: musical-moments
+    description: >-
+      I spent forty years in the recording studio as a song publisher and record producer. Before that, I played five-string banjo in a small bluegrass group. We toured coast to coast. It was fun, but after several years, I put the banjo down, and began working in the studio producing records. At first, I recorded some of my compositions with my folk music friends: Mama Cass, Danny Doherty, Jerry Yester, Zal Yanovsky, and Henry Diltz. I found great songwriters and artists. Tim Hardin, John Sebastian, Norman Greenbaum, and, later, Chris Isaak. This is how I spent four decades! It was a journey with highs and lows, successes and failures. I got to know the artists, songwriters, and musicians, all with the talent and perseverance to live their lives making music. They all have my deep respect and admiration. It's not easy to do. I was lucky enough to be able to travel the world and I filmed musicians everywhere I went. Folkloric shows and street buskers alike. This film is a collection of live, on-location recordings I shot during my travels.
+    locations:
+      - Papua
+      - Beijing
+      - Victoria, Seychelles
+      - Lofotr, Norway
+      - Mombasa
+      - Mangalore
+      - Denpasar, Bali
+      - Venice
+      - Cienfuegos, Cuba
+      - Pukhet, Thailand
+      - Barcelona
+      - Cabo San Lucas, Mexico
+      - Bridgetown, Barbados
+      - Ljubljana, Slovenia
+      - Montmartre
+      - Kuching, Borneo
+      - Pelourinho, Salvadore, Bahia, Brazil
+      - Lemanak River, Borneo
+      - Kabuchiko, Tokyo
+      - Santiago de Compostela, Spain
+      - Hiroshima
+      - Kochi, India
+      - Havana
+      - Fiji
+      - Singapore
+      - Positano
+      - Bucharest
+      - Montmartre
+    info:
+      director, narrator, photographer: Erik Jacobsen
+      editor: Olivia Gonzales
+      music:
+        - Erik Jacobsen
+        - Olivia Gonzales
+      releaseDate: 2024
+    posterImg: /film-festivals/festivals-poster-musical-moments.jpg
+    trailerVideoUrl: https://player.vimeo.com/video/946638733
+    fullVideoUrl: https://player.vimeo.com/video/943853351
 ---
