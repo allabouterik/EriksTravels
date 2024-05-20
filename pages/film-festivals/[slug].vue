@@ -81,7 +81,7 @@
             </p>
           </template>
           <button
-            class="text-et-body-18 text-et-yellow font-avenir italic m-0 my-1 md:py-2"
+            class="text-et-body-18 text-et-yellow font-avenir italic hover:text-gray-500 m-0 my-1 md:py-2"
             @click="openVideo(fullVideoArr, 0)"
           >
             Watch the full film
