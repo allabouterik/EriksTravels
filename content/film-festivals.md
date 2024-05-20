@@ -19,7 +19,8 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2021
     posterImg: /film-festivals/festivals-poster-egypt.jpg
-    videoUrl: https://player.vimeo.com/video/939078217
+    trailerVideoUrl: https://player.vimeo.com/video/939078217
+    fullVideoUrl: https://player.vimeo.com/video/703897109
 
   - title: Norway
     slug: norway
@@ -37,7 +38,8 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2016
     posterImg: /film-festivals/festivals-poster-norway.jpg
-    videoUrl: https://player.vimeo.com/video/939094823
+    trailerVideoUrl: https://player.vimeo.com/video/939094823
+    fullVideoUrl: https://player.vimeo.com/video/174731877
 
   - title: Fresh Seafood
     slug: seafood
@@ -55,7 +57,8 @@ festivals:
         - Olivia Gonzales
       releaseDate: 2024
     posterImg: /film-festivals/festivals-poster-seafood.jpg
-    videoUrl: https://player.vimeo.com/video/941558521
+    trailerVideoUrl: https://player.vimeo.com/video/941558521
+    fullVideoUrl: https://player.vimeo.com/video/913546991
 
   - title: Erik's Midwestern Boyhood
     slug: boyhood
@@ -73,7 +76,8 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2018
     posterImg: /film-festivals/festivals-poster-boyhood.jpg
-    videoUrl: https://player.vimeo.com/video/939087599
+    trailerVideoUrl: https://player.vimeo.com/video/939087599
+    fullVideoUrl: https://player.vimeo.com/video/311575188
 
   - title: Japan
     slug: japan
@@ -94,7 +98,8 @@ festivals:
       music: Lindsey Brady
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-japan.jpg
-    videoUrl: https://player.vimeo.com/video/939075313
+    trailerVideoUrl: https://player.vimeo.com/video/939075313
+    fullVideoUrl: https://player.vimeo.com/video/386613137
 
   - title: Long Ago and Far Away
     displayTitle: Long Ago &#10; and Far Away
@@ -118,7 +123,8 @@ festivals:
         - Olivia Gonzales
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-long-ago.jpg
-    videoUrl: https://player.vimeo.com/video/939082166
+    trailerVideoUrl: https://player.vimeo.com/video/939082166
+    fullVideoUrl: https://player.vimeo.com/video/828154238
 
   - title: Romania
     slug: romania
@@ -138,5 +144,6 @@ festivals:
         - Olivia Gonzales
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-romania.jpg
-    videoUrl: https://player.vimeo.com/video/939092030
+    trailerVideoUrl: https://player.vimeo.com/video/939092030
+    fullVideoUrl: https://player.vimeo.com/video/870863837
 ---
