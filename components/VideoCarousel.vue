@@ -229,8 +229,18 @@ export default {
     },
     videoContainerCss() {
       let css = {};
-      css.width = this.windowPercentage * this.windowWidth + "px";
-      css.height = this.windowPercentage * this.windowHeight + "px";
+
+      css.width =
+        this.windowWidth < 576
+          ? "auto"
+          : this.windowPercentage * this.windowWidth + "px";
+
+      css.height =
+        this.windowWidth < 576
+          ? "auto"
+          : this.windowPercentage * (this.windowWidth / this.videoAspectRatio) +
+            "px";
+
       return css;
     },
     containerWidth() {
@@ -255,6 +265,7 @@ export default {
         );
       } else {
         return 1502.22 / 845.0;
+        return 1920 / 1080;
       }
     },
     heightGoverns() {
@@ -450,6 +461,9 @@ export default {
     width: 100%;
     text-align: center;
     transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
+    @include media-breakpoint-down(sm) {
+      padding: 1rem 0;
+    }
   }
   &__video {
     & {
@@ -519,7 +533,7 @@ export default {
   &__next {
     top: 50%;
     transform: translate(0, -50%);
-    right: 1.5%;
+    right: 2%;
     vertical-align: middle;
 
     @include media-breakpoint-up(sm) {
@@ -538,7 +552,7 @@ export default {
   &__prev {
     top: 50%;
     transform: translate(0, -50%);
-    left: 1.5%;
+    left: 2%;
 
     @include media-breakpoint-up(sm) {
       left: 3%;
@@ -606,19 +620,23 @@ export default {
 }
 
 .arrowImg {
-  height: 30px;
+  height: 23px;
   padding: 0;
 
   @include media-breakpoint-up(sm) {
-    height: 32px;
+    height: 28px;
   }
 
   @include media-breakpoint-up(md) {
     height: 34px;
   }
 
+  @include media-breakpoint-up(lg) {
+    height: 40px;
+  }
+
   @include media-breakpoint-up(xl) {
-    height: 36px;
+    height: 45px;
   }
 }
 #prevVideoImg-hover,

@@ -32,7 +32,7 @@
         <VideoCarousel
           :videos="trailerVideoArr"
           :autoplay="false"
-          :windowPercentage="0.5"
+          :windowPercentage="0.58"
           :prevLink="prevLink"
           :nextLink="nextLink"
         />
