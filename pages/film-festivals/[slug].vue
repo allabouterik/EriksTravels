@@ -152,6 +152,12 @@
           >
             {{ reviews }}
           </p>
+          <a
+            :href="reviewLink"
+            target="_blank noopener"
+            class="text-et-body-15 2xl:text-et-body-24 text-et-link text-justify"
+            >{{ reviewLink }}</a
+          >
         </div>
       </div>
 
@@ -222,6 +228,7 @@ const description = ref("");
 const details = ref("");
 const locations = ref([]);
 const reviews = ref("");
+const reviewLink = ref("");
 const info = ref({});
 const posterImg = ref("");
 const prevLink = ref({});
@@ -272,6 +279,7 @@ onMounted(async () => {
   details.value = festival.details;
   locations.value = festival.locations;
   reviews.value = festival.reviews;
+  reviewLink.value = festival.reviewLink;
   info.value = festival.info;
   posterImg.value = festival.posterImg;
   trailerVideoArr.value = [{ url: festival.trailerVideoUrl }];
