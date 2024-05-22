@@ -112,6 +112,7 @@ const {
   layoutScrollable,
   videoLightBoxProps,
   videoLightBoxOpen,
+  imageLightBoxOpen,
   pageLightBoxProps,
   pageLightBoxOpen,
   bgMusicAudioFile,
@@ -123,7 +124,9 @@ const route = useRoute();
 
 const showNavBars = computed(
   () =>
-    route.path !== "/" && !(videoLightBoxOpen.value || pageLightBoxOpen.value)
+    route.path !== "/" &&
+    !(videoLightBoxOpen.value || pageLightBoxOpen.value) &&
+    !imageLightBoxOpen.value
 );
 
 const visitedFilmFestivals = useStorage("visited-festivals", 0);

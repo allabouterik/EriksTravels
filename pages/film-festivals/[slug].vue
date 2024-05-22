@@ -39,14 +39,18 @@
       </v-col>
     </v-row>
 
-    <div class="w-full pt-10 px-4 2xl:px-16 bg-white">
-      <div id="grid-container">
+    <div class="w-full py-10 px-4 2xl:px-16 bg-white">
+      <div
+        id="grid-container"
+        :class="{ withReviewPoster: reviewPoster && reviewPoster.small }"
+      >
         <!-- POSTER -->
         <div id="grid-item-poster">
           <img
             :src="posterImg"
             alt="Film festival poster"
-            class="posterLinkImg w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start"
+            class="posterLinkImg w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start cursor-pointer"
+            @click="openImageLightBox(posterImg)"
           />
         </div>
 
@@ -137,6 +141,20 @@
           </ul>
         </div>
 
+        <!-- REVIEWS POSTER -->
+        <div
+          v-if="reviewPoster && reviewPoster.small"
+          id="grid-item-reviews-poster"
+        >
+          <img
+            v-if="reviewPoster"
+            :src="reviewPoster.small"
+            alt="Review poster"
+            class="w-[128px] md:w-[163px] lg:w-[179px] 2xl:w-[276px] object-contain self-start cursor-pointer"
+            @click="openImageLightBox(reviewPoster.large)"
+          />
+        </div>
+
         <!-- REVIEWS -->
         <div
           v-if="reviews && reviews !== ''"
@@ -152,6 +170,7 @@
             class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
           ></p>
           <a
+            v-if="reviewLink"
             :href="reviewLink"
             target="_blank noopener"
             class="text-et-body-15 2xl:text-et-body-24 text-et-link text-justify"
@@ -212,6 +231,17 @@
         </div>
       </v-col>
     </v-row> -->
+    <ImageLightBox
+      v-if="lightboxImage"
+      :images="lightboxImage"
+      :index="lightboxImageIndex"
+      :disable-scroll="true"
+      @close="
+        lightboxImageIndex = null;
+        lightboxImage = null;
+      "
+      :centreTitle="false"
+    />
   </v-container>
 </template>
 
@@ -228,12 +258,15 @@ const details = ref("");
 const locations = ref([]);
 const reviews = ref("");
 const reviewLink = ref("");
+const reviewPoster = ref({});
 const info = ref({});
 const posterImg = ref("");
 const prevLink = ref({});
 const nextLink = ref({});
 const trailerVideoArr = ref([]);
 const fullVideoArr = ref([]);
+const lightboxImage = ref(null);
+const lightboxImageIndex = ref(null);
 
 const slug = route.params.slug;
 const laurelsLength = slug === "egypt" ? 42 : slug === "long-ago" ? 27 : 0;
@@ -279,6 +312,7 @@ onMounted(async () => {
   locations.value = festival.locations;
   reviews.value = festival.reviews;
   reviewLink.value = festival.reviewLink;
+  reviewPoster.value = festival.reviewPoster;
   info.value = festival.info;
   posterImg.value = festival.posterImg;
   trailerVideoArr.value = [{ url: festival.trailerVideoUrl }];
@@ -287,6 +321,11 @@ onMounted(async () => {
 
 const openVideo = (videoArr, videoIndex) => {
   store.openVideoLightBox(videoArr, videoIndex, true);
+};
+
+const openImageLightBox = (image) => {
+  lightboxImage.value = [{ img: image, caption: "" }];
+  lightboxImageIndex.value = 0;
 };
 </script>
 
@@ -334,9 +373,19 @@ const openVideo = (videoArr, videoIndex) => {
     "description description"
     "details details"
     "reviews reviews";
+
+  &.withReviewPoster {
+    grid-template-areas:
+      "poster title"
+      "poster info"
+      "description description"
+      "details details"
+      "reviewsPoster reviews";
+  }
+
   gap: var(--row-gap) var(--column-gap);
   max-width: var(--max-width);
-  margin: 0 auto;
+  margin: 0 auto var(--row-gap) auto;
 
   @include media-breakpoint-up(sm) {
     --row-gap: 1rem;
@@ -344,8 +393,9 @@ const openVideo = (videoArr, videoIndex) => {
   }
 
   @include media-breakpoint-up(lg) {
+    --max-width: 812px;
+
     grid-template-columns: minmax(min-content, 230px) 1fr;
-    // grid-template-rows: repeat(5, min-content);
     grid-template-rows: repeat(3, min-content) 1fr min-content;
     grid-template-areas:
       "poster title"
@@ -353,7 +403,15 @@ const openVideo = (videoArr, videoIndex) => {
       "poster details"
       "info details"
       "reviews reviews";
-    --max-width: 812px;
+
+    &.withReviewPoster {
+      grid-template-areas:
+        "poster title"
+        "poster description"
+        "poster details"
+        "info details"
+        "reviewsPoster reviews";
+    }
   }
 
   @include media-breakpoint-up(xxl) {
@@ -368,6 +426,14 @@ const openVideo = (videoArr, videoIndex) => {
       "poster description details"
       "info description details"
       "info reviews reviews";
+
+    &.withReviewPoster {
+      grid-template-areas:
+        "poster title details-heading"
+        "poster description details"
+        "info description details"
+        "reviewsPoster reviews reviews";
+    }
 
     margin-left: calc(
       max(
@@ -426,5 +492,9 @@ const openVideo = (videoArr, videoIndex) => {
 
 #grid-item-reviews {
   grid-area: reviews;
+}
+
+#grid-item-reviews-poster {
+  grid-area: reviewsPoster;
 }
 </style>

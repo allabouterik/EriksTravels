@@ -8,6 +8,11 @@ festivals:
       "Egypt" is a travel documentary written and narrated by Erik Jacobsen. It features photos from his two trips to Egypt, local indigenous music, and fascinating historical facts from research into this amazing and long lived civilization. It includes some of the most iconic artistic works and monumental structures of ancient Egypt.
     details: >-
       Featuring the pyramids of Giza, Cairo, and the Egyptian museum. A visit to a nightclub on a Nile river boat. Thebes, and the Karnack and Luxor temples. Tombs in the valley of the Kings and Queens. Tutankhamun, Akhenaten, and Ramesses the Great. Cleopatra, the last queen. Her romances and death.
+    reviews: >-
+      Featured the September 2023 issue of FilmmakerLife Magazine, a journal devoted to the serious and impassioned discussion of cinema. Click to enlarge.
+    reviewPoster:
+      small: /film-festivals/egypt-review-poster_small.jpg
+      large: /film-festivals/egypt-review-poster_large.jpg
     info:
       director, narrator, photographer: Erik Jacobsen
       editors:

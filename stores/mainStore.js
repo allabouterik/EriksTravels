@@ -71,11 +71,15 @@ export const useMainStore = defineStore("main", () => {
       videoLightBoxProps.value.videoIndex >= 0
   );
 
+  // Image Lightbox
+  const imageLightBoxOpen = ref(false);
+
   const layoutScrollable = computed(
     () =>
       !(
         (pageLightBoxOpen && pageLightBoxProps.value.disableScroll) ||
-        (videoLightBoxOpen && videoLightBoxProps.value.disableScroll)
+        (videoLightBoxOpen && videoLightBoxProps.value.disableScroll) ||
+        imageLightBoxOpen.value
       )
   );
 
@@ -124,6 +128,8 @@ export const useMainStore = defineStore("main", () => {
     videoLightBoxOpen,
     openVideoLightBox,
     closeVideoLightBox,
+
+    imageLightBoxOpen,
 
     bgMusicAudioFile,
     bgMusicAudioPlaying,
