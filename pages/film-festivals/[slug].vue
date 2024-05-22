@@ -148,10 +148,9 @@
             Reviews
           </h2>
           <p
+            v-html="reviews"
             class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
-          >
-            {{ reviews }}
-          </p>
+          ></p>
           <a
             :href="reviewLink"
             target="_blank noopener"

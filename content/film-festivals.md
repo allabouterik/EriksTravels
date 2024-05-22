@@ -26,6 +26,20 @@ festivals:
       Come along with me aboard the Hurtigruten line, which has been delivering passengers, supplies, and mail up and down the coast of Norway for over a century. Starting in Bergen, we head northward far into the Arctic Circle, stopping at lots of small, charming towns, and villages along the way. Our cruise reaches the northern tip of Norway, only 750 miles from the north pole. The long rugged coastline offers beautiful scenery, with snow covered peaks, hills, green valleys, peninsulas, a thousand fiords, and 250,000 islands. It's a wonderful voyage. Come on along.
     details: >-
       We take the Hurtigruten cruise up the beautiful western coast of Norway. Ride the Funicular to the top of Mount Floyen for a spectacular view of Bergen. We cruised northward. Visits to the small towns of Alesund and Molde. Northward to Trondheim, where we see the Nidaros Cathedral and Stiftsgarden , one of the largest wooden building in Scandinavia. In Bodo, a visit to Saltstraumen, with one of the world's fastest tides. We enter the arctic circle with a shipboard ceremony on deck. The spectacular, narrow Trollfjord. The far north fishing port of Honningsvag. Drinks at the ice bar. A Viking dinner at a re-creation of the world's largest Viking longhouse in Lofoten. Visit to a Sami tent where we meet the couple Innuta and Io. A fantastic voyage.
+    reviews: >-
+      “I am sailing, I am sailing
+      <br>Home again, 'cross the sea
+      <br>I am sailing stormy waters
+      <br>To be near you, to be free..”
+      <br><br>Do you remember this song? While watching Norway it echoed in my head the entire time.
+      <br><br>This short documentary directed by Erik Jacobsen takes us to the icy northern waters along one of the most fascinating coastlines in the world.
+      <br><br>Thanks to a funicular we admire Bergen from above: known as 'the city of Seven Mountains' and famous for its colorful wooden houses and historic wharf that sits on the harbor overlooking the scenic Byfjorden.
+      <br><br>It is right from here that we get on board the legendary Hurtigruten line and prepare our eyes and our heart to admire the warm villages's colors compared to the cold northern light.
+      <br><br>We set sail towards pristine wonders, snow covered peaks and lush silent landscapes where only the noise of nature and the currents swirling beneath the visible surface can be heard.
+      <br><br>Jacobsen's voice accompanies us along the entire cruise as a good friend with whom we are exploring thIs breathtaking wonder.
+      <br><br>With him we playfully invoke the God Neptune, we breathe the salty smell of the air and of Norwegian seafood; we freeze with him and his lovely wife while they enjoy a drink at the famous Artico Ice Bar and we admire enchanted the ancient Viking  customs, their food, their music.
+      <br><br>It's a passionate journey. A fascinating return to the ancient origins.
+      <br><br>Thank you for this incredible adventure, Mr. Jacobsen!
     info:
       director, narrator, photographer: Erik Jacobsen
       additional Footage: Lala Coyle-Jacobsen
