@@ -18,6 +18,7 @@ module.exports = {
         black: "black",
         white: "white",
         [`${prefix}yellow`]: "#E5D052",
+        [`${prefix}link`]: "#3586FF",
       },
     },
     fontFamily: {
