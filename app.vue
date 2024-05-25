@@ -154,10 +154,6 @@ const updateBgMusic = (routeTrimmed: string) => {
           ? `${directory}Film%20Festivals/festivals-audio-with-intro_may2.mp3`
           : `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
       fadeDuration = 0;
-    } else if (routeTrimmed.includes("film-festivals")) {
-      // individual film festival pages
-      audioFile = `${directory}Film%20Festivals/festivals-audio-no-intro.mp3`;
-      fadeDuration = 0;
     } else if (routeTrimmed === "/home" || routeTrimmed === "/film-portfolio") {
       audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
       fadeDuration = 3.5;
