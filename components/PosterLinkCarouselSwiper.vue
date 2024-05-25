@@ -52,6 +52,7 @@
         >
           <img
             :alt="`Click to go to ${poster.title}`"
+            title="See trailer and info"
             :src="poster.img"
             class="posterLinkImg"
             :class="{
@@ -60,6 +61,7 @@
             }" />
           <img
             :alt="`Play icon - click to go to ${poster.title}`"
+            title="See trailer and info"
             src="~/assets/images/playarrowcircle-rough.png"
             class="playImg" /></a
       ></swiper-slide>
