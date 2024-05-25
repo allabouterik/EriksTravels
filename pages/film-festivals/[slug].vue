@@ -179,6 +179,7 @@
         </div>
       </div>
 
+      <!-- LAURELS -->
       <div
         v-if="laurelsLength > 0"
         class="laurels-container"
@@ -196,7 +197,7 @@
               class="flex justify-center align-middle gap-y-4 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 2xl:w-[11.11%]"
             >
               <img
-                :src="`/film-festivals/laurels/${slug}/laurel_${index
+                :src="`/film-festivals/laurels/${slug}/${index
                   .toString()
                   .padStart(2, '0')}.png`"
                 alt="Award"
@@ -269,7 +270,7 @@ const lightboxImage = ref(null);
 const lightboxImageIndex = ref(null);
 
 const slug = route.params.slug;
-const laurelsLength = slug === "egypt" ? 42 : slug === "long-ago" ? 27 : 0;
+const laurelsLength = slug === "egypt" ? 41 : slug === "long-ago" ? 27 : 0;
 
 const store = useMainStore();
 
