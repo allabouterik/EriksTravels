@@ -5,7 +5,7 @@
         <Title>Contact & Credits</Title>
       </Head>
 
-      <div class="main-container w-full px-4">
+      <div class="main-container px-4">
         <h2 class="title">With gratitude,</h2>
 
         <ul class="text-main list-none flex flex-col">
@@ -17,7 +17,7 @@
           <li>Cindy @Tamtravel</li>
         </ul>
 
-        <h2 class="title text-center mt-4 mb-3">
+        <h2 class="subtitle text-center mt-4 mb-3">
           To all the musicians, photographers, performers, and actors who
           contributed to my efforts: thank you
         </h2>
@@ -32,7 +32,7 @@
           Lala Coyle Jacobsen and Erik
         </figcaption>
 
-        <h2 class="title text-center mt-4 mb-3">
+        <h2 class="subtitle text-center mt-4 mb-3">
           To my three wonderful, talented video editors:
         </h2>
 
@@ -74,7 +74,7 @@
           </div>
         </div>
 
-        <h2 class="title text-center mt-4 mb-3">
+        <h2 class="subtitle text-center mt-4 mb-3">
           Would You Like to Get in Touch?
         </h2>
 
@@ -134,6 +134,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap");
 
 .main-container {
+  width: 100%;
+  max-width: 606px;
   --openBtnTopPos: 33px;
   --openBtnHeight: 23px;
   margin-top: calc(2 * var(--openBtnTopPos) + var(--openBtnHeight));
@@ -149,9 +151,26 @@
     --openBtnTopPos: 41px;
     --openBtnHeight: 35px;
   }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: 2rem;
+  }
 }
 
 .title {
+  color: #fff;
+  font-family: "Annie Use Your Telescope", cursive;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.583;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 2.25rem;
+  }
+}
+
+.subtitle {
   color: #fff;
   font-family: "Annie Use Your Telescope", cursive;
   font-style: normal;
@@ -164,7 +183,7 @@
   }
 
   @include media-breakpoint-up(lg) {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 }
 
