@@ -83,16 +83,16 @@
           <form
             name="contact"
             method="POST"
-            netlify
-            data-netlify-honeypot="bot-field"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
             class="grid gap-y-[9px]"
           >
+            <!-- Hidden honeypot field to prevent against bot spam -->
             <input
               type="hidden"
-              name="form-name"
+              name="bot-field"
               value="contact"
             />
-            <!-- Hidden honeypot field to prevent against bot spam -->
 
             <div class="form-group">
               <label
