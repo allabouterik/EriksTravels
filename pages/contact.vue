@@ -74,17 +74,18 @@
           </div>
         </div>
 
-        <h2 class="subtitle text-center mt-4 mb-3">
+        <h2 class="subtitle text-center mt-6 mb-3">
           Would You Like to Get in Touch?
         </h2>
 
         <!-- CONTACT FORM -->
-        <div class="form-containerS">
+        <div class="form-container">
           <form
             name="contact"
             method="POST"
             netlify
             data-netlify-honeypot="bot-field"
+            class="grid gap-y-[9px]"
           >
             <input
               type="hidden"
@@ -93,29 +94,47 @@
             />
             <!-- Hidden honeypot field to prevent against bot spam -->
 
-            <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your Name"
-            />
+            <div class="form-group">
+              <label
+                for="name"
+                class="form-label"
+                >Your Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder=" "
+              />
+            </div>
 
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your Email"
-            />
+            <div class="form-group">
+              <label
+                for="email"
+                class="form-label"
+                >Your Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder=" "
+              />
+            </div>
 
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Message"
-              style="height: 200px"
-            ></textarea>
+            <div class="form-group">
+              <label
+                for="message"
+                class="form-label"
+                >Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                style="height: 200px"
+                placeholder=" "
+              ></textarea>
+            </div>
 
             <input
               type="submit"
@@ -141,6 +160,7 @@
   margin-top: calc(2 * var(--openBtnTopPos) + var(--openBtnHeight));
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 2rem;
 
   @include media-breakpoint-up(sm) {
     --openBtnTopPos: 39px;
@@ -154,6 +174,7 @@
 
   @include media-breakpoint-up(lg) {
     margin-top: 2rem;
+    margin-bottom: 3rem;
   }
 }
 
@@ -219,73 +240,46 @@
   }
 }
 
-/* Form adapted from https://www.w3schools.com/howto/howto_css_contact_form.asp */
 .form-container {
   background-color: transparent;
-  padding: 20px 0;
+  padding: 0px;
 
-  label {
-    display: inline-block;
-    color: #406689;
-    font-family: "NeueHaasGroteskText Pro55", sans-serif;
-    font-feature-settings: "liga";
-    font-size: 1.3125rem;
-    font-weight: 400;
-    text-shadow: 6px 6px 8px rgba(0, 0, 0, 0.5);
-    line-height: 1.3125rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+  .form-group {
+    @apply relative;
+
+    .form-label {
+      @apply block text-et-body-16 text-white font-neueHaasGrotesk tracking-wider pointer-events-none;
+      @apply absolute top-0 left-0 translate-x-3 translate-y-5 transition;
+
+      &:has(+ textarea) {
+        @apply translate-y-3;
+      }
+
+      &:has(
+          + [type="text"]:focus,
+          + [type="email"]:focus,
+          + textarea:focus,
+          + [type="text"]:not(:placeholder-shown),
+          + [type="email"]:not(:placeholder-shown),
+          + textarea:not(:placeholder-shown)
+        ) {
+        @apply text-et-body-12 font-semibold text-[#ddd];
+        @apply translate-y-[9px];
+      }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      @apply w-full text-et-body-16 italic text-white font-neueHaasGrotesk tracking-wider;
+      @apply border-[1px] border-solid border-white bg-black p-[10px] pt-6;
+      @apply resize-y; // Allow the user to vertically resize the textarea (not horizontally)
+    }
   }
 
-  input[type="text"],
-  input[type="email"],
-  textarea#message {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
-    color: #91465a;
-    background-color: #ddd;
-    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
-    font-size: 1rem;
-    font-style: italic;
-  }
-
-  input[type="text"]:hover,
-  input[type="email"]:hover,
-  textarea:hover,
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-    background-color: #fff;
-  }
-
-  /* Style the submit button with a specific background color etc */
   input[type="submit"] {
-    background-color: #406689;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: "NeueHaasGroteskText Pro55", sans-serif;
-    font-weight: 400;
-    font-size: 1.125em;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    line-height: 23px;
-    &:focus {
-      outline: none; // remove blue border in iOS Chrome
-    }
-    &:hover {
-      color: #eecf49;
-    }
+    @apply w-fit justify-self-center text-white text-et-body-16 font-medium bg-[rgba(255,255,255,0.16)];
+    @apply py-3 px-9 border-[1px] border-solid border-white;
   }
 }
 </style>

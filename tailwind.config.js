@@ -79,8 +79,22 @@ module.exports = {
           fontWeight: 400,
         },
       ],
+      [`${prefix}body-16`]: [
+        "1rem",
+        {
+          lineHeight: "normal",
+          fontWeight: 400,
+        },
+      ],
       [`${prefix}body-15`]: [
         "0.9375rem",
+        {
+          lineHeight: "normal",
+          fontWeight: 400,
+        },
+      ],
+      [`${prefix}body-12`]: [
+        "0.75rem",
         {
           lineHeight: "normal",
           fontWeight: 400,
