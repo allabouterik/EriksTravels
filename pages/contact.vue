@@ -87,6 +87,12 @@
             netlify-honeypot="bot-field"
             class="grid gap-y-[9px]"
           >
+            <input
+              type="hidden"
+              name="form-name"
+              value="contact"
+            />
+
             <!-- Hidden honeypot field to prevent against bot spam -->
             <input
               type="hidden"

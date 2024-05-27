@@ -2,7 +2,7 @@
 import vuetify from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   // // ref: https://github.com/nuxt/framework/pull/6980
   // router: {
   //   options: {
