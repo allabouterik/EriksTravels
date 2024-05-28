@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Dummy page</title>
+  </head>
+  <body>
+    <div class="main-container px-4">
+      <div class="form-container">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="grid gap-y-[9px]"
+        >
+          <input
+            type="hidden"
+            name="form-name"
+            value="contact"
+          />
+
+          <!-- Hidden honeypot field to prevent against bot spam -->
+          <input
+            type="hidden"
+            name="bot-field"
+            value="contact"
+          />
+
+          <div class="form-group">
+            <label
+              for="name"
+              class="form-label"
+              >Your Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder=" "
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="email"
+              class="form-label"
+              >Your Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder=" "
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="message"
+              class="form-label"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              style="height: 200px"
+              placeholder=" "
+            ></textarea>
+          </div>
+
+          <input
+            type="submit"
+            value="Send"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
