@@ -149,15 +149,11 @@
 <script setup>
 // onFormSubmit function using fetch API
 const onFormSubmit = (event) => {
-  console.log("in onFormSubmit");
-  console.log(event);
   fetch("/dummy-contact-form-for-netlify", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(new FormData(event.target)),
-  })
-    .then(() => alert("Form submitted successfully!"))
-    .catch((error) => alert("Form submission failed!"));
+  });
 };
 </script>
 
