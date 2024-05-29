@@ -83,8 +83,6 @@
           <form
             name="contact"
             method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             class="grid gap-y-[9px]"
             @submit.prevent="onFormSubmit"
           >
@@ -98,7 +96,6 @@
             <input
               type="hidden"
               name="bot-field"
-              value="contact"
             />
 
             <div class="form-group">
