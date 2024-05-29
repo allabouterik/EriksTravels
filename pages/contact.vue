@@ -174,6 +174,7 @@ const onFormSubmit = (event) => {
     .then(() => {
       showSuccessMsg.value = true;
       showErrorMsg.value = false;
+      event.target.reset(); // Clear the form
     })
     .catch((error) => {
       showSuccessMsg.value = false;
@@ -313,6 +314,13 @@ const onFormSubmit = (event) => {
   input[type="submit"] {
     @apply w-fit justify-self-center text-white text-et-body-16 font-medium bg-[rgba(255,255,255,0.16)];
     @apply py-3 px-9 border-[1px] border-solid border-white;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    // avoid Chrome "internal-autofill-selected" style being applied
+    // ref: https://stackoverflow.com/a/68240841
+    transition: background-color 0s 600000s, color 0s 600000s !important;
   }
 }
 </style>
