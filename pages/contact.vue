@@ -85,7 +85,7 @@
             method="POST"
             data-netlify="true"
             class="grid gap-y-[9px]"
-            @submit="onFormSubmit"
+            @submit.prevent="onFormSubmit"
           >
             <input
               type="hidden"
@@ -135,6 +135,19 @@
               ></textarea>
             </div>
 
+            <p
+              v-if="showSuccessMsg"
+              class="text-white text-center"
+            >
+              Thank you for your message!
+            </p>
+            <p
+              v-if="showErrorMsg"
+              class="text-white text-center"
+            >
+              Oops, something went wrong. Please try again.
+            </p>
+
             <input
               type="submit"
               value="Send"
@@ -147,13 +160,25 @@
 </template>
 
 <script setup>
-// onFormSubmit function using fetch API
+const showSuccessMsg = ref(false);
+const showErrorMsg = ref(false);
+
 const onFormSubmit = (event) => {
   fetch("/dummy-contact-form-for-netlify", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     body: new URLSearchParams(new FormData(event.target)),
-  });
+  })
+    .then(() => {
+      showSuccessMsg.value = true;
+      showErrorMsg.value = false;
+    })
+    .catch((error) => {
+      showSuccessMsg.value = false;
+      showErrorMsg.value = true;
+    });
 };
 </script>
 
