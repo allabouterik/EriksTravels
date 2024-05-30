@@ -10,6 +10,7 @@
 
         <ul class="text-main list-none flex flex-col">
           <li>Eoin O'Malley: web developer</li>
+          <li>Andrew Couch: consultation and audio engineering</li>
           <li>Jim Edgar: audio engineering</li>
           <li>Lala Coyle and Jacob Dulisse: additional photography</li>
           <li>John Sebastian “Daydream”</li>
