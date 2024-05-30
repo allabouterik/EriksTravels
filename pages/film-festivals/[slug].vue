@@ -318,6 +318,11 @@ onMounted(async () => {
   posterImg.value = festival.posterImg;
   trailerVideoArr.value = [{ url: festival.trailerVideoUrl }];
   fullVideoArr.value = [{ url: festival.fullVideoUrl }];
+
+  const openFullVideo = route.query.openFullVideo === "true";
+  if (openFullVideo) {
+    openVideo(fullVideoArr.value, 0);
+  }
 });
 
 const openVideo = (videoArr, videoIndex) => {

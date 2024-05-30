@@ -290,6 +290,16 @@ export default {
     close() {
       this.$emit("close");
       this.store.closeVideoLightBox();
+
+      const route = useRoute();
+      const openFullVideo = route.query.openFullVideo === "true";
+      if (openFullVideo) {
+        const router = useRouter();
+        router.push({
+          path: route.path,
+          query: {},
+        });
+      }
     },
     prev() {
       if (this.currentIndex <= 0) return;
