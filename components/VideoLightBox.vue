@@ -155,7 +155,7 @@ export default {
     },
     autoplay: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     background: {
       type: String,
