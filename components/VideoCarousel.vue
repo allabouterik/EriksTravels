@@ -129,7 +129,7 @@
       </div>
       <a
         v-else-if="nextLink.url && nextLink.url !== ''"
-        id="leftArrowContainer"
+        id="rightArrowContainer"
         :href="nextLink.url"
         :title="nextLink.title"
       >
