@@ -93,6 +93,18 @@ const openVideo = () => {
   }
 }
 
+@keyframes zoom {
+  0% {
+    background-size: 100% auto;
+  }
+  50% {
+    background-size: 120% auto;
+  }
+  100% {
+    background-size: 100% auto;
+  }
+}
+
 .showreel {
   position: relative;
   height: 100vh;
@@ -100,6 +112,7 @@ const openVideo = () => {
   background-image: url("/showreel-fireplace-wall.jpg");
   background-position: center;
   background-size: contain;
+  animation: zoom 20s linear infinite;
 
   .playImgContainer {
     position: absolute;
