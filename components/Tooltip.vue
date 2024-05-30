@@ -39,7 +39,7 @@ import {
   TooltipProvider,
   TooltipRoot,
   TooltipTrigger,
-} from 'radix-vue';
+} from "radix-vue";
 
 const props = defineProps({
   disabled: {
@@ -53,9 +53,9 @@ const props = defineProps({
   location: {
     type: String,
     required: false,
-    default: 'top',
+    default: "top",
     validator(value) {
-      return ['top', 'right', 'bottom', 'left'].includes(value);
+      return ["top", "right", "bottom", "left", undefined].includes(value);
     },
   },
   offset: {
@@ -71,9 +71,9 @@ const props = defineProps({
   theme: {
     type: String,
     required: false,
-    default: 'light',
+    default: "light",
     validator(value) {
-      return ['light', 'dark'].includes(value);
+      return ["light", "dark"].includes(value);
     },
   },
 });

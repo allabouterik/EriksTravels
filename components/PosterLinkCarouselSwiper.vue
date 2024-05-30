@@ -43,27 +43,31 @@
         :key="posterIndex"
         class="swiper-slide"
       >
-        <a
-          :href="poster.link"
-          :title="poster.title"
-          class="posterLink-carousel__link"
-          :class="{ active: posterIndex === clickedPosterIndex }"
-          @click="onPosterLinkClick(posterIndex)"
+        <Tooltip
+          text="See trailer and info"
+          location="top"
+          theme="light"
         >
-          <img
-            :alt="`Click to go to ${poster.title}`"
-            title="See trailer and info"
-            :src="poster.img"
-            class="posterLinkImg"
-            :class="{
-              prevOrNextSlide: isNextOrPrevSlide(posterIndex),
-              backSlide: isBackSlide(posterIndex),
-            }" />
-          <img
-            :alt="`Play icon - click to go to ${poster.title}`"
-            title="See trailer and info"
-            src="~/assets/images/playarrowcircle-rough.png"
-            class="playImg" /></a
+          <a
+            :href="poster.link"
+            class="posterLink-carousel__link"
+            :class="{ active: posterIndex === clickedPosterIndex }"
+            @click="onPosterLinkClick(posterIndex)"
+          >
+            <img
+              :alt="`Click to go to ${poster.title}`"
+              :src="poster.img"
+              class="posterLinkImg"
+              :class="{
+                prevOrNextSlide: isNextOrPrevSlide(posterIndex),
+                backSlide: isBackSlide(posterIndex),
+              }"
+            />
+            <img
+              :alt="`Play icon - click to go to ${poster.title}`"
+              src="~/assets/images/playarrowcircle-rough.png"
+              class="playImg"
+            /> </a></Tooltip
       ></swiper-slide>
     </swiper-container>
 
