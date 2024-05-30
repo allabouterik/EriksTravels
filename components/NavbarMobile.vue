@@ -186,24 +186,7 @@ export default {
   a,
   button {
     text-align: left;
-    padding-top: 28px;
-    padding-bottom: 28px;
-    padding-left: 10px;
-  }
-
-  /* When you mouse over the navigation links, change their color */
-  a:hover,
-  a.router-link-exact-active,
-  button:hover,
-  button.router-link-exact-active {
-    /* https://stackoverflow.com/questions/46083220/how-to-vuejs-router-link-active-style */
-    color: #e30829;
-  }
-
-  hr {
-    border-top: 0.5px solid white;
-    border-bottom: 0.5px solid white;
-    margin: 0;
+    padding: 1.75rem 0.625rem;
   }
 }
 
