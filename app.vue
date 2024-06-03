@@ -13,6 +13,7 @@
         v-show="videoLightBoxOpen"
         :videos="videoLightBoxProps.videos"
         :initialIndex="videoLightBoxProps.videoIndex"
+        :windowPercentage="videoLightBoxProps.windowPercentage"
         @close="onVideoClose"
       />
 

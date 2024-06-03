@@ -54,11 +54,18 @@ export const useMainStore = defineStore("main", () => {
     videos: [],
     videoIndex: -1,
     disableScroll: false,
+    windowPercentage: 0.8,
   });
-  function openVideoLightBox(videos, videoIndex, disableScroll) {
+  function openVideoLightBox(
+    videos,
+    videoIndex,
+    disableScroll,
+    windowPercentage = 0.8
+  ) {
     videoLightBoxProps.value.videos = videos;
     videoLightBoxProps.value.videoIndex = videoIndex;
     videoLightBoxProps.value.disableScroll = disableScroll;
+    videoLightBoxProps.value.windowPercentage = windowPercentage;
   }
   function closeVideoLightBox() {
     videoLightBoxProps.value.videos = [];
