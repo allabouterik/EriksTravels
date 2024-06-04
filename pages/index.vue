@@ -70,7 +70,7 @@ const videos = [
 const store = useMainStore();
 
 const openVideo = () => {
-  store.openVideoLightBox(videos, 0, true);
+  store.openVideoLightBox(videos, 0, true, 1.0);
 };
 </script>
 
