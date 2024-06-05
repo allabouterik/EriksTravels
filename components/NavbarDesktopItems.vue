@@ -48,7 +48,7 @@
       <button
         v-else-if="menuItem.video"
         class="menuLink"
-        @click="openVideoLightBox([menuItem.video], 0)"
+        @click="openVideoLightBox([menuItem.video], 0, true, 1.0)"
       >
         <img
           :alt="menuItem.altText"
@@ -105,24 +105,15 @@ watch([store], () => {
 </script>
 
 <script>
-import { mapActions, mapState, mapWritableState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useMainStore } from "@/stores/mainStore";
 
 export default {
   computed: {
     ...mapState(useMainStore, ["navMenuItems"]),
-    ...mapWritableState(useMainStore, ["videoLightBoxProps"]),
   },
   methods: {
-    ...mapActions(useMainStore, ["openPageLightBox"]),
-
-    openVideoLightBox(videos, videoIndex) {
-      this.videoLightBoxProps = {
-        videos,
-        videoIndex,
-        disableScroll: true,
-      };
-    },
+    ...mapActions(useMainStore, ["openPageLightBox", "openVideoLightBox"]),
   },
 };
 </script>

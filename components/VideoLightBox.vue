@@ -62,7 +62,11 @@
                 </div>
 
                 <div
-                  v-show="(video.caption || video.title) && isVideoLoaded"
+                  v-show="
+                    (video.caption || video.title) &&
+                    isVideoLoaded &&
+                    windowPercentage <= 0.8
+                  "
                   class="video-lightbox__text"
                   :style="videoTitleCss"
                 >
