@@ -43,32 +43,34 @@
         :key="posterIndex"
         class="swiper-slide"
       >
-        <Tooltip
-          text="See trailer and info"
-          location="top"
-          theme="light"
+        <a
+          :href="poster.link"
+          class="posterLink-carousel__link"
+          :class="{ active: posterIndex === clickedPosterIndex }"
+          @click="onPosterLinkClick(posterIndex)"
         >
-          <a
-            :href="poster.link"
-            class="posterLink-carousel__link"
-            :class="{ active: posterIndex === clickedPosterIndex }"
-            @click="onPosterLinkClick(posterIndex)"
+          <img
+            :alt="`Click to go to ${poster.title}`"
+            :src="poster.img"
+            class="posterLinkImg"
+            :class="{
+              prevOrNextSlide: isNextOrPrevSlide(posterIndex),
+              backSlide: isBackSlide(posterIndex),
+            }"
+          />
+          <Tooltip
+            text="Trailer"
+            location="top"
+            theme="dark"
           >
-            <img
-              :alt="`Click to go to ${poster.title}`"
-              :src="poster.img"
-              class="posterLinkImg"
-              :class="{
-                prevOrNextSlide: isNextOrPrevSlide(posterIndex),
-                backSlide: isBackSlide(posterIndex),
-              }"
-            />
             <img
               :alt="`Play icon - click to go to ${poster.title}`"
               src="~/assets/images/playarrowcircle-rough.png"
               class="playImg"
-            /> </a></Tooltip
-      ></swiper-slide>
+            />
+          </Tooltip>
+        </a>
+      </swiper-slide>
     </swiper-container>
 
     <div id="leftArrowContainer">
@@ -176,6 +178,7 @@ const onPosterLinkClick = (index) => (clickedPosterIndex.value = index);
     top: 50%;
     left: 50%;
     width: 32.8%;
+    height: auto;
     transform: translate3d(-50%, -50%, 0);
     transition: opacity 0.25s ease-in-out;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.75));

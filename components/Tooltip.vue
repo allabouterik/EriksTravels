@@ -1,7 +1,7 @@
 <template>
   <TooltipProvider :delay-duration="delay">
     <TooltipRoot>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <slot></slot>
       </TooltipTrigger>
       <TooltipPortal>
