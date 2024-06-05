@@ -57,13 +57,6 @@ const onAudioIconClick = () => {
     --logo-width: 177px;
     max-width: var(--logo-width);
   }
-
-  &:deep(button) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-  }
 }
 
 .audioIcon {
