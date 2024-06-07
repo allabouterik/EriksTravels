@@ -11,6 +11,7 @@
           :side-offset="offset"
           :class="{
             'tooltip-content': true,
+            'tooltip-content-lg': size === 'lg',
             'content-light': theme === 'light',
             'content-dark': theme === 'dark',
           }"
@@ -76,6 +77,14 @@ const props = defineProps({
       return ["light", "dark"].includes(value);
     },
   },
+  size: {
+    type: String,
+    required: false,
+    default: "md",
+    validator(value) {
+      return ["md", "lg"].includes(value);
+    },
+  },
 });
 </script>
 
@@ -100,6 +109,11 @@ const props = defineProps({
   font-weight: 400;
   transform-origin: var(--radix-tooltip-content-transform-origin);
   animation: scaleIn 0.2s ease-out;
+
+  &-lg {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
 div[data-radix-popper-content-wrapper] {

@@ -62,6 +62,7 @@
             text="Trailer"
             location="top"
             theme="dark"
+            size="lg"
           >
             <img
               :alt="`Play icon - click to go to ${poster.title}`"
