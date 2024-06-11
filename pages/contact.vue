@@ -13,7 +13,7 @@
           <li>Andrew Couch: consultation and audio engineering</li>
           <li>Jim Edgar: audio engineering</li>
           <li>Lala Coyle and Jacob Dulisse: additional photography</li>
-          <li>John Sebastian “Daydream”</li>
+          <li>John Sebastian “Daydream” and “Wildwood Flower”</li>
           <li>Henry Diltz: photos and calligraphy</li>
           <li>Cindy @Tamtravel</li>
         </ul>
