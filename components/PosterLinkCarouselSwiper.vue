@@ -59,7 +59,7 @@
             }"
           />
           <Tooltip
-            text="Trailer"
+            text="Trailer & Info"
             location="top"
             theme="dark"
             size="lg"
