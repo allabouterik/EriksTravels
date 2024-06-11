@@ -158,6 +158,10 @@ const updateBgMusic = (routeTrimmed: string) => {
     } else if (routeTrimmed === "/home" || routeTrimmed === "/film-portfolio") {
       audioFile = `${directory}eriks-travels-music_volume-edit.mp3`;
       fadeDuration = 3.5;
+    } else if (routeTrimmed === "/contact") {
+      audioFile =
+        "https://res.cloudinary.com/all-about-erik/video/upload/q_auto/v1583973805/Home%20Page/Wildwood-Flower-John-Sebastian_Home_z2xvir.mp3";
+      fadeDuration = 3.5;
     }
   }
 
