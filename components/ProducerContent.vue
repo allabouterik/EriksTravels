@@ -128,6 +128,8 @@ watch(timer, (val) => {
 </script>
 
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap");
+
 .main-col {
   max-width: 100%;
   min-height: 600px;
@@ -178,9 +180,10 @@ watch(timer, (val) => {
 
 .slideshowText {
   color: #ffffff;
-  font-family: "Libre Baskerville", serif;
+  font-family: "Annie Use Your Telescope", cursive;
   font-size: 1rem;
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 600;
   line-height: 1.25;
   letter-spacing: 2px;
   text-align: center;
