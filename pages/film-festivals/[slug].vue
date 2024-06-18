@@ -57,7 +57,7 @@
         <!-- TITLE -->
         <div id="grid-item-title">
           <h2
-            class="text-et-heading-24 2xl:text-et-heading-42 text-black uppercase whitespace-pre-line"
+            class="text-et-heading-24 2xl:text-et-heading-34 text-black uppercase whitespace-pre-line"
             v-html="displayTitle ?? title"
           ></h2>
         </div>
@@ -108,7 +108,7 @@
           class="hidden 2xl:flex items-end"
         >
           <h2
-            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+            class="text-et-heading-22 2xl:text-et-heading-34 text-black uppercase"
           >
             Details
             {{ locations && locations.length > 0 ? " / Locations" : "" }}
@@ -121,7 +121,7 @@
           id="grid-item-details"
         >
           <h2
-            class="2xl:hidden text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+            class="2xl:hidden text-et-heading-22 2xl:text-et-heading-34 text-black uppercase"
           >
             Details {{ locations ? " / Locations" : "" }}
           </h2>
@@ -161,7 +161,7 @@
           id="grid-item-reviews"
         >
           <h2
-            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase"
+            class="text-et-heading-22 2xl:text-et-heading-34 text-black uppercase"
           >
             Reviews
           </h2>
@@ -186,7 +186,7 @@
       >
         <div class="!p-0">
           <h2
-            class="text-et-heading-22 2xl:text-et-heading-42 text-black uppercase mb-2"
+            class="text-et-heading-22 2xl:text-et-heading-34 text-black uppercase mb-2"
           >
             Festival Awards
           </h2>

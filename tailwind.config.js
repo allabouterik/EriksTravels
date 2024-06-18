@@ -51,6 +51,13 @@ module.exports = {
           fontWeight: 400,
         },
       ],
+      [`${prefix}heading-34`]: [
+        "2.125rem",
+        {
+          lineHeight: 1.2,
+          fontWeight: 400,
+        },
+      ],
       [`${prefix}heading-24`]: [
         "1.5rem",
         {
