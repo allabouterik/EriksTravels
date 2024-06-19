@@ -19,6 +19,7 @@
           <img
             src="/film-festivals/back-to-festivals.png"
             alt="Back to festivals"
+            class="h-[33px] sm:h-[40px] md:h-[45px]"
           />
         </a>
       </v-col>
