@@ -26,7 +26,7 @@
 
     <v-row
       no-gutters
-      class="mb-1"
+      class="!mb-[0.5rem] md:!mb-4"
     >
       <v-col>
         <VideoCarousel
@@ -35,6 +35,7 @@
           :windowPercentage="0.58"
           :prevLink="prevLink"
           :nextLink="nextLink"
+          :fullVideo="fullVideoArr[0]"
         />
       </v-col>
     </v-row>
@@ -84,12 +85,6 @@
               }}
             </p>
           </template>
-          <button
-            class="text-et-body-18 text-et-yellow font-avenir italic hover:text-gray-500 m-0 my-1 md:py-2"
-            @click="openVideo(fullVideoArr, 0)"
-          >
-            Watch the full film
-          </button>
         </div>
 
         <!-- DESCRIPTION -->

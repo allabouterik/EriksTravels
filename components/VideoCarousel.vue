@@ -66,6 +66,18 @@
               >
                 {{ video.caption || video.title }}
               </div>
+
+              <div
+                v-show="fullVideo !== '' && isVideoLoaded"
+                class="w-full text-right"
+              >
+                <button
+                  class="text-et-body-16 md:text-et-body-18 text-white hover:!text-et-yellow font-neueHaasGrotesk italic uppercase m-0 pt-[0.5rem] md:!pt-4"
+                  @click="openVideo([fullVideo], 0)"
+                >
+                  Watch full film
+                </button>
+              </div>
             </div>
           </li>
         </ul>
@@ -150,6 +162,16 @@
   </div>
 </template>
 
+<script setup>
+import { useMainStore } from "@/stores/mainStore";
+
+const store = useMainStore();
+
+const openVideo = (videoArr, videoIndex) => {
+  store.openVideoLightBox(videoArr, videoIndex, true);
+};
+</script>
+
 <script>
 import Player from "@vimeo/player";
 
@@ -201,6 +223,10 @@ export default {
       // optional router link to page with next video
       type: Object,
       default: { url: "", title: "" },
+    },
+    fullVideo: {
+      type: String,
+      default: "",
     },
   },
 
@@ -461,8 +487,9 @@ export default {
     width: 100%;
     text-align: center;
     transition: left 0.4s ease, transform 0.4s ease, -webkit-transform 0.4s ease;
+
     @include media-breakpoint-down(sm) {
-      padding: 1rem 0;
+      padding-top: 1rem;
     }
   }
   &__video {
