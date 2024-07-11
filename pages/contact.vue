@@ -15,7 +15,7 @@
           <li>
             Lala Coyle, Jacob Dulisse and Pat Smith: additional photography
           </li>
-          <li>John Sebastian “Daydream” and “Wildwood Flower”</li>
+          <li>John Sebastian: “Daydream” and “Wildwood Flower”</li>
           <li>Henry Diltz: photos and calligraphy</li>
           <li>Cindy @Tamtravel</li>
         </ul>
