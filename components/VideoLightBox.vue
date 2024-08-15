@@ -140,7 +140,7 @@
 <script>
 import Player from "@vimeo/player";
 import { useMainStore } from "@/stores/mainStore";
-import { isIOS } from "~/utils/detect_iOS";
+import { isIOS } from "~/utils/isIOS";
 
 const keyMap = {
   LEFT: 37,
