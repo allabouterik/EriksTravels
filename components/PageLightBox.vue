@@ -13,7 +13,7 @@
 
         <div class="page-lightbox__iconsContainer">
           <div class="page-lightbox__musicIcons">
-            <BackgroundMusicIcons />
+            <BackgroundMusicIcons translateX="0%" />
           </div>
 
           <div

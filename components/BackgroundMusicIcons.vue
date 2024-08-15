@@ -14,6 +14,7 @@
           :alt="store.bgMusicTooltipText"
           src="../assets/images/sound-playing.png"
           class="audioIcon"
+          :style="iconStyles"
           @click="onAudioIconClick()"
         />
         <img
@@ -21,6 +22,7 @@
           :alt="store.bgMusicTooltipText"
           src="../assets/images/sound-muted.png"
           class="audioIcon"
+          :style="iconStyles"
           @click="onAudioIconClick()"
         />
       </Tooltip>
@@ -41,6 +43,19 @@ const soundPlaying = computed(
 const onAudioIconClick = () => {
   store.toggleBgMusic();
 };
+
+const props = defineProps({
+  translateX: {
+    type: String,
+    default: "-50%",
+  },
+});
+
+const iconStyles = computed(() => {
+  return {
+    "--translateX": props.translateX,
+  };
+});
 </script>
 
 <style lang="scss" scoped>
@@ -63,7 +78,7 @@ const onAudioIconClick = () => {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(var(--translateX), -50%, 0);
   max-width: 52px;
   height: auto;
 
