@@ -44,7 +44,7 @@
                     :src="
                       videos[videoIndex].url +
                       (isVimeoUrl(videos[videoIndex].url)
-                        ? `?autoplay=${autoplay}&color=505050&title=0&byline=0&portrait=0`
+                        ? `?autoplay=${autoplay}&muted=${isIOS}&color=505050&title=0&byline=0&portrait=0`
                         : '')
                     "
                     allow="autoplay; fullscreen; picture-in-picture"
@@ -140,6 +140,7 @@
 <script>
 import Player from "@vimeo/player";
 import { useMainStore } from "@/stores/mainStore";
+import { isIOS } from "~/utils/detect_iOS";
 
 const keyMap = {
   LEFT: 37,
@@ -192,6 +193,7 @@ export default {
       },
       windowWidth: 0,
       windowHeight: 0,
+      isIOS: isIOS(),
     };
   },
 
