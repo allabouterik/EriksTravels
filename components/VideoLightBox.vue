@@ -40,25 +40,27 @@
                 :style="videoContainerCss"
               >
                 <div style="width: 100%; height: 100%; position: relative">
-                  <iframe
-                    :src="
-                      videos[videoIndex].url +
-                      (isVimeoUrl(videos[videoIndex].url)
-                        ? `?autoplay=${autoplay}&muted=${isIOS}&color=505050&title=0&byline=0&portrait=0`
-                        : '')
-                    "
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    frameborder="0"
-                    webkitallowfullscreen
-                    mozallowfullscreen
-                    allowfullscreen
-                    :ref="`lg-vid-${videoIndex}`"
-                    @load="videoLoaded($event, videoIndex)"
-                    style="width: 100%; height: 100%"
-                    class="videoFrame"
-                    :id="'video_' + videoIndex"
-                  >
-                  </iframe>
+                  <ClientOnly>
+                    <iframe
+                      :src="
+                        videos[videoIndex].url +
+                        (isVimeoUrl(videos[videoIndex].url)
+                          ? `?autoplay=${autoplay}&muted=${isIOS}&color=505050&title=0&byline=0&portrait=0`
+                          : '')
+                      "
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      frameborder="0"
+                      webkitallowfullscreen
+                      mozallowfullscreen
+                      allowfullscreen
+                      :ref="`lg-vid-${videoIndex}`"
+                      @load="videoLoaded($event, videoIndex)"
+                      style="width: 100%; height: 100%"
+                      class="videoFrame"
+                      :id="'video_' + videoIndex"
+                    >
+                    </iframe>
+                  </ClientOnly>
                 </div>
 
                 <div
