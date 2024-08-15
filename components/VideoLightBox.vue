@@ -1,46 +1,46 @@
 <template>
-  <transition name="fade">
-    <div
-      v-if="showVideoLightBox"
-      class="video-lightbox"
-      @touchstart.passive="touchstartHandler"
-      @touchmove.passive="touchmoveHandler"
-      @touchend.passive="touchendHandler"
-    >
+  <ClientOnly>
+    <transition name="fade">
       <div
-        class="video-lightbox__modal"
-        :style="`background: ${background}`"
+        v-if="showVideoLightBox"
+        class="video-lightbox"
+        @touchstart.passive="touchstartHandler"
+        @touchmove.passive="touchmoveHandler"
+        @touchend.passive="touchendHandler"
       >
-        <div :class="['video-lightbox__spinner', !isVideoLoaded || 'hide']">
-          <div
-            class="video-lightbox__dot"
-            :style="`border-color: ${interfaceColor}`"
-          />
-          <div
-            class="video-lightbox__dot"
-            :style="`border-color: ${interfaceColor}`"
-          />
-          <div
-            class="video-lightbox__dot"
-            :style="`border-color: ${interfaceColor}`"
-          />
-        </div>
-        <div class="video-lightbox__container">
-          <ul class="video-lightbox__content">
-            <li
-              v-for="(video, videoIndex) in formattedVideos"
-              :key="videoIndex"
-              :style="`transform: translate3d(${
-                currentIndex * -100
-              }%, 0px, 0px);`"
-              class="video-lightbox__video-container"
-            >
-              <div
-                class="video-lightbox__video"
-                :style="videoContainerCss"
+        <div
+          class="video-lightbox__modal"
+          :style="`background: ${background}`"
+        >
+          <div :class="['video-lightbox__spinner', !isVideoLoaded || 'hide']">
+            <div
+              class="video-lightbox__dot"
+              :style="`border-color: ${interfaceColor}`"
+            />
+            <div
+              class="video-lightbox__dot"
+              :style="`border-color: ${interfaceColor}`"
+            />
+            <div
+              class="video-lightbox__dot"
+              :style="`border-color: ${interfaceColor}`"
+            />
+          </div>
+          <div class="video-lightbox__container">
+            <ul class="video-lightbox__content">
+              <li
+                v-for="(video, videoIndex) in formattedVideos"
+                :key="videoIndex"
+                :style="`transform: translate3d(${
+                  currentIndex * -100
+                }%, 0px, 0px);`"
+                class="video-lightbox__video-container"
               >
-                <div style="width: 100%; height: 100%; position: relative">
-                  <ClientOnly>
+                <div
+                  class="video-lightbox__video"
+                  :style="videoContainerCss"
+                >
+                  <div style="width: 100%; height: 100%; position: relative">
                     <iframe
                       :src="
                         videos[videoIndex].url +
@@ -60,83 +60,83 @@
                       :id="'video_' + videoIndex"
                     >
                     </iframe>
-                  </ClientOnly>
+                  </div>
+
+                  <div
+                    v-show="
+                      (video.caption || video.title) &&
+                      isVideoLoaded &&
+                      windowPercentage <= 0.8
+                    "
+                    class="video-lightbox__text"
+                    :style="videoTitleCss"
+                  >
+                    {{ video.caption || video.title }}
+                  </div>
                 </div>
+              </li>
+            </ul>
+          </div>
 
-                <div
-                  v-show="
-                    (video.caption || video.title) &&
-                    isVideoLoaded &&
-                    windowPercentage <= 0.8
-                  "
-                  class="video-lightbox__text"
-                  :style="videoTitleCss"
-                >
-                  {{ video.caption || video.title }}
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+          <div
+            id="leftArrowContainer"
+            v-if="currentIndex > 0"
+            @click="prev()"
+          >
+            <img
+              alt="Left arrow, click for previous video"
+              src="../assets/images/left-arrow-white.png"
+              id="prevVideoImg"
+              class="video-lightbox__prev arrowImg"
+            />
+            <img
+              alt="Left arrow, click for previous video"
+              src="../assets/images/left-arrow-yellow.png"
+              id="prevVideoImg-hover"
+              class="video-lightbox__prev arrowImg"
+            />
+          </div>
 
-        <div
-          id="leftArrowContainer"
-          v-if="currentIndex > 0"
-          @click="prev()"
-        >
-          <img
-            alt="Left arrow, click for previous video"
-            src="../assets/images/left-arrow-white.png"
-            id="prevVideoImg"
-            class="video-lightbox__prev arrowImg"
-          />
-          <img
-            alt="Left arrow, click for previous video"
-            src="../assets/images/left-arrow-yellow.png"
-            id="prevVideoImg-hover"
-            class="video-lightbox__prev arrowImg"
-          />
-        </div>
+          <div
+            id="rightArrowContainer"
+            v-if="currentIndex + 1 < videos.length"
+            @click="next()"
+          >
+            <img
+              alt="Right arrow, click for next video"
+              src="../assets/images/right-arrow-white.png"
+              id="nextVideoImg"
+              class="video-lightbox__next arrowImg"
+            />
+            <img
+              alt="Right arrow, click for next video"
+              src="../assets/images/right-arrow-yellow.png"
+              id="nextVideoImg-hover"
+              class="video-lightbox__next arrowImg"
+            />
+          </div>
 
-        <div
-          id="rightArrowContainer"
-          v-if="currentIndex + 1 < videos.length"
-          @click="next()"
-        >
-          <img
-            alt="Right arrow, click for next video"
-            src="../assets/images/right-arrow-white.png"
-            id="nextVideoImg"
-            class="video-lightbox__next arrowImg"
-          />
-          <img
-            alt="Right arrow, click for next video"
-            src="../assets/images/right-arrow-yellow.png"
-            id="nextVideoImg-hover"
-            class="video-lightbox__next arrowImg"
-          />
-        </div>
-
-        <div
-          id="closeImgContainer"
-          @click="close()"
-        >
-          <img
-            alt="Close icon, click to close lightbox"
-            src="../assets/images/lightbox-close.png"
-            id="closeImg"
-            class="video-lightbox__close"
-          />
-          <img
-            alt="Close icon, click to close lightbox"
-            src="../assets/images/lightbox-close-hover.png"
-            id="closeImg-hover"
-            class="video-lightbox__close"
-          />
+          <div
+            id="closeImgContainer"
+            @click="close()"
+          >
+            <img
+              alt="Close icon, click to close lightbox"
+              src="../assets/images/lightbox-close.png"
+              id="closeImg"
+              class="video-lightbox__close"
+            />
+            <img
+              alt="Close icon, click to close lightbox"
+              src="../assets/images/lightbox-close-hover.png"
+              id="closeImg-hover"
+              class="video-lightbox__close"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </ClientOnly>
 </template>
 
 <script>
