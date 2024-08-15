@@ -86,6 +86,8 @@ export const useMainStore = defineStore("main", () => {
       !(
         (pageLightBoxOpen && pageLightBoxProps.value.disableScroll) ||
         (videoLightBoxOpen && videoLightBoxProps.value.disableScroll) ||
+        pageLightBoxOpen.value ||
+        videoLightBoxOpen.value ||
         imageLightBoxOpen.value
       )
   );

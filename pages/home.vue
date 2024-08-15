@@ -104,6 +104,7 @@ const openVideo = (videoIndex) => {
 .scroll {
   animation: scrollAnimation infinite linear;
   animation-duration: 540s;
+  animation-delay: 0.01s; // needed for iOS
 }
 
 @media screen and (min-width: 600px) and (max-width: 1280px) {
