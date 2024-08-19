@@ -9,8 +9,8 @@
         <v-container
           v-for="i in 2"
           fluid
-          class="mainContainer mb-2 px-1"
-          :class="{ scroll: layoutScrollable }"
+          class="mainContainer scroll mb-2 px-1"
+          :class="{ scroll_start: layoutScrollable }"
         >
           <!-- VIDEOS -->
           <v-row
@@ -103,19 +103,20 @@ const openVideo = (videoIndex) => {
 
 .scroll {
   animation: scrollAnimation infinite linear;
-  animation-duration: 540s;
   animation-delay: 0.25s; // needed for iOS
-}
+  animation-duration: 540s;
+  animation-play-state: paused;
 
-@media screen and (min-width: 600px) and (max-width: 1280px) {
-  .scroll {
+  @media screen and (min-width: 600px) and (max-width: 1280px) {
     animation-duration: 360s;
   }
-}
 
-@media screen and (min-width: 1280px) {
-  .scroll {
+  @media screen and (min-width: 1280px) {
     animation-duration: 180s;
+  }
+
+  &_start {
+    animation-play-state: running;
   }
 }
 
