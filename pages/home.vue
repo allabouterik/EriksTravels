@@ -9,8 +9,11 @@
         <v-container
           v-for="i in 2"
           fluid
-          class="mainContainer scroll mb-2 px-1"
-          :class="{ paused: !layoutScrollable }"
+          class="mainContainer mb-2 px-1"
+          :class="{
+            scroll: mounted,
+            paused: !layoutScrollable,
+          }"
         >
           <!-- VIDEOS -->
           <v-row
@@ -59,10 +62,12 @@ const { layoutScrollable } = storeToRefs(store);
 
 const pageTitle = "Home";
 const travelVideos = ref([]);
+const mounted = ref(false);
 
 onMounted(async () => {
   const travelsPgContent = await queryContent("travels").findOne();
   travelVideos.value = travelsPgContent.videos;
+  mounted.value = true;
 });
 
 const openVideo = (videoIndex) => {
@@ -103,7 +108,7 @@ const openVideo = (videoIndex) => {
 
 .scroll {
   animation: scrollAnimation infinite linear;
-  animation-delay: 0.3s; // needed for iOS
+  animation-delay: 0.03s; // needed for iOS
   animation-duration: 540s;
   animation-play-state: running;
 
