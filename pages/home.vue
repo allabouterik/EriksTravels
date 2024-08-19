@@ -10,7 +10,7 @@
           v-for="i in 2"
           fluid
           class="mainContainer scroll mb-2 px-1"
-          :class="{ scroll_start: layoutScrollable }"
+          :class="{ paused: !layoutScrollable }"
         >
           <!-- VIDEOS -->
           <v-row
@@ -103,9 +103,9 @@ const openVideo = (videoIndex) => {
 
 .scroll {
   animation: scrollAnimation infinite linear;
-  animation-delay: 0.25s; // needed for iOS
+  animation-delay: 0.3s; // needed for iOS
   animation-duration: 540s;
-  animation-play-state: paused;
+  animation-play-state: running;
 
   @media screen and (min-width: 600px) and (max-width: 1280px) {
     animation-duration: 360s;
@@ -115,8 +115,8 @@ const openVideo = (videoIndex) => {
     animation-duration: 180s;
   }
 
-  &_start {
-    animation-play-state: running;
+  &.paused {
+    animation-play-state: paused;
   }
 }
 
