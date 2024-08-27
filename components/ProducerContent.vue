@@ -86,7 +86,16 @@ const slides = ref([]);
 onMounted(async () => {
   const producerPgContent = await queryContent("producer").findOne();
   titleImg.value = producerPgContent.titleImg;
-  slides.value = producerPgContent.slides;
+
+  slides.value =
+    window.innerWidth < 768
+      ? producerPgContent.slides.map((slide) => {
+          slide.img = slide.imgMbl ?? slide.img;
+          return slide;
+        })
+      : producerPgContent.slides;
+
+  console.log("slides", slides.value);
 
   // onResize();
   // window.addEventListener("resize", onResize);
