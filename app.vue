@@ -145,8 +145,12 @@ const updateBgMusic = (routeTrimmed: string) => {
     pageLightBoxOpen.value &&
     pageLightBoxProps.value.componentName === "ProducerContent"
   ) {
-    audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
-    maxVolume = 0.2;
+    if (window.innerWidth < 768) {
+      audioFile = `${directory}The%20Producer/ej-the-producer_mbl.mp3`;
+    } else {
+      audioFile = `${directory}The%20Producer/ej-the-producer.mp3`;
+      maxVolume = 0.2;
+    }
   } else if (!videoLightBoxOpen.value && !pageLightBoxOpen.value) {
     if (routeTrimmed === "/film-festivals") {
       // film festival index page
