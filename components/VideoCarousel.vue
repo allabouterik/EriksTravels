@@ -69,10 +69,16 @@
 
               <div
                 v-show="fullVideo !== '' && isVideoLoaded"
-                class="w-full text-right"
+                class="flex items-center justify-between"
               >
                 <button
-                  class="text-et-body-16 md:text-et-body-18 text-white hover:!text-et-yellow font-neueHaasGrotesk italic uppercase m-0 pt-[0.5rem] md:!pt-4"
+                  class="hidden lg:block text-et-body-16 md:text-et-body-18 text-white hover:!text-et-yellow font-neueHaasGrotesk italic uppercase m-0 pt-[0.5rem] md:!pt-4"
+                  v-scroll-to="'#info-container'"
+                >
+                  Scroll for more
+                </button>
+                <button
+                  class="text-et-body-16 md:text-et-body-18 text-white hover:!text-et-yellow font-neueHaasGrotesk italic uppercase m-0 ml-auto pt-[0.5rem] md:!pt-4"
                   @click="openVideo([fullVideo], 0)"
                 >
                   Watch full film

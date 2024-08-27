@@ -41,7 +41,10 @@
       </v-col>
     </v-row>
 
-    <div class="w-full py-10 px-4 2xl:px-16 bg-white">
+    <div
+      id="info-container"
+      class="w-full py-10 px-4 2xl:px-16 bg-white"
+    >
       <div
         id="grid-container"
         :class="{ withReviewPoster: reviewPoster && reviewPoster.small }"
