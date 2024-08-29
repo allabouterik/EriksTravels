@@ -54,6 +54,8 @@ slides:
     scaleTo: 1
   - img: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_10.jpg
+    imgMbl: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_10_mbl.jpg
     panStart: centre
     scaleFrom: 1
     scaleTo: 1.06
@@ -88,6 +90,8 @@ slides:
     scaleTo: 1
   - img: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_16.jpg
+    imgMbl: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Eriks%20Travels/The%20Producer/slideshow/producer-slide_16_mbl.jpg
     panStart: top-right
     scaleFrom: 1.06
     scaleTo: 1
