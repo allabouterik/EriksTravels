@@ -45,7 +45,7 @@
             production
           </li>
           <li>Heather Young: editor</li>
-          <li>Olivia Gonzales: editor</li>
+          <li>Olivia Gonzalez: editor</li>
         </ul>
 
         <div class="flex gap-x-2 my-3">
@@ -73,7 +73,7 @@
               alt="Olivia portrait"
               class="w-full h-auto"
             />
-            <figcaption class="text-main caption">Olivia Gonzales</figcaption>
+            <figcaption class="text-main caption">Olivia Gonzalez</figcaption>
           </div>
         </div>
 

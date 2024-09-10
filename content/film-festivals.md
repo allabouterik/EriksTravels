@@ -17,7 +17,7 @@ festivals:
       director, narrator, photographer: Erik Jacobsen
       editors:
         - Heather Young
-        - Olivia Gonzales
+        - Olivia Gonzalez
         - Lindsey Brady
       music: Lindsey Brady
       releaseDate: 2021
@@ -63,10 +63,10 @@ festivals:
       Great fish markets. Tokyo, Maputo, Singapore, Busan, Gallipoli, Taipei, Zanzibar, Dubai, Hong Kong, Bergen, Cabo San Lucas, Borneo, Mangalore, and Morocco. Great seafood restaurants. Rinaldi's in Rome,Trishna in Mumbai, Portofino in Italy, and Marbella in Spain.
     info:
       director, narrator, photographer: Erik Jacobsen
-      editor: Olivia Gonzales
+      editor: Olivia Gonzalez
       music:
         - Erik Jacobsen
-        - Olivia Gonzales
+        - Olivia Gonzalez
       releaseDate: 2024
     posterImg: /film-festivals/festivals-poster-seafood.jpg
     trailerVideoUrl: https://player.vimeo.com/video/941558521
@@ -82,7 +82,7 @@ festivals:
       director, narrator, photographer: Erik Jacobsen
       editors:
         - Lindsey Brady
-        - Olivia Gonzales
+        - Olivia Gonzalez
       music: Lindsey Brady
       releaseDate: 2018
     posterImg: /film-festivals/festivals-poster-boyhood.jpg
@@ -101,7 +101,7 @@ festivals:
       editors:
         - Heather Young
         - Lindsey Brady
-        - Olivia Gonzales
+        - Olivia Gonzalez
       music: Lindsey Brady
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-japan.jpg
@@ -121,10 +121,10 @@ festivals:
     info:
       director, narrator, photographer: Erik Jacobsen
       additional footage: Cindy McCain
-      editor: Olivia Gonzales
+      editor: Olivia Gonzalez
       music:
         - Erik Jacobsen
-        - Olivia Gonzales
+        - Olivia Gonzalez
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-long-ago.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939082166
@@ -139,10 +139,10 @@ festivals:
     info:
       director, narrator, photographer: Erik Jacobsen
       additional footage: Lala Coyle-Jacobsen
-      editor: Olivia Gonzales
+      editor: Olivia Gonzalez
       music:
         - Erik Jacobsen
-        - Olivia Gonzales
+        - Olivia Gonzalez
       releaseDate: 2023
     posterImg: /film-festivals/festivals-poster-romania.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939092030
@@ -183,10 +183,10 @@ festivals:
       - Montmartre
     info:
       director, narrator, photographer: Erik Jacobsen
-      editor: Olivia Gonzales
+      editor: Olivia Gonzalez
       music:
         - Erik Jacobsen
-        - Olivia Gonzales
+        - Olivia Gonzalez
       releaseDate: 2024
     posterImg: /film-festivals/festivals-poster-musical-moments.jpg
     trailerVideoUrl: https://player.vimeo.com/video/946638733
