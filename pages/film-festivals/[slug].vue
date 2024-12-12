@@ -94,15 +94,16 @@
         <!-- DESCRIPTION -->
         <div id="grid-item-description">
           <p
+            v-html="description"
             class="text-et-body-15 2xl:text-et-body-24 text-black text-justify"
-          >
-            {{ description }}
-          </p>
+          ></p>
         </div>
 
         <!-- DETAILS / LOCATIONS HEADING -->
         <div
-          v-if="details !== '' || (locations && locations.length > 0)"
+          v-if="
+            (details && details !== '') || (locations && locations.length > 0)
+          "
           id="grid-item-details-heading"
           class="hidden 2xl:flex items-end"
         >
@@ -116,7 +117,9 @@
 
         <!-- DETAILS / LOCATIONS -->
         <div
-          v-if="details !== '' || (locations && locations.length > 0)"
+          v-if="
+            (details && details !== '') || (locations && locations.length > 0)
+          "
           id="grid-item-details"
         >
           <h2

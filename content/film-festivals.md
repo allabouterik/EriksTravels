@@ -191,4 +191,38 @@ festivals:
     posterImg: /film-festivals/festivals-poster-musical-moments.jpg
     trailerVideoUrl: https://player.vimeo.com/video/946638733
     fullVideoUrl: https://player.vimeo.com/video/943853351
+
+  - title: Highlites
+    slug: highlites
+    description: >-
+      This is a collection of some of my most memorable and unforgettable travel experiences. Travel is always an adventure: exciting and educational. No matter the destination. You can take a cruise, hit the beaches, or hike in the jungle. Visit the great cities of the world, and historical landmarks. Meet the people. Go to the market. Eat the food. Enjoy the night life and dance to the music. If you get the chance, join in with the crowd at a festival or holiday celebration! You’ll bring home memories to last a lifetime.
+    info:
+      director, narrator, photographer: Erik Jacobsen
+      additional footage: Lala Coyle-Jacobsen
+      editor: Olivia Gonzalez
+      music:
+        - Erik Jacobsen
+        - Olivia Gonzalez
+      releaseDate: 2024
+    posterImg: /film-festivals/festivals-poster-highlites.jpg
+    trailerVideoUrl: https://player.vimeo.com/video/1038392227
+    fullVideoUrl: https://player.vimeo.com/video/1038392524
+
+  - title: The Final Chapter
+    slug: final-chapter
+    description: >-
+      “As I now am, so shall you one day be.” From an old New England tombstone.
+      <br><br>Death is a provocative concept. Some can’t stand the thought and some can’t stop thinking about it. It’s wildly feared and dreaded, but for some, eagerly anticipated. We struggled to comprehend the bigger picture. Is death the end of everything, or is there more? If so, how can we better our personal chances of getting there? 
+      <br><br>This film features a potpourri of related references. We have cemeteries, mausoleums, crypts, memorials, mummies, skeletons, caskets, burial rituals, and artistic representations of life in the hereafter. One thing seems certain: sooner or later, when our race is run, the curtain falls on the final chapter.
+    info:
+      director, narrator, photographer: Erik Jacobsen
+      additional footage: Lala Coyle-Jacobsen
+      editor: Olivia Gonzalez
+      music:
+        - Erik Jacobsen
+        - Olivia Gonzalez
+      releaseDate: 2024
+    posterImg: /film-festivals/festivals-poster-final-chapter.jpg
+    trailerVideoUrl: https://player.vimeo.com/video/980933353
+    fullVideoUrl: https://player.vimeo.com/video/956804246
 ---
