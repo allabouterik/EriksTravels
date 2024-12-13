@@ -214,6 +214,12 @@ festivals:
       “As I now am, so shall you one day be.” From an old New England tombstone.
       <br><br>Death is a provocative concept. Some can’t stand the thought and some can’t stop thinking about it. It’s wildly feared and dreaded, but for some, eagerly anticipated. We struggled to comprehend the bigger picture. Is death the end of everything, or is there more? If so, how can we better our personal chances of getting there? 
       <br><br>This film features a potpourri of related references. We have cemeteries, mausoleums, crypts, memorials, mummies, skeletons, caskets, burial rituals, and artistic representations of life in the hereafter. One thing seems certain: sooner or later, when our race is run, the curtain falls on the final chapter.
+    reviews: >-
+      The one and only certainty of human kind... is that in the end, we all die.
+      <br><br>We live with the knowledge that we will meet death sooner or later, but what does it look like? Does it have a look? Is it tangible? Or does it simply come like a gust of wind and take us away?
+      <br><br>Ingmar Bergman in “The Seventh Seal” depicted it as a disturbing man dressed in black, Bob Fosse in “All That Jazz” gave it the splendid face of Jessica Lange... but the truth is that we can only imagine or idealize something that we have never seen personally.
+      <br><br>The Final Chapter, written, directed and produced by music producer and filmmaker Erik Jacobsen, offers us the opportunity to see how the dead are experienced, celebrated, honored or exorcised depending on the place, customs and culture.
+      <br><br>Jacobsen's main gift is that of being able to transport the viewer far away and accompany him to parts of the world that perhaps he will never be able to see in person; his friendly baritone voice leads us to discover the most disparate places: we see the astonishing and catastrophic Pompeii, the classic architecture of Italian cemeteries, Egyptian sarcophagi, embalmed corpses, skulls, bones... we feel amazement and a hint of disgust. The editing of photos and videos shot by the director himself, and the perfect choice of background music, manages to convey an interesting, informative and engaging short film focused on the greatest human fear...
     info:
       director, narrator, photographer: Erik Jacobsen
       additional footage: Lala Coyle-Jacobsen

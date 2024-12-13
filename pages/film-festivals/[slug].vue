@@ -47,7 +47,10 @@
     >
       <div
         id="grid-container"
-        :class="{ withReviewPoster: reviewPoster && reviewPoster.small }"
+        :class="{
+          withReviewPoster: reviewPoster && reviewPoster.small,
+          noDetails: !details || details === '',
+        }"
       >
         <!-- POSTER -->
         <div id="grid-item-poster">
@@ -434,6 +437,15 @@ const openImageLightBox = (image) => {
       "poster description details"
       "info description details"
       "info reviews reviews";
+
+    &.noDetails {
+      grid-template-columns: min-content 1080px;
+      grid-template-areas:
+        "poster title"
+        "poster description"
+        "info reviews"
+        "reviewsPoster reviews";
+    }
 
     &.withReviewPoster {
       grid-template-areas:
