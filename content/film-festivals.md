@@ -10,6 +10,8 @@ festivals:
       Featuring the pyramids of Giza, Cairo, and the Egyptian museum. A visit to a nightclub on a Nile river boat. Thebes, and the Karnack and Luxor temples. Tombs in the valley of the Kings and Queens. Tutankhamun, Akhenaten, and Ramesses the Great. Cleopatra, the last queen. Her romances and death.
     reviews: >-
       Featured the September 2023 issue of FilmmakerLife Magazine, a journal devoted to the serious and impassioned discussion of cinema. Click to enlarge.
+      <br><br>
+      As a musician, producer, and song publisher, Erik Jacobsen spent a long, rewarding career finding and nurturing young, unknown singer-songwriters, helping them realize their full artistic potential and commercial success. After 30 years of making hit records, he has since focused on producing short films about his extensive travels. What began as an effort to write an autobiography, blossomed into the full-blown creative pursuit of storytelling through video production.
     reviewPoster:
       small: /film-festivals/egypt-review-poster_small.jpg
       large: /film-festivals/egypt-review-poster_large.jpg
