@@ -48,8 +48,9 @@
       <div
         id="grid-container"
         :class="{
+          withLocations: locations && locations.length > 0,
           withReviewPoster: reviewPoster && reviewPoster.small,
-          noDetails: !details || details === '',
+          noDetails: !showDetailsSection,
         }"
       >
         <!-- POSTER -->
@@ -104,9 +105,7 @@
 
         <!-- DETAILS / LOCATIONS HEADING -->
         <div
-          v-if="
-            (details && details !== '') || (locations && locations.length > 0)
-          "
+          v-if="showDetailsSection"
           id="grid-item-details-heading"
           class="hidden 2xl:flex items-end"
         >
@@ -120,9 +119,7 @@
 
         <!-- DETAILS / LOCATIONS -->
         <div
-          v-if="
-            (details && details !== '') || (locations && locations.length > 0)
-          "
+          v-if="showDetailsSection"
           id="grid-item-details"
         >
           <h2
@@ -252,7 +249,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useMainStore } from "@/stores/mainStore";
 
 const route = useRoute();
@@ -329,6 +326,12 @@ onMounted(async () => {
     openVideo(fullVideoArr.value, 0);
   }
 });
+
+const showDetailsSection = computed(
+  () =>
+    (details.value && details.value !== "") ||
+    (locations.value && locations.value.length > 0)
+);
 
 const openVideo = (videoArr, videoIndex) => {
   store.openVideoLightBox(videoArr, videoIndex, true);
@@ -414,6 +417,24 @@ const openImageLightBox = (image) => {
       "poster details"
       "info details"
       "reviews reviews";
+
+    &.noDetails {
+      grid-template-areas:
+        "poster title"
+        "poster description"
+        "info description"
+        "reviews reviews";
+    }
+
+    &.withLocations {
+      grid-template-rows: repeat(2, min-content) 1fr min-content;
+      grid-template-areas:
+        "poster title"
+        "poster description"
+        "info description"
+        "info details"
+        "reviews reviews";
+    }
 
     &.withReviewPoster {
       grid-template-areas:
