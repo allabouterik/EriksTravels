@@ -26,6 +26,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-egypt.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939078217
     fullVideoUrl: https://player.vimeo.com/video/703897109
+    laurelsLength: 41
 
   - title: Norway
     slug: norway
@@ -56,6 +57,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-norway.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939094823
     fullVideoUrl: https://player.vimeo.com/video/174731877
+    laurelsLength: 10
 
   - title: Fresh Seafood
     slug: seafood
@@ -90,6 +92,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-boyhood.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939087599
     fullVideoUrl: https://player.vimeo.com/video/311575188
+    laurelsLength: 21
 
   - title: Japan
     slug: japan
@@ -109,6 +112,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-japan.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939075313
     fullVideoUrl: https://player.vimeo.com/video/386613137
+    laurelsLength: 5
 
   - title: Long Ago and Far Away
     displayTitle: Long Ago &#10; and Far Away
@@ -131,6 +135,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-long-ago.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939082166
     fullVideoUrl: https://player.vimeo.com/video/828154238
+    laurelsLength: 30
 
   - title: Romania
     slug: romania
@@ -149,6 +154,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-romania.jpg
     trailerVideoUrl: https://player.vimeo.com/video/939092030
     fullVideoUrl: https://player.vimeo.com/video/870863837
+    laurelsLength: 2
 
   - title: Musical Moments
     slug: musical-moments
@@ -193,6 +199,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-musical-moments.jpg
     trailerVideoUrl: https://player.vimeo.com/video/946638733
     fullVideoUrl: https://player.vimeo.com/video/943853351
+    laurelsLength: 51
 
   - title: Highlites
     slug: highlites

@@ -203,7 +203,7 @@
                   .toString()
                   .padStart(2, '0')}.png`"
                 alt="Award"
-                class="max-h-24"
+                class="max-w-36 max-h-24 h-fit self-center"
               />
             </div>
           </div>
@@ -270,9 +270,9 @@ const trailerVideoArr = ref([]);
 const fullVideoArr = ref([]);
 const lightboxImage = ref(null);
 const lightboxImageIndex = ref(null);
+const laurelsLength = ref(0);
 
 const slug = route.params.slug;
-const laurelsLength = slug === "egypt" ? 41 : slug === "long-ago" ? 27 : 0;
 
 const store = useMainStore();
 
@@ -320,6 +320,7 @@ onMounted(async () => {
   posterImg.value = festival.posterImg;
   trailerVideoArr.value = [{ url: festival.trailerVideoUrl }];
   fullVideoArr.value = [{ url: festival.fullVideoUrl }];
+  laurelsLength.value = festival.laurelsLength || 0;
 
   const openFullVideo = route.query.openFullVideo === "true";
   if (openFullVideo) {
