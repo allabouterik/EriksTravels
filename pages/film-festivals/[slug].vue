@@ -469,6 +469,15 @@ const openImageLightBox = (image) => {
         "reviewsPoster reviews";
     }
 
+    &.withLocations {
+      grid-template-rows: repeat(2, min-content) 1fr min-content;
+      grid-template-areas:
+        "poster title details-heading"
+        "poster description details"
+        "info description details"
+        "info reviews reviews";
+    }
+
     &.withReviewPoster {
       grid-template-areas:
         "poster title details-heading"
