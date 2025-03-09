@@ -246,6 +246,12 @@ videos:
     title: Hawaii
     url: "https://player.vimeo.com/video/872593061"
 
+  - duration: 1389
+    thumbnailImg: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/highlites.jpg
+    title: Highlites
+    url: "https://player.vimeo.com/video/1038392524"
+
   - duration: 467
     thumbnailImg: >-
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/holy-land.jpg
@@ -269,6 +275,12 @@ videos:
       https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/java.jpg
     title: Jogjakarta, Java
     url: "https://player.vimeo.com/video/646241946"
+
+  - duration: 444
+    thumbnailImg: >-
+      https://res.cloudinary.com/all-about-erik/image/upload/f_auto/Travels/kava-in-fiji.jpg
+    title: Kava in Fiji
+    url: "https://player.vimeo.com/video/1060644969"
 
   - duration: 485
     thumbnailImg: >-
