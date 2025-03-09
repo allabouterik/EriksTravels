@@ -10,8 +10,8 @@ festivals:
       Featuring the pyramids of Giza, Cairo, and the Egyptian museum. A visit to a nightclub on a Nile river boat. Thebes, and the Karnack and Luxor temples. Tombs in the valley of the Kings and Queens. Tutankhamun, Akhenaten, and Ramesses the Great. Cleopatra, the last queen. Her romances and death.
     reviews: >-
       Featured the September 2023 issue of FilmmakerLife Magazine, a journal devoted to the serious and impassioned discussion of cinema. Click to enlarge.
-      <br><br>
-      As a musician, producer, and song publisher, Erik Jacobsen spent a long, rewarding career finding and nurturing young, unknown singer-songwriters, helping them realize their full artistic potential and commercial success. After 30 years of making hit records, he has since focused on producing short films about his extensive travels. What began as an effort to write an autobiography, blossomed into the full-blown creative pursuit of storytelling through video production.
+      <br><br>“Egypt” is a travel documentary written and narrated by Erik Jacobsen. It features photos from his two trips to Egypt, local indigenous music, and fascinating historical facts from research into this amazing and long-lived civilization. It includes some of the most iconic, artistic works and monumental structures of ancient Egypt.
+      <br><br>As a musician, producer, and song publisher, Erik Jacobsen spent a long, rewarding career finding and nurturing young, unknown singer-songwriters, helping them realize their full artistic potential and commercial success. After 30 years of making hit records, he has since focused on producing short films about his extensive travels. What began as an effort to write an autobiography, blossomed into the full-blown creative pursuit of storytelling through video production.
     reviewPoster:
       small: /film-festivals/egypt-review-poster_small.jpg
       large: /film-festivals/egypt-review-poster_large.jpg
@@ -160,6 +160,15 @@ festivals:
     slug: musical-moments
     description: >-
       I spent forty years in the recording studio as a song publisher and record producer. Before that, I played five-string banjo in a small bluegrass group. We toured coast to coast. It was fun, but after several years, I put the banjo down, and began working in the studio producing records. At first, I recorded some of my compositions with my folk music friends: Mama Cass, Danny Doherty, Jerry Yester, Zal Yanovsky, and Henry Diltz. I found great songwriters and artists. Tim Hardin, John Sebastian, Norman Greenbaum, and, later, Chris Isaak. This is how I spent four decades! It was a journey with highs and lows, successes and failures. I got to know the artists, songwriters, and musicians, all with the talent and perseverance to live their lives making music. They all have my deep respect and admiration. It's not easy to do. I was lucky enough to be able to travel the world and I filmed musicians everywhere I went. Folkloric shows and street buskers alike. This film is a collection of live, on-location recordings I shot during my travels.
+    reviews: >-
+      PARIS FILM REVIEWS: MUSICAL MOMENTS
+      <br><br>Music unites us, music saves us.
+      <br><br>Musical Moments, short film directed by Erik Dreng Jacobsen is a varied collection of different musicalities and styles. A set of memories collected over time in the most disparate places.
+      <br><br>A kaleidoscope of atmospheres that take us on a journey with the director to discover ethnic groups, cultures, and sounds that give life to a single large world where notes are the protagonists.
+      <br><br>Song publisher and record producer for more than forty years, Jacobsen explores with great humanity and devotion all the passion that people can dedicate to music, no matter where they come from.
+      <br><br>A film that with simplicity intrigues and excites, but above all, let’s understand the importance of music in the life of human beings.
+      <br><br>A universal language that does not require words or translations to be understood or conveyed emotions.
+      <br><br>A great little journey to discover the world, people, and their love for music.
     locations:
       - Papua
       - Beijing
@@ -199,7 +208,7 @@ festivals:
     posterImg: /film-festivals/festivals-poster-musical-moments.jpg
     trailerVideoUrl: https://player.vimeo.com/video/946638733
     fullVideoUrl: https://player.vimeo.com/video/943853351
-    laurelsLength: 51
+    laurelsLength: 54
 
   - title: Highlites
     slug: highlites
